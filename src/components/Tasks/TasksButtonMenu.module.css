@@ -1,11 +1,7 @@
 .button {
   background-color: #e1716d;
   border-style: none;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.5rem;
   color: #ffffff;
   font-size: 1rem;
   font-weight: 400;
@@ -18,7 +14,7 @@
 }
 
 .icon {
-  width: 1.5rem;
-  height: 1.5rem;
-  margin-right: 0.5rem;
+  display: block;
+  width: 1rem;
+  height: 1rem;
 }

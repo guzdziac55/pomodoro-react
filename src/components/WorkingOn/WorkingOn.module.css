@@ -1,0 +1,10 @@
+.working-on {
+  margin-top: 2rem;
+  width: 100%;
+  text-align: center;
+}
+
+.working-on span {
+  color: red;
+  display: block;
+}
