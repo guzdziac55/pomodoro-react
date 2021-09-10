@@ -6,3 +6,9 @@
   padding-bottom: 0.5rem;
   border-bottom: 3px solid #e1716d;
 }
+
+.tasks-menu > span {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #e1716d;
+}

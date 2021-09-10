@@ -5,6 +5,7 @@
 }
 
 .working-on span {
-  color: red;
+  color: #e1716d;
+  font-weight: 600;
   display: block;
 }

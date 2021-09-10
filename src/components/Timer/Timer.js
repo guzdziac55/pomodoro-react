@@ -12,15 +12,13 @@ import WorkingOn from "../WorkingOn/WorkingOn";
 const Timer = (props) => {
   // whole timer component
   return (
-    <>
-      <Card class={classes.timer}>
-        <TimerTab></TimerTab>
-        <TimerCountdown />
-        <TimerButtonStart />
+    <Card class={classes.timer}>
+      <TimerTab></TimerTab>
+      <TimerCountdown />
+      <TimerButtonStart />
 
-        {/* main button Start */}
-      </Card>
-    </>
+      {/* main button Start */}
+    </Card>
   ); // to jest zamiast diva
 };
 

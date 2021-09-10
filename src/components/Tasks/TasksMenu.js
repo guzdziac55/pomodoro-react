@@ -7,7 +7,6 @@ const TasksMenu = () => {
     <section className={classes["tasks-menu"]}>
       <span>Tasks</span>
       <TasksButtonMenu icon={<IconLogin />} />
-      {/* <span className={classes.break}></span> */}
     </section>
   );
 };

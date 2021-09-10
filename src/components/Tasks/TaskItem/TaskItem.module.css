@@ -1,0 +1,32 @@
+.task {
+  list-style: none;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  background-color: #c74642;
+}
+
+.title {
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.icon {
+  display: block;
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  color: #ffffff;
+  margin-right: 0.5rem;
+}
+.icon:hover {
+  display: block;
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  color: #000000;
+  margin-right: 0.5rem;
+}
