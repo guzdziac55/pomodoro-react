@@ -1,0 +1,10 @@
+.button-start {
+  color: #df645f;
+  border-style: none;
+  border-radius: 2rem;
+  font-size: 3rem;
+  font-weight: 700;
+  background-color: #ffffff;
+  cursor: pointer;
+  padding: 2rem 4rem;
+}

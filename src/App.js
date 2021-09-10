@@ -1,11 +1,14 @@
 import "./App.css";
 import Header from "./components/Layout/Header";
+import Timer from "./components/Timer/Timer";
 
 function App() {
   return (
     <>
       <Header></Header>
-      <p>test</p>
+      <main>
+        <Timer></Timer>
+      </main>
     </>
   );
 }

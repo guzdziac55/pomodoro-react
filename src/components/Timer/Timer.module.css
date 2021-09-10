@@ -1,0 +1,9 @@
+.timer {
+  text-align: center;
+  background-color: #df645f;
+  margin: auto;
+  margin-top: 10rem;
+  max-width: 620px;
+  width: 100%;
+  height: 100%;
+}
