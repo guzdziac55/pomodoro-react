@@ -1,5 +1,7 @@
 .timer-tab {
   display: flex;
   justify-content: space-around;
-  padding: 0 5rem;
+  gap: 1rem;
+  padding: 0 2rem;
+  margin-top: 0.5rem;
 }

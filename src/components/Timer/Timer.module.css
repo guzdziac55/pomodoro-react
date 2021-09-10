@@ -2,8 +2,9 @@
   text-align: center;
   background-color: #df645f;
   margin: auto;
-  margin-top: 10rem;
-  max-width: 620px;
+  margin-top: 5rem;
+  max-width: 480px;
   width: 100%;
+  padding: 2rem;
   height: 100%;
 }
