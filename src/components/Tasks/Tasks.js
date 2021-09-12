@@ -11,8 +11,18 @@ const Tasks = (props) => {
   const tasksCtx = useContext(TaskListContext);
   const [showForm, setShowForm] = useState(false);
 
+  // formValidaton - use state - będzie robił conditional css
+  // {
+  //   /* <div className={`${classes.Content} ${props.collapse ? classes.collapse : ''}`}></div> */
+  // }
+
+  // można zamienić na toogleShowForm
   const handlerShowForm = () => {
-    setShowForm(!showForm);
+    setShowForm(true);
+  };
+
+  const handlerCancelForm = () => {
+    setShowForm(false);
   };
 
   const addNewTaskHandler = (taskName, pomodoro) => {
@@ -28,12 +38,20 @@ const Tasks = (props) => {
     <>
       <TasksMenu />
       <TasksList />
-      <TasksButtonAdd
-        onShowForm={handlerShowForm}
-        title={"Add Task"}
-        icon={<IconPlus />}
-      />
-      {showForm && <TaskForm onAddNewTask={addNewTaskHandler} />}
+      {!showForm && (
+        <TasksButtonAdd
+          onShowForm={handlerShowForm}
+          title={"Add Task"}
+          icon={<IconPlus />}
+        />
+      )}
+
+      {showForm && (
+        <TaskForm
+          onCancel={handlerCancelForm}
+          onAddNewTask={addNewTaskHandler}
+        />
+      )}
     </>
   );
 };

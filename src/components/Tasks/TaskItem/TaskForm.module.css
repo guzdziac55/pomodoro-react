@@ -7,3 +7,71 @@
   padding: 2rem 1rem;
   height: 100%;
 }
+
+.form button {
+  border-style: none;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 0.5rem;
+}
+
+.invalid {
+  background-color: red;
+}
+
+/* unvalid   background-color: #525252; */
+
+.form button[type="submit"] {
+  background-color: #383838;
+}
+
+.form button[type="submit"]:hover {
+  background-color: #131313;
+}
+
+.form button[type="submit"]:disabled {
+  background-color: rgb(131, 131, 131);
+}
+
+.form button[type="button"] {
+  background-color: none;
+  background: none;
+}
+
+.form-menu {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5rem;
+  /* padding: 0.5rem; */
+}
+/* 
+.button {
+  background-color: #525252;
+  border-style: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 400;
+  border-radius: 0.2rem;
+}
+.button:hover {
+  background-color: #242424;
+  border-style: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 400;
+  border-radius: 0.2rem;
+} */

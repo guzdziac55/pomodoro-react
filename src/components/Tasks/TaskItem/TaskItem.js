@@ -9,8 +9,8 @@ const TaskItem = (props) => {
   const tasksCtx = useContext(TaskListContext);
 
   const setActiveTask = (e) => {
-    console.log(e.target);
-    tasksCtx.activeTask(props.id);
+    e.preventDefault();
+    if (e.target === e.currentTarget) tasksCtx.activeTask(props.id);
   };
 
   return (

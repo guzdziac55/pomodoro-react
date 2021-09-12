@@ -5,9 +5,14 @@ import Card from "../../UI/Card";
 import TaskFormButton from "./TaskFormButton";
 
 const TaskForm = (props) => {
-  const [pomNumberIsValid, setPomNumberIsValid] = useState(true); // pom number validation
+  const [formIsValid, setFormIsValid] = useState(true); // pom number validation
   const taskNameInputRef = useRef();
   const pomodoroInputRef = useRef();
+
+  // formValidaton - use state - będzie robił conditional css
+  // {
+  //   /* <div className={`${classes.Content} ${props.collapse ? classes.collapse : ''}`}></div> */
+  // }
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -17,19 +22,21 @@ const TaskForm = (props) => {
     const enteredPomodoroNumber = +enteredPomodoro;
 
     if (
+      enteredTaskName.trim().length === 0 ||
       enteredPomodoro.trim().length === 0 ||
       enteredPomodoroNumber < 1 ||
       enteredPomodoroNumber > 5
     ) {
-      setPomNumberIsValid(false); // przerenderuje element jeszcze raz
+      setFormIsValid(false); // przerenderuje element jeszcze raz
       return;
     }
+    setFormIsValid(true);
     props.onAddNewTask(enteredTaskName, enteredPomodoroNumber);
   };
   //  add on submit handler
   return (
     <Card class={classes.form}>
-      <form onSubmit={submitHandler}>
+      <form className={classes.from} onSubmit={submitHandler}>
         <Input
           ref={taskNameInputRef}
           label={"Task name"}
@@ -50,7 +57,21 @@ const TaskForm = (props) => {
             defaultValue: "1",
           }}
         />
-        <TaskFormButton>Save</TaskFormButton>
+        <div className={classes["form-menu"]}>
+          <button onClick={props.onCancel} type="button">
+            Cancel
+          </button>
+          <button
+            disabled={!formIsValid}
+            type="submit"
+            // className={`${classes.button}`}
+          >
+            Save
+          </button>
+        </div>
+
+        {/* <TaskFormButton type={"submit"}>Save</TaskFormButton>
+        <TaskFormButton type={"button"}>Cancel</TaskFormButton> */}
       </form>
     </Card>
   );

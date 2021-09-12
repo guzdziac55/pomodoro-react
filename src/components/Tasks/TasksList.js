@@ -3,6 +3,11 @@ import classes from "./TasksList.module.css";
 import TaskItem from "./TaskItem/TaskItem";
 import TaskListContext from "../../store/taskList-context";
 
+
+
+
+
+
 const TasksList = () => {
   const tasksCtx = useContext(TaskListContext);
   const tasksList = tasksCtx.tasks.map((task) => (
