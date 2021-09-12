@@ -34,9 +34,7 @@ const tasksReducer = (state, action) => {
   }
 
   if (action.type === "ACTIVE") {
-    console.log("wszedł acive ? ");
     const activeID = action.id;
-    console.log(activeID);
     return {
       tasks: state.tasks,
       active: activeID,
@@ -73,14 +71,16 @@ const TaskListProvider = (props) => {
     dispatchTasksAction({ type: "ACTIVE", id: id });
   };
 
+  // const openEditForm = ()
+
   // put this into value in TaskListProvider
   const taskListContext = {
     tasks: tasksState.tasks, // to jest state
     active: tasksState.active,
 
-    // z,oemoce activ na setActoveTasl
     addTask: addnewTaskItem, // to jest funkcja
     setactiveTask: setActiveTask, // to jest funkcja
+    // openEditForm: openEditform,
   };
 
   // return children

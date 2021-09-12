@@ -44,3 +44,33 @@ https://pl.reactjs.org/docs/hooks-effect.html -->
 <!--  w PRZYSZŁOŚCI -->
 <!-- ZMIENIC FORM NA CONTROLLED COMPONENT ZE INPUT STATEM WEW KAŻDEGO INPUTA I DODATKOWO  ONCHANGE WHEN TYPING IN INPUT
 -->
+
+<!-- WAŻNE TYPOWO POMODOROR : POMYSŁY
+<!-- fORM eDIT:  Po kliknięciu []icon  get ID => ReRender
+task list ( dać mu on Edit albo porównać z id) -->
+<!--  zamiast Item zrobić render Form i wrzucić wszystkie propsy z klikniętego -->
+<!-- poxniej w providerze zrobić GetIndex i TaskItem(index) podmienić dane.
+Albo cały obiekt  // to po naciśnieciu SAVE. -->
+
+<!-- //  przy używaaniu jednego forma trzeba sprawdzić czy to edit czy newTask
+albo w fromComponent sprawdzić czy ma id, albo czy state jest OnEdit OnNew - cos podobnego -->
+
+<!-- wtedy submit wywoła funckje submit ale sprawdzi czy zrobić dispatch ADD czy EDIT -->
+
+<!-- //ZMIANA EDIT WPAOWANIE DO TASKITEM
+PROSTA FUNKCJA TOGGLE SPRAWDZI CZY TO ZADZIAŁA
+CTX CONTEXT PROVIDER TYLKO ZAMIENI SUBMITA -->
+
+<!-- --------------------------------------------------------------- -->
+<!-- --------------------------------------------------------------- -->
+<!-- --------------------------------------------------------------- -->
+<!-- TIMETABS: DAĆ W PROPSACH DANE, PO KLIKNIĘCIU NA TABiTEM (ONCLICK) ZABRAĆ Z PROPA DANE I WRZUCIĆ DO CONTEXTU JAKO CURRENT TIMER. tYLKO JEŚLI TIMER IS STOP -->
+
+  <!-- // const showIds = () => {
+  //   console.log(props.id);
+  // };
+
+  // CTX.EDITtASKITEM <== DOKONCZYC
+  // put values into taskForm
+
+  // showIds(); -->
