@@ -2,17 +2,13 @@ import React, { useState, useRef } from "react";
 import classes from "./TaskForm.module.css";
 import Input from "../../UI/Input";
 import Card from "../../UI/Card";
-import TaskFormButton from "./TaskFormButton";
 
-const TaskForm = (props) => {
-  const [formIsValid, setFormIsValid] = useState(true); // pom number validation
+const TaskForm = React.forwardRef((props, ref) => {
+  const [titleIsValid, setTitleIsValid] = useState(true); // pom number validation
+  const [pomodoroAmountIsValid, setPomodoroAmountIsValid] = useState(true);
+
   const taskNameInputRef = useRef();
   const pomodoroInputRef = useRef();
-
-  // formValidaton - use state - będzie robił conditional css
-  // {
-  //   /* <div className={`${classes.Content} ${props.collapse ? classes.collapse : ''}`}></div> */
-  // }
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -21,23 +17,26 @@ const TaskForm = (props) => {
     const enteredPomodoro = pomodoroInputRef.current.value;
     const enteredPomodoroNumber = +enteredPomodoro;
 
-    if (
-      enteredTaskName.trim().length === 0 ||
-      enteredPomodoro.trim().length === 0 ||
-      enteredPomodoroNumber < 1 ||
-      enteredPomodoroNumber > 5
-    ) {
-      setFormIsValid(false); // przerenderuje element jeszcze raz
+    if (enteredTaskName.trim().length === 0) {
+      setTitleIsValid(false); // przerenderuje element jeszcze raz
       return;
     }
-    setFormIsValid(true);
+
+    if (enteredPomodoroNumber < 1 || enteredPomodoroNumber > 5) {
+      setPomodoroAmountIsValid(false);
+      return;
+    }
+
+    setTitleIsValid(true);
+    setPomodoroAmountIsValid(true);
     props.onAddNewTask(enteredTaskName, enteredPomodoroNumber);
   };
   //  add on submit handler
   return (
     <Card class={classes.form}>
-      <form className={classes.from} onSubmit={submitHandler}>
+      <form ref={ref} className={classes.from} onSubmit={submitHandler}>
         <Input
+          valid={titleIsValid}
           ref={taskNameInputRef}
           label={"Task name"}
           input={{
@@ -47,6 +46,7 @@ const TaskForm = (props) => {
           }}
         />
         <Input
+          valid={pomodoroAmountIsValid}
           ref={pomodoroInputRef}
           label={"Est pomodoros"}
           input={{
@@ -62,19 +62,20 @@ const TaskForm = (props) => {
             Cancel
           </button>
           <button
-            disabled={!formIsValid}
+            // disabled={!formIsValid}
             type="submit"
             // className={`${classes.button}`}
           >
             Save
           </button>
         </div>
-
         {/* <TaskFormButton type={"submit"}>Save</TaskFormButton>
         <TaskFormButton type={"button"}>Cancel</TaskFormButton> */}
       </form>
     </Card>
   );
-};
+});
 
 export default TaskForm;
+
+//  if (showForm) handlerExecuteScroll;

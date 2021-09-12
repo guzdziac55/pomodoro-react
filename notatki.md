@@ -44,3 +44,6 @@ TimeRunning ( false / true )   when timer is running or no // toggle this when b
 
 <!-- creating dropdown menu
 https://letsbuildui.dev/articles/building-a-dropdown-menu-component-with-react-hooks -->
+
+<!--  use effect wyjaśnienie:
+https://pl.reactjs.org/docs/hooks-effect.html -->

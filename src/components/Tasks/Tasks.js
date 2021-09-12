@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import TasksMenu from "./TasksMenu";
 import classes from "./Tasks.module.css";
 import TasksButtonAdd from "./TasksButtonAdd";
@@ -9,14 +9,17 @@ import TaskListContext from "../../store/taskList-context";
 
 const Tasks = (props) => {
   const tasksCtx = useContext(TaskListContext);
-  const [showForm, setShowForm] = useState(false);
+  const [showForm, setShowForm] = useState();
+  const formNewTaskRed = useRef();
 
-  // formValidaton - use state - będzie robił conditional css
-  // {
-  //   /* <div className={`${classes.Content} ${props.collapse ? classes.collapse : ''}`}></div> */
-  // }
+  const handlerExecuteScroll = () => {
+    formNewTaskRed.current.scrollIntoView();
+  };
 
-  // można zamienić na toogleShowForm
+  useEffect(() => {
+    if (showForm) handlerExecuteScroll();
+  }, [showForm]);
+
   const handlerShowForm = () => {
     setShowForm(true);
   };
@@ -48,6 +51,7 @@ const Tasks = (props) => {
 
       {showForm && (
         <TaskForm
+          ref={formNewTaskRed}
           onCancel={handlerCancelForm}
           onAddNewTask={addNewTaskHandler}
         />
