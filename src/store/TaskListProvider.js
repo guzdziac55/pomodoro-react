@@ -3,7 +3,7 @@ import TaskListContext from "./taskList-context";
 
 const defaultTaskListState = {
   tasks: [],
-  activeTask: null,
+  active: null,
 };
 
 //TasksReducer => (state, action)
@@ -17,10 +17,13 @@ const tasksReducer = (state, action) => {
 
     return {
       tasks: updatedTasks,
+      activeTask: state.activeTask,
     };
   }
 
-  if (action.type === "DELATE") {
+  if (action.type === "DELETE") {
+    // przy usuwaniu sprawdzić czy usuwany jest active :)
+    //  pojebane
     const taskToAdd = action.item;
     const updatedTasks = [...state.tasks];
     updatedTasks.push(taskToAdd);
@@ -31,11 +34,12 @@ const tasksReducer = (state, action) => {
   }
 
   if (action.type === "ACTIVE") {
+    console.log("wszedł acive ? ");
     const activeID = action.id;
-
+    console.log(activeID);
     return {
       tasks: state.tasks,
-      activeTask: activeID,
+      active: activeID,
     };
   }
 
@@ -46,6 +50,7 @@ const tasksReducer = (state, action) => {
 
     return {
       tasks: updatedTasks,
+      activeTask: state.activeTask,
     };
   }
 
@@ -70,9 +75,12 @@ const TaskListProvider = (props) => {
 
   // put this into value in TaskListProvider
   const taskListContext = {
-    tasks: tasksState.tasks,
-    addTask: addnewTaskItem,
-    activeTask: setActiveTask,
+    tasks: tasksState.tasks, // to jest state
+    active: tasksState.active,
+
+    // z,oemoce activ na setActoveTasl
+    addTask: addnewTaskItem, // to jest funkcja
+    setactiveTask: setActiveTask, // to jest funkcja
   };
 
   // return children

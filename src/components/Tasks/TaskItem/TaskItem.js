@@ -10,11 +10,14 @@ const TaskItem = (props) => {
 
   const setActiveTask = (e) => {
     e.preventDefault();
-    if (e.target === e.currentTarget) tasksCtx.activeTask(props.id);
+    if (e.target === e.currentTarget) tasksCtx.setactiveTask(props.id);
   };
 
   return (
-    <li className={classes.task} onClick={setActiveTask}>
+    <li
+      className={`${classes.task} ${props.active ? classes.active : ""}`}
+      onClick={setActiveTask}
+    >
       <span className={classes.title}>{props.title}</span>
       <span className={classes.pomodoro}>{props.pomodoro}</span>
       <span className={classes.icon}>
@@ -23,5 +26,7 @@ const TaskItem = (props) => {
     </li>
   );
 };
-
+{
+  /* <span>{props.active ? "active" : "nie active"}</span> */
+}
 export default TaskItem;

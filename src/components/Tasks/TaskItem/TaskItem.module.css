@@ -9,6 +9,14 @@
   background-color: #c74642;
 }
 
+.task:hover {
+  border-left: 0.5rem solid rgb(105, 105, 105);
+}
+
+.active {
+  border-left: 0.5rem solid black;
+}
+
 .title {
   color: #ffffff;
   font-size: 1rem;

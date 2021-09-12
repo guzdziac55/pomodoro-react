@@ -1,7 +1,6 @@
 <!--  info
 
-// make form working - just open form with submit and confirm habdler
-// state on it with task update
+
 
  <!-- variables in css modules use to theme
  https://github.com/css-modules/css-modules/blob/master/docs/values-variables.md -->
@@ -11,8 +10,6 @@ taskLista po dodaniu edycji i usunieciu
 TimeRunning ( false / true )   when timer is running or no // toggle this when button start clicked/
 // currentTime też w state == >   odpala dispatch Update(active.id) (get fromtasklist..item.active i dodaj mu pomodoro + 1  //)
 // ctx.update będzie odpalone w momencie kiedy currentTime = 0 // current time musi byc w state bo jest ReRender timera cały czas
-
-
  -->
 
 <!--  // PUT TXT ADD EDIT DALATE INTO OBJECT WITH ACTIONS -->
@@ -23,16 +20,12 @@ TimeRunning ( false / true )   when timer is running or no // toggle this when b
 
 <!-- https://www.freecodecamp.org/news/why-you-should-choose-usestate-instead-of-usereducer-ffc80057f815/
 
- -->
 
- <!--  add dynamic checking input TaskName coś jak w tutorialu 
- // sprawdza czy trim().length > 0 jeśli tak to zmienia state valid na true jeśli nie to false.
 
- // następnie button confirm zmienia styl i możliwośc kliknięcia // lub zmienia cała klase
-  -->
+
 
 <!--  FORM EDIT DZIAŁA NA ZASADZIE TEGO SAMEGO FORMA -->
-<!-- PRZYCISK DELATE JEST UKRYTY !  -->
+<!-- PRZYCISK DELATE JEST UKRYTY !    chuj wie jak to bedzie działać z reusem wyjdzie w praniu -->
 
 <!-- conditional classes
 <div className={`${classes.Content} ${props.collapse ? classes.collapse : ''}`}> -->
@@ -47,3 +40,7 @@ https://letsbuildui.dev/articles/building-a-dropdown-menu-component-with-react-h
 
 <!--  use effect wyjaśnienie:
 https://pl.reactjs.org/docs/hooks-effect.html -->
+
+<!--  w PRZYSZŁOŚCI -->
+<!-- ZMIENIC FORM NA CONTROLLED COMPONENT ZE INPUT STATEM WEW KAŻDEGO INPUTA I DODATKOWO  ONCHANGE WHEN TYPING IN INPUT
+-->
