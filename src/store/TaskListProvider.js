@@ -21,15 +21,27 @@ const tasksReducer = (state, action) => {
     };
   }
 
-  if (action.type === "DELETE") {
-    // przy usuwaniu sprawdzić czy usuwany jest active :)
-    //  pojebane
-    const taskToAdd = action.item;
+  if (action.type === "EDIT") {
+    const editedTaskItemIndex = state.tasks.findIndex(
+      (task) => task.id === action.item.id
+    );
     const updatedTasks = [...state.tasks];
-    updatedTasks.push(taskToAdd);
-
+    const updatedItem = { ...action.item };
+    updatedTasks[editedTaskItemIndex] = updatedItem;
     return {
       tasks: updatedTasks,
+      activeTask: state.activeTask,
+    };
+  } // say no to mutation !
+
+  if (action.type === "DELETE") {
+    console.log(action.id);
+    console.log(state.tasks);
+    const updatedTasks = state.tasks.filter((task) => task.id !== action.id);
+    console.log(updatedTasks);
+    return {
+      tasks: updatedTasks,
+      activeTask: state.activeTask,
     };
   }
 
@@ -38,17 +50,6 @@ const tasksReducer = (state, action) => {
     return {
       tasks: state.tasks,
       active: activeID,
-    };
-  }
-
-  if (action.type === "EDIT") {
-    const taskToAdd = action.item;
-    const updatedTasks = [...state.tasks];
-    updatedTasks.push(taskToAdd);
-
-    return {
-      tasks: updatedTasks,
-      activeTask: state.activeTask,
     };
   }
 
@@ -61,26 +62,30 @@ const TaskListProvider = (props) => {
     defaultTaskListState
   );
 
-  // action.type   / / /   action.item
   const addnewTaskItem = (item) => {
     dispatchTasksAction({ type: "ADD", item: item });
   };
 
-  // we need to get id from clicked Li element ( task item)
+  const editTaskItem = (item) => {
+    dispatchTasksAction({ type: "EDIT", item: item });
+  };
+
+  const delateTaskItem = (id) => {
+    dispatchTasksAction({ type: "DELETE", id: id });
+  };
+
   const setActiveTask = (id) => {
     dispatchTasksAction({ type: "ACTIVE", id: id });
   };
 
-  // const openEditForm = ()
-
-  // put this into value in TaskListProvider
   const taskListContext = {
-    tasks: tasksState.tasks, // to jest state
+    tasks: tasksState.tasks,
     active: tasksState.active,
-
-    addTask: addnewTaskItem, // to jest funkcja
-    setactiveTask: setActiveTask, // to jest funkcja
-    // openEditForm: openEditform,
+    addTask: addnewTaskItem,
+    editTask: editTaskItem,
+    deleteTask: delateTaskItem,
+    setactiveTask: setActiveTask,
+    // setToggleDoneTask
   };
 
   // return children

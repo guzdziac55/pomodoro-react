@@ -1,14 +1,13 @@
 import React, { useState, useContext, useRef, useEffect } from "react";
 import TasksMenu from "./TasksMenu";
-import classes from "./Tasks.module.css";
+
 import TasksButtonAdd from "./TasksButtonAdd";
 import IconPlus from "../UI/icons/IconPlus";
 import TasksList from "./TasksList";
 import TaskForm from "./TaskItem/TaskForm";
-import TaskListContext from "../../store/taskList-context";
 
 const Tasks = (props) => {
-  const tasksCtx = useContext(TaskListContext);
+  // const tasksCtx = useContext(TaskListContext);
   const [showForm, setShowForm] = useState();
   const formNewTaskRed = useRef();
 
@@ -28,14 +27,14 @@ const Tasks = (props) => {
     setShowForm(false);
   };
 
-  const addNewTaskHandler = (taskName, pomodoro) => {
-    const id = Math.floor(new Date().valueOf() * Math.random());
-    tasksCtx.addTask({
-      id: id,
-      title: taskName,
-      pomodoro: pomodoro,
-    });
-  };
+  // const addNewTaskHandler = (taskName, pomodoro) => {
+  //   const id = Math.floor(new Date().valueOf() * Math.random());
+  //   tasksCtx.addTask({
+  //     id: id,
+  //     title: taskName,
+  //     pomodoro: pomodoro,
+  //   }); // spakowane w obiekt
+  // };
 
   return (
     <>
@@ -51,9 +50,9 @@ const Tasks = (props) => {
 
       {showForm && (
         <TaskForm
+          editMode={false}
           ref={formNewTaskRed}
           onCancel={handlerCancelForm}
-          onAddNewTask={addNewTaskHandler}
         />
       )}
     </>

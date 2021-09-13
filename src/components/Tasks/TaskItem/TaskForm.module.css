@@ -42,12 +42,19 @@
 }
 
 .form-menu {
+  margin-top: 2rem;
   display: flex;
+  background-color: aqua;
+
   justify-content: flex-end;
-  align-items: center;
-  gap: 0.5rem;
-  /* padding: 0.5rem; */
+  /* align-items: center; */
 }
+
+.menu-right {
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
 /* 
 .button {
   background-color: #525252;

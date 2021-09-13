@@ -3,7 +3,7 @@ import classes from "./Input.module.css";
 
 const Input = React.forwardRef((props, ref) => {
   const invalid = !props.valid ? classes.error : "";
-  console.log(invalid);
+
   return (
     <div className={classes.input}>
       <label
@@ -13,7 +13,11 @@ const Input = React.forwardRef((props, ref) => {
       >
         {props.label}
       </label>
-      <input className={`${invalid}`} ref={ref} {...props.input}></input>
+      <input
+        value={props.input.value}
+        className={`${invalid}`}
+        {...props.input}
+      ></input>
     </div>
   );
 });

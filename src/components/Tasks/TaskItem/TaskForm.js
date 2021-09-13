@@ -1,80 +1,135 @@
-import React, { useState, useRef } from "react";
+import React, { useContext, useState } from "react";
 import classes from "./TaskForm.module.css";
+import TaskListContext from "../../../store/taskList-context";
 import Input from "../../UI/Input";
 import Card from "../../UI/Card";
 
 const TaskForm = React.forwardRef((props, ref) => {
-  const [titleIsValid, setTitleIsValid] = useState(true); // pom number validation
-  const [pomodoroAmountIsValid, setPomodoroAmountIsValid] = useState(true);
+  //  destrukturyzacja propsa:
+  // const { id, title, pomodoro } = props; -- można sprawdzić
 
-  const taskNameInputRef = useRef();
-  const pomodoroInputRef = useRef();
+  const initialTitle = props.editMode ? props.editingData.title : "";
+  const initialAmount = props.editMode ? props.editingData.pomodoro : 1;
+
+  const [taskTitle, setTaskTitle] = useState(initialTitle);
+  const [taskAmount, setTaskAmount] = useState(initialAmount);
+
+  const [taskTitleValid, setTaskTitleValid] = useState(true); // pom number validation
+  const [taskAmountValid, setTaskAmountValid] = useState(true);
+
+  const tasksCtx = useContext(TaskListContext);
+
+  const handleInputChange = (e) => {
+    const target = e.target;
+    const value = target.type === "checkbox" ? target.checked : target.value;
+    const name = target.name;
+
+    if (name === "title") {
+      setTaskTitle(value);
+    }
+    if (name === "numbers") {
+      setTaskAmount(value);
+    }
+  };
+
+  const handleDelateTask = () => {
+    // console.log(props.editingData.id);
+    tasksCtx.deleteTask(props.editingData.id);
+  };
 
   const submitHandler = (e) => {
     e.preventDefault();
 
-    const enteredTaskName = taskNameInputRef.current.value;
-    const enteredPomodoro = pomodoroInputRef.current.value;
-    const enteredPomodoroNumber = +enteredPomodoro;
+    const editMode = props.editMode;
+    const enteredTaskName = taskTitle;
+    const enteredPomodoroAmount = taskAmount;
+    const enteredPomodoroAmountNumber = +enteredPomodoroAmount;
 
     if (enteredTaskName.trim().length === 0) {
-      setTitleIsValid(false); // przerenderuje element jeszcze raz
+      setTaskTitleValid(false); // przerenderuje element jeszcze raz
       return;
     }
 
-    if (enteredPomodoroNumber < 1 || enteredPomodoroNumber > 5) {
-      setPomodoroAmountIsValid(false);
+    if (enteredPomodoroAmountNumber < 1 || enteredPomodoroAmountNumber > 5) {
+      setTaskAmountValid(false);
       return;
     }
 
-    setTitleIsValid(true);
-    setPomodoroAmountIsValid(true);
-    props.onAddNewTask(enteredTaskName, enteredPomodoroNumber);
+    setTaskTitleValid(true);
+    setTaskAmountValid(true);
+
+    if (editMode) {
+      tasksCtx.editTask({
+        id: props.editingData.id,
+        title: taskTitle,
+        pomodoro: taskAmount,
+      });
+      props.handlerCancelEditForm();
+    } else {
+      const id = Math.floor(new Date().valueOf() * Math.random());
+      tasksCtx.addTask({
+        id: id,
+        title: taskTitle,
+        pomodoro: taskAmount,
+      });
+    }
   };
-  //  add on submit handler
+
   return (
     <Card class={classes.form}>
       <form ref={ref} className={classes.from} onSubmit={submitHandler}>
         <Input
-          valid={titleIsValid}
-          ref={taskNameInputRef}
+          valid={taskTitleValid}
           label={"Task name"}
           input={{
             id: "amount_" + props.id,
             type: "text",
+            name: "title",
+            value: taskTitle,
+            onChange: handleInputChange,
             placeholder: "What are u working on?",
           }}
         />
         <Input
-          valid={pomodoroAmountIsValid}
-          ref={pomodoroInputRef}
+          valid={taskAmountValid}
           label={"Est pomodoros"}
           input={{
             type: "number",
+            name: "numbers",
+            value: taskAmount,
+            onChange: handleInputChange,
             min: "1",
             max: "5",
             step: "1",
-            defaultValue: "1",
           }}
         />
         <div className={classes["form-menu"]}>
-          <button onClick={props.onCancel} type="button">
-            Cancel
-          </button>
-          <button
-            // disabled={!formIsValid}
-            type="submit"
-            // className={`${classes.button}`}
-          >
-            Save
-          </button>
+          {/* display flex container */}
+          {/* trzeba zrobić w CARD DWA DIVY  */}
+          {/* https://codepen.io/ivan8i/pen/mzpeae */}
+          {props.editMode && (
+            <button type="button" onClick={handleDelateTask}>
+              delete
+            </button>
+          )}
+          <div className={classes["menu-right"]}>
+            <button onClick={props.onCancel} type="button">
+              Cancel
+            </button>
+            <button type="submit">Save</button>
+          </div>
         </div>
-        {/* <TaskFormButton type={"submit"}>Save</TaskFormButton>
-        <TaskFormButton type={"button"}>Cancel</TaskFormButton> */}
       </form>
     </Card>
   );
 });
+
+// disabled={!formIsValid}
+// className={`${classes.button}`}
+// {
+/* <TaskFormButton type={"submit"}>Save</TaskFormButton>
+        <TaskFormButton type={"button"}>Cancel</TaskFormButton> */
+// }
 
 export default TaskForm;
 
