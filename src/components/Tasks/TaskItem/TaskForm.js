@@ -61,6 +61,7 @@ const TaskForm = React.forwardRef((props, ref) => {
     if (editMode) {
       tasksCtx.editTask({
         id: props.editingData.id,
+        doneNum: props.doneNum,
         title: taskTitle,
         pomodoro: taskAmount,
       });
@@ -68,6 +69,7 @@ const TaskForm = React.forwardRef((props, ref) => {
     } else {
       const id = Math.floor(new Date().valueOf() * Math.random());
       tasksCtx.addTask({
+        doneNum: 0,
         id: id,
         title: taskTitle,
         pomodoro: taskAmount,

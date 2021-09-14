@@ -8,8 +8,7 @@ const TaskItem = (props) => {
   const [showEditForm, setShowEditForm] = useState(false);
   const tasksCtx = useContext(TaskListContext);
 
-  const handleShowEditForm = (e) => {
-    e.preventDefault();
+  const handleShowEditForm = () => {
     setShowEditForm(true);
   };
 
@@ -19,7 +18,11 @@ const TaskItem = (props) => {
 
   const setActiveTask = (e) => {
     e.preventDefault();
-    if (e.target === e.currentTarget) tasksCtx.setactiveTask(props.id);
+    if (e.target === e.currentTarget) tasksCtx.setActiveTask(props.id);
+  };
+
+  const handleToggleDoneTask = () => {
+    tasksCtx.toggleDoneTask(props.id);
   };
 
   // put here editTaskHandler (name, amount )
@@ -34,6 +37,8 @@ const TaskItem = (props) => {
           handlerCancelEditForm={handlerCancelEditForm}
           editMode={true}
           editingData={{
+            // addItem ctx handler dać tu albo przekazać z handlea
+            // zmienszy to długość łańcucha prosppsow
             id: props.id,
             title: props.title,
             pomodoro: props.pomodoro,
@@ -45,7 +50,12 @@ const TaskItem = (props) => {
           className={`${classes.task} ${props.active ? classes.active : ""}`}
           onClick={setActiveTask}
         >
-          <span className={classes.title}>{props.title}</span>
+          <span onClick={handleToggleDoneTask} className={classes.icon}>
+            <IconPlus />
+          </span>
+          {props.done && <span>to jest done</span>}
+          <span className={classes.title}>{props.doneNum}</span>
+          <span className={classes.pomodoro}>/</span>
           <span className={classes.pomodoro}>{props.pomodoro}</span>
           <span onClick={handleShowEditForm} className={classes.icon}>
             <IconPlus />
@@ -55,10 +65,10 @@ const TaskItem = (props) => {
     </>
   );
 };
-{
-  // onClick = { handleEditTask };
-  /* <span>{props.active ? "active" : "nie active"}</span> */
-}
+// {
+//   // onClick = { handleEditTask };
+//   /* <span>{props.active ? "active" : "nie active"}</span> */
+// }
 export default TaskItem;
 
 // const showIds = () => {

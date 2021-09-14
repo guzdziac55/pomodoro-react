@@ -17,7 +17,7 @@ const tasksReducer = (state, action) => {
 
     return {
       tasks: updatedTasks,
-      activeTask: state.activeTask,
+      active: state.active,
     };
   }
 
@@ -30,18 +30,50 @@ const tasksReducer = (state, action) => {
     updatedTasks[editedTaskItemIndex] = updatedItem;
     return {
       tasks: updatedTasks,
-      activeTask: state.activeTask,
+      active: state.active,
     };
   } // say no to mutation !
 
   if (action.type === "DELETE") {
-    console.log(action.id);
-    console.log(state.tasks);
     const updatedTasks = state.tasks.filter((task) => task.id !== action.id);
-    console.log(updatedTasks);
+
+    const activeIndex = updatedTasks.findIndex(
+      (task) => task.id === state.activeTask
+    );
+
+    const updatedActiveTask = activeIndex ? state.activeTask : 0;
+
     return {
       tasks: updatedTasks,
-      activeTask: state.activeTask,
+      active: updatedActiveTask,
+    };
+  }
+
+  if (action.type === "DELETE_ALL") {
+    const updatedTasks = [];
+    const updatedActiveTask = 0;
+    return {
+      tasks: updatedTasks,
+      active: updatedActiveTask,
+    };
+  }
+
+  if (action.type === "DELETE_FINISHED") {
+    //  PRZEFILRUJ TYLKO TE CO NIE SĄ FINISHED
+    //  FILTER !== NUM DONE >= NUM TO DO
+
+    return {
+      tasks: updatedTasks,
+      active: updatedActiveTask,
+    };
+  }
+  if (action.type === "DELETE_DONE") {
+    //  PRZEFILRUJ TYLKO TE CO NIE SĄ FINISHED
+    //  FILTER !== !TASK.DONE  // TASK.DONE !==
+
+    return {
+      tasks: updatedTasks,
+      active: updatedActiveTask,
     };
   }
 
@@ -53,8 +85,30 @@ const tasksReducer = (state, action) => {
     };
   }
 
+  if (action.type === "DONE") {
+    const toggledTaskIndex = state.tasks.findIndex(
+      (task) => task.id === action.id
+    );
+
+    const toggledTaskItem = state.tasks[toggledTaskIndex];
+    const uploadToggledTaskItem = {
+      ...toggledTaskItem,
+      done: !toggledTaskItem.done,
+    };
+    console.log(uploadToggledTaskItem);
+    const updatedTasks = [...state.tasks];
+    updatedTasks[toggledTaskIndex] = uploadToggledTaskItem;
+
+    return {
+      tasks: updatedTasks,
+      active: state.activeTask,
+    };
+  }
+
   return defaultTaskListState;
 };
+
+////////// PROVIDER COMPONENT
 
 const TaskListProvider = (props) => {
   const [tasksState, dispatchTasksAction] = useReducer(
@@ -78,22 +132,60 @@ const TaskListProvider = (props) => {
     dispatchTasksAction({ type: "ACTIVE", id: id });
   };
 
+  const toggleDoneTask = (id) => {
+    dispatchTasksAction({ type: "DONE", id: id });
+  };
+
+  // delete all
+
+  const deleteAllTasks = () => {
+    dispatchTasksAction({ type: "DELETE_ALL" });
+  };
+
+  const deleteDoneTasks = () => {
+    dispatchTasksAction({ type: "DELETE_DONE" });
+  };
+
+  const deleteFinishedTasks = () => {
+    dispatchTasksAction({ type: "DELETE_FINISHED" });
+  };
+
+  // delete done
+  // delete finished
+
   const taskListContext = {
     tasks: tasksState.tasks,
     active: tasksState.active,
     addTask: addnewTaskItem,
     editTask: editTaskItem,
     deleteTask: delateTaskItem,
-    setactiveTask: setActiveTask,
-    // setToggleDoneTask
+    setActiveTask: setActiveTask,
+    toggleDoneTask: toggleDoneTask,
+
+    /////////// put into different value
+
+    deleteAll: deleteAllTasks,
+    deleteDone: deleteDoneTasks,
+    deleteFinished: deleteFinishedTasks,
+  };
+
+  const taskMenuContext = {
+    tasks: tasksState.tasks,
+    deleteAll: deleteAllTasks,
+    deleteDone: deleteDoneTasks,
+    deleteFinished: deleteFinishedTasks,
   };
 
   // return children
   return (
+    // change into value={taskContext: taskListcontex , taskMenuContext:taskMenuContext}
+    // .. but after that we need to change ctx everywhere
+    // use { name1 or name 2 } = useContext ( TASKLISTCONTEXT )
     <TaskListContext.Provider value={taskListContext}>
       {props.children}
     </TaskListContext.Provider>
   );
 };
 
+//  combine reducers: https://stackoverflow.com/questions/59200785/react-usereducer-how-to-combine-multiple-reducers
 export default TaskListProvider;
