@@ -8,8 +8,11 @@ const TaskForm = React.forwardRef((props, ref) => {
   //  destrukturyzacja propsa:
   // const { id, title, pomodoro } = props; -- można sprawdzić
 
-  const initialTitle = props.editMode ? props.editingData.title : "";
-  const initialAmount = props.editMode ? props.editingData.pomodoro : 1;
+  // const taskEditData = props.taskData;
+  // console.log(taskEditData);
+
+  const initialTitle = props.editMode ? props.taskData.taskTitle : "";
+  const initialAmount = props.editMode ? props.taskData.taskToDoNumber : 1;
 
   const [taskTitle, setTaskTitle] = useState(initialTitle);
   const [taskAmount, setTaskAmount] = useState(initialAmount);
@@ -34,7 +37,7 @@ const TaskForm = React.forwardRef((props, ref) => {
 
   const handleDelateTask = () => {
     // console.log(props.editingData.id);
-    tasksCtx.deleteTask(props.editingData.id);
+    tasksCtx.deleteTask(props.taskData.id);
   };
 
   const submitHandler = (e) => {
@@ -60,19 +63,21 @@ const TaskForm = React.forwardRef((props, ref) => {
 
     if (editMode) {
       tasksCtx.editTask({
-        id: props.editingData.id,
-        doneNum: props.doneNum,
-        title: taskTitle,
-        pomodoro: taskAmount,
+        id: props.taskData.id,
+        taskTitle: taskTitle,
+        taskDone: props.taskData.taskDone,
+        taskDoneNumber: props.taskData.taskDoneNumber,
+        taskToDoNumber: taskAmount,
       });
       props.handlerCancelEditForm();
     } else {
       const id = Math.floor(new Date().valueOf() * Math.random());
       tasksCtx.addTask({
-        doneNum: 0,
         id: id,
-        title: taskTitle,
-        pomodoro: taskAmount,
+        taskTitle: taskTitle, // from useState
+        taskDone: false,
+        taskDoneNumber: 0,
+        taskToDoNumber: taskAmount, // from useState
       });
     }
   };

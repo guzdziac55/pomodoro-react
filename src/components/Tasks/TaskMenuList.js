@@ -12,21 +12,21 @@ const TaskMenuList = (props) => {
     tasksCtx.deleteAll();
   };
 
-  const handleDeleteDoneTasks = () => {
-    tasksCtx.deleteDone();
-  };
-
   const handleDeleteFinishedTasks = () => {
     tasksCtx.deleteFinished();
+  };
+
+  const handleDeleteDoneTasks = () => {
+    tasksCtx.deleteDone();
   };
 
   return (
     <div>
       <ul>
         {/* icon // li // Option 1 // functions delate all / done / finished */}
-        <li onClick={handleDeleteAllTasks}>menu option 1 </li>
-        <li>menu option 2 </li>
-        <li>menu option 3 </li>
+        <li onClick={handleDeleteAllTasks}>DELETE_ALL </li>
+        <li onClick={handleDeleteFinishedTasks}>DELETE_FINISHED </li>
+        <li onClick={handleDeleteDoneTasks}>DELETE_DONE </li>
       </ul>
     </div>
   );

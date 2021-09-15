@@ -3,6 +3,10 @@ import TimerButtonOption from "./TimerButtonOption";
 import classes from "./TimerTab.module.css";
 
 const TimerTab = (props) => {
+  // props.cofnig
+  // usecontext or hook UseConfig
+  // const config = useConfig // hook < +== check that provider is inside rootProv
+
   return (
     <div className={classes["timer-tab"]}>
       <TimerButtonOption>Pomodoro</TimerButtonOption>

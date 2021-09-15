@@ -1,10 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import classes from "../TaskItem/TaskItem.module.css";
 import IconPlus from "../../UI/icons/IconPlus";
 import TaskListContext from "../../../store/taskList-context";
 import TaskForm from "./TaskForm";
 
 const TaskItem = (props) => {
+  const taskData = props.taskData;
+  console.log(taskData);
   const [showEditForm, setShowEditForm] = useState(false);
   const tasksCtx = useContext(TaskListContext);
 
@@ -18,17 +20,12 @@ const TaskItem = (props) => {
 
   const setActiveTask = (e) => {
     e.preventDefault();
-    if (e.target === e.currentTarget) tasksCtx.setActiveTask(props.id);
+    if (e.target === e.currentTarget) tasksCtx.setActiveTask(taskData.id);
   };
 
   const handleToggleDoneTask = () => {
-    tasksCtx.toggleDoneTask(props.id);
+    tasksCtx.toggleDoneTask(taskData.id);
   };
-
-  // put here editTaskHandler (name, amount )
-  // put here addNewTaskHandler (name, amount )
-  // put here deleteTaskHandler (name, amount )  ?? sprawdzic czy
-  // to przeniesienie ulatwi pisanie
 
   return (
     <>
@@ -36,13 +33,7 @@ const TaskItem = (props) => {
         <TaskForm
           handlerCancelEditForm={handlerCancelEditForm}
           editMode={true}
-          editingData={{
-            // addItem ctx handler dać tu albo przekazać z handlea
-            // zmienszy to długość łańcucha prosppsow
-            id: props.id,
-            title: props.title,
-            pomodoro: props.pomodoro,
-          }}
+          taskData={taskData}
           onCancel={handlerCancelEditForm}
         ></TaskForm>
       ) : (
@@ -53,10 +44,11 @@ const TaskItem = (props) => {
           <span onClick={handleToggleDoneTask} className={classes.icon}>
             <IconPlus />
           </span>
-          {props.done && <span>to jest done</span>}
-          <span className={classes.title}>{props.doneNum}</span>
+          {taskData.taskDone && <span>to jest done</span>}
+          <span className={classes.title}>{taskData.taskTitle}</span>
+          <span className={classes.pomodoro}>{taskData.taskDoneNumber}</span>
           <span className={classes.pomodoro}>/</span>
-          <span className={classes.pomodoro}>{props.pomodoro}</span>
+          <span className={classes.pomodoro}>{taskData.taskToDoNumber}</span>
           <span onClick={handleShowEditForm} className={classes.icon}>
             <IconPlus />
           </span>
@@ -87,3 +79,13 @@ export default TaskItem;
 
 // E TARGET !== CURRENTtARGET
 // ZROB SETSHOEDIT(FALSE)
+
+// editingData={{
+//   // addItem ctx handler dać tu albo przekazać z handlea
+//   // zmienszy to długość łańcucha prosppsow
+//   id: props.id,
+//   taskTitle: props.title,
+//   taskDone: props.taskDone
+
+//   pomodoro: props.pomodoro,
+// }}

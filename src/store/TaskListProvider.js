@@ -25,6 +25,8 @@ const tasksReducer = (state, action) => {
     const editedTaskItemIndex = state.tasks.findIndex(
       (task) => task.id === action.item.id
     );
+    // in EditForm we can put in action only title / toDo  /
+    // no need all obj
     const updatedTasks = [...state.tasks];
     const updatedItem = { ...action.item };
     updatedTasks[editedTaskItemIndex] = updatedItem;
@@ -50,6 +52,7 @@ const tasksReducer = (state, action) => {
   }
 
   if (action.type === "DELETE_ALL") {
+    console.log("DELETE_ALL");
     const updatedTasks = [];
     const updatedActiveTask = 0;
     return {
@@ -59,21 +62,31 @@ const tasksReducer = (state, action) => {
   }
 
   if (action.type === "DELETE_FINISHED") {
-    //  PRZEFILRUJ TYLKO TE CO NIE SĄ FINISHED
-    //  FILTER !== NUM DONE >= NUM TO DO
+    const updatedTasks = state.tasks.filter(
+      (task) => task.taskToDoNumber >= task.taskDone
+    );
+    const activeExist = updatedTasks.findIndex(
+      (task) => task.id === task.active
+    );
+    const updatedActive = activeExist ? state.active : null;
 
     return {
       tasks: updatedTasks,
-      active: updatedActiveTask,
+      active: updatedActive,
     };
   }
   if (action.type === "DELETE_DONE") {
-    //  PRZEFILRUJ TYLKO TE CO NIE SĄ FINISHED
-    //  FILTER !== !TASK.DONE  // TASK.DONE !==
+    console.log("DELETE_DONE");
+    const updatedTasks = state.tasks.filter((task) => task.taskDone !== true);
+    const activeExist = updatedTasks.findIndex(
+      (task) => task.id === task.active
+    );
+    console.log(updatedTasks);
+    const updatedActive = activeExist ? state.active : null;
 
     return {
       tasks: updatedTasks,
-      active: updatedActiveTask,
+      active: updatedActive,
     };
   }
 
@@ -89,11 +102,11 @@ const tasksReducer = (state, action) => {
     const toggledTaskIndex = state.tasks.findIndex(
       (task) => task.id === action.id
     );
-
+    console.log(toggledTaskIndex);
     const toggledTaskItem = state.tasks[toggledTaskIndex];
     const uploadToggledTaskItem = {
       ...toggledTaskItem,
-      done: !toggledTaskItem.done,
+      taskDone: !toggledTaskItem.taskDone,
     };
     console.log(uploadToggledTaskItem);
     const updatedTasks = [...state.tasks];
@@ -156,6 +169,7 @@ const TaskListProvider = (props) => {
   const taskListContext = {
     tasks: tasksState.tasks,
     active: tasksState.active,
+
     addTask: addnewTaskItem,
     editTask: editTaskItem,
     deleteTask: delateTaskItem,

@@ -45,7 +45,6 @@
   margin-top: 2rem;
   display: flex;
   background-color: aqua;
-
   justify-content: flex-end;
   /* align-items: center; */
 }
