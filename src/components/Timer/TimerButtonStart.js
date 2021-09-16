@@ -1,8 +1,18 @@
 import React from "react";
 import classes from "./TimerButtonStart.module.css";
-
+import { useTimer } from "../../store/TimerProvider";
 const TimerButtonStart = () => {
-  return <button className={classes["button-start"]}>START</button>;
+  const { toggleTicking } = useTimer();
+
+  const handleTicking = () => {
+    toggleTicking();
+  };
+
+  return (
+    <button onClick={handleTicking} className={classes["button-start"]}>
+      START
+    </button>
+  );
 };
 
 export default TimerButtonStart;

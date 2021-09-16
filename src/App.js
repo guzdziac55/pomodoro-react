@@ -4,6 +4,8 @@ import WorkingOn from "./components/WorkingOn/WorkingOn";
 import classes from "./App.module.css";
 import Tasks from "./components/Tasks/Tasks";
 import TaskListProvider from "./store/TaskListProvider";
+import ConfigProvider from "./store/ConfigProvider";
+import TimerProvider from "./store/TimerProvider";
 // header: settings time
 // main: taskList , currentTime, t
 
@@ -11,14 +13,18 @@ import TaskListProvider from "./store/TaskListProvider";
 
 function App() {
   return (
-    <TaskListProvider>
-      <Header></Header>
-      <main className={classes["main-app"]}>
-        <Timer></Timer>
-        <WorkingOn />
-        <Tasks />
-      </main>
-    </TaskListProvider>
+    <ConfigProvider>
+      <TaskListProvider>
+        <TimerProvider>
+          <Header></Header>
+          <main className={classes["main-app"]}>
+            <Timer></Timer>
+            <WorkingOn />
+            <Tasks />
+          </main>
+        </TimerProvider>
+      </TaskListProvider>
+    </ConfigProvider>
   );
 }
 
