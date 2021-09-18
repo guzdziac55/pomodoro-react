@@ -20,16 +20,9 @@ const ConfigContext = React.createContext({});
 // props.children     {children}
 const ConfigProvider = ({ children }) => {
   const [config, setConfig] = useState({
-    stageSeconds: [200, 300, 900],
+    stageSeconds: [2, 10, 10],
     // config attributes
   });
-
-  // //   change config
-  // const changeConfig = (e) => {
-  //   // pass obj with name into it and overWrite
-  //   // np: stageSecounds: timenew
-  //   setConfig({ ...config, [e.target.name]: e.target.value });
-  // };
 
   return (
     //    add modification functions here
@@ -49,3 +42,10 @@ export const useConfig = () => {
 };
 
 export default ConfigProvider;
+
+// //   change config
+// const changeConfig = (e) => {
+//   // pass obj with name into it and overWrite
+//   // np: stageSecounds: timenew
+//   setConfig({ ...config, [e.target.name]: e.target.value });
+// };

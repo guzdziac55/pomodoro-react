@@ -4,6 +4,7 @@ import TaskItem from "./TaskItem/TaskItem";
 import TaskListContext from "../../store/taskList-context";
 
 const TasksList = () => {
+  // po updacie Tasklisty to się wyrenderuje bo zmienił się state
   const tasksCtx = useContext(TaskListContext);
   console.log(tasksCtx);
   // jeśli empty array to wyświetl inny TODOWORKk title

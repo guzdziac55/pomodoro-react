@@ -38,13 +38,10 @@ const tasksReducer = (state, action) => {
 
   if (action.type === "DELETE") {
     const updatedTasks = state.tasks.filter((task) => task.id !== action.id);
-
     const activeIndex = updatedTasks.findIndex(
-      (task) => task.id === state.activeTask
+      (task) => task.id === state.active
     );
-
-    const updatedActiveTask = activeIndex ? state.activeTask : 0;
-
+    const updatedActiveTask = activeIndex !== -1 ? state.active : null;
     return {
       tasks: updatedTasks,
       active: updatedActiveTask,
@@ -52,7 +49,6 @@ const tasksReducer = (state, action) => {
   }
 
   if (action.type === "DELETE_ALL") {
-    console.log("DELETE_ALL");
     const updatedTasks = [];
     const updatedActiveTask = 0;
     return {
@@ -76,12 +72,10 @@ const tasksReducer = (state, action) => {
     };
   }
   if (action.type === "DELETE_DONE") {
-    console.log("DELETE_DONE");
     const updatedTasks = state.tasks.filter((task) => task.taskDone !== true);
     const activeExist = updatedTasks.findIndex(
       (task) => task.id === task.active
     );
-    console.log(updatedTasks);
     const updatedActive = activeExist ? state.active : null;
 
     return {
@@ -102,7 +96,7 @@ const tasksReducer = (state, action) => {
     const toggledTaskIndex = state.tasks.findIndex(
       (task) => task.id === action.id
     );
-    console.log(toggledTaskIndex);
+
     const toggledTaskItem = state.tasks[toggledTaskIndex];
     const uploadToggledTaskItem = {
       ...toggledTaskItem,
@@ -114,7 +108,26 @@ const tasksReducer = (state, action) => {
 
     return {
       tasks: updatedTasks,
-      active: state.activeTask,
+      active: state.active,
+    };
+  }
+
+  if (action.type === "UPDATE_TASK") {
+    // const activeTaskIndex = state.tasks.findIndex(
+    //   (task) => task.id === state.active
+    // );
+
+    const updatedTasks = state.tasks.map((task) =>
+      task.id === state.active
+        ? Object.assign({}, task, { taskDoneNumber: task.taskDoneNumber + 1 })
+        : task
+    );
+
+    console.log(updatedTasks);
+
+    return {
+      tasks: updatedTasks,
+      active: state.active,
     };
   }
 
@@ -163,8 +176,11 @@ const TaskListProvider = (props) => {
     dispatchTasksAction({ type: "DELETE_FINISHED" });
   };
 
-  // delete done
-  // delete finished
+  // update when timeover
+
+  const updateTask = () => {
+    dispatchTasksAction({ type: "UPDATE_TASK" });
+  };
 
   const taskListContext = {
     tasks: tasksState.tasks,
@@ -175,7 +191,7 @@ const TaskListProvider = (props) => {
     deleteTask: delateTaskItem,
     setActiveTask: setActiveTask,
     toggleDoneTask: toggleDoneTask,
-
+    updateTask: updateTask,
     /////////// put into different value
 
     deleteAll: deleteAllTasks,
@@ -183,12 +199,12 @@ const TaskListProvider = (props) => {
     deleteFinished: deleteFinishedTasks,
   };
 
-  const taskMenuContext = {
-    tasks: tasksState.tasks,
-    deleteAll: deleteAllTasks,
-    deleteDone: deleteDoneTasks,
-    deleteFinished: deleteFinishedTasks,
-  };
+  // const taskMenuContext = {
+  //   tasks: tasksState.tasks,
+  //   deleteAll: deleteAllTasks,
+  //   deleteDone: deleteDoneTasks,
+  //   deleteFinished: deleteFinishedTasks,
+  // };
 
   // return children
   return (

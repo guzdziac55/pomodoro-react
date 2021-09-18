@@ -28,7 +28,13 @@ const TimerProvider = ({ children }) => {
 
   const consumeTime = () => {
     setTimer((prevOptions) => {
-      return { ...prevOptions, consumedSeconds: timer.consumedSeconds++ };
+      return { ...prevOptions, consumedSeconds: timer.consumedSeconds + 1 };
+    });
+  };
+
+  const resetConsumeTime = () => {
+    setTimer((prevOptions) => {
+      return { ...prevOptions, consumedSeconds: 0 };
     });
   };
 
@@ -38,7 +44,13 @@ const TimerProvider = ({ children }) => {
     // sprawdzić czy da siętak value={{ state:timer, dispatch: akcje}}
 
     <TimerContext.Provider
-      value={{ timer, setActiveStage, toggleTicking, consumeTime }}
+      value={{
+        timer,
+        setActiveStage,
+        toggleTicking,
+        consumeTime,
+        resetConsumeTime,
+      }}
     >
       {children}
     </TimerContext.Provider>

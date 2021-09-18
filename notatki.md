@@ -75,11 +75,29 @@ CTX CONTEXT PROVIDER TYLKO ZAMIENI SUBMITA -->
 
   // showIds(); -->
 
-<!-- // TO DO  WOTREK  -->
+<!-- weekend -->
 
-<!--  MODIFY CARD TO BETTER GRAY BOTTOM VIEW  -->
-<!-- OUTSIDE CLICK HANDLER FORM -->
-<!-- ZACZAĆ DZIAŁAĆ Z INNYMI KOMPONENTAMI -->
+<!--    -->
 
-<!--  NP COUNDOWN TIMER BOTTOM MOZNA ZROBIĆ ZA POMOCĄ USE EFFECT ?  -->
-<!--  TABS TIMER - SPRAWDZIĆ MOMENT JS CZY WARTO CZY ROBIC BEZ BIBLIO -->
+<!-- malemody -->
+<!--   lista:
+- OUTSIDE CLICK HANDLER FORM
+- poprawić style kilka conditionals renders
+- zrobić ikony
+- poprawić css.modules
+- poprawić funkcje w dispatch taskList podobnie jak z update wydajna i ok
+- Card Form zmienić na div i w środku 2 divy - tak jak wczesniej sprawdzalem jak to ma byc
+ -->
+<!-- duże mody -->
+<!--   lista:
+- themeProvider
+- Zmiana na useReducer -> jeden taskupdate zmienia kilka statów na raz
+- settings modal => useConfig zapisanie po zmianach
+- alert Modal when click tab => and state is Running / tickikng === true
+- localStorage - sprawdzić gdzie dać localStorage, get / set. config, tasks
+
+UWAGA USE REDUCER BEDZIE PPOTRZBNY - STATY SĄ OD SIEBIE ZALEŻNE I TO BARDZO
+.. NP ZMIANA STAGE POWOODUJE ZMIANE THEMEPROVIDERA NA INNY =>
+
+
+<!--  na później autoryzacja -->

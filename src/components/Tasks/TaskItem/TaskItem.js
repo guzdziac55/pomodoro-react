@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import classes from "../TaskItem/TaskItem.module.css";
 import IconPlus from "../../UI/icons/IconPlus";
 import TaskListContext from "../../../store/taskList-context";
