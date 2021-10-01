@@ -1,14 +1,14 @@
 import React from "react";
 import classes from "./TasksButtonAdd.module.css";
+import { useDispatch } from "react-redux";
+import { uiActions } from "../../store/ui-slice";
 
 // reusable button
 const TasksButtonAdd = (props) => {
-  const handleButtonShowForm = () => {
-    props.onShowForm();
-  };
+  const { toggleForm } = props;
 
   return (
-    <button onClick={handleButtonShowForm} className={classes.button}>
+    <button onClick={toggleForm} className={classes.button}>
       <span className={classes.icon}>{props.icon}</span>
       <span>{props.title}</span>
     </button>

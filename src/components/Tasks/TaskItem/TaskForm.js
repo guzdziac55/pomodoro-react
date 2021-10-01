@@ -1,31 +1,31 @@
-import React, { useContext, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import classes from "./TaskForm.module.css";
-import TaskListContext from "../../../store/taskList-context";
 import Input from "../../UI/Input";
 import Card from "../../UI/Card";
+import { useDispatch } from "react-redux";
+import { taskListActions } from "../../../store/taskList-slice";
 
 const TaskForm = React.forwardRef((props, ref) => {
-  //  destrukturyzacja propsa:
-  // const { id, title, pomodoro } = props; -- można sprawdzić
+  const dispatch = useDispatch();
 
-  // const taskEditData = props.taskData;
-  // console.log(taskEditData);
+  const { editMode } = props;
+  const { id, title, estPomodoro } = { ...props.taskData };
 
-  const initialTitle = props.editMode ? props.taskData.taskTitle : "";
-  const initialAmount = props.editMode ? props.taskData.taskToDoNumber : 1;
+  const initialTitle = editMode ? title : "";
+  const initialAmount = editMode ? estPomodoro : 1;
 
   const [taskTitle, setTaskTitle] = useState(initialTitle);
   const [taskAmount, setTaskAmount] = useState(initialAmount);
 
-  const [taskTitleValid, setTaskTitleValid] = useState(true); // pom number validation
+  const [formIsValid, setFormIsValid] = useState(null);
+
+  const [taskTitleValid, setTaskTitleValid] = useState(true);
   const [taskAmountValid, setTaskAmountValid] = useState(true);
 
-  const tasksCtx = useContext(TaskListContext);
-
+  // change value to useRef
   const handleInputChange = (e) => {
-    const target = e.target;
-    const value = target.type === "checkbox" ? target.checked : target.value;
-    const name = target.name;
+    const value = e.target.value;
+    const name = e.target.name;
 
     if (name === "title") {
       setTaskTitle(value);
@@ -36,25 +36,32 @@ const TaskForm = React.forwardRef((props, ref) => {
   };
 
   const handleDelateTask = () => {
-    // console.log(props.editingData.id);
-    tasksCtx.deleteTask(props.taskData.id);
+    dispatch(taskListActions.deleteTask(id));
   };
+
+  useEffect(() => {
+    if (taskTitle.trim().length === 0 || taskAmount < 1) {
+      setFormIsValid(false);
+    } else {
+      setFormIsValid(true);
+    }
+  }, [taskTitle, taskAmount]);
+
+  console.log("validacja formularza");
+  console.log(formIsValid);
 
   const submitHandler = (e) => {
     e.preventDefault();
 
-    const editMode = props.editMode;
-    const enteredTaskName = taskTitle;
-    const enteredPomodoroAmount = taskAmount;
-    const enteredPomodoroAmountNumber = +enteredPomodoroAmount;
-
-    if (enteredTaskName.trim().length === 0) {
-      setTaskTitleValid(false); // przerenderuje element jeszcze raz
+    if (!formIsValid) {
       return;
     }
 
-    if (enteredPomodoroAmountNumber < 1 || enteredPomodoroAmountNumber > 5) {
-      setTaskAmountValid(false);
+    const enteredTaskTitle = taskTitle;
+    const enteredEstPomodoro = taskAmount;
+    const estPomodoroNumber = +enteredEstPomodoro;
+
+    if (!formIsValid) {
       return;
     }
 
@@ -62,29 +69,28 @@ const TaskForm = React.forwardRef((props, ref) => {
     setTaskAmountValid(true);
 
     if (editMode) {
-      tasksCtx.editTask({
-        id: props.taskData.id,
-        taskTitle: taskTitle,
-        taskDone: props.taskData.taskDone,
-        taskDoneNumber: props.taskData.taskDoneNumber,
-        taskToDoNumber: taskAmount,
-      });
-      props.handlerCancelEditForm();
+      dispatch(
+        taskListActions.editTaskItem({
+          id: id,
+          title: enteredTaskTitle,
+          estPomodoro: estPomodoroNumber,
+        })
+      );
+      props.toggleForm();
     } else {
-      const id = Math.floor(new Date().valueOf() * Math.random());
-      tasksCtx.addTask({
-        id: id,
-        taskTitle: taskTitle, // from useState
-        taskDone: false,
-        taskDoneNumber: 0,
-        taskToDoNumber: taskAmount, // from useState
-      });
+      dispatch(
+        taskListActions.addTask({
+          title: enteredTaskTitle,
+          estPomodoro: estPomodoroNumber,
+        })
+      );
     }
   };
 
   return (
     <Card class={classes.form}>
       <form ref={ref} className={classes.from} onSubmit={submitHandler}>
+        {/*  change to input HOOK */}
         <Input
           valid={taskTitleValid}
           label={"Task name"}
@@ -110,20 +116,21 @@ const TaskForm = React.forwardRef((props, ref) => {
             step: "1",
           }}
         />
+
         <div className={classes["form-menu"]}>
-          {/* display flex container */}
-          {/* trzeba zrobić w CARD DWA DIVY  */}
-          {/* https://codepen.io/ivan8i/pen/mzpeae */}
-          {props.editMode && (
+          {editMode && (
             <button type="button" onClick={handleDelateTask}>
               delete
             </button>
           )}
           <div className={classes["menu-right"]}>
-            <button onClick={props.onCancel} type="button">
+            <button onClick={props.toggleForm} type="button">
               Cancel
             </button>
-            <button type="submit">Save</button>
+
+            <button type="submit" disabled={formIsValid ? false : true}>
+              {editMode ? "Edit" : "Save"}
+            </button>
           </div>
         </div>
       </form>
@@ -131,13 +138,14 @@ const TaskForm = React.forwardRef((props, ref) => {
   );
 });
 
-// disabled={!formIsValid}
-// className={`${classes.button}`}
-// {
-/* <TaskFormButton type={"submit"}>Save</TaskFormButton>
-        <TaskFormButton type={"button"}>Cancel</TaskFormButton> */
-// }
+{
+  /* display flex container */
+}
+{
+  /* trzeba zrobić w CARD DWA DIVY  */
+}
+{
+  /* https://codepen.io/ivan8i/pen/mzpeae */
+}
 
 export default TaskForm;
-
-//  if (showForm) handlerExecuteScroll;

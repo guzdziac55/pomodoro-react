@@ -1,23 +1,23 @@
-import React, { useContext } from "react";
-import TaskListContext from "../../store/taskList-context";
+import React from "react";
 import classes from "./TaskMenuList.module.css";
+import { useDispatch } from "react-redux";
+import { taskListActions } from "../../store/taskList-slice";
 
 const TaskMenuList = (props) => {
-  // menu options function
-  // delate all tasks ctx tasklidk   ctx action dellateALL
-
-  const tasksCtx = useContext(TaskListContext);
+  const dispatch = useDispatch();
 
   const handleDeleteAllTasks = () => {
-    tasksCtx.deleteAll();
+    console.log("delete al");
+    dispatch(taskListActions.deleteAllTasks());
   };
 
   const handleDeleteFinishedTasks = () => {
-    tasksCtx.deleteFinished();
+    console.log("finished delete");
+    dispatch(taskListActions.deleteFinishedTasks());
   };
 
   const handleDeleteDoneTasks = () => {
-    tasksCtx.deleteDone();
+    dispatch(taskListActions.deleteDoneTasks());
   };
 
   return (

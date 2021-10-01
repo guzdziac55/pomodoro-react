@@ -25,11 +25,11 @@
 /* unvalid   background-color: #525252; */
 
 .form button[type="submit"] {
-  background-color: #383838;
+  background-color: blue;
 }
 
 .form button[type="submit"]:hover {
-  background-color: #131313;
+  background-color: red;
 }
 
 .form button[type="submit"]:disabled {
@@ -54,6 +54,9 @@
   gap: 0.5rem;
 }
 
+.pizda {
+  background-color: red;
+}
 /* 
 .button {
   background-color: #525252;

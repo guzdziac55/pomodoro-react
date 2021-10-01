@@ -1,6 +1,40 @@
 <!--  info
 
 
+CREATE   THUNK MIDDLEWARE ASYNC FUNCTION
+SHERE STATE REDUX BETWEN TWO SLICES
+https://stackoverflow.com/questions/66531945/how-to-share-data-between-two-slice-reducers-redux-toolkit
+
+
+slice ui
+// fetch Data api / fetch slice
+
+// input component with useHook state
+
+// classess
+
+
+{
+id
+title:
+actPomodoro  - zrobione
+estPomodoro  - planowane
+done: false
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
 
  <!-- variables in css modules use to theme
  https://github.com/css-modules/css-modules/blob/master/docs/values-variables.md -->
@@ -101,3 +135,17 @@ UWAGA USE REDUCER BEDZIE PPOTRZBNY - STATY SĄ OD SIEBIE ZALEŻNE I TO BARDZO
 
 
 <!--  na później autoryzacja -->
+
+<!-- sprawdzić share state between contexts
+https://www.digitalocean.com/community/tutorials/how-to-share-state-across-react-components-with-context -->
+
+<!-- //// zamienic reduccera + condex na reduxa
+ -->
+
+<!--  custom hooks => http -->
+<!--  update tasks     PUT METHOD  -->
+
+<!-- - INPUT VALIDATION WITH SUBMIT DISABLE BUTTON -->
+<!--  on submit  refs -->
+
+<!--  check components structure  -->

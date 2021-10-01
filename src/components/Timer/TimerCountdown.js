@@ -1,58 +1,52 @@
 import React, { useEffect, useContext } from "react";
 import classes from "./TimerCountdown.module.css";
-import { useTimer } from "../../store/TimerProvider";
-import { useConfig } from "../../store/ConfigProvider";
-import TaskListContext from "../../store/taskList-context";
+import { useState } from "react";
+
+import { timerActions } from "../../store/timer-slice";
+import { taskListActions } from "../../store/taskList-slice";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const TimerCountdown = () => {
-  // popracować nad destrukturyzacją // żeby lepiej to obraż
-  // sprwadzić czy te useconfig i useTimer to są hooki czy co kurwa
-  const { config } = useConfig();
-  const { timer } = useTimer();
+  const dispatch = useDispatch();
+  const stageOptionsArray = useSelector((state) => state.config.stageOptions);
 
-  const ctxTimeLeftStage = config.stageSeconds[timer.activeStage];
-  const ctxConsumedSeconds = timer.consumedSeconds;
-  const isTicking = timer.ticking;
+  const activeStage = useSelector((state) => state.timer.stage);
+  const consumedSeconds = useSelector((state) => state.timer.consumedSeconds);
+  const isTicking = useSelector((state) => state.timer.isTicking);
+  const activeTimeStage = stageOptionsArray[activeStage];
 
-  const { consumeTime, setActiveStage, toggleTicking, resetConsumeTime } =
-    useTimer();
+  const consumeTime = () => {
+    dispatch(timerActions.consumeTime());
+  };
 
-  const tasksCtx = useContext(TaskListContext);
+  const timeIsEndAction = () => {
+    dispatch(timerActions.toggleTicking());
+    dispatch(timerActions.resetConsumedTime());
+    dispatch(timerActions.setActiveStage(0));
+  };
 
-  // za każdym razem jak jest re render komponentu odpal useEffect, dodatkowo
-  // odpal gdy dependencties się zmieniają
-
-  //blog.logrocket.com/pitfalls-of-overusing-react-context/
-
-  // przestaic config provier zeby tylko header mial do niego dostep
+  const updateTask = () => {
+    dispatch(taskListActions.updateTask());
+  };
 
   useEffect(() => {
     let intervalId;
-    if (isTicking && ctxConsumedSeconds <= ctxTimeLeftStage) {
-      console.log("aa");
+    if (isTicking && consumedSeconds <= activeTimeStage) {
+      console.log(isTicking);
+      console.log("aaaaaaaaaaaaaaaaaaaaaaaaaa");
       intervalId = setInterval(() => {
         consumeTime();
       }, 1000);
-    } else if (ctxConsumedSeconds > ctxTimeLeftStage) {
-      console.log("update active item");
-
-      // te 3 funkcje wrzucić do reducera !
-      toggleTicking();
-      resetConsumeTime();
-      setActiveStage(1);
-      tasksCtx.updateTask();
-
-      // fial : ==> dispatch taskUpdate: task pomodoro + 1
-      // ===> dispatch TimeEnd:  nextStage time 0
-
-      // consumedTime 0
-      // Stage [ 1 ]
-      // taskUpdate     dispatch(TaskUpdate)
-
-      // lepszy byłby chyba reducer porównywanie kilka statów.
+    } else if (consumedSeconds > activeTimeStage) {
+      console.log("update bbbbbbbbbbbbbbbb");
+      timeIsEndAction();
+      updateTask();
     }
     return () => clearInterval(intervalId); // to też się wywoła po setInterval
-  }, [isTicking, ctxConsumedSeconds]);
+  }, [isTicking, consumedSeconds]);
+
+  const counter = activeTimeStage - consumedSeconds;
 
   const convertTime = () => {
     let minutes = parseInt(counter / 60, 10);
@@ -62,8 +56,6 @@ const TimerCountdown = () => {
     const outputTime = `${minutes}:${seconds}`;
     return outputTime;
   };
-
-  const counter = ctxTimeLeftStage - ctxConsumedSeconds;
 
   return (
     <div className={classes.countdown}>

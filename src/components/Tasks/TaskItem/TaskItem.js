@@ -3,53 +3,57 @@ import classes from "../TaskItem/TaskItem.module.css";
 import IconPlus from "../../UI/icons/IconPlus";
 import TaskListContext from "../../../store/taskList-context";
 import TaskForm from "./TaskForm";
+import { useSelector, useDispatch } from "react-redux";
+import { taskListActions } from "../../../store/taskList-slice";
 
 const TaskItem = (props) => {
-  const taskData = props.taskData;
-  console.log(taskData);
+  const dispatch = useDispatch();
+
+  const { id, title, actPomodoro, estPomodoro, isDone } = props.task;
+
+  const activeId = useSelector((state) => state.tasksList.activeTask);
+
   const [showEditForm, setShowEditForm] = useState(false);
-  const tasksCtx = useContext(TaskListContext);
-
-  const handleShowEditForm = () => {
-    setShowEditForm(true);
-  };
-
-  const handlerCancelEditForm = () => {
-    setShowEditForm(false);
+  const toggleEditFormHandler = () => {
+    setShowEditForm((prevState) => setShowEditForm(!prevState));
   };
 
   const setActiveTask = (e) => {
-    e.preventDefault();
-    if (e.target === e.currentTarget) tasksCtx.setActiveTask(taskData.id);
+    if (e.target === e.currentTarget)
+      dispatch(taskListActions.setActiveTask(id));
   };
 
   const handleToggleDoneTask = () => {
-    tasksCtx.toggleDoneTask(taskData.id);
+    dispatch(taskListActions.toggleDoneTask(id));
   };
+
+  const taskIsActive = id === activeId;
 
   return (
     <>
-      {showEditForm ? (
+      {/* Edit Task */}
+      {showEditForm && (
         <TaskForm
-          handlerCancelEditForm={handlerCancelEditForm}
+          toggleForm={toggleEditFormHandler}
+          taskData={{ id, title, estPomodoro }}
           editMode={true}
-          taskData={taskData}
-          onCancel={handlerCancelEditForm}
         ></TaskForm>
-      ) : (
+      )}
+      {/* Show Task */}
+      {!showEditForm && (
         <li
-          className={`${classes.task} ${props.active ? classes.active : ""}`}
+          className={`${classes.task} ${taskIsActive ? classes.active : ""}`}
           onClick={setActiveTask}
         >
           <span onClick={handleToggleDoneTask} className={classes.icon}>
             <IconPlus />
           </span>
-          {taskData.taskDone && <span>to jest done</span>}
-          <span className={classes.title}>{taskData.taskTitle}</span>
-          <span className={classes.pomodoro}>{taskData.taskDoneNumber}</span>
+          {isDone && <span>to jest done</span>}
+          <span className={classes.title}>{title}</span>
+          <span className={classes.pomodoro}>{actPomodoro}</span>
           <span className={classes.pomodoro}>/</span>
-          <span className={classes.pomodoro}>{taskData.taskToDoNumber}</span>
-          <span onClick={handleShowEditForm} className={classes.icon}>
+          <span className={classes.pomodoro}>{estPomodoro}</span>
+          <span onClick={toggleEditFormHandler} className={classes.icon}>
             <IconPlus />
           </span>
         </li>
@@ -57,10 +61,7 @@ const TaskItem = (props) => {
     </>
   );
 };
-// {
-//   // onClick = { handleEditTask };
-//   /* <span>{props.active ? "active" : "nie active"}</span> */
-// }
+
 export default TaskItem;
 
 // const showIds = () => {

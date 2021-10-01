@@ -2,27 +2,11 @@ import React from "react";
 import TimerButtonOption from "./TimerButtonOption";
 import classes from "./TimerTab.module.css";
 import { useConfig } from "../../store/ConfigProvider";
+import { useSelector } from "react-redux";
 
 // config jest tylko do odczytu // Tylko w Config.JS w formie będzie setStateConfig
 
 const TimerTab = (props) => {
-  // props.cofnig
-  const { config } = useConfig();
-  const timeOptionsArr = config.stageSeconds;
-  console.log(timeOptionsArr);
-
-  // const {setTimer} = useTimer()
-
-  // storeStage:
-
-  // config [1500,1500,1500]   stage, 0, 1, 2
-
-  // Timer..    activeStage[0]
-
-  //
-
-  // timeOptionArr[useTimerStage]  === CurrentTimer
-
   return (
     <div className={classes["timer-tab"]}>
       <TimerButtonOption timeOption={0}>Pomodoro</TimerButtonOption>

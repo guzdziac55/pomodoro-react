@@ -1,15 +1,20 @@
 import React from "react";
 import classes from "./TimerButtonStart.module.css";
-import { useTimer } from "../../store/TimerProvider";
-const TimerButtonStart = () => {
-  const { toggleTicking } = useTimer();
+import { useDispatch } from "react-redux";
+import { timerActions } from "../../store/timer-slice";
 
-  const handleTicking = () => {
-    toggleTicking();
+const TimerButtonStart = () => {
+  const dispatch = useDispatch();
+
+  // const { toggleTicking } = useTimer();
+
+  const toggleTicking = () => {
+    console.log("ticking ? ");
+    dispatch(timerActions.toggleTicking());
   };
 
   return (
-    <button onClick={handleTicking} className={classes["button-start"]}>
+    <button onClick={toggleTicking} className={classes["button-start"]}>
       START
     </button>
   );
