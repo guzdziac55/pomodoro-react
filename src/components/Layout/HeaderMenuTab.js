@@ -7,7 +7,11 @@ const HeaderMenuTab = (props) => {
   return (
     <div className={classes["tab-menu"]}>
       <HeaderButtonMenu icon={<IconLogin />} title={"Report"} />
-      <HeaderButtonMenu icon={<IconLogin />} title={"Settings"} />
+      <HeaderButtonMenu
+        onShow={props.onShow}
+        icon={<IconLogin />}
+        title={"Settings"}
+      />
       <HeaderButtonMenu icon={<IconLogin />} title={"Login"} />
     </div>
     //  {/* <HeaderButtonMenu icon={<IconLogin />} title={"Login"} /> */}

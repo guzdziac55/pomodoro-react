@@ -5,6 +5,9 @@ import App from "./App";
 import store from "./store";
 import { Provider } from "react-redux";
 
+console.log(store.getState().config); // getting config state
+console.log(store.getState()); // getting config state
+
 ReactDOM.render(
   <Provider store={store}>
     <App />

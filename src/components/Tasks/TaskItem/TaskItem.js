@@ -1,19 +1,32 @@
-import React, { useContext, useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import classes from "../TaskItem/TaskItem.module.css";
 import IconPlus from "../../UI/icons/IconPlus";
-import TaskListContext from "../../../store/taskList-context";
+
 import TaskForm from "./TaskForm";
 import { useSelector, useDispatch } from "react-redux";
 import { taskListActions } from "../../../store/taskList-slice";
 
 const TaskItem = (props) => {
   const dispatch = useDispatch();
+  const formScrollRef = useRef(); // to też trzeba dać do hooka ze Scroolsmooth
 
   const { id, title, actPomodoro, estPomodoro, isDone } = props.task;
 
   const activeId = useSelector((state) => state.tasksList.activeTask);
 
   const [showEditForm, setShowEditForm] = useState(false);
+  //toggle hook ?
+
+  useEffect(() => {
+    // change to reusable hook ==>> > > >
+    // (2 args targetRef + StateHandleTrue )
+    if (showEditForm)
+      formScrollRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "end",
+      });
+  }, [showEditForm]);
+
   const toggleEditFormHandler = () => {
     setShowEditForm((prevState) => setShowEditForm(!prevState));
   };
@@ -34,6 +47,7 @@ const TaskItem = (props) => {
       {/* Edit Task */}
       {showEditForm && (
         <TaskForm
+          ref={formScrollRef}
           toggleForm={toggleEditFormHandler}
           taskData={{ id, title, estPomodoro }}
           editMode={true}

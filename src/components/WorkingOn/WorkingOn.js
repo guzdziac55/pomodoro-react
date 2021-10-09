@@ -1,18 +1,18 @@
-import React, { useContext } from "react";
-import TaskListContext from "../../store/taskList-context";
+import React from "react";
+import useActiveTask from "../../hooks/use-activeTask";
 import classes from "./WorkingOn.module.css";
+import { useSelector } from "react-redux";
 
 const WorkingOn = (props) => {
-  const { list } = useContext(TaskListContext);
-  const { menu } = useContext(TaskListContext);
-  console.log(list);
-  console.log(menu);
-  // const hasTasks = taskListContext.tasks.length > 0;
-  // console.log(taskListContext);
+  const { activeTask } = useActiveTask();
+  const pomodoroCnt = useSelector((state) => state.timer.pomodoroCnt);
+
   return (
     <div className={classes["working-on"]}>
-      <span>Time to Work!</span>
-      {/* {hasTasks && <span>Select task to DO!</span>} */}
+      {/* //  można zrobić osobny komponent Info */}
+      <span>#{pomodoroCnt}</span>
+      {activeTask && <span>{activeTask.title}</span>}
+      {!activeTask && <span>Time to Focus!</span>}
     </div>
   );
 };

@@ -1,19 +1,25 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { act } from "react-dom/test-utils";
+import { uiActions } from "./ui-slice";
 
 const taskListSlice = createSlice({
-  name: "taskList",
+  name: "tasksList",
   initialState: {
     tasksList: [],
+    changed: false,
     activeTask: null, // global id of active taks
     changed: false, // status for fetching data if changed is true we can use fetch put // it is for not sending empty taskArray in useEffect when
     // app is reloading
   },
   reducers: {
+    replaceTaskList(state, action) {
+      const newTaskList = action.payload;
+      state.tasksList = newTaskList;
+    },
+
     addTask(state, action) {
       const newTask = action.payload; // gotowy obiekt
       const id = Math.floor(new Date().valueOf() * Math.random());
-
+      state.changed = true;
       state.tasksList.push({
         id: id,
         title: newTask.title,
@@ -24,22 +30,26 @@ const taskListSlice = createSlice({
     },
 
     deleteTask(state, action) {
+      state.changed = true;
       const id = action.payload;
       state.tasksList = state.tasksList.filter((task) => task.id !== id);
     },
 
     setActiveTask(state, action) {
+      state.changed = true;
       const id = action.payload;
       state.activeTask = id;
     },
 
     toggleDoneTask(state, action) {
+      state.changed = true;
       const id = action.payload;
       const toggledItem = state.tasksList.find((task) => task.id === id);
       toggledItem.done = !toggledItem.done;
     },
 
     editTaskItem(state, action) {
+      state.changed = true;
       const editData = action.payload; // gotowy obiekt
       const editedItem = state.tasksList.find(
         (task) => task.id === editData.id
@@ -53,14 +63,17 @@ const taskListSlice = createSlice({
     //////// context menu Tasks
 
     deleteAllTasks(state) {
+      state.changed = true;
       state.tasksList = [];
     },
 
     deleteDoneTasks(state) {
+      state.changed = true;
       state.tasksList = state.tasksList.filter((task) => task.done !== true);
     },
 
     deleteFinishedTasks(state) {
+      state.changed = true;
       state.tasksList = state.tasksList.filter(
         (task) => task.actPomodoro <= task.estPomodoro
       );
@@ -68,7 +81,9 @@ const taskListSlice = createSlice({
 
     //////// update task
 
-    updateTask(state) {
+    updateTask(state, action) {
+      state.changed = true;
+      if (action.payload !== 0 || !state.activeTask) return;
       const activeTask = state.tasksList.find(
         (task) => task.id === state.activeTask
       );
@@ -76,6 +91,10 @@ const taskListSlice = createSlice({
     },
   },
 });
+
+// update only when: // update zawsze dodaje + 1 i zmienia array [tasks]
+//  stage is 0  // problem with  shering state
+//  active is setted
 
 export const taskListActions = taskListSlice.actions;
 export default taskListSlice;

@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./Input.module.css";
 
-const Input = React.forwardRef((props, ref) => {
+const Input = React.forwardRef((props) => {
   const invalid = !props.valid ? classes.error : "";
 
   return (

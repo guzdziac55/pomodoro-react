@@ -1,24 +1,59 @@
 import React, { useState } from "react";
 import classes from "./TasksMenu.module.css";
-import TasksButtonMenu from "./TasksButtonMenu";
 import IconLogin from "../Layout/IconLogin";
-import TaskMenuList from "./TaskMenuList";
+import { taskListActions } from "../../store/taskList-slice";
+import { useDispatch } from "react-redux";
+import OutsideClickHandler from "react-outside-click-handler";
 
 const TasksMenu = () => {
+  const dispatch = useDispatch();
   const [showTaskMenu, setShowTaskMenu] = useState(true);
 
-  const handleShowTaskMenu = () => {
+  TasksMenu.handleClickOutside = () => setShowTaskMenu(false);
+
+  const toggleTaskMenu = () => {
     setShowTaskMenu((state) => !state);
+  };
+
+  const closeTaskMenu = () => {
+    if (showTaskMenu) setShowTaskMenu(false);
+  };
+
+  const handleDeleteAllTasks = () => {
+    dispatch(taskListActions.deleteAllTasks());
+    setShowTaskMenu(false);
+  };
+
+  const handleDeleteFinishedTasks = () => {
+    dispatch(taskListActions.deleteFinishedTasks());
+    setShowTaskMenu(false);
+  };
+
+  const handleDeleteDoneTasks = () => {
+    dispatch(taskListActions.deleteDoneTasks());
+    setShowTaskMenu(false);
   };
 
   return (
     <section className={classes["tasks-menu"]}>
       <span>Tasks</span>
-      <TasksButtonMenu
-        onHandleTaskMenu={handleShowTaskMenu}
-        icon={<IconLogin />}
-      />
-      {showTaskMenu && <TaskMenuList />}
+      {/* // to może być osobnym komponentem  */}
+      <OutsideClickHandler onOutsideClick={closeTaskMenu}>
+        <div className={classes.options}>
+          <button onClick={toggleTaskMenu} className={classes.button}>
+            <span className={classes.icon}>
+              <IconLogin />
+            </span>
+          </button>
+          {showTaskMenu && (
+            <ul className={classes["options-list"]}>
+              <li onClick={handleDeleteAllTasks}>DELETE_ALL </li>
+              <li onClick={handleDeleteFinishedTasks}>DELETE_FINISHED </li>
+              <li onClick={handleDeleteDoneTasks}>DELETE_DONE </li>
+            </ul>
+          )}
+        </div>
+      </OutsideClickHandler>
     </section>
   );
 };

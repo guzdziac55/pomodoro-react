@@ -20,12 +20,9 @@ title:
 actPomodoro  - zrobione
 estPomodoro  - planowane
 done: false
-
-
-
-
 }
 
+// depents on actual stage ADD points
 
 
 
@@ -149,3 +146,21 @@ https://www.digitalocean.com/community/tutorials/how-to-share-state-across-react
 <!--  on submit  refs -->
 
 <!--  check components structure  -->
+
+<!-- putting data state into local storage // initial State ?
+https://medium.com/@jrcreencia/persisting-redux-state-to-local-storage-f81eb0b90e7e -->
+
+<!-- https://www.npmjs.com/package/redux-persist bibliotego od tego  ! ! ! -->
+
+<!-- // przenieść timmer do hooka ? Outside Hook będzie  converted time  -->
+
+<!-- persist usage redux https://redux-toolkit.js.org/usage/usage-guide#use-with-redux-persist -->
+
+<!-- theme https://mui.com/styles/advanced/ -->
+
+<!--  rozwiązanie formularza i jego stejta
+https://blog.greenroots.info/how-to-create-react-form-with-a-single-change-event-handler -->
+
+<!-- // default redux state in form  -->
+<!--   https://stackoverflow.com/questions/62242657/how-to-change-react-hook-form-defaultvalue-with-useeffect/62243132#62243132 -->
+<!--  porada w środku użyć setValue -->

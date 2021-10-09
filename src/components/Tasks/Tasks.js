@@ -6,15 +6,21 @@ import IconPlus from "../UI/icons/IconPlus";
 import TasksList from "./TasksList";
 
 const Tasks = () => {
-  const newTaskForm = useRef();
+  const formScrollRef = useRef();
 
   const [showForm, setShowForm] = useState(false);
+
   const toggleFormHandler = () => {
     setShowForm((prevState) => !prevState);
   };
 
   useEffect(() => {
-    if (showForm) newTaskForm.current.scrollIntoView();
+    if (showForm)
+      formScrollRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "end",
+        inline: "nearest",
+      });
   }, [showForm]);
 
   return (
@@ -29,7 +35,7 @@ const Tasks = () => {
         />
       )}
       {showForm && (
-        <TaskForm ref={newTaskForm} toggleForm={toggleFormHandler} />
+        <TaskForm ref={formScrollRef} toggleForm={toggleFormHandler} />
       )}
     </>
   );

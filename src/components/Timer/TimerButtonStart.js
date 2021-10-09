@@ -9,7 +9,6 @@ const TimerButtonStart = () => {
   // const { toggleTicking } = useTimer();
 
   const toggleTicking = () => {
-    console.log("ticking ? ");
     dispatch(timerActions.toggleTicking());
   };
 

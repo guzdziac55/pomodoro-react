@@ -5,8 +5,8 @@ import { useSelector } from "react-redux";
 
 const TasksList = () => {
   const tasks = useSelector((state) => state.tasksList.tasksList);
+  console.log("tasks");
   console.log(tasks);
-
   const tasksList = tasks.map((task) => (
     <TaskItem
       key={task.id}

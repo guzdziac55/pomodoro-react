@@ -4,11 +4,19 @@ const uiSlice = createSlice({
   name: "ui",
   initialState: {
     showForm: false,
+    notification: null,
   },
   reducers: {
     toogleForm(state) {
-      console.log(state.showForm);
       state.showForm = !state.showForm;
+    },
+
+    showNotification(state, action) {
+      state.notification = {
+        status: action.payload.status,
+        title: action.payload.title,
+        message: action.payload.message,
+      };
     },
   },
 });
