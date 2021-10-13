@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./SettingsApp.module.css";
 import Modal from "../UI/Modal";
 import { useForm } from "react-hook-form";
-import { connect } from "react-redux";
+import { connect } from "react-redux"; // example to save form into Store ? ?
 import { useDispatch, useSelector } from "react-redux";
 import { configActions } from "../../store/config-slice";
 // import configAc
@@ -26,14 +26,13 @@ const Select = React.forwardRef(({ onChange, onBlur, name, label }, ref) => (
   </>
 ));
 
+// main component
+
 const SettingsApp = (props) => {
   const defaultConfigState = useSelector((state) => state.config);
   console.log(defaultConfigState);
   const { register, handleSubmit, setValue } = useForm({
     defaultValues: { ...defaultConfigState },
-    // defaultValues: {
-    //   pomodoroTime: 5,
-    // },
   });
   const dispatch = useDispatch();
   const onSubmit = (data) => {
@@ -42,11 +41,13 @@ const SettingsApp = (props) => {
   };
 
   return (
+    //  hide when click backDrop
     <Modal onClose={props.onClose}>
+      {/*  to jest props children dla naszego modala */}
       <form onSubmit={handleSubmit(onSubmit)}>
         <Input
           type="number"
-          label="stageOptions[0]"
+          label="pomodoroTime"
           min="0"
           max="360"
           register={register}

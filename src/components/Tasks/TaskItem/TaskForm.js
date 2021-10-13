@@ -111,7 +111,7 @@ const TaskForm = React.forwardRef((props, ref) => {
               }}
             />
             <Input
-              valid={taskAmountValid}
+              valid={taskAmountValid} // wynik tej funkcji
               label={"Est pomodoros"}
               input={{
                 type: "number",

@@ -4,19 +4,17 @@ import ReactDOM from "react-dom";
 import { Fragment } from "react";
 
 const Backdrop = (props) => {
-  // tło 100 % 100% w i h
   return <div className={classes.backdrop} onClick={props.onClose}></div>;
 };
 const ModalOverlay = (props) => {
   return (
     <div className={classes.modal}>
-      {/* container for content f */}
       <div className={classes.content}>{props.children}</div>
     </div>
   );
 };
 
-const portalElement = document.getElementById("overlays");
+const portalElement = document.getElementById("overlays"); // html flag root element
 
 const Modal = (props) => {
   return (

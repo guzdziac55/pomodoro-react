@@ -1,6 +1,9 @@
 import { uiActions } from "./ui-slice";
 import { taskListActions } from "./taskList-slice";
 
+//  w przypadku auth
+//  mamy authAction
+
 export const sendTaskData = (taskList) => {
   return async (dispatch) => {
     dispatch(

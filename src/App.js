@@ -1,16 +1,17 @@
 import Header from "./components/Layout/Header";
-import Timer from "./components/Timer/Timer";
-import WorkingOn from "./components/WorkingOn/WorkingOn";
 import classes from "./App.module.css";
-import Tasks from "./components/Tasks/Tasks";
-import FinishCalculate from "./components/FinishCalculate/FinishCalculate";
 import HookForm from "./components/SettingsApp/SettingsApp";
 import { Fragment, useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
+import { Route, Switch, Redirect } from "react-router-dom";
 import { sendTaskData, fetchTaskData } from "./store/taskList-actions";
 
-import Notifications from "./components/UI/Notifications";
+// store
+import { useDispatch, useSelector } from "react-redux";
+
+// Pages
+import PomodoroApp from "./pages/PomodoroApp";
+import Login from "./pages/Login";
+import Profile from "./pages/Profile";
 
 let isInitial = true;
 
@@ -18,7 +19,9 @@ function App() {
   const dispatch = useDispatch();
   const taskList = useSelector((state) => state.tasksList.tasksList);
   const isChanged = useSelector((state) => state.tasksList.changed);
-  const notification = useSelector((state) => state.ui.notification);
+  const isLogged = useSelector((state) => state.auth.isLogged);
+
+  const [settingsShow, setSettingsShow] = useState(false);
 
   useEffect(() => {
     if (isInitial) {
@@ -28,18 +31,11 @@ function App() {
     if (isChanged) {
       dispatch(sendTaskData(taskList));
     }
-    // we need to send data only when add / or remove
-    // we dont need to SendData when taskList changed.
-    // taskList dependencies changed becouse we fetchData and set something
   }, [taskList, dispatch]);
 
   useEffect(() => {
     dispatch(fetchTaskData());
   }, [dispatch]);
-
-  const isEmptyTasks =
-    taskList.length === 0 || taskList === false ? true : false;
-  const [settingsShow, setSettingsShow] = useState(false);
 
   const handleSettingsShow = () => {
     setSettingsShow(true);
@@ -49,30 +45,73 @@ function App() {
     setSettingsShow(false);
   };
 
-  // check what is LAYOUT IN COURSE
-
   return (
     <Fragment>
+      {/* // boilerPlate with handleSettings hide go into HeaderInside It !  */}
       {settingsShow && <HookForm onClose={handleSettingsHide} />}
-      <Header onShow={handleSettingsShow}></Header>
+
       <main className={classes["main-app"]}>
-        <Timer></Timer>
-        <WorkingOn />
-        <Tasks />
-        {!isEmptyTasks && <FinishCalculate />}
-        {/* <p>error:{error}</p>
-        <p>loading{isLoading}</p> */}
-        {/* check with spinner is loading or something */}
-        {notification && (
-          <Notifications
-            status={notification.status}
-            title={notification.title}
-            error={notification.error}
-          />
-        )}
+        <Switch>
+          <Route path="/" exact>
+            <Header onShow={handleSettingsShow}></Header>
+            <PomodoroApp />
+            {/* more info about app section */}
+          </Route>
+
+          <Route path="/app">
+            <Header onShow={handleSettingsShow}></Header>
+            <PomodoroApp />
+          </Route>
+
+          {!isLogged && (
+            <Route path="/login">
+              <Header onShow={handleSettingsShow}></Header>
+              <Login />
+            </Route>
+          )}
+
+          {isLogged && (
+            <Route path="/profile">
+              {/*  is useSelector Is logged in 
+              //  render Provile */}
+              {/* in !loggedin redirect do /Auth / opcja rejestracji / logowania */}
+              <Header onShow={handleSettingsShow}></Header>
+              <Profile />
+            </Route>
+          )}
+          {/* jesli path inna niż wszystko to redirect na główną  */}
+
+          <Route path="*">
+            <Redirect to="/" />
+          </Route>
+        </Switch>
       </main>
     </Fragment>
   );
 }
 
 export default App;
+// working
+
+{
+  /* <Fragment>
+{settingsShow && <HookForm onClose={handleSettingsHide} />}
+
+<Header onShow={handleSettingsShow}></Header>
+<main className={classes["main-app"]}>
+  <Route path="/" exact>
+    <PomodoroApp />
+    <h1> main app dodatkowoa wartosc </h1>
+  </Route>
+
+  <Route path="/app">
+    <PomodoroApp />
+    <h1> samo app bez sekcji info </h1>
+  </Route>
+
+  <Route path="/login">
+    <Login />
+  </Route>
+</main>
+</Fragment> */
+}

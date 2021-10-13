@@ -1,6 +1,7 @@
 import React from "react";
 import classes from "./Input.module.css";
 
+// trzeba dawać {}
 const Input = React.forwardRef((props) => {
   const invalid = !props.valid ? classes.error : "";
 
@@ -14,6 +15,7 @@ const Input = React.forwardRef((props) => {
         {props.label}
       </label>
       <input
+        ref={props.useRef}
         value={props.input.value}
         className={`${invalid}`}
         {...props.input}

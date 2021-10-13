@@ -1,17 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import store from "./store";
 import { Provider } from "react-redux";
 
-console.log(store.getState().config); // getting config state
-console.log(store.getState()); // getting config state
-
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>,
 
   document.getElementById("root")
 );

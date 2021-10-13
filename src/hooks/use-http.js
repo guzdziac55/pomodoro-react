@@ -20,7 +20,6 @@ const useHttp = () => {
 
   const sendRequest = useCallback(
     async (requestConfig, applyData) => {
-      // put requestConfig here
       setIsLoading(true);
       setError(null);
 

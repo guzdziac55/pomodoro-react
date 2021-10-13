@@ -4,6 +4,7 @@ import taskListSlice from "./taskList-slice";
 import uiSlice from "./ui-slice";
 import timerSlice from "./timer-slice";
 import configSlice from "./config-slice";
+import authSlice from "./auth-slice";
 
 const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ const store = configureStore({
     ui: uiSlice.reducer,
     timer: timerSlice.reducer,
     config: configSlice.reducer,
+    auth: authSlice.reducer,
   },
 });
 
