@@ -1,11 +1,10 @@
 .statistics {
-  background-color: rgba(131, 6, 6);
-  /* background-color: rgba(255, 255, 255, 0.1); */
-  border-top: 1px solid rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.1);
   margin-top: 32px;
   display: flex;
   padding: 24px;
   justify-content: center;
+  border-top: 1px solid #ffffff;
   gap: 24px;
 }
 
@@ -15,12 +14,13 @@
 
 .label {
   font-size: 16px;
-  color: gray;
+  color: var(--font-main);
 }
 
 .data {
   font-size: 30px;
   font-weight: 800;
+  color: var(--font-main);
 }
 
 /* 

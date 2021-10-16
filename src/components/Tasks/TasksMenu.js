@@ -42,15 +42,22 @@ const TasksMenu = () => {
         <div className={classes.options}>
           <button onClick={toggleTaskMenu} className={classes.button}>
             <span className={classes.icon}>
+              {/*  add custom icon with all styles */}
               <IconLogin />
             </span>
           </button>
           {showTaskMenu && (
-            <ul className={classes["options-list"]}>
-              <li onClick={handleDeleteAllTasks}>DELETE_ALL </li>
+            <ul className={classes.optionsList}>
+              <li className={classes.listItem} onClick={handleDeleteAllTasks}>
+                <IconLogin />
+                DELETE_ALL
+              </li>
               <li onClick={handleDeleteFinishedTasks}>DELETE_FINISHED </li>
               <li onClick={handleDeleteDoneTasks}>DELETE_DONE </li>
             </ul>
+
+            // custom component List Item = atr props.children
+            // robiłby za wrappera W środku dojebać iconLogin + span
           )}
         </div>
       </OutsideClickHandler>

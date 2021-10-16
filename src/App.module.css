@@ -1,6 +1,5 @@
 .main-app {
   width: 100%;
-  text-align: center;
   min-height: 100vh;
   background-color: var(--main-color);
 }

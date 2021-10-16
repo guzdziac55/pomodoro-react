@@ -40,7 +40,9 @@ const TaskItem = (props) => {
     dispatch(taskListActions.toggleDoneTask(id));
   };
 
-  const taskIsActive = id === activeId;
+  // Conditional class style:
+  const activeClass = id === activeId ? classes.active : "";
+  const doneClass = isDone ? classes.done : "";
 
   return (
     <>
@@ -56,17 +58,25 @@ const TaskItem = (props) => {
       {/* Show Task */}
       {!showEditForm && (
         <li
-          className={`${classes.task} ${taskIsActive ? classes.active : ""}`}
+          className={`${classes.task} ${activeClass}`}
           onClick={setActiveTask}
         >
           <span onClick={handleToggleDoneTask} className={classes.icon}>
-            <IconPlus />
+            {/* solo Icons conditional Rendering Done // undone */}
+            {/* ADD : DONE ICON // TOGGLEDONEICON */}
+            <IconPlus className={classes.icon} />
           </span>
-          {isDone && <span>to jest done</span>}
-          <span className={classes.title}>{title}</span>
-          <span className={classes.pomodoro}>{actPomodoro}</span>
-          <span className={classes.pomodoro}>/</span>
-          <span className={classes.pomodoro}>{estPomodoro}</span>
+
+          <span className={`${classes.title} ${doneClass}`}>{title}</span>
+          {/* TASK-INFO NUMBERS */}
+          {/* est / act */}
+          <div className={classes.pomodoroInfo}>
+            <span className={classes.pomodoroEst}>{actPomodoro}</span>
+            <span>/</span>
+            <span className={classes.pomodoroAct}>{estPomodoro}</span>
+          </div>
+
+          {/* ICON SHOW EDIT FORM */}
           <span onClick={toggleEditFormHandler} className={classes.icon}>
             <IconPlus />
           </span>

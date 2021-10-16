@@ -3,14 +3,15 @@
   align-items: center;
   justify-content: space-between;
   border-radius: 0.2rem;
+  color: var(--font-black);
   padding-bottom: 0.5rem;
   border-bottom: 3px solid #e1716d;
 }
 
 .tasks-menu > span {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: 700;
-  color: #e1716d;
+  color: var(--font-main);
 }
 
 .button {
@@ -43,21 +44,22 @@
   display: block;
 }
 
-.options-list {
+.optionsList {
   border-radius: 4px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 10px 20px, rgba(0, 0, 0, 0.1) 0px 3px 6px;
   pointer-events: auto;
   position: absolute;
   background-color: #ffffff;
-  /* transform: translateY(10px); */
   width: 13rem;
   right: 0;
   z-index: 1;
   opacity: 1;
   display: block;
+  list-style: none;
+  border-radius: 4px;
+  padding: 4px 0px;
 }
 
-.options-list li {
-  padding: 0;
-  margin: 0;
+.listItem {
+  display: flex;
 }
