@@ -1,26 +1,23 @@
 import React from "react";
-import HeaderButtonMenu from "./HeaderButtonMenu";
+// import HeaderButtonMenu from "./HeaderButtonMenu";
 import IconLogin from "./IconLogin";
 import classes from "./HeaderMenuTab.module.css";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { authActions } from "../../store/auth-slice";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { uiActions } from "../../store/ui-slice";
 import { authlogout } from "../../store/auth-actions";
 
 const HeaderMenuTab = (props) => {
   const dispatch = useDispatch();
   const isLogged = useSelector((state) => state.auth.isLogged);
+
+  const setTheme = (theme) => {
+    dispatch(uiActions.changeTheme(theme));
+  };
   // const handleLogout = dispatch(authActions.logout());
 
   const handleLogout = () => {
-    console.log("logout");
-    // logout operuje tylko na dispatch stoptimer i localStorage
-    authlogout(dispatch);
-    // dispatch(authActions.logout());
-    // //  stopTimerhere with let TimerId
-    // // handle
-    // localStorage.removeItem("token");
+    dispatch(authlogout());
   };
 
   return (

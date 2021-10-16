@@ -2,16 +2,16 @@ import { authActions } from "./auth-slice";
 
 let logoutTimerId;
 
-const calculateRemainingTime = (expirationTime) => {
-  const currentTime = new Date().getTime(); // aktualna data w ms
-  const adjExpirationTime = new Date(expirationTime).getTime(); // data wygasniecia w ms
-  const remainingDuration = adjExpirationTime - currentTime; // czas do wygaśniecia w ms
+// exp time = current new date Time + fetched time OBj login
+export const calculateRemainingTime = (expirationTime) => {
+  const currentTime = new Date().getTime(); // zamiana na ms
+  const adjExpirationTime = new Date(expirationTime).getTime(); // zamiana na ms
+  const remainingDuration = adjExpirationTime - currentTime; // rożnica w ms
   return remainingDuration;
 };
 
 export const authLogin = (email, password) => {
   return async (dispatch) => {
-    //
     const loginRequest = async () => {
       const response = await fetch(
         "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAhhAeYB4ka4SlGiRpy-lHDT7UFCEOjRGQ",
@@ -39,30 +39,29 @@ export const authLogin = (email, password) => {
 
     try {
       const dataToken = await loginRequest();
-      const expirationTime = new Date(
-        new Date().getTime() + +dataToken.expiresIn * 1000
-      );
-      const remainingTime = calculateRemainingTime(expirationTime);
+      const expirationTime = new Date(new Date().getTime() + 5 * 1000);
+
+      localStorage.setItem("token", dataToken.idqToken);
+      localStorage.setItem("expirationTime", expirationTime);
 
       dispatch(authActions.login(dataToken.idToken));
-      logoutTimerId = setTimeout(
-        () => dispatch(authActions.logout()),
-        remainingTime
-      );
 
-      // działa !
-      //   console.log("login");
-      //   console.log(dataToken);
-      //   console.log(logoutTimerId);
+      const remainingTime = calculateRemainingTime(expirationTime);
+      // to pasuje przenieść gdzieś indziej
+      logoutTimerId = setTimeout(() => dispatch(authlogout()), remainingTime);
     } catch (err) {
       alert(err);
     }
   };
 };
 
-export const authlogout = (dispatch) => {
-  dispatch(authActions.logout());
-  localStorage.removeItem("token");
+export const authlogout = () => {
+  return (dispatch) => {
+    dispatch(authActions.logout());
+    if (logoutTimerId) clearTimeout(logoutTimerId);
+    localStorage.removeItem("token");
+    localStorage.removeItem("expirationTime");
+  };
 };
 
 export const authCreateAcc = (email, password) => {
@@ -90,7 +89,6 @@ export const authCreateAcc = (email, password) => {
 
   try {
     createAccRequest();
-    console.log("koniec create acc");
   } catch (err) {
     alert(err);
   }

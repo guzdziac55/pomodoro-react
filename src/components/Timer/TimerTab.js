@@ -2,12 +2,19 @@ import React from "react";
 import TimerButtonOption from "./TimerButtonOption";
 import classes from "./TimerTab.module.css";
 
+// propsy potrzebne ?
 const TimerTab = (props) => {
   return (
     <div className={classes["timer-tab"]}>
-      <TimerButtonOption timeOption={0}>Pomodoro</TimerButtonOption>
-      <TimerButtonOption timeOption={1}>Short Break</TimerButtonOption>
-      <TimerButtonOption timeOption={2}>Long Break</TimerButtonOption>
+      <TimerButtonOption theme={"pomodoroTheme"} timeOption={0}>
+        Pomodoro
+      </TimerButtonOption>
+      <TimerButtonOption theme={"shortBreakTheme"} timeOption={1}>
+        Short Break
+      </TimerButtonOption>
+      <TimerButtonOption theme={"longBreakTheme"} timeOption={2}>
+        Long Break
+      </TimerButtonOption>
     </div>
   );
 };

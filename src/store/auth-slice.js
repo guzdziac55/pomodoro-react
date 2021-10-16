@@ -1,47 +1,36 @@
+// import { calculateRemainingTime } from "./auth-actions";
 import { createSlice } from "@reduxjs/toolkit";
 
-// createCustomHook for CalcRemainingTime /// return RemainingTime // reuse
+// put this here and import ub auth Actions
+// pewnie redux slice jest inicjonowany przed auth Actions i nie widzi funkcji
+// trzeba to sprawdzić
+const calculateRemainingTime = (expirationTime) => {
+  const currentTime = new Date().getTime(); // zamiana na ms
+  const adjExpirationTime = new Date(expirationTime).getTime(); // zamiana na ms
+  const remainingDuration = adjExpirationTime - currentTime; // rożnica w ms
+  return remainingDuration;
+};
 
 // to może być custom hook zwraca State Storedtoken i ExpTime ?
+// mozna to przenieść do local Storage
 const retriveStoredToken = () => {
   const storedToken = localStorage.getItem("token");
   const storedExpirationDate = localStorage.getItem("expirationTime");
-  // expiration time 3600 ms * 1000 => w sekundach np 1h   + current Time i zamienić na date
-  //  czyli data przyszłościowa
+  const remainingTime = calculateRemainingTime(storedExpirationDate); // data wygaśnięcia
 
-  const currentTime = new Date().getTime(); // aktualna data w ms
-  const adjExpirationTime = new Date(storedExpirationDate).getTime(); // data wygasniecia w ms
-  const remainingDuration = adjExpirationTime - currentTime;
-
-  if (remainingDuration < 0) {
+  if (remainingTime < 0) {
     localStorage.removeItem("token");
     localStorage.removeItem("expirationTime");
     return null;
   }
 
-  //  jeśli poprawne wrzuć do initiala
   return {
     token: storedToken,
-    duration: remainingDuration,
+    duration: remainingTime,
   };
 };
 
-//  remeiningTime =  calculateRemaininTime ( storedExpirationDate)
-// if(remeinigTime < 0 ){
-// localStorage.removeItem('token')
-// localStorage.removeItem('expirationTime ')
-// return null
-// }
-// if()
-
-//  jeśli nie spełni warunku i jest wiekszy od 0 czyli aktywny to
-//   SetIntoReduxState
-//  return obj  {
-// token: storedToken
-// duration: remainingTime
-// }
-
-const tokenData = retriveStoredToken;
+const tokenData = retriveStoredToken(); // zmieni sie jesli zmieni sie token lub zmieni sie date
 let initialToken;
 if (tokenData) {
   initialToken = tokenData.token;
@@ -49,8 +38,8 @@ if (tokenData) {
 
 // useEffect(() => {
 //   if (tokenData) {
-//     //  tokenData form initial LocalStorage if getItem is Strue
-//     // logoutTimer = setTimout(dispatchLogout, tokenData.duration)
+//     console.log(tokenData.duration);
+//     logoutTimer = setTimeout(logout, tokenData.duration);
 //   }
 // }, [tokenData]);
 
@@ -58,26 +47,31 @@ const isLoggedIn = !!initialToken;
 const authSlice = createSlice({
   name: "auth",
   initialState: {
-    // get from helper function when localStorage is aviable token and time
-    //  wiekszy niz 0 i token istnieje => set this into LocalStorage
     token: initialToken,
     isLogged: isLoggedIn,
   },
+  // get from helper function when localStorage is aviable token and time
+  //  wiekszy niz 0 i token istnieje => set this into LocalStorage
   reducers: {
     login(state, action) {
-      // console.log("login function");
       state.token = action.payload;
       state.isLogged = !!state.token;
     },
 
     logout(state) {
-      // console.log("calls logout");
-
       state.token = null;
       state.isLogged = !!state.token;
     },
   },
 });
+
+// IMPORTTANT IMPLEMENT WHEN U GET NEW TOKEN DATA
+// useEffect(() => {
+//   // IDTIMEOUT = SETTIMEOUT(LOGOUTHANDLER , DATATOKEN.DURATION )   // SET NEW LOGAUNT BECOUSE WE GET NEW TOKEN
+//   return () => {
+//     cleanup;
+//   };
+// }, [TOKEN]);
 
 // localStorage.setItem("token", token); // store token better inside redux action
 // localStorage.removeItem("token");

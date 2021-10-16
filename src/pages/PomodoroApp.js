@@ -6,6 +6,7 @@ import Tasks from "../components/Tasks/Tasks";
 import Notifications from "../components/UI/Notifications";
 import FinishCalculate from "../components/FinishCalculate/FinishCalculate";
 import { useSelector } from "react-redux";
+import classes from "./PomodoroApp.module.css";
 
 const PomodoroApp = () => {
   const notification = useSelector((state) => state.ui.notification);
@@ -14,7 +15,8 @@ const PomodoroApp = () => {
     taskList.length === 0 || taskList === false ? true : false;
 
   return (
-    <Fragment>
+    // <Fragment>
+    <div className={classes.pomodoroApp}>
       <Timer></Timer>
       <WorkingOn />
       <Tasks />
@@ -26,7 +28,9 @@ const PomodoroApp = () => {
           error={notification.error}
         />
       )}
-    </Fragment>
+    </div>
+
+    // </Fragment>
   );
 };
 

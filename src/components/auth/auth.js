@@ -20,86 +20,22 @@ const Auth = () => {
     setIsLogin((prevState) => !prevState);
   };
 
-  // expirationTime = czas z tokena np 3600
-  const calculateRemainingTime = (expirationTime) => {
-    const currentTime = new Date().getTime(); // aktualna data w ms
-    const adjExpirationTime = new Date(expirationTime).getTime(); // data wygasniecia w ms
-    const remainingDuration = adjExpirationTime - currentTime; // czas do wygaśniecia w ms
-    return remainingDuration;
-  };
-
   // create 2 thunk functions or more with
   //  createAcc
   //  login / Logout   // add Thunk with dispatches function inside
   //  When Logout call logoutDispatch Action and, make LocalStorageRemove etc
   //  When Login // setLocalStorageState // calculateTime + make dispatch Login
 
-  const createAcc = async (url, email, password) => {
-    let logoutTimerId;
-    setIsLoading(true);
-
-    const sendRequest = async () => {
-      const response = await fetch(url, {
-        method: "POST",
-        body: JSON.stringify({
-          email: email,
-          password: password,
-          returnSecureToken: true,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (!response.ok) {
-        const err = await response.json();
-        setIsLoading(false);
-        throw new Error(err.error.message);
-      }
-      return response;
-    };
-
-    try {
-      const response = await sendRequest();
-      const data = await response.json();
-
-      const expirationTime = new Date(
-        new Date().getTime() + +data.expiresIn * 1000
-      ); // czas przyszły wygasniecia tokena w postaci daty
-      // local storage
-      localStorage.setItem("token", data.idToken);
-      localStorage.setItem("expirationTime", data.expiresIn);
-
-      const remainingTime = calculateRemainingTime(expirationTime);
-
-      dispatch(authActions.login(data.idToken)); // make login
-
-      logoutTimerId = setTimeout(
-        () => dispatch(authActions.login()),
-        remainingTime
-      );
-      setIsLoading(false);
-    } catch (err) {
-      alert(err);
-    }
-  };
-
+  // login or Create ACC
   const submitForm = (e) => {
     e.preventDefault();
-    let url;
     const enteredEmail = emailRef.current.value;
     const enteredPassword = passwordRef.current.value;
     if (isLogin) {
-      dispatch(authLogin(enteredEmail, enteredPassword));
-
-      // url =
-      //   "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAhhAeYB4ka4SlGiRpy-lHDT7UFCEOjRGQ";
+      dispatch(authLogin(enteredEmail, enteredPassword)); // uruchomienie głównej funkcji
     } else {
-      // url =
       dispatch(authCreateAcc(enteredEmail, enteredPassword));
-      //   "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAhhAeYB4ka4SlGiRpy-lHDT7UFCEOjRGQ";
     }
-    // createAcc(url, enteredEmail, enteredPassword);
   };
 
   return (

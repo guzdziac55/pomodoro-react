@@ -13,6 +13,9 @@ import PomodoroApp from "./pages/PomodoroApp";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 
+// add theme
+// import classes from "./styles/themes/theme.module.css";
+
 let isInitial = true;
 
 function App() {
@@ -20,6 +23,11 @@ function App() {
   const taskList = useSelector((state) => state.tasksList.tasksList);
   const isChanged = useSelector((state) => state.tasksList.changed);
   const isLogged = useSelector((state) => state.auth.isLogged);
+
+  // use it with Provider or Redux state
+  const appTheme = useSelector((state) => state.ui.theme);
+
+  // const [theme, setTheme] = useState("light");
 
   const [settingsShow, setSettingsShow] = useState(false);
 
@@ -50,11 +58,16 @@ function App() {
       {/* // boilerPlate with handleSettings hide go into HeaderInside It !  */}
       {settingsShow && <HookForm onClose={handleSettingsHide} />}
 
-      <main className={classes["main-app"]}>
+      <main className={`${classes["main-app"]} ${classes[`${appTheme}`]}`}>
         <Switch>
           <Route path="/" exact>
             <Header onShow={handleSettingsShow}></Header>
             <PomodoroApp />
+            {/*  nie warto dawać do PomodoroAPP sekcji - bo nie zrobię page z samym PomodoroAPP */}
+            {/* <InfoAPPSection/> */}
+            {/* //  inside more modules hero > section 1 > section 2 etc  */}
+            {/*  moze dawać być tam footer  */}
+
             {/* more info about app section */}
           </Route>
 

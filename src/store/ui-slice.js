@@ -5,6 +5,7 @@ const uiSlice = createSlice({
   initialState: {
     showForm: false,
     notification: null,
+    theme: "pomodoroTheme",
   },
   reducers: {
     toogleForm(state) {
@@ -17,6 +18,10 @@ const uiSlice = createSlice({
         title: action.payload.title,
         message: action.payload.message,
       };
+    },
+
+    changeTheme(state, action) {
+      state.theme = action.payload;
     },
   },
 });

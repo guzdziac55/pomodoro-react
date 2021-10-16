@@ -1,7 +1,86 @@
 .main-app {
-  max-width: 520px;
   width: 100%;
-  margin: auto;
-  margin-top: 3.5rem;
   text-align: center;
+  min-height: 100vh;
+  background-color: var(--main-color);
+}
+
+/*  themes */
+
+.pomodoroTheme {
+  --color-grey-light-1: #f9f5f3;
+  --color-grey-light-2: #f2efee;
+  --color-grey-light-3: #d3c7c3;
+  --color-grey-dark-1: #cc8c77;
+  --color-grey-dark-2: #918581;
+  --color-gray-opacity: rgba(131, 131, 131, 0.8);
+
+  --main-color: #db524d;
+  --main-dark: #c94b47;
+  --main-light: #df645f;
+
+  --icon-gray: #dfdfdf;
+  --icon-mainlight: #df645f;
+  --icon-maindark: #c94b47;
+  --icon-fill: #ffffff;
+
+  --font-main: #ffffff;
+  --font-gray: #dfdfdf;
+  --font-black: #000000;
+
+  --btn-color-main: #db524d;
+  --btn-color-white: #ffffff;
+  --btn-color-confirm: #080808;
+  --btn-color-disable: #525252;
+}
+
+.shortBreakTheme {
+  --color-grey-light-1: #f9f5f3;
+  --color-grey-light-2: #f2efee;
+  --color-grey-light-3: #d3c7c3;
+  --color-grey-dark-1: #615551;
+  --color-grey-dark-2: #918581;
+  --color-gray-opacity: rgba(131, 131, 131, 0.8);
+
+  --main-color: #468e91;
+  --main-dark: #408285;
+  --main-light: #599a9c;
+
+  --icon-gray: #dfdfdf;
+  --icon-mainlight: #599a9c;
+  --icon-maindark: #408285;
+  --icon-fill: #ffffff;
+
+  --font-main: #ffffff;
+  --font-gray: #dfdfdf;
+
+  --btn-color-main: #468e91;
+  --btn-color-confirm: #080808;
+  --btn-color-disable: #525252;
+}
+.longBreakTheme {
+  --color-grey-light-1: #f9f5f3;
+  --color-grey-light-2: #f2efee;
+  --color-grey-light-3: #d3c7c3;
+  --color-grey-dark-1: #615551;
+  --color-grey-dark-2: #918581;
+  --color-gray-opacity: rgba(131, 131, 131, 0.8);
+
+  --chujowy-color: #244244;
+
+  --main-color: #437ea8;
+  --main-dark: #3d749a;
+  --main-light: #568bb1;
+
+  --icon-gray: #dfdfdf;
+  --icon-mainlight: #568bb1;
+  --icon-maindark: #3d749a;
+  --icon-fill: #ffffff;
+
+  --font-main: #ffffff;
+  --font-gray: #dfdfdf;
+
+  --btn-color-main: #437ea8;
+  --btn-color-confirm: #080808;
+  --btn-color-disable: #525252;
 }
