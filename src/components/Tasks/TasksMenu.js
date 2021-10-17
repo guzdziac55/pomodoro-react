@@ -35,7 +35,7 @@ const TasksMenu = () => {
   };
 
   return (
-    <section className={classes["tasks-menu"]}>
+    <section className={classes.tasksMenu}>
       <span>Tasks</span>
       {/* // to może być osobnym komponentem  */}
       <OutsideClickHandler onOutsideClick={closeTaskMenu}>

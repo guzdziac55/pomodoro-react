@@ -1,11 +1,22 @@
-.working-on {
+.activeTask {
   margin-top: 2rem;
   width: 100%;
   text-align: center;
 }
 
-.working-on span {
-  color: #e1716d;
-  font-weight: 600;
+.activeTask span {
   display: block;
+}
+
+.pomodoroCount {
+  color: var(--font-gray);
+  font-weight: 400;
+  margin-bottom: 5px;
+}
+
+.activeTask {
+  color: var(--font-main);
+  font-weight: 600;
+  width: 100%;
+  overflow-wrap: break-word;
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+// import React, { useEffect, useContext } from "react";
 import classes from "./TimerCountdown.module.css";
 import { useTimer } from "../../hooks/use-timer";
 
@@ -6,14 +6,21 @@ const TimerCountdown = () => {
   const convertedTimeout = useTimer();
 
   return (
-    <div className={classes.countdown}>
-      <span>{convertedTimeout}</span>
-      {/* <span>{convertTime(counter)}</span> */}
-    </div>
+    <>
+      <span className={classes.countDown}>{convertedTimeout}</span>
+    </>
   );
 };
 
 export default TimerCountdown;
+
+//  to delate
+
+// {
+//   /* <span>{convertTime(counter)}</span> */
+// }
+
+// logika przeniesiona do hooka
 
 // import { useState } from "react";
 // import { timerActions } from "../../store/timer-slice";

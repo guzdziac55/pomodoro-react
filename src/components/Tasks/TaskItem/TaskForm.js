@@ -97,19 +97,31 @@ const TaskForm = React.forwardRef((props, ref) => {
     <OutsideClickHandler onOutsideClick={props.toggleForm}>
       <Card class={classes.form}>
         <form ref={ref} className={classes.form} onSubmit={submitHandler}>
-          <div className={classes["form-main"]}>
-            <Input
-              valid={taskTitleValid}
-              label={"Task name"}
-              input={{
-                id: "amount_" + props.id,
-                type: "text",
-                name: "title",
-                value: taskTitle,
-                onChange: handleInputChange,
-                placeholder: "What are u working on?",
-              }}
+          <div className={classes.formMain}>
+            <input
+              id="title"
+              value={taskTitle}
+              name="title"
+              type="text"
+              onChange={handleInputChange}
+              placeholder="What are u working on ?"
+              className={classes.large}
             />
+            <div className={classes.inputWrapper}>
+              <label className={classes.number}>Est pomodoros</label>
+              <input
+                value={taskAmount}
+                name="numbers"
+                type="number"
+                onChange={handleInputChange}
+                className={classes.number}
+                min="1"
+                max="5"
+                step="1"
+              />
+            </div>
+
+            {/* old */}
             <Input
               valid={taskAmountValid} // wynik tej funkcji
               label={"Est pomodoros"}
@@ -125,7 +137,7 @@ const TaskForm = React.forwardRef((props, ref) => {
             />
           </div>
 
-          <div className={classes["form-menu"]}>
+          <div className={classes.formMenu}>
             {editMode && (
               <button type="button" onClick={handleDelateTask}>
                 delete
@@ -144,57 +156,7 @@ const TaskForm = React.forwardRef((props, ref) => {
         </form>
       </Card>
     </OutsideClickHandler>
-
-    // <Card class={classes.form}>
-    //   <form ref={ref} className={classes.from} onSubmit={submitHandler}>
-    //     {/*  change to input HOOK */}
-    //     <Input
-    //       valid={taskTitleValid}
-    //       label={"Task name"}
-    //       input={{
-    //         id: "amount_" + props.id,
-    //         type: "text",
-    //         name: "title",
-    //         value: taskTitle,
-    //         onChange: handleInputChange,
-    //         placeholder: "What are u working on?",
-    //       }}
-    //     />
-    //     <Input
-    //       valid={taskAmountValid}
-    //       label={"Est pomodoros"}
-    //       input={{
-    //         type: "number",
-    //         name: "numbers",
-    //         value: taskAmount,
-    //         onChange: handleInputChange,
-    //         min: "1",
-    //         max: "5",
-    //         step: "1",
-    //       }}
-    //     />
-
-    //     <div className={classes["form-menu"]}>
-    //       {editMode && (
-    //         <button type="button" onClick={handleDelateTask}>
-    //           delete
-    //         </button>
-    //       )}
-    //       <div className={classes["menu-right"]}>
-    //         <button onClick={props.toggleForm} type="button">
-    //           Cancel
-    //         </button>
-
-    //         <button type="submit" disabled={formIsValid ? false : true}>
-    //           {editMode ? "Edit" : "Save"}
-    //         </button>
-    //       </div>
-    //     </div>
-    //   </form>
-
-    // </Card>
   );
 });
 
-// export default TaskForm;
 export default TaskForm;

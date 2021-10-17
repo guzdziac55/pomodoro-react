@@ -1,10 +1,12 @@
 .button {
-  padding: 0.5rem 1rem;
+  padding: 5px 12px;
   border-style: none;
-  border-radius: 0.5rem;
-  font-size: 1.2rem;
+  border-radius: 5px;
+  font-size: 16px;
+  line-height: 1.1;
   font-weight: 500;
   background: none;
+  outline: hidden;
   color: #ffffff;
 }
 
@@ -14,7 +16,7 @@
 
 .active {
   font-weight: 600;
-  background: #9e4744;
+  background: var(--main-dark);
 }
 
 .button:hover {

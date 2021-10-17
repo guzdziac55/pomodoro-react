@@ -1,14 +1,14 @@
-.tasks-menu {
+.tasksMenu {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-radius: 0.2rem;
   color: var(--font-black);
   padding-bottom: 0.5rem;
-  border-bottom: 3px solid #e1716d;
+  margin-top: 20px;
+  border-bottom: 1px solid #ffffff;
 }
 
-.tasks-menu > span {
+.tasksMenu > span {
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--font-main);

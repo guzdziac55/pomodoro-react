@@ -6,14 +6,13 @@ const Input = React.forwardRef((props) => {
   const invalid = !props.valid ? classes.error : "";
 
   return (
+    // wrapper
     <div className={classes.input}>
-      <label
-        className={`${classes.label}`}
-        // className={!props.valid ? classes.error : classes.label}
-        htmlFor={props.input.id}
-      >
+      {/* label */}
+      <label className={classes.label} htmlFor={props.input.id}>
         {props.label}
       </label>
+      {/* input */}
       <input
         ref={props.useRef}
         value={props.input.value}

@@ -8,6 +8,8 @@ const TimerButtonStart = () => {
 
   // const { toggleTicking } = useTimer();
 
+  // ad style Clicked / unclicked
+
   const toggleTicking = () => {
     dispatch(timerActions.toggleTicking());
   };

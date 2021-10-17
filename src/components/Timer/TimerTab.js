@@ -2,8 +2,9 @@ import React from "react";
 import TimerButtonOption from "./TimerButtonOption";
 import classes from "./TimerTab.module.css";
 
-// propsy potrzebne ?
-const TimerTab = (props) => {
+//  props ? żeby przekazać z głównego komponent 'Timer' logike aplikacji
+
+const TimerTab = () => {
   return (
     <div className={classes["timer-tab"]}>
       <TimerButtonOption theme={"pomodoroTheme"} timeOption={0}>

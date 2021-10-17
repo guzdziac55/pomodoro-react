@@ -1,9 +1,9 @@
 .timer {
   text-align: center;
-  background-color: #df645f;
+  background-color: var(--main-light);
   margin: auto;
-  margin-top: 5rem;
-  width: 100%;
-  padding: 2rem 1rem;
+  margin-top: 3rem;
+  max-width: 480px;
+  padding: 20px 0px 30px;
   height: 100%;
 }
