@@ -5,14 +5,14 @@
 }
 
 .button {
-  background-color: #e1716d;
+  background-color: var(--main-dark);
   border-style: none;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem 1rem;
-  color: #ffffff;
+  padding: 10px 10px;
+  color: var(--font-main);
   font-size: 1rem;
   font-weight: 400;
   border-radius: 0.2rem;
@@ -24,7 +24,7 @@
 }
 
 .icon {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1rem;
+  height: 1rem;
   margin-right: 0.5rem;
 }

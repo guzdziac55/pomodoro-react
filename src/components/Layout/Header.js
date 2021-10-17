@@ -7,6 +7,7 @@ const Header = (props) => {
   return (
     <header className={classes.header}>
       <Link to="/app">
+        {/* add icon here logo APP */}
         <h1>Pomodoro</h1>
       </Link>
 

@@ -11,9 +11,9 @@ const HeaderMenuTab = (props) => {
   const dispatch = useDispatch();
   const isLogged = useSelector((state) => state.auth.isLogged);
 
-  const setTheme = (theme) => {
-    dispatch(uiActions.changeTheme(theme));
-  };
+  // const setTheme = (theme) => {
+  //   dispatch(uiActions.changeTheme(theme));
+  // };
   // const handleLogout = dispatch(authActions.logout());
 
   const handleLogout = () => {

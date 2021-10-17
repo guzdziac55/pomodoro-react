@@ -104,11 +104,11 @@ const TaskForm = React.forwardRef((props, ref) => {
               name="title"
               type="text"
               onChange={handleInputChange}
-              placeholder="What are u working on ?"
+              placeholder="What are u working on?"
               className={classes.large}
             />
+            <label className={classes.number}>Est pomodoros</label>
             <div className={classes.inputWrapper}>
-              <label className={classes.number}>Est pomodoros</label>
               <input
                 value={taskAmount}
                 name="numbers"
@@ -119,32 +119,36 @@ const TaskForm = React.forwardRef((props, ref) => {
                 max="5"
                 step="1"
               />
+              <button>+</button>
+              <button>-</button>
+              {/* custom button PLUS +  */}
+              {/* custom button MINUS -  */}
             </div>
-
-            {/* old */}
-            <Input
-              valid={taskAmountValid} // wynik tej funkcji
-              label={"Est pomodoros"}
-              input={{
-                type: "number",
-                name: "numbers",
-                value: taskAmount,
-                onChange: handleInputChange,
-                min: "1",
-                max: "5",
-                step: "1",
-              }}
-            />
+            <div className={classes.formNote}>
+              <button>add note</button>
+            </div>
           </div>
 
           <div className={classes.formMenu}>
-            {editMode && (
-              <button type="button" onClick={handleDelateTask}>
-                delete
-              </button>
-            )}
-            <div className={classes["menu-right"]}>
-              <button onClick={props.toggleForm} type="button">
+            {/* menu left */}
+            <div className={classes.menuLeft}>
+              {editMode && (
+                <button
+                  className={classes.btnDelete}
+                  type="button"
+                  onClick={handleDelateTask}
+                >
+                  Delete
+                </button>
+              )}
+            </div>
+            {/* menu right */}
+            <div className={classes.menuRight}>
+              <button
+                className={classes.btnCancel}
+                onClick={props.toggleForm}
+                type="button"
+              >
                 Cancel
               </button>
 
@@ -160,3 +164,27 @@ const TaskForm = React.forwardRef((props, ref) => {
 });
 
 export default TaskForm;
+
+{
+  /*  task amountValid jeśli !valid to dodaj style Error
+            //  można zrobić show notification  */
+}
+
+{
+  /* old */
+}
+{
+  /* <Input
+              valid={taskAmountValid} // wynik tej funkcji
+              label={"Est pomodoros"}
+              input={{
+                type: "number",
+                name: "numbers",
+                value: taskAmount,
+                onChange: handleInputChange,
+                min: "1",
+                max: "5",
+                step: "1",
+              }}
+            /> */
+}

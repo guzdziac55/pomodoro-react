@@ -7,7 +7,7 @@
   box-shadow: rgb(235 235 235) 0px 6px 0px;
   font-size: 22px;
   height: 55px;
-  color: rgb(217, 85, 80);
+  color: var(--main-color);
   font-weight: bold;
   width: 200px;
   background-color: white;

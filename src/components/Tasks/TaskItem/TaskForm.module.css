@@ -12,25 +12,33 @@
 .form button {
   border-style: none;
   cursor: pointer;
-  padding: 0.5rem 1rem;
-  color: #ffffff;
-  font-size: 1rem;
-  font-weight: 500;
-  border-radius: 0.5rem;
+  border-radius: 5px;
 }
 
 /* input wrapper */
 
 .formMain {
   padding: 20px 20px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 /* inputs */
 
+.formNote {
+  margin-top: 20px;
+  display: flex;
+}
+
 .inputWrapper {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-top: 10px;
+  /* width: 100%; */
+  /* margin-top: 20px; */
 }
 
 input.large {
@@ -38,52 +46,43 @@ input.large {
   font-size: 22px;
   padding: 8px 0px;
   box-shadow: none;
-  border: none;
-  overflow: hidden;
+  border: 0;
   color: rgb(85, 85, 85);
   width: 100%;
   box-sizing: border-box;
   font-weight: bold;
+  overflow: hidden;
+}
+
+input.large:focus {
+  outline: none;
 }
 
 input.number {
   border-radius: 4px;
   font-size: 22px;
-  /* padding: 10px 0px 10px 10px; */
   box-shadow: none;
+  padding: 10px;
   border: none;
   overflow: hidden;
+  background-color: var(--color-grey-light-1);
   color: rgb(85, 85, 85);
-  width: 100%;
+  width: 90px;
+  /* height: 90px; */
   box-sizing: border-box;
   font-weight: bold;
 }
 
 label.number {
-  /* some style */
+  display: flex;
+  font-size: 16px;
+  margin-top: 20px;
+  font-weight: 700;
+  color: var(--font-black);
 }
 
 .invalid {
   background-color: red;
-}
-
-/* unvalid   background-color: #525252; */
-
-.form button[type="submit"] {
-  background-color: blue;
-}
-
-.form button[type="submit"]:hover {
-  background-color: red;
-}
-
-.form button[type="submit"]:disabled {
-  background-color: rgb(131, 131, 131);
-}
-
-.form button[type="button"] {
-  background-color: none;
-  background: none;
 }
 
 .form {
@@ -91,18 +90,67 @@ label.number {
   margin-top: 0.5rem;
 }
 
-/* FORM BOTTOM MENU */
-/* WE CAN MAKE ONE MORE CUSTOM COMPONENT */
+/* ////////////////// FORM MENU BOTTOM GRAY  */
+
 .formMenu {
   padding: 14px 20px;
   display: flex;
   background-color: var(--color-grey-light-2);
-  justify-content: flex-end;
-  border-radius: 8px;
-  /* align-items: center; */
+  justify-content: space-between;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
-.menu-right {
+.formMenu button {
+  padding: 0.5rem 1rem;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.menuLeft {
+  justify-content: flex-start;
+}
+
+.menuRight {
   justify-content: flex-end;
-  gap: 0.5rem;
+}
+
+/* ////////////////// FORM MENU BUTTONS */
+
+.btnDelete {
+  color: var(--font-gray);
+  font-weight: 600;
+}
+.btnDelete:hover {
+  color: var(--font-black);
+  font-weight: 600;
+}
+
+.btnCancel {
+  color: var(--font-gray);
+  font-weight: 600;
+}
+.btnCancel:hover {
+  color: var(--font-black);
+  font-weight: 600;
+}
+
+.form button[type="submit"] {
+  background-color: var(--btn-color-confirm);
+  color: var(--font-main);
+}
+
+.form button[type="submit"]:hover {
+  background-color: #000000;
+  color: var(--font-main);
+}
+
+.form button[type="submit"]:disabled {
+  background-color: var(--btn-color-disable);
+  color: var(--font-main);
+}
+
+.form button[type="button"] {
+  background-color: none;
+  background: none;
 }
