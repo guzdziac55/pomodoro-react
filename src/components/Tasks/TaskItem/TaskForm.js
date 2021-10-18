@@ -1,10 +1,19 @@
 import React, { useRef, useState, useEffect } from "react";
 import classes from "./TaskForm.module.css";
-import Input from "../../UI/Input";
+// import Input from "../../UI/Input";
 import Card from "../../UI/Card";
 import { useDispatch } from "react-redux";
+
+import {
+  MdExposurePlus1,
+  MdExposureNeg1,
+  MdEditNote,
+  MdNoteAdd,
+} from "react-icons/md";
+
 import { taskListActions } from "../../../store/taskList-slice";
 import OutsideClickHandler from "react-outside-click-handler";
+import reactDom from "react-dom";
 
 const TaskForm = React.forwardRef((props, ref) => {
   const dispatch = useDispatch();
@@ -22,6 +31,10 @@ const TaskForm = React.forwardRef((props, ref) => {
 
   const [taskTitleValid, setTaskTitleValid] = useState(true);
   const [taskAmountValid, setTaskAmountValid] = useState(true);
+
+  //  + 1   - 1   handle add input value
+  // controlled components with putting value
+  //  useState   pomodoroValue,
 
   //  props.toggleForm   // state for close form
 
@@ -119,13 +132,24 @@ const TaskForm = React.forwardRef((props, ref) => {
                 max="5"
                 step="1"
               />
-              <button>+</button>
-              <button>-</button>
-              {/* custom button PLUS +  */}
-              {/* custom button MINUS -  */}
+
+              <button type="button">
+                <MdExposurePlus1 className={classes.icon} />
+              </button>
+              <button type="button">
+                <MdExposureNeg1 className={classes.icon} />
+              </button>
             </div>
             <div className={classes.formNote}>
-              <button>add note</button>
+              <button type="button">
+                <MdEditNote className={classes.icon} />
+                <span>add note</span>
+              </button>
+
+              <button type="button">
+                <MdNoteAdd className={classes.icon} />
+                <span>add project</span>
+              </button>
             </div>
           </div>
 

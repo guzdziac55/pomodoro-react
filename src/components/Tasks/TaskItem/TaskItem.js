@@ -1,7 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import classes from "../TaskItem/TaskItem.module.css";
-import IconPlus from "../../UI/icons/IconPlus";
-
+// import IconPlus from "../../UI/icons/IconPlus";
+import {
+  MdDoneOutline,
+  // MdModeEditOutline,
+  MdEditNote,
+  // MdOutlineDeleteSweep,
+  // MdOutlineAutoDelete,
+} from "react-icons/md";
 import TaskForm from "./TaskForm";
 import { useSelector, useDispatch } from "react-redux";
 import { taskListActions } from "../../../store/taskList-slice";
@@ -40,9 +46,10 @@ const TaskItem = (props) => {
     dispatch(taskListActions.toggleDoneTask(id));
   };
 
-  // Conditional class style:
-  const activeClass = id === activeId ? classes.active : "";
-  const doneClass = isDone ? classes.done : "";
+  // is Li item Active ?
+  const itemIsActiveClass = id === activeId ? classes.active : "";
+  const titleDoneClass = isDone ? classes.done : "";
+  const iconDoneClass = isDone ? classes.done : "";
 
   return (
     <>
@@ -58,27 +65,23 @@ const TaskItem = (props) => {
       {/* Show Task */}
       {!showEditForm && (
         <li
-          className={`${classes.task} ${activeClass}`}
+          className={`${classes.task} ${itemIsActiveClass}`}
           onClick={setActiveTask}
         >
-          <span onClick={handleToggleDoneTask} className={classes.icon}>
-            {/* solo Icons conditional Rendering Done // undone */}
-            {/* ADD : DONE ICON // TOGGLEDONEICON */}
-            <IconPlus className={classes.icon} />
+          <span onClick={handleToggleDoneTask}>
+            <MdDoneOutline className={`${classes.icon} ${iconDoneClass}`} />
           </span>
 
-          <span className={`${classes.title} ${doneClass}`}>{title}</span>
-          {/* TASK-INFO NUMBERS */}
-          {/* est / act */}
+          <span className={`${classes.title} ${titleDoneClass}`}>{title}</span>
+
           <div className={classes.pomodoroInfo}>
             <span className={classes.pomodoroEst}>{actPomodoro}</span>
             <span>/</span>
             <span className={classes.pomodoroAct}>{estPomodoro}</span>
           </div>
 
-          {/* ICON SHOW EDIT FORM */}
           <span onClick={toggleEditFormHandler} className={classes.icon}>
-            <IconPlus />
+            <MdEditNote className={classes.icon} />
           </span>
         </li>
       )}

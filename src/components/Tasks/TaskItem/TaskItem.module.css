@@ -41,6 +41,7 @@
 
 .title.done {
   text-decoration: line-through;
+  color: var(--color-grey-dark-2);
 }
 
 /* icon make custom components for icons */
@@ -48,7 +49,7 @@
 /* pomodoro Est / Act  */
 
 .pomodoroInfo {
-  margin-right: 10px;
+  margin-right: 20px;
   display: flex;
   width: 40px;
   align-items: center;
@@ -72,14 +73,21 @@
 .icon {
   display: block;
   cursor: pointer;
-  width: 2rem;
-  height: 2rem;
+  width: 1.8rem;
+  height: 1.8rem;
+  color: var(--color-grey-dark-2);
   margin-right: 0.5rem;
 }
+
 .icon:hover {
   display: block;
   cursor: pointer;
-  width: 2rem;
-  height: 2rem;
+  width: 1.8rem;
+  height: 1.8rem;
+  color: var(--color-grey-dark-1);
   margin-right: 0.5rem;
+}
+
+.icon.done {
+  color: var(--main-color);
 }

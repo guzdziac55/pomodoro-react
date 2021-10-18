@@ -3,6 +3,8 @@ import classes from "./TasksMenu.module.css";
 import IconLogin from "../Layout/IconLogin";
 import { taskListActions } from "../../store/taskList-slice";
 import { useDispatch } from "react-redux";
+import { MdOutlineAutoDelete } from "react-icons/md";
+
 import OutsideClickHandler from "react-outside-click-handler";
 
 const TasksMenu = () => {
@@ -40,12 +42,14 @@ const TasksMenu = () => {
       {/* // to może być osobnym komponentem  */}
       <OutsideClickHandler onOutsideClick={closeTaskMenu}>
         <div className={classes.options}>
-          <button onClick={toggleTaskMenu} className={classes.button}>
-            <span className={classes.icon}>
-              {/*  add custom icon with all styles */}
-              <IconLogin />
-            </span>
-          </button>
+          {/* <button onClick={toggleTaskMenu} className={classes.button}> */}
+          <span className={classes.icon}>
+            <MdOutlineAutoDelete
+              onClick={toggleTaskMenu}
+              className={classes.icon}
+            />
+          </span>
+          {/* </button> */}
           {showTaskMenu && (
             <ul className={classes.optionsList}>
               <li className={classes.listItem} onClick={handleDeleteAllTasks}>
