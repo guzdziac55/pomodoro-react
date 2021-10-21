@@ -19,6 +19,11 @@ const HeaderMenuTab = (props) => {
     dispatch(authlogout());
   };
 
+  // if is Login pokaż a,b,c,de
+  // if !islogin pokaż  G
+
+  // nie roibć condiftional rendering dla każdego
+
   return (
     // <IconContext.Provider value={{ color: "#ffffff", size: "1rem" }}>
     <div className={classes.tabMenu}>

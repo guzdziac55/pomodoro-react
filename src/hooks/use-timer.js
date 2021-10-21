@@ -32,7 +32,7 @@ export const useTimer = () => {
       timeIsEndAction();
     }
     return () => clearInterval(intervalId); // to też się wywoła po setInterval
-  }, [isTicking, consumedSeconds]);
+  }, [isTicking, consumedSeconds, currentOptionTime]);
 
   const calculateCounter = () => {
     return currentOptionTime - consumedSeconds;

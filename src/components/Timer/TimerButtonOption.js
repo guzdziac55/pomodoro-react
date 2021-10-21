@@ -19,7 +19,7 @@ const TimerButtonOption = ({ timeOption, children, theme }) => {
         return;
       }
     }
-    dispatch(timerActions.setActiveStage(timeOption));
+    dispatch(timerActions.setActiveStage(timeOption)); // timeOption props z przycisku
   };
 
   const setTheme = (theme) => {
@@ -28,7 +28,7 @@ const TimerButtonOption = ({ timeOption, children, theme }) => {
 
   const onClickWrapper = () => {
     setActiveStageHandler();
-    setTheme(selectedTheme);
+    setTheme(selectedTheme); // tylko jeśli jest Alert zrobiony na true i działa,
   };
 
   // przenieść logikę do Dispatch

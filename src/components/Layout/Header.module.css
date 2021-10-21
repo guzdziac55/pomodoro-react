@@ -1,8 +1,4 @@
 .header {
-  /* position: fixed;
-  top: 0;
-  left: 0; */
-  /* padding: ; */
   width: 100%;
   background-color: var(--main-color);
   color: blue;
@@ -21,3 +17,8 @@ h1 {
 a {
   text-decoration: none;
 }
+
+/* position: fixed;
+top: 0;
+left: 0; */
+/* padding: ; */

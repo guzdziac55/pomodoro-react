@@ -39,7 +39,7 @@ const Auth = () => {
   };
 
   return (
-    <Card className={classes.auth}>
+    <Card class={classes.auth}>
       <form onSubmit={submitForm} className={classes.form}>
         <Input
           useRef={emailRef}

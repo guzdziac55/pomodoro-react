@@ -1,8 +1,8 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./TaskForm.module.css";
-// import Input from "../../UI/Input";
 import Card from "../../UI/Card";
 import { useDispatch } from "react-redux";
+import useEstPomodoro from "../../../hooks/use-estPomodoro";
 
 import {
   MdExposurePlus1,
@@ -13,32 +13,28 @@ import {
 
 import { taskListActions } from "../../../store/taskList-slice";
 import OutsideClickHandler from "react-outside-click-handler";
-import reactDom from "react-dom";
 
 const TaskForm = React.forwardRef((props, ref) => {
   const dispatch = useDispatch();
 
+  // set initial Inputs / Editmode
   const { editMode } = props;
   const { id, title, estPomodoro } = { ...props.taskData };
-
   const initialTitle = editMode ? title : "";
   const initialAmount = editMode ? estPomodoro : 1;
 
+  // inputs controlled form
   const [taskTitle, setTaskTitle] = useState(initialTitle);
-  const [taskAmount, setTaskAmount] = useState(initialAmount);
-
   const [formIsValid, setFormIsValid] = useState(null);
 
-  const [taskTitleValid, setTaskTitleValid] = useState(true);
-  const [taskAmountValid, setTaskAmountValid] = useState(true);
+  // test + / -
+  const [
+    currentEstPomodoro,
+    addEstPomodoro,
+    removeEstPomodoro,
+    setEstPomodoro,
+  ] = useEstPomodoro(initialAmount);
 
-  //  + 1   - 1   handle add input value
-  // controlled components with putting value
-  //  useState   pomodoroValue,
-
-  //  props.toggleForm   // state for close form
-
-  // change value to useRef
   const handleInputChange = (e) => {
     const value = e.target.value;
     const name = e.target.name;
@@ -47,44 +43,39 @@ const TaskForm = React.forwardRef((props, ref) => {
       setTaskTitle(value);
     }
     if (name === "numbers") {
-      setTaskAmount(value);
+      setEstPomodoro(value);
     }
   };
 
   // form validation
   useEffect(() => {
-    if (taskTitle.trim().length === 0 || taskAmount < 1) {
+    if (
+      taskTitle.trim().length === 0 ||
+      currentEstPomodoro < 1 ||
+      currentEstPomodoro > 5
+    ) {
       setFormIsValid(false);
     } else {
       setFormIsValid(true);
     }
-  }, [taskTitle, taskAmount]);
+  }, [taskTitle, currentEstPomodoro]);
 
-  const handleDelateTask = () => {
-    dispatch(taskListActions.deleteTask(id));
-  };
-
-  const submitHandler = (e) => {
+  // form submiting
+  const handleAddEditTask = (e) => {
     e.preventDefault();
-
     if (!formIsValid) {
       return;
     }
-
     const enteredTaskTitle = taskTitle; // dane z inputa po edycji
-    const enteredEstPomodoro = taskAmount;
+    const enteredEstPomodoro = currentEstPomodoro;
     const estPomodoroNumber = +enteredEstPomodoro;
 
     if (!formIsValid) {
       return;
     }
 
-    setTaskTitleValid(true);
-    setTaskAmountValid(true);
-
     if (editMode) {
-      // tu nie zrobimy sentrequest // musimy zrobić w momencie zmiany
-      // redux STATE
+      // EDIT CURRENT TASK
       dispatch(
         taskListActions.editTaskItem({
           id: id,
@@ -94,11 +85,10 @@ const TaskForm = React.forwardRef((props, ref) => {
       );
       props.toggleForm();
     } else {
-      // tu możemy zrobić sendRequesta POST
-      // możemy wtedy pobrać id i wrzucić jako parametr do dispatch
-      // 1 ) we cant fetch inside reducer
+      //ADD NEW TASK
       dispatch(
         taskListActions.addTask({
+          //  action payload obj
           title: enteredTaskTitle, // dane z forma
           estPomodoro: estPomodoroNumber, // dane z forma
         })
@@ -106,10 +96,14 @@ const TaskForm = React.forwardRef((props, ref) => {
     }
   };
 
+  const handleDelateTask = () => {
+    dispatch(taskListActions.deleteTask(id));
+  };
+
   return (
     <OutsideClickHandler onOutsideClick={props.toggleForm}>
       <Card class={classes.form}>
-        <form ref={ref} className={classes.form} onSubmit={submitHandler}>
+        <form ref={ref} className={classes.form} onSubmit={handleAddEditTask}>
           <div className={classes.formMain}>
             <input
               id="title"
@@ -123,7 +117,7 @@ const TaskForm = React.forwardRef((props, ref) => {
             <label className={classes.number}>Est pomodoros</label>
             <div className={classes.inputWrapper}>
               <input
-                value={taskAmount}
+                value={currentEstPomodoro}
                 name="numbers"
                 type="number"
                 onChange={handleInputChange}
@@ -133,10 +127,10 @@ const TaskForm = React.forwardRef((props, ref) => {
                 step="1"
               />
 
-              <button type="button">
+              <button onClick={addEstPomodoro} type="button">
                 <MdExposurePlus1 className={classes.icon} />
               </button>
-              <button type="button">
+              <button onClick={removeEstPomodoro} type="button">
                 <MdExposureNeg1 className={classes.icon} />
               </button>
             </div>

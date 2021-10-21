@@ -1,15 +1,20 @@
 import React, { useState } from "react";
 import classes from "./TasksMenu.module.css";
-import IconLogin from "../Layout/IconLogin";
 import { taskListActions } from "../../store/taskList-slice";
 import { useDispatch } from "react-redux";
-import { MdOutlineAutoDelete } from "react-icons/md";
+import {
+  MdOutlineAutoDelete,
+  MdDeleteForever, // delete finished
+  MdDoneAll, // delete done
+  MdDeleteSweep, // delete all
+  MdSave,
+} from "react-icons/md";
 
 import OutsideClickHandler from "react-outside-click-handler";
 
 const TasksMenu = () => {
   const dispatch = useDispatch();
-  const [showTaskMenu, setShowTaskMenu] = useState(true);
+  const [showTaskMenu, setShowTaskMenu] = useState(false);
 
   TasksMenu.handleClickOutside = () => setShowTaskMenu(false);
 
@@ -39,29 +44,37 @@ const TasksMenu = () => {
   return (
     <section className={classes.tasksMenu}>
       <span>Tasks</span>
-      {/* // to może być osobnym komponentem  */}
       <OutsideClickHandler onOutsideClick={closeTaskMenu}>
         <div className={classes.options}>
-          {/* <button onClick={toggleTaskMenu} className={classes.button}> */}
-          <span className={classes.icon}>
+          <button className={classes.button}>
             <MdOutlineAutoDelete
               onClick={toggleTaskMenu}
               className={classes.icon}
             />
-          </span>
-          {/* </button> */}
+          </button>
+
           {showTaskMenu && (
             <ul className={classes.optionsList}>
-              <li className={classes.listItem} onClick={handleDeleteAllTasks}>
-                <IconLogin />
-                DELETE_ALL
+              <li
+                className={classes.listItem}
+                onClick={handleDeleteFinishedTasks}
+              >
+                <MdDeleteSweep className={classes.iconSmall} /> delete finished
               </li>
-              <li onClick={handleDeleteFinishedTasks}>DELETE_FINISHED </li>
-              <li onClick={handleDeleteDoneTasks}>DELETE_DONE </li>
+              <li className={classes.listItem} onClick={handleDeleteDoneTasks}>
+                <MdDoneAll className={classes.iconSmall} />
+                delete done
+              </li>
+              <li className={classes.listItem} onClick={handleDeleteDoneTasks}>
+                <MdSave className={classes.iconSmall} />
+                save as template
+              </li>
+              <hr className={classes.break}></hr>
+              <li className={classes.listItem} onClick={handleDeleteAllTasks}>
+                <MdDeleteForever className={classes.iconSmall} />
+                delete all
+              </li>
             </ul>
-
-            // custom component List Item = atr props.children
-            // robiłby za wrappera W środku dojebać iconLogin + span
           )}
         </div>
       </OutsideClickHandler>

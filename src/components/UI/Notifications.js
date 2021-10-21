@@ -1,5 +1,6 @@
 import React from "react";
 import classes from "./Notifications.module.css";
+import { Spinner } from "./Spinner";
 const Notifications = (props) => {
   let specialClasses = "";
 
@@ -15,6 +16,7 @@ const Notifications = (props) => {
 
   return (
     <section className={cssClasses}>
+      {props.isLoading && <Spinner />}
       <h2>{props.title}</h2>
       <p>{props.message}</p>
     </section>

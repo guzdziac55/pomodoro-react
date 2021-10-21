@@ -7,6 +7,7 @@ import Notifications from "../components/UI/Notifications";
 import FinishCalculate from "../components/FinishCalculate/FinishCalculate";
 import { useSelector } from "react-redux";
 import classes from "./PomodoroApp.module.css";
+import { Spinner } from "../components/UI/Spinner";
 
 const PomodoroApp = () => {
   const notification = useSelector((state) => state.ui.notification);
@@ -15,7 +16,6 @@ const PomodoroApp = () => {
     taskList.length === 0 || taskList === false ? true : false;
 
   return (
-    // <Fragment>
     <div className={classes.pomodoroApp}>
       <Timer></Timer>
       <WorkingOn />
@@ -23,14 +23,13 @@ const PomodoroApp = () => {
       {!isEmptyTasks && <FinishCalculate />}
       {notification && (
         <Notifications
-          status={notification.status}
-          title={notification.title}
-          error={notification.error}
+          status={notification.status} // state from ui Slice
+          title={notification.title} // state from ui Slice
+          error={notification.error} // state from ui Slice
+          isLoading={notification.isLoading}
         />
       )}
     </div>
-
-    // </Fragment>
   );
 };
 

@@ -8,6 +8,7 @@ const timerSlice = createSlice({
     pomodoroCnt: 1,
     longBreakInterval: 2,
     consumedSeconds: 0,
+
     // staged Dones => after 4 staged go to short break
     //
   },
@@ -15,7 +16,7 @@ const timerSlice = createSlice({
     setActiveStage(state, action) {
       state.isTicking = false;
       state.consumedSeconds = 0;
-      if (!action.payload) {
+      if (!action.payload && action.payload !== 0) {
         let nextStage;
         if (state.stage === 0) {
           state.pomodoroCnt++;
@@ -23,11 +24,9 @@ const timerSlice = createSlice({
         } else {
           nextStage = 0;
         }
-
         state.stage = nextStage;
         return;
       }
-      // if action.payload === true
       state.stage = action.payload;
     },
 

@@ -6,6 +6,7 @@ const uiSlice = createSlice({
     showForm: false,
     notification: null,
     theme: "pomodoroTheme",
+    isLoading: false,
   },
   reducers: {
     toogleForm(state) {

@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
 import classes from "./TasksList.module.css";
 import TaskItem from "./TaskItem/TaskItem";
+import { Spinner } from "../UI/Spinner";
 import { useSelector } from "react-redux";
 
 const TasksList = () => {
   const tasks = useSelector((state) => state.tasksList.tasksList);
+  const notification = useSelector((state) => state.ui.notification);
   const tasksList = tasks.map((task) => (
     <TaskItem
       key={task.id}
@@ -17,7 +19,13 @@ const TasksList = () => {
       }}
     />
   ));
-  return <ul className={classes["tasks-list"]}>{tasksList}</ul>;
+  return (
+    <ul className={classes["tasks-list"]}>
+      {notification && notification.isLoading && <Spinner />}
+      {/* <Spinner /> */}
+      {tasksList}
+    </ul>
+  );
 };
 
 export default TasksList;

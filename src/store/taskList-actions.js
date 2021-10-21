@@ -7,6 +7,7 @@ import { taskListActions } from "./taskList-slice";
 export const sendTaskData = (taskList) => {
   return async (dispatch) => {
     dispatch(
+      // to jest funkcja
       uiActions.showNotification({
         status: "pending",
         title: "sending...",

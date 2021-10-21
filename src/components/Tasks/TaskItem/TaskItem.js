@@ -38,7 +38,7 @@ const TaskItem = (props) => {
   };
 
   const setActiveTask = (e) => {
-    if (e.target === e.currentTarget)
+    if (e.target === e.currentTarget || e.target.parentNode === e.currentTarget)
       dispatch(taskListActions.setActiveTask(id));
   };
 

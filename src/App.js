@@ -24,10 +24,8 @@ function App() {
   const isChanged = useSelector((state) => state.tasksList.changed);
   const isLogged = useSelector((state) => state.auth.isLogged);
 
-  // use it with Provider or Redux state
-  const appTheme = useSelector((state) => state.ui.theme);
-
-  // const [theme, setTheme] = useState("light");
+  const stage = useSelector((state) => state.timer.stage);
+  const themeClasses = ["pomodoroTheme", "shortBreakTheme", "longBreakTheme"];
 
   const [settingsShow, setSettingsShow] = useState(false);
 
@@ -53,12 +51,13 @@ function App() {
     setSettingsShow(false);
   };
 
+  const currentTheme = themeClasses[stage];
   return (
     <Fragment>
       {/* // boilerPlate with handleSettings hide go into HeaderInside It !  */}
       {settingsShow && <HookForm onClose={handleSettingsHide} />}
 
-      <main className={`${classes["main-app"]} ${classes[`${appTheme}`]}`}>
+      <main className={`${classes["main-app"]} ${classes[`${currentTheme}`]}`}>
         <Switch>
           <Route path="/" exact>
             <Header onShow={handleSettingsShow}></Header>
