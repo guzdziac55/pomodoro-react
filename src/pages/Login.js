@@ -1,22 +1,7 @@
 import React from "react";
-import Auth from "../components/auth/auth";
-const Login = () => {
-  return <Auth></Auth>;
+import Login from "../components/auth/login";
+const LoginPage = () => {
+  return <Login></Login>;
 };
 
-export default Login;
-{
-  /* LOGO */
-}
-{
-  /*  we need here Form // google auth => email /password uuth  */
-}
-{
-  /* FORGOT PASSWORD ?    =>  ONE MORE PAGE // HISTORY => // RESET-PASSWORD WEBSITE*/
-}
-{
-  /* SIGN UP   ///   LOG IN   WEBSITES WITH LINK ==> TO HISTORY // SIGNUP LOGIN */
-}
-{
-  /* our form */
-}
+export default LoginPage;

@@ -3,6 +3,7 @@ import classes from "./HeaderMenuTab.module.css";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { authlogout } from "../../store/auth-actions";
+import { fireBaseLogout } from "../../store/auth-actions";
 import {
   MdLogin,
   MdSettings,
@@ -16,7 +17,8 @@ const HeaderMenuTab = (props) => {
   const isLogged = useSelector((state) => state.auth.isLogged);
 
   const handleLogout = () => {
-    dispatch(authlogout());
+    // dispatch(authlogout());
+    fireBaseLogout();
   };
 
   // if is Login pokaż a,b,c,de

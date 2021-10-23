@@ -6,6 +6,21 @@ import App from "./App";
 import store from "./store";
 import { Provider } from "react-redux";
 
+// const firebaseConfig = {
+//   apiKey: "AIzaSyAhhAeYB4ka4SlGiRpy-lHDT7UFCEOjRGQ",
+//   authDomain: "react-http-b5eef.firebaseapp.com",
+//   databaseURL: "https://react-http-b5eef-default-rtdb.firebaseio.com",
+//   projectId: "react-http-b5eef",
+//   storageBucket: "react-http-b5eef.appspot.com",
+//   messagingSenderId: "963823465972",
+//   appId: "1:963823465972:web:38fb4574af97b5075d75a1",
+// };
+
+// const app = initializeApp(firebaseConfig);
+// console.log("firebase");
+// console.log(app);
+
+// react app
 ReactDOM.render(
   <BrowserRouter>
     <Provider store={store}>

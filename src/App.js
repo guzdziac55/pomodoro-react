@@ -4,6 +4,8 @@ import HookForm from "./components/SettingsApp/SettingsApp";
 import { Fragment, useState, useEffect } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { sendTaskData, fetchTaskData } from "./store/taskList-actions";
+import React from "react";
+// import { auth } from "../firebase";
 
 // store
 import { useDispatch, useSelector } from "react-redux";
@@ -12,6 +14,12 @@ import { useDispatch, useSelector } from "react-redux";
 import PomodoroApp from "./pages/PomodoroApp";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
+import SignUpPage from "./pages/SignUp";
+import ResetPassword from "./pages/ResetPassword";
+
+// firebase
+import { auth } from "./firebase";
+import { authActions } from "./store/auth-slice";
 
 // add theme
 // import classes from "./styles/themes/theme.module.css";
@@ -29,6 +37,7 @@ function App() {
 
   const [settingsShow, setSettingsShow] = useState(false);
 
+  // if TaskList change
   useEffect(() => {
     if (isInitial) {
       isInitial = false;
@@ -39,9 +48,20 @@ function App() {
     }
   }, [taskList, dispatch]);
 
+  // Start Fetch app starts
   useEffect(() => {
     dispatch(fetchTaskData());
   }, [dispatch]);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      // dispatch set current User // dispatch authSlice
+      // setLoading(false)
+      dispatch(authActions.singUp(user));
+      console.log(user);
+    });
+    return unsubscribe;
+  }, []);
 
   const handleSettingsShow = () => {
     setSettingsShow(true);
@@ -82,7 +102,20 @@ function App() {
             </Route>
           )}
 
-          {isLogged && (
+          {!isLogged && (
+            <Route path="/signup">
+              <Header onShow={handleSettingsShow}></Header>
+              <SignUpPage></SignUpPage>
+            </Route>
+          )}
+          {!isLogged && (
+            <Route path="/reset-password">
+              <Header onShow={handleSettingsShow}></Header>
+              <ResetPassword></ResetPassword>
+            </Route>
+          )}
+
+          {!isLogged && (
             <Route path="/profile">
               {/*  is useSelector Is logged in 
               //  render Provile */}

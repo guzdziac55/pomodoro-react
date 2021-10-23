@@ -1,4 +1,7 @@
 import { authActions } from "./auth-slice";
+// import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase"; // from firebase.js initial app auth
+import { uiActions } from "./ui-slice";
 
 let logoutTimerId;
 
@@ -38,17 +41,19 @@ export const authLogin = (email, password) => {
     };
 
     try {
-      const dataToken = await loginRequest();
+      const dataToken = await loginRequest(); // get token with http method
       const expirationTime = new Date(new Date().getTime() + 5 * 1000);
 
       localStorage.setItem("token", dataToken.idqToken);
       localStorage.setItem("expirationTime", expirationTime);
 
-      dispatch(authActions.login(dataToken.idToken));
+      // we need dispatch heree to set login token
+      // in aPI firebase we got observer for this
+      dispatch(authActions.login(dataToken.idToken)); // redux store action => store TOKEN
 
       const remainingTime = calculateRemainingTime(expirationTime);
       // to pasuje przenieść gdzieś indziej
-      logoutTimerId = setTimeout(() => dispatch(authlogout()), remainingTime);
+      logoutTimerId = setTimeout(() => dispatch(authlogout()), remainingTime); // set TIMEOUT to logout
     } catch (err) {
       alert(err);
     }
@@ -63,6 +68,9 @@ export const authlogout = () => {
     localStorage.removeItem("expirationTime");
   };
 };
+
+// create ACC
+// api key: AIzaSyAhhAeYB4ka4SlGiRpy-lHDT7UFCEOjRGQ
 
 export const authCreateAcc = (email, password) => {
   const createAccRequest = async () => {
@@ -93,3 +101,68 @@ export const authCreateAcc = (email, password) => {
     alert(err);
   }
 };
+
+export const fireBaseCreateACC = async (email, password) => {
+  try {
+    await auth.createUserWithEmailAndPassword(email, password); // async make await
+    console.log("poprawnie stworzony user");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const fireBaseLoginACC2 = (email, password) => {
+  return async (dispatch) => {
+    try {
+      await auth.signInWithEmailAndPassword(email, password); // async make await
+      dispatch(
+        uiActions.showNotification({
+          status: "success",
+          title: "success...",
+          message: "login success",
+        })
+      );
+      console.log("succes");
+    } catch (error) {
+      dispatch(
+        uiActions.showNotification({
+          status: "error",
+          title: "some error !",
+          message: "login failed ! ",
+        })
+      );
+    }
+  };
+};
+
+export const fireBaseLoginACC = async (email, password) => {
+  try {
+    await auth.signInWithEmailAndPassword(email, password); // async make await
+    console.log("poprawnie stworzony user");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const fireBaseLogout = async () => {
+  try {
+    await auth.signOut(); // async make await
+    //  history.push('/login')  => move user to this page after
+    console.log("poprawnie stworzony user");
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const fireBaseResetPassword = async (email) => {
+  try {
+    await auth.sendPasswordResetEmail(email); // async make await
+    //  history.push('/login')  => move user to this page after
+    console.log("poprawnie stworzony user");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//  use UI SLICE TO handle error >????
+// get and print error into component
+// handle error + habdle is loading

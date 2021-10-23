@@ -49,6 +49,7 @@ const authSlice = createSlice({
   initialState: {
     token: initialToken,
     isLogged: isLoggedIn,
+    currentUser: null,
   },
   // get from helper function when localStorage is aviable token and time
   //  wiekszy niz 0 i token istnieje => set this into LocalStorage
@@ -61,6 +62,10 @@ const authSlice = createSlice({
     logout(state) {
       state.token = null;
       state.isLogged = !!state.token;
+    },
+
+    singUp(state, action) {
+      state.currentUser = action.payload;
     },
   },
 });
