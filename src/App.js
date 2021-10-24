@@ -3,7 +3,12 @@ import classes from "./App.module.css";
 import HookForm from "./components/SettingsApp/SettingsApp";
 import { Fragment, useState, useEffect } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import { sendTaskData, fetchTaskData } from "./store/taskList-actions";
+import {
+  sendTaskData,
+  fetchTaskData,
+  fetchFirebase,
+  sendFirebase,
+} from "./store/taskList-actions";
 import React from "react";
 // import { auth } from "../firebase";
 
@@ -44,13 +49,21 @@ function App() {
       return;
     }
     if (isChanged) {
-      dispatch(sendTaskData(taskList));
+      dispatch(sendFirebase(taskList));
+      // dispatch(sendTaskData(taskList));
     }
-  }, [taskList, dispatch]);
+  }, [taskList, dispatch]); // jeśli zmieni się taskLIST z reduxa to wyślij go na
+  // fireBase // mogłoby to zostać
 
   // Start Fetch app starts
+  //  zawiera:
+  //  thunk
+  // fetch obj from server http method
+  // use dispatch to set this into redux
+
   useEffect(() => {
-    dispatch(fetchTaskData());
+    dispatch(fetchFirebase());
+    // dispatch(fetchTaskData());
   }, [dispatch]);
 
   useEffect(() => {

@@ -1,9 +1,7 @@
 import React from "react";
 import classes from "./HeaderMenuTab.module.css";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { authlogout } from "../../store/auth-actions";
-import { fireBaseLogout } from "../../store/auth-actions";
+import { useSelector } from "react-redux";
 import {
   MdLogin,
   MdSettings,
@@ -11,23 +9,20 @@ import {
   MdPermIdentity,
   MdOutlineLogout,
 } from "react-icons/md";
+import { useAuthLogout } from "../../hooks/use-auth";
 
 const HeaderMenuTab = (props) => {
-  const dispatch = useDispatch();
+  // do poprawki z filmiku
   const isLogged = useSelector((state) => state.auth.isLogged);
 
+  const { isLoading, error, authLogout } = useAuthLogout();
+
   const handleLogout = () => {
-    // dispatch(authlogout());
-    fireBaseLogout();
+    authLogout();
+    // history route here to main acc or loading website With button test app
   };
 
-  // if is Login pokaż a,b,c,de
-  // if !islogin pokaż  G
-
-  // nie roibć condiftional rendering dla każdego
-
   return (
-    // <IconContext.Provider value={{ color: "#ffffff", size: "1rem" }}>
     <div className={classes.tabMenu}>
       {!isLogged && (
         <button className={classes.button}>

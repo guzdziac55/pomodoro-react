@@ -4,32 +4,18 @@ import Input from "../UI/Input";
 import classes from "./login.module.css";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
-import { useDispatch } from "react-redux";
 import { MdDone } from "react-icons/md";
-import { authLogin, authCreateAcc } from "../../store/auth-actions";
-import { fireBaseResetPassword } from "../../store/auth-actions";
-const ResetPassword = () => {
-  const dispatch = useDispatch();
+import { useAuthResetPassword } from "../../hooks/use-auth";
 
-  // const [isLogin, setIsLogin] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
+const ResetPassword = () => {
+  const { isLoading, error, authResetPassword } = useAuthResetPassword();
 
   const emailRef = useRef();
-  const passwordRef = useRef();
 
-  // const switchAuthModelHandler = () => {
-  //   setIsLogin((prevState) => !prevState);
-  // };
-
-  //  validation -- musi mieć @
-  // password musi mieć minimum 6 lub 9 znaków
-
-  // login or Create ACC
   const submitForm = (e) => {
     e.preventDefault();
     const enteredEmail = emailRef.current.value;
-    fireBaseResetPassword(enteredEmail);
-    // dispatch(authLogin(enteredEmail, enteredPassword));
+    authResetPassword(enteredEmail);
   };
 
   return (
@@ -41,6 +27,7 @@ const ResetPassword = () => {
       </Link>
 
       <h1 className={classes.header}> Reset Password</h1>
+      <p>{error}</p>
       <Card class={classes.auth}>
         <form onSubmit={submitForm} className={classes.form}>
           <Input

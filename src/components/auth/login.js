@@ -4,39 +4,22 @@ import Input from "../UI/Input";
 import classes from "./login.module.css";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
-import { useDispatch } from "react-redux";
 import { MdDone } from "react-icons/md";
-import { authLogin, authCreateAcc } from "../../store/auth-actions";
-import { fireBaseLoginACC2 } from "../../store/auth-actions";
-import { useSelector } from "react-redux";
-import Notifications from "../UI/Notifications";
+import { useAuthLogin } from "../../hooks/use-auth";
+
+// we dont need dispach Thunks here  //  we have userAuth observer
+// login or Create ACC
 
 const Login = () => {
-  const dispatch = useDispatch();
-  const notification = useSelector((state) => state.ui.notification);
-
-  // const [isLogin, setIsLogin] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
-
+  const { isLoading, error, authLogin } = useAuthLogin();
   const emailRef = useRef();
   const passwordRef = useRef();
 
-  // const switchAuthModelHandler = () => {
-  //   setIsLogin((prevState) => !prevState);
-  // };
-
-  //  validation -- musi mieć @
-  // password musi mieć minimum 6 lub 9 znaków
-
-  // login or Create ACC
   const submitForm = (e) => {
     e.preventDefault();
     const enteredEmail = emailRef.current.value;
     const enteredPassword = passwordRef.current.value;
-    // fireBaseLoginACC(enteredEmail, enteredPassword);
-    dispatch(fireBaseLoginACC2(enteredEmail, enteredPassword));
-
-    // dispatch(authLogin(enteredEmail, enteredPassword));
+    authLogin(enteredEmail, enteredPassword);
   };
 
   return (
@@ -48,14 +31,7 @@ const Login = () => {
       </Link>
 
       <h1 className={classes.header}>Login</h1>
-      {notification && (
-        <Notifications
-          status={notification.status} // state from ui Slice
-          title={notification.title} // state from ui Slice
-          error={notification.error} // state from ui Slice
-          isLoading={notification.isLoading}
-        />
-      )}
+      <p>error is: {error}</p>
       <Card class={classes.auth}>
         <form onSubmit={submitForm} className={classes.form}>
           <button type="button" class={classes.googleLogin}>

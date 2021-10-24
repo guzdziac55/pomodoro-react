@@ -4,34 +4,23 @@ import Input from "../UI/Input";
 import classes from "./signUp.module.css";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
-import { useDispatch } from "react-redux";
 import { MdDone } from "react-icons/md";
-import { authLogin, authCreateAcc } from "../../store/auth-actions";
-import { fireBaseCreateACC } from "../../store/auth-actions";
 import { useSelector } from "react-redux";
+import { useAuthCreateAcc } from "../../hooks/use-auth";
 
 const SignUp = () => {
-  const dispatch = useDispatch();
+  const { isLoading, error, authCreateAcc } = useAuthCreateAcc();
 
-  // const [isLogin, setIsLogin] = useState(true);
-
-  const [isLoading, setIsLoading] = useState(false);
   const emailRef = useRef();
   const passwordRef = useRef();
   const currentUser = useSelector((state) => state.auth.currentUser);
-  //  validation -- musi mieć @
-  // password musi mieć minimum 6 lub 9 znaków
 
-  // login or Create ACC
   const submitForm = (e) => {
     e.preventDefault();
     const enteredEmail = emailRef.current.value;
     const enteredPassword = passwordRef.current.value;
-    //  dispatch chyba nie potrzebne
-    fireBaseCreateACC(enteredEmail, enteredPassword);
-    console.log("pizda");
+    authCreateAcc(enteredEmail, enteredPassword);
     console.log(JSON.stringify(currentUser));
-    // dispatch(authCreateAcc(enteredEmail, enteredPassword));
   };
 
   return (
@@ -43,6 +32,7 @@ const SignUp = () => {
       </Link>
 
       <h1 className={classes.header}>Create Account</h1>
+      <p>error is: {error}</p>
       <Card class={classes.auth}>
         <form onSubmit={submitForm} className={classes.form}>
           <button type="button" class={classes.googleLogin}>
