@@ -3,12 +3,7 @@ import classes from "./App.module.css";
 import HookForm from "./components/SettingsApp/SettingsApp";
 import { Fragment, useState, useEffect } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import {
-  sendTaskData,
-  fetchTaskData,
-  fetchFirebase,
-  sendFirebase,
-} from "./store/taskList-actions";
+import { fetchFirebase, sendFirebase } from "./store/taskList-actions";
 import React from "react";
 // import { auth } from "../firebase";
 
@@ -26,9 +21,6 @@ import ResetPassword from "./pages/ResetPassword";
 import { auth } from "./firebase";
 import { authActions } from "./store/auth-slice";
 
-// add theme
-// import classes from "./styles/themes/theme.module.css";
-
 let isInitial = true;
 
 function App() {
@@ -43,35 +35,37 @@ function App() {
   const [settingsShow, setSettingsShow] = useState(false);
 
   // if TaskList change
+  const currentUser = useSelector((state) => state.auth.currentUser);
+
   useEffect(() => {
     if (isInitial) {
       isInitial = false;
       return;
     }
-    if (isChanged) {
-      dispatch(sendFirebase(taskList));
-      // dispatch(sendTaskData(taskList));
+    if (isChanged && currentUser) {
+      const userId = currentUser.uid;
+      console.log("wysyłam dane na firebase !");
+      dispatch(sendFirebase(taskList, userId));
     }
-  }, [taskList, dispatch]); // jeśli zmieni się taskLIST z reduxa to wyślij go na
-  // fireBase // mogłoby to zostać
-
-  // Start Fetch app starts
-  //  zawiera:
-  //  thunk
-  // fetch obj from server http method
-  // use dispatch to set this into redux
+  }, [taskList, dispatch]);
 
   useEffect(() => {
-    dispatch(fetchFirebase());
-    // dispatch(fetchTaskData());
-  }, [dispatch]);
+    if (currentUser) {
+      const userId = currentUser.uid;
+      dispatch(fetchFirebase(userId));
+    }
+  }, [currentUser, dispatch]);
 
+  // current User Change status
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      // dispatch set current User // dispatch authSlice
-      // setLoading(false)
-      dispatch(authActions.singUp(user));
-      console.log(user);
+      if (user) {
+        dispatch(authActions.singUp(user)); // <=== akcja ze slice auth // przypisane tokena
+      } else {
+        dispatch(authActions.logout());
+        // reset states here
+        // getLocalStorage ?
+      }
     });
     return unsubscribe;
   }, []);

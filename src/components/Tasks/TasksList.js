@@ -5,8 +5,10 @@ import { Spinner } from "../UI/Spinner";
 import { useSelector } from "react-redux";
 
 const TasksList = () => {
+  console.log("tasklist JS KIEDY SIĘ ŁADUJE 1111111");
   const tasks = useSelector((state) => state.tasksList.tasksList);
   const notification = useSelector((state) => state.ui.notification);
+
   const tasksList = tasks.map((task) => (
     <TaskItem
       key={task.id}

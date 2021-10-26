@@ -4,15 +4,16 @@ import { uiActions } from "./ui-slice";
 const taskListSlice = createSlice({
   name: "tasksList",
   initialState: {
-    tasksList: [],
-    changed: false,
-    activeTask: null, // global id of active taks
-    changed: false, // status for fetching data if changed is true we can use fetch put // it is for not sending empty taskArray in useEffect when
+    tasksList: [], // [] reset after loout
+    changed: false, // false after logout
+    activeTask: null,
     // app is reloading
   },
   reducers: {
     replaceTaskList(state, action) {
       const newTaskList = action.payload;
+      console.log("action payload tasks");
+      console.log(newTaskList.tasks);
       state.tasksList = newTaskList;
     },
 

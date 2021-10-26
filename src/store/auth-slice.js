@@ -47,26 +47,24 @@ const isLoggedIn = !!initialToken;
 const authSlice = createSlice({
   name: "auth",
   initialState: {
-    token: initialToken,
-    isLogged: isLoggedIn,
+    // token: initialToken,
+    // isLogged: isLoggedIn,
     currentUser: null,
   },
   // get from helper function when localStorage is aviable token and time
   //  wiekszy niz 0 i token istnieje => set this into LocalStorage
   reducers: {
-    login(state, action) {
-      state.token = action.payload;
-      state.isLogged = !!state.token;
-    },
-
     logout(state) {
-      state.token = null;
-      state.isLogged = !!state.token;
+      state.currentUser = null;
     },
 
     singUp(state, action) {
       state.currentUser = action.payload;
     },
+    // login(state, action) {
+    //   state.token = action.payload;
+    //   state.isLogged = !!state.token;
+    // },
   },
 });
 
