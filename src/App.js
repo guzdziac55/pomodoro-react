@@ -53,6 +53,9 @@ function App() {
     if (currentUser) {
       const userId = currentUser.uid;
       dispatch(fetchFirebase(userId));
+
+      // fetch fiebase Settings when user Change
+      // when userChange and when user is Logged in
     }
   }, [currentUser, dispatch]);
 

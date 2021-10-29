@@ -1,20 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { act } from "react-dom/test-utils";
 
 const configSlice = createSlice({
   name: "config",
   initialState: {
     stageOptions: [10, 2, 3],
-    viewModal: true,
-    autoBreak: true,
-    autoPomodoros: true,
+    autoBreak: true, // switch [ checkboox]
+    autoPomodoros: true, // switch
     longBreakInterval: 4,
-    // alarmSound
-    soundVolume: 100,
-    alarmRepeatTimes: 1,
+    alarmSound: "sound1",
+    viewModal: true,
+    //
+    // soundVolume: 100,
+    // alarmRepeatTimes: 1,
   },
   reducers: {
     // {pomodoroTime: '1', shortBreak: '1', longBreak: '1'}
+
+    setConfig(state, action) {
+      return action.payload;
+      // return {
+      //   ...state,
+      //   ...action.payload,
+      // };
+    },
 
     updateConfig(state, action) {
       state.stageOptions[0] = +action.payload.pomodoroTime;

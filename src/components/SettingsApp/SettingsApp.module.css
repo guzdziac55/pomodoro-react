@@ -1,0 +1,89 @@
+.inputControl {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1rem;
+  border-bottom: 1px solid black;
+}
+
+.selectControl {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1rem;
+  border-bottom: 1px solid black;
+}
+
+.label {
+  font-size: 22px;
+  color: rgb(85, 85, 85);
+  width: 100%;
+  box-sizing: border-box;
+  font-weight: bold;
+}
+
+.input {
+  border-radius: 4px;
+  font-size: 22px;
+  box-shadow: none;
+  padding: 1rem 1rem;
+  border: none;
+  overflow: hidden;
+  background-color: #e2e2e2;
+  width: 90px;
+  box-sizing: border-box;
+  font-weight: bold;
+}
+
+/* .select {
+  color: rebeccapurple;
+} */
+
+/* .option {
+} */
+
+/*  form menu bottom */
+
+.formMenu {
+  padding: 14px 20px;
+  display: flex;
+  color: #ffffff;
+  background-color: gainsboro;
+  justify-content: space-between;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  justify-content: flex-end;
+}
+
+.formMenu button {
+  border-style: none;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  font-size: 14px;
+}
+
+.btnCancel {
+  color: #525252;
+  font-weight: 600;
+  margin-right: 40px;
+}
+
+.btnCancel:hover {
+  color: #000000;
+  font-weight: 600;
+}
+
+.formMenu button[type="submit"] {
+  background-color: #111111;
+  color: var(--font-main);
+}
+
+.formMenu button[type="submit"]:hover {
+  background-color: #000000;
+  color: var(--font-main);
+}
