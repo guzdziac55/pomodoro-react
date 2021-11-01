@@ -1,9 +1,10 @@
 import { uiActions } from "./ui-slice";
 import { taskListActions } from "./taskList-slice";
+import { configActions } from "./config-slice";
 import { database } from "../firebase";
-import { getDatabase, set, ref } from "firebase/database";
+import { ref, update } from "firebase/database";
 
-export const sendFirebase = (taskList, uid) => {
+export const sendFirebaseTaskList = (taskList, uid) => {
   return async (dispatch) => {
     dispatch(
       uiActions.showNotification({
@@ -14,14 +15,50 @@ export const sendFirebase = (taskList, uid) => {
     );
 
     const sendRequest = async () => {
-      set(ref(database, "users/" + uid), {
+      update(ref(database, "users/" + uid), {
         TasksList: taskList, //=? tasklist cały obiekt z reduxa -- cała lista SET!
       });
     };
 
     try {
       await sendRequest();
-      console.log("chuj chuj chuj");
+      dispatch(
+        uiActions.showNotification({
+          status: "success",
+          title: "success...",
+          message: "send taskList data success",
+        })
+      );
+    } catch (err) {
+      console.log(err);
+      dispatch(
+        uiActions.showNotification({
+          status: "error",
+          title: "some error !",
+          message: "sending Tasklist data failed",
+        })
+      );
+    }
+  };
+};
+export const sendFirebaseSettings = (settings, uid) => {
+  return async (dispatch) => {
+    dispatch(
+      uiActions.showNotification({
+        status: "pending",
+        title: "sending...",
+        message: "sending taskList Data",
+      })
+    );
+
+    const sendRequest = async () => {
+      update(ref(database, "users/" + uid), {
+        Settings: settings, //=? tasklist cały obiekt z reduxa -- cała lista SET!
+      });
+    };
+
+    try {
+      await sendRequest();
       dispatch(
         uiActions.showNotification({
           status: "success",
@@ -42,7 +79,7 @@ export const sendFirebase = (taskList, uid) => {
   };
 };
 
-export const fetchFirebase = (uid) => {
+export const fetchFirebaseUserData = (uid) => {
   return async (dispatch) => {
     dispatch(
       uiActions.showNotification({
@@ -52,30 +89,26 @@ export const fetchFirebase = (uid) => {
       })
     );
 
-    // async promise long version
     const fetchRequest = async () => {
-      const eventRef = database.ref("users/" + uid + "/TasksList");
-      console.log("event");
-      console.log(eventRef);
-      return eventRef;
+      const tasksRef = database.ref("users/" + uid + "/TasksList");
+      const settingsRef = database.ref("users/" + uid + "/Settings");
 
-      // const eventRef = database.ref("tasks").on("value", (snapshot) => {
-      //   const taskListData = snapshot.val();
-      //   dispatch(taskListActions.replaceTaskList(taskListData || []));
-      // });
+      console.log("tasksRef,SettingsRef");
+      console.log(tasksRef, settingsRef);
+      return [tasksRef, settingsRef];
     };
 
     try {
-      const eventref = await fetchRequest();
-      const snapshot = await eventref.once("value");
-      const taskListData = snapshot.val();
-      console.log("dataTaskList");
-      console.log(taskListData);
+      const [tasksRef, settingsRef] = await fetchRequest();
+      const snapshotTasks = await tasksRef.once("value");
+      const snapshotSettings = await settingsRef.once("value");
+      // return data
+      const taskListData = snapshotTasks.val();
+      const settingsData = snapshotSettings.val();
 
-      // we need to put keys here  /  keys is: uid ? sprawdzic
-
+      // set data into redux
       dispatch(taskListActions.replaceTaskList(taskListData || []));
-      // INFO:
+      dispatch(configActions.setConfig(settingsData || {}));
 
       dispatch(
         uiActions.showNotification({

@@ -5,15 +5,25 @@ import { useForm } from "react-hook-form";
 import { connect } from "react-redux"; // example to save form into Store ? ?
 import { useDispatch, useSelector } from "react-redux";
 import { configActions } from "../../store/config-slice";
-import { Select, Input, Switch } from "./Components";
+import {
+  Select,
+  InputColumn,
+  InputRow,
+  Switch,
+  InputWrapper,
+} from "./Components";
 
 const SettingsApp = (props) => {
   const dispatch = useDispatch();
-  // redux default state ? ==> or userState
+
   const defaultConfigState = useSelector((state) => state.config);
   const { register, handleSubmit } = useForm({
     defaultValues: { ...defaultConfigState }, // default values from settings redux
   });
+
+  const closeSettingsWindow = () => {
+    props.onClose();
+  };
 
   // form on submit
   const onSubmit = (data) => {
@@ -24,70 +34,91 @@ const SettingsApp = (props) => {
     };
     console.log(newConfigState);
     dispatch(configActions.setConfig(newConfigState));
+    closeSettingsWindow();
   };
 
   return (
     <Modal onClose={props.onClose}>
-      {/*  to jest props children dla naszego modala */}
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Input
-          register={register}
-          name="pomodoroTime"
-          title="Pomodoro Time"
-          type="number"
-          min="0"
-          max="360"
-          required
-          defaultValue={defaultConfigState.stageOptions[0]}
-        />
-        <Input
-          register={register}
-          name="shortBreak"
-          title="Short break"
-          type="number"
-          min="0"
-          max="360"
-          required
-          defaultValue={defaultConfigState.stageOptions[1]}
-        />
-        <Input
-          register={register}
-          name="longBreak"
-          title="Long break"
-          type="number"
-          min="0"
-          max="360"
-          required
-          defaultValue={defaultConfigState.stageOptions[2]}
-        />
+        <div className={classes.formMain}>
+          <InputWrapper title="Time Options">
+            <InputColumn
+              register={register}
+              name="pomodoroTime"
+              title="Pomodoro time"
+              type="number"
+              min="0"
+              max="360"
+              required
+              defaultValue={defaultConfigState.stageOptions[0]}
+            />
+            <InputColumn
+              register={register}
+              name="shortBreak"
+              title="Short break time"
+              type="number"
+              min="0"
+              max="360"
+              required
+              defaultValue={defaultConfigState.stageOptions[1]}
+            />
+            <InputColumn
+              register={register}
+              name="longBreak"
+              title="Long break time"
+              type="number"
+              min="0"
+              max="360"
+              required
+              defaultValue={defaultConfigState.stageOptions[2]}
+            />
+          </InputWrapper>
 
-        {/*  name obj register name  */}
-        <Select
-          name="alarmSound"
-          options={["sound1", "sound2", "sound3"]}
-          register={register}
-          title="Alarm Sound"
-        />
+          <Select
+            name="alarmSound"
+            options={["sound1", "sound2", "sound3"]}
+            register={register}
+            title="Alarm Sound"
+          />
 
-        {/* custom swtich */}
+          <Switch
+            register={register}
+            name="autoBreak"
+            title="Auto Break"
+            type="checkbox"
+            defaultChecked={
+              defaultConfigState.autoBreak === true ? true : false
+            }
+          />
 
-        <Switch
-          register={register}
-          name="autoBreak"
-          title="Auto Break"
-          type="checkbox"
-          checked={
-            defaultConfigState.autoBreak === true ? "checked" : undefined
-          }
-        />
+          <Switch
+            register={register}
+            name="autoPomodoros"
+            title="Auto Pomodoros"
+            type="checkbox"
+            defaultChecked={
+              defaultConfigState.autoPomodoros === true ? true : false
+            }
+          />
 
-        {/*  bottom menu */}
+          <InputRow
+            register={register}
+            name="longBreakInterval"
+            title="Long break interval"
+            type="number"
+            min="0"
+            max="10"
+            required
+            defaultValue={defaultConfigState.longBreakInterval}
+          />
 
+          {/*  bottom menu */}
+        </div>
         <div className={classes.formMenu}>
           <button
             type="button"
             className={classes.btnCancel}
-            // onClick={props.toggleForm}  // close modal
+            onClick={closeSettingsWindow}
           >
             Cancel
           </button>

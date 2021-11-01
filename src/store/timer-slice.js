@@ -2,31 +2,30 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const timerSlice = createSlice({
   name: "timer",
+
   initialState: {
     stage: 0,
     isTicking: false,
-    pomodoroCnt: 1,
-    longBreakInterval: 2,
+    pomodoroCnt: 0,
     consumedSeconds: 0,
-
-    // staged Dones => after 4 staged go to short break
-    //
   },
   reducers: {
-    setActiveStage(state, action) {
+    calculateNewStage(state, action) {
+      const longBreakInterval = action.payload;
       state.isTicking = false;
       state.consumedSeconds = 0;
-      if (!action.payload && action.payload !== 0) {
-        let nextStage;
-        if (state.stage === 0) {
-          state.pomodoroCnt++;
-          nextStage = state.pomodoroCnt % state.longBreakInterval == 0 ? 2 : 1;
-        } else {
-          nextStage = 0;
-        }
-        state.stage = nextStage;
-        return;
+      if (state.stage === 0) {
+        state.pomodoroCnt++;
+        state.stage = state.pomodoroCnt % longBreakInterval == 0 ? 2 : 1;
+      } else {
+        state.stage = 0;
       }
+    },
+    //
+
+    changeActiveStage(state, action) {
+      state.isTicking = false;
+      state.consumedSeconds = 0;
       state.stage = action.payload;
     },
 

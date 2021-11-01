@@ -21,8 +21,8 @@ const useAuthLogin = () => {
 };
 
 const useAuthCreateAcc = () => {
-  const [isLoading, setLoading] = useState(false); // to zostanie przypisane do komponentu ktory używa hooka
-  const [error, setError] = useState(null); // to zostanie przypisane do komponentu ktory yuzywa hooka
+  const [isLoading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const authCreateAcc = async (email, password) => {
     try {
       setError("");
@@ -45,7 +45,6 @@ const useAuthLogout = () => {
       setError("");
       setLoading(true);
       await auth.signOut();
-      // signout success ! message
     } catch (error) {
       setError("Failed to create ACC");
     }

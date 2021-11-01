@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import classes from "./TasksList.module.css";
 import TaskItem from "./TaskItem/TaskItem";
 import { Spinner } from "../UI/Spinner";

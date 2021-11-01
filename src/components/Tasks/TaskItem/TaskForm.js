@@ -105,7 +105,7 @@ const TaskForm = React.forwardRef((props, ref) => {
   return (
     <OutsideClickHandler onOutsideClick={props.toggleForm}>
       <Card class={classes.form}>
-        <form ref={ref} className={classes.form} onSubmit={handleAddEditTask}>
+        <form ref={ref} onSubmit={handleAddEditTask}>
           <div className={classes.formMain}>
             <input
               id="title"

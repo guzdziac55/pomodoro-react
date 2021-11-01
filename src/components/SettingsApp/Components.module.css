@@ -1,15 +1,37 @@
-.inputControl {
+.columnWrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.formControlColumn {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-start;
+  padding: 2rem 1rem;
+}
+
+.formControlRow {
   display: flex;
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 1rem;
+  padding: 2rem 0;
   border-bottom: 1px solid black;
 }
 
-.label {
-  font-size: 22px;
+.labelSmall {
+  font-size: 15px;
+  color: rgb(85, 85, 85);
+  width: 100%;
+  box-sizing: border-box;
+  font-weight: bold;
+}
+.labelLarge {
+  font-size: 20px;
+  display: inline-block;
   color: rgb(85, 85, 85);
   width: 100%;
   box-sizing: border-box;
@@ -20,13 +42,79 @@
   border-radius: 4px;
   font-size: 22px;
   box-shadow: none;
+  border: none;
+  overflow: hidden;
+  background-color: #e2e2e2;
+  width: 100%;
+  box-sizing: border-box;
+  font-weight: bold;
+  padding: 1rem 1rem;
+}
+.inputSmall {
+  border-radius: 4px;
+  font-size: 22px;
+  box-shadow: none;
   padding: 1rem 1rem;
   border: none;
   overflow: hidden;
   background-color: #e2e2e2;
-  width: 90px;
+  width: 200px;
   box-sizing: border-box;
   font-weight: bold;
+}
+
+/*  switch component  */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 80px;
+  height: 34px;
+}
+
+.checkbox {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/*  selects first slider after checbox checked */
+.checkbox:checked + .slider {
+  background-color: #2196f3;
+}
+
+.checkbox:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+.checkbox:checked + .slider::before {
+  transform: translateX(37px);
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 50%;
 }
 
 /*  form menu bottom */

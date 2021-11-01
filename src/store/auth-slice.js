@@ -43,7 +43,7 @@ if (tokenData) {
 //   }
 // }, [tokenData]);
 
-const isLoggedIn = !!initialToken;
+// const isLoggedIn = !!initialToken;
 const authSlice = createSlice({
   name: "auth",
   initialState: {

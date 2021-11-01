@@ -5,7 +5,6 @@ import { useTimer } from "../../hooks/use-timer";
 
 const TimerCountdown = () => {
   const convertedTimeout = useTimer();
-
   return (
     <>
       <span className={classes.countDown}>{convertedTimeout}</span>

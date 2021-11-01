@@ -6,10 +6,6 @@ import { timerActions } from "../../store/timer-slice";
 const TimerButtonStart = () => {
   const dispatch = useDispatch();
 
-  // const { toggleTicking } = useTimer();
-
-  // ad style Clicked / unclicked
-
   const toggleTicking = () => {
     dispatch(timerActions.toggleTicking());
   };

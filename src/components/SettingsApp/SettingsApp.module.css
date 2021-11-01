@@ -1,52 +1,6 @@
-.inputControl {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 1rem;
-  border-bottom: 1px solid black;
+.formMain {
+  padding: 2rem 1rem;
 }
-
-.selectControl {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 1rem;
-  border-bottom: 1px solid black;
-}
-
-.label {
-  font-size: 22px;
-  color: rgb(85, 85, 85);
-  width: 100%;
-  box-sizing: border-box;
-  font-weight: bold;
-}
-
-.input {
-  border-radius: 4px;
-  font-size: 22px;
-  box-shadow: none;
-  padding: 1rem 1rem;
-  border: none;
-  overflow: hidden;
-  background-color: #e2e2e2;
-  width: 90px;
-  box-sizing: border-box;
-  font-weight: bold;
-}
-
-/* .select {
-  color: rebeccapurple;
-} */
-
-/* .option {
-} */
-
-/*  form menu bottom */
 
 .formMenu {
   padding: 14px 20px;

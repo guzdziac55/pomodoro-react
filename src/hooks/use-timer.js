@@ -4,10 +4,15 @@ import { taskListActions } from "../store/taskList-slice";
 import { timerActions } from "../store/timer-slice";
 
 export const useTimer = () => {
+  // state slices
   const activeStage = useSelector((state) => state.timer.stage);
   const isTicking = useSelector((state) => state.timer.isTicking);
-  const configStage = useSelector((state) => state.config.stageOptions);
   const consumedSeconds = useSelector((state) => state.timer.consumedSeconds);
+  const configStage = useSelector((state) => state.config.stageOptions);
+  const longBreakInterval = useSelector(
+    (state) => state.config.longBreakInterval
+  );
+
   const currentOptionTime = configStage[activeStage];
   const dispatch = useDispatch();
 
@@ -16,11 +21,11 @@ export const useTimer = () => {
   };
 
   const timeIsEndAction = () => {
-    dispatch(timerActions.setActiveStage()); // check how many pomodoros done
-    dispatch(taskListActions.updateTask(activeStage)); // update Task
-    // dispatch(timerActions.toggleTicking()); // timeTop
-    // dispatch(timerActions.resetConsumedTime()); // reset timer
+    dispatch(timerActions.calculateNewStage(longBreakInterval)); // calculate next stage
+    dispatch(taskListActions.updateTask(activeStage));
   };
+
+  //
 
   useEffect(() => {
     let intervalId;
