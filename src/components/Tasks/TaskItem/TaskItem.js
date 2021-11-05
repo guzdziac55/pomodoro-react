@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useCallback, useEffect, useRef } from "react";
 import classes from "../TaskItem/TaskItem.module.css";
 // import IconPlus from "../../UI/icons/IconPlus";
 import {
@@ -13,11 +13,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { taskListActions } from "../../../store/taskList-slice";
 
 const TaskItem = (props) => {
+  console.log("task item");
   const dispatch = useDispatch();
   const formScrollRef = useRef(); // to też trzeba dać do hooka ze Scroolsmooth
 
+  // problem w każdym tego używam
   const { id, title, actPomodoro, estPomodoro, isDone } = props.task;
-
   const activeId = useSelector((state) => state.tasksList.activeTask);
 
   const [showEditForm, setShowEditForm] = useState(false);
@@ -33,18 +34,18 @@ const TaskItem = (props) => {
       });
   }, [showEditForm]);
 
-  const toggleEditFormHandler = () => {
+  const toggleEditFormHandler = useCallback(() => {
     setShowEditForm((prevState) => setShowEditForm(!prevState));
-  };
+  });
 
-  const setActiveTask = (e) => {
+  const setActiveTask = useCallback((e) => {
     if (e.target === e.currentTarget || e.target.parentNode === e.currentTarget)
       dispatch(taskListActions.setActiveTask(id));
-  };
+  });
 
-  const handleToggleDoneTask = () => {
+  const handleToggleDoneTask = useCallback(() => {
     dispatch(taskListActions.toggleDoneTask(id));
-  };
+  });
 
   // is Li item Active ?
   const itemIsActiveClass = id === activeId ? classes.active : "";
@@ -80,6 +81,7 @@ const TaskItem = (props) => {
             <span className={classes.pomodoroAct}>{estPomodoro}</span>
           </div>
 
+          {/*    */}
           <span onClick={toggleEditFormHandler} className={classes.icon}>
             <MdEditNote className={classes.icon} />
           </span>
@@ -89,7 +91,7 @@ const TaskItem = (props) => {
   );
 };
 
-export default TaskItem;
+export default React.memo(TaskItem);
 
 // const showIds = () => {
 //   console.log(props.id);

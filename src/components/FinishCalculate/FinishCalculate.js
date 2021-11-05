@@ -38,4 +38,4 @@ const FinishCalculate = () => {
 // finishTime <=== calculate finish time // pomodoroConfig * allToDo
 // + also calculate by endTime Date now
 
-export default FinishCalculate;
+export default React.memo(FinishCalculate);

@@ -1,10 +1,12 @@
 import { useSelector } from "react-redux";
 
 export const useStatistics = () => {
+  // we can change it with SelectCreators -- Selectors !
   const configStageOptions = useSelector((state) => state.config.stageOptions);
   const activeStage = useSelector((state) => state.timer.stage);
-  const activeTime = configStageOptions[activeStage];
   const taskList = useSelector((state) => state.tasksList.tasksList);
+  //
+  const activeTime = configStageOptions[activeStage];
 
   const estTasks = taskList.reduce(
     (acu, task) => (task.done === false ? acu + task.estPomodoro : acu),

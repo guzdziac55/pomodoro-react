@@ -7,7 +7,6 @@ const taskListSlice = createSlice({
     tasksList: [], // [] reset after loout
     changed: false, // false after logout
     activeTask: null,
-    // app is reloading
   },
   reducers: {
     replaceTaskList(state, action) {

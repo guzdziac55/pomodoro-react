@@ -1,13 +1,14 @@
 import React from "react";
 import classes from "./TasksList.module.css";
 import TaskItem from "./TaskItem/TaskItem";
-import { Spinner } from "../UI/Spinner";
 import { useSelector } from "react-redux";
 
 const TasksList = () => {
   console.log("tasklist JS KIEDY SIĘ ŁADUJE 1111111");
+
+  // save this useSelector in state when rerender by adding creatSelector
   const tasks = useSelector((state) => state.tasksList.tasksList);
-  const notification = useSelector((state) => state.ui.notification);
+  // const notification = useSelector((state) => state.ui.notification);
 
   const tasksList = tasks.map((task) => (
     <TaskItem
@@ -21,13 +22,14 @@ const TasksList = () => {
       }}
     />
   ));
+
   return (
     <ul className={classes["tasks-list"]}>
-      {notification && notification.isLoading && <Spinner />}
+      {/* {notification && notification.isLoading && <Spinner />} */}
       {/* <Spinner /> */}
       {tasksList}
     </ul>
   );
 };
 
-export default TasksList;
+export default React.memo(TasksList);

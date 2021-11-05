@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { createSelector } from "@reduxjs/toolkit";
 
 const timerSlice = createSlice({
   name: "timer",
-
   initialState: {
     stage: 0,
     isTicking: false,
@@ -21,7 +21,6 @@ const timerSlice = createSlice({
         state.stage = 0;
       }
     },
-    //
 
     changeActiveStage(state, action) {
       state.isTicking = false;
@@ -42,6 +41,21 @@ const timerSlice = createSlice({
     },
   },
 });
+
+// REMEMBER TO EXPORT ACTIONS WITH
+//  export const {action1, action2,action3} = {...tasklist.actions}
+
+// actions selectors
+
+export const getActiveTimeStage = (state) => state.timer.stage;
+
+// logic with props from component
+export const getIsActiveOption = () =>
+  createSelector(
+    (state) => state.timer.stage,
+    (_, timeOption) => timeOption,
+    (stage, timeOption) => stage === timeOption
+  );
 
 export const timerActions = timerSlice.actions;
 export default timerSlice;

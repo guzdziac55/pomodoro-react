@@ -63,7 +63,11 @@ function App() {
 
   // sendSettings
   useEffect(() => {
-    if (currentUser) {
+    if (isInitial) {
+      isInitial = false;
+      return;
+    }
+    if (isChanged && currentUser) {
       const userId = currentUser.uid;
       dispatch(sendFirebaseSettings(configSettings, userId)); // obj
     }
@@ -86,7 +90,7 @@ function App() {
       }
     });
     return unsubscribe;
-  }, []);
+  }, [dispatch]);
 
   const handleSettingsShow = () => {
     setSettingsShow(true);

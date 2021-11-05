@@ -15,7 +15,7 @@ const configSlice = createSlice({
   },
   reducers: {
     setConfig(state, action) {
-      return action.payload;
+      return action.payload; //Zamiast tego, aby zastąpić istniejący stan, należy bezpośrednio zwrócić nową wartość:
     },
 
     // check that setConfig work with fetched data
@@ -24,6 +24,8 @@ const configSlice = createSlice({
     // }
   },
 });
+
+export const getTimeOptions = (state) => state.config.stageOptions;
 
 export const configActions = configSlice.actions;
 export default configSlice;

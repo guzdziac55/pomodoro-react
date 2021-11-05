@@ -21,14 +21,14 @@ const PomodoroApp = () => {
       <WorkingOn />
       <Tasks />
       {!isEmptyTasks && <FinishCalculate />}
-      {notification && (
+      {/* {notification && (
         <Notifications
           status={notification.status} // state from ui Slice
           title={notification.title} // state from ui Slice
           error={notification.error} // state from ui Slice
           isLoading={notification.isLoading}
         />
-      )}
+      )} */}
     </div>
   );
 };

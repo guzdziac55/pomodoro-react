@@ -1,5 +1,7 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-// reducer Lists
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage"; // localStorage !
+
 import taskListSlice from "./taskList-slice";
 import uiSlice from "./ui-slice";
 import timerSlice from "./timer-slice";
@@ -14,16 +16,28 @@ const combinedReducers = combineReducers({
   auth: authSlice.reducer,
 });
 
-// default state after logout
+// config and middleware Ignore list + storage [ local, seasion etc.]
+const persistConfig = {
+  key: "root",
+  storage,
+};
+
+// slices reducers
 const rootReducer = (state, action) => {
-  if (action.type === "auth/log out") {
+  if (action.type === "auth/logout") {
+    console.log("ma ten jebany logout ? ");
     state = undefined;
   }
   return combinedReducers(state, action);
 };
 
+// persistedReducer slicesReducers + config
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+// store = slicesReducers + config
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: persistedReducer, // root + persist config
 });
 
+// export store and use persistStore ( persistor )
 export default store;
