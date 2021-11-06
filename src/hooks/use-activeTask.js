@@ -4,6 +4,7 @@ const useActiveTask = () => {
   const tasksList = useSelector((state) => state.tasksList.tasksList);
   const activeTaskId = useSelector((state) => state.tasksList.activeTask);
 
+  // to może być selektor
   const getActiveTask = () => {
     if (!activeTaskId) return;
     const task = tasksList.find((task) => task.id === activeTaskId);

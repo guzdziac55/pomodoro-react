@@ -10,6 +10,7 @@ const WorkingOn = () => {
   return (
     <div className={classes.activeTask}>
       <span className={classes.pomodoroCount}>#{pomodoroCnt}</span>
+      {/*  jeśli jest lub nie ma go na liście */}
       {activeTask && <span>{activeTask.title}</span>}
       {!activeTask && <span>Time to Focus!</span>}
     </div>

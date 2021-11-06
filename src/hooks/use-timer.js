@@ -36,8 +36,10 @@ export const useTimer = () => {
   };
 
   const timeIsEndAction = () => {
-    dispatch(timerActions.calculateNewStage(longBreakInterval)); // calculate next stage
+    // id first dispatch changing state that secound disptach will use
+    // we need to make redux thunk function
     dispatch(taskListActions.updateTask(activeStage));
+    dispatch(timerActions.calculateNewStage(longBreakInterval)); // calculate next stage
   };
 
   useEffect(() => {

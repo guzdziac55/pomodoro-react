@@ -25,6 +25,8 @@ const configSlice = createSlice({
   },
 });
 
+export const { setConfig } = configSlice.actions;
+
 export const getTimeOptions = (state) => state.config.stageOptions;
 
 export const configActions = configSlice.actions;

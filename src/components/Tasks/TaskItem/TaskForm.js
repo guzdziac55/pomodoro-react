@@ -75,9 +75,7 @@ const TaskForm = React.forwardRef((props, ref) => {
     }
 
     if (editMode) {
-      // EDIT CURRENT TASK
       dispatch(
-        //  get Uid + Doc id to edit
         taskListActions.editTaskItem({
           id: id,
           title: enteredTaskTitle,
@@ -86,18 +84,16 @@ const TaskForm = React.forwardRef((props, ref) => {
       );
       props.toggleForm();
     } else {
-      //ADD NEW TASK
       dispatch(
-        // TITILE + ESTpOMODOORO  + uid  -
         taskListActions.addTask({
-          //  action payload obj
-          title: enteredTaskTitle, // dane z forma
-          estPomodoro: estPomodoroNumber, // dane z forma
+          title: enteredTaskTitle,
+          estPomodoro: estPomodoroNumber,
         })
       );
     }
   };
 
+  // props it ?
   const handleDelateTask = () => {
     dispatch(taskListActions.deleteTask(id));
   };

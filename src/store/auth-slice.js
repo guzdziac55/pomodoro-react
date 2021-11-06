@@ -1,58 +1,48 @@
 // import { calculateRemainingTime } from "./auth-actions";
 import { createSlice } from "@reduxjs/toolkit";
+import configSlice from "./config-slice";
 
 // put this here and import ub auth Actions
 // pewnie redux slice jest inicjonowany przed auth Actions i nie widzi funkcji
-// trzeba to sprawdzić
-const calculateRemainingTime = (expirationTime) => {
-  const currentTime = new Date().getTime(); // zamiana na ms
-  const adjExpirationTime = new Date(expirationTime).getTime(); // zamiana na ms
-  const remainingDuration = adjExpirationTime - currentTime; // rożnica w ms
-  return remainingDuration;
-};
 
-// to może być custom hook zwraca State Storedtoken i ExpTime ?
-// mozna to przenieść do local Storage
-const retriveStoredToken = () => {
-  const storedToken = localStorage.getItem("token");
-  const storedExpirationDate = localStorage.getItem("expirationTime");
-  const remainingTime = calculateRemainingTime(storedExpirationDate); // data wygaśnięcia
+// const calculateRemainingTime = (expirationTime) => {
+//   const currentTime = new Date().getTime(); // zamiana na ms
+//   const adjExpirationTime = new Date(expirationTime).getTime(); // zamiana na ms
+//   const remainingDuration = adjExpirationTime - currentTime; // rożnica w ms
+//   return remainingDuration;
+// };
 
-  if (remainingTime < 0) {
-    localStorage.removeItem("token");
-    localStorage.removeItem("expirationTime");
-    return null;
-  }
+// // to może być custom hook zwraca State Storedtoken i ExpTime ?
+// // mozna to przenieść do local Storage
+// const retriveStoredToken = () => {
+//   const storedToken = localStorage.getItem("token");
+//   const storedExpirationDate = localStorage.getItem("expirationTime");
+//   const remainingTime = calculateRemainingTime(storedExpirationDate); // data wygaśnięcia
 
-  return {
-    token: storedToken,
-    duration: remainingTime,
-  };
-};
-
-const tokenData = retriveStoredToken(); // zmieni sie jesli zmieni sie token lub zmieni sie date
-let initialToken;
-if (tokenData) {
-  initialToken = tokenData.token;
-}
-
-// useEffect(() => {
-//   if (tokenData) {
-//     console.log(tokenData.duration);
-//     logoutTimer = setTimeout(logout, tokenData.duration);
+//   if (remainingTime < 0) {
+//     localStorage.removeItem("token");
+//     localStorage.removeItem("expirationTime");
+//     return null;
 //   }
-// }, [tokenData]);
 
-// const isLoggedIn = !!initialToken;
+//   return {
+//     token: storedToken,
+//     duration: remainingTime,
+//   };
+// };
+
+// const tokenData = retriveStoredToken(); // zmieni sie jesli zmieni sie token lub zmieni sie date
+// let initialToken;
+// if (tokenData) {
+//   initialToken = tokenData.token;
+// }
+
 const authSlice = createSlice({
   name: "auth",
   initialState: {
-    // token: initialToken,
-    // isLogged: isLoggedIn,
     currentUser: null,
   },
-  // get from helper function when localStorage is aviable token and time
-  //  wiekszy niz 0 i token istnieje => set this into LocalStorage
+
   reducers: {
     logout(state) {
       state.currentUser = null;
@@ -61,12 +51,12 @@ const authSlice = createSlice({
     singUp(state, action) {
       state.currentUser = action.payload;
     },
-    // login(state, action) {
-    //   state.token = action.payload;
-    //   state.isLogged = !!state.token;
-    // },
   },
 });
+
+export const { logout, singUp } = configSlice.actions;
+export const authActions = authSlice.actions;
+export default authSlice;
 
 // IMPORTTANT IMPLEMENT WHEN U GET NEW TOKEN DATA
 // useEffect(() => {
@@ -78,6 +68,3 @@ const authSlice = createSlice({
 
 // localStorage.setItem("token", token); // store token better inside redux action
 // localStorage.removeItem("token");
-
-export const authActions = authSlice.actions;
-export default authSlice;

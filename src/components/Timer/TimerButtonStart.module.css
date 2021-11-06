@@ -1,21 +1,44 @@
-.buttonsWrapper {
-  background-color: red;
-}
-
 .buttonStart {
   cursor: pointer;
   border: none;
   margin: 20px 0px 0px;
-  padding: 0px 12px;
+  padding: 20px 10px;
   border-radius: 4px;
   box-shadow: rgb(235 235 235) 0px 6px 0px;
   font-size: 22px;
-  height: 55px;
   color: var(--main-color);
   font-weight: bold;
   width: 200px;
   background-color: white;
 }
 
+.button {
+  position: absolute;
+  visibility: hidden;
+
+  cursor: pointer;
+  border: none;
+  margin: 35px 15px;
+  padding: 5px;
+  border-radius: 4px;
+  font-size: 22px;
+  font-weight: bold;
+  color: var(--main-color);
+  background-color: var(--color-grey-light-1);
+}
+
+.button:hover {
+  background-color: var(--color-grey-light-2);
+}
+
+.icon {
+  width: 2rem;
+  height: 2rem;
+  text-align: center;
+}
 /*  when start clicked   */
 /*  remove box-shadow */
+
+.show {
+  visibility: visible;
+}

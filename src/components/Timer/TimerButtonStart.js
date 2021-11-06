@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 import { createSelector } from "@reduxjs/toolkit";
 import classes from "./TimerButtonStart.module.css";
+import { MdSkipNext } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { taskListActions } from "../../store/taskList-slice";
 import { timerActions } from "../../store/timer-slice";
@@ -15,7 +16,6 @@ const selectCurrentOption = createSelector(
 );
 
 const TimerButtonStart = () => {
-  console.log("daspodksadkdaspodksadkdaspodksadkdaspodksadkdaspodksadk");
   const dispatch = useDispatch();
 
   const isTicking = useSelector((state) => state.timer.isTicking);
@@ -23,14 +23,14 @@ const TimerButtonStart = () => {
     (state) => state.config.longBreakInterval
   );
 
-  const activeStage = useSelector((state) => state.timer.stage);
+  const selectCurrentStage = useSelector((state) => state.timer.stage);
   const currentOptions = useSelector((state) => selectCurrentOption(state));
 
   const toggleTicking = useCallback(() => {
     dispatch(timerActions.toggleTicking());
   });
 
-  // cała funkcja do thunk
+  // logika wykorzystana w dwóch miejscach
   const skipTimer = useCallback(() => {
     if (isTicking) {
       const alert = window.confirm(
@@ -40,25 +40,24 @@ const TimerButtonStart = () => {
         return;
       }
     }
-    // byłoby dobrze jakby te state action się widziały
-    // przenieść do thunk functions ?
+    dispatch(taskListActions.updateTask(selectCurrentStage));
     dispatch(timerActions.calculateNewStage(longBreakInterval)); // calculate next stage
-    dispatch(taskListActions.updateTask(activeStage));
   });
 
+  const showSkipButton = isTicking ? classes.show : "";
+
   return (
-    <div className={classes.buttonsWrapper}>
-      <p>{currentOptions}</p>
+    <div>
       <button onClick={toggleTicking} className={classes.buttonStart}>
         START
       </button>
 
-      {/*  jeśli jest ticking i pomodoro State */}
-      {isTicking && (
-        <button onClick={skipTimer} className={classes.buttonStart}>
-          START
-        </button>
-      )}
+      <button
+        onClick={skipTimer}
+        className={`${classes.button} ${showSkipButton}`}
+      >
+        <MdSkipNext className={classes.icon}>START</MdSkipNext>
+      </button>
     </div>
   );
 };

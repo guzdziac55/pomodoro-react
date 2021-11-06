@@ -27,5 +27,6 @@ const uiSlice = createSlice({
   },
 });
 
-export const uiActions = uiSlice.actions;
+export const { toogleForm, showNotification, changeTheme } = uiSlice.actions;
 export default uiSlice;
+export const uiActions = uiSlice.actions;

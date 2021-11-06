@@ -60,16 +60,20 @@ const taskListSlice = createSlice({
       editedItem.estPomodoro = editData.estPomodoro;
     },
 
-    //////// context menu Tasks
-
     deleteAllTasks(state) {
       state.changed = true;
       state.tasksList = [];
+      state.activeTask = null;
     },
 
     deleteDoneTasks(state) {
       state.changed = true;
       state.tasksList = state.tasksList.filter((task) => task.done !== true);
+      state.activeTask = state.tasksList.some(
+        (task) => task.id === state.activeTask
+      )
+        ? state.activeTask
+        : null;
     },
 
     deleteFinishedTasks(state) {
@@ -77,11 +81,26 @@ const taskListSlice = createSlice({
       state.tasksList = state.tasksList.filter(
         (task) => task.actPomodoro <= task.estPomodoro
       );
+      state.activeTask = state.tasksList.some(
+        (task) => task.id === state.activeTask
+      )
+        ? state.activeTask
+        : null;
     },
 
-    //////// update task
-
     updateTask(state, action) {
+      state.changed = true;
+      if (action.payload !== 0 || !state.activeTask) return;
+      const activeTask = state.tasksList.find(
+        (task) => task.id === state.activeTask
+      );
+      activeTask.actPomodoro++;
+    },
+    updateTask2(state, action) {
+      // if currentStaege !==0 || activTask return
+      //
+      // updateTask find active and update active // main action
+
       state.changed = true;
       if (action.payload !== 0 || !state.activeTask) return;
       const activeTask = state.tasksList.find(
@@ -92,13 +111,16 @@ const taskListSlice = createSlice({
   },
 });
 
-// update only when: // update zawsze dodaje + 1 i zmienia array [tasks]
-//  stage is 0  // problem with  shering state
-//  active is setted
-
+export const {
+  replaceTaskList,
+  addTask,
+  deleteTask,
+  setActiveTask,
+  toggleDoneTask,
+  editTaskItem,
+  deleteAllTasks,
+  deleteDoneTasks,
+  deleteFinishedTasks,
+} = taskListSlice.actions;
 export const taskListActions = taskListSlice.actions;
 export default taskListSlice;
-
-// action payload to obiekt który może miec różna strukture
-// taskName
-// pomodoroNumber

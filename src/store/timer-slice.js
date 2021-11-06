@@ -42,10 +42,17 @@ const timerSlice = createSlice({
   },
 });
 
+export const timerActions = timerSlice.actions;
+
+export const {
+  calculateNewStage,
+  changeActiveStage,
+  toggleTicking,
+  consumeTime,
+  resetConsumedTime,
+} = timerSlice.actions;
 // REMEMBER TO EXPORT ACTIONS WITH
 //  export const {action1, action2,action3} = {...tasklist.actions}
-
-// actions selectors
 
 export const getActiveTimeStage = (state) => state.timer.stage;
 
@@ -57,5 +64,4 @@ export const getIsActiveOption = () =>
     (stage, timeOption) => stage === timeOption
   );
 
-export const timerActions = timerSlice.actions;
 export default timerSlice;
