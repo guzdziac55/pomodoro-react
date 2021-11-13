@@ -33,6 +33,7 @@ const timerSlice = createSlice({
     },
 
     consumeTime(state) {
+      console.log("wywolane ? ");
       state.consumedSeconds = state.consumedSeconds + 1;
     },
 
@@ -44,6 +45,7 @@ const timerSlice = createSlice({
 
 export const timerActions = timerSlice.actions;
 
+// actions
 export const {
   calculateNewStage,
   changeActiveStage,
@@ -54,7 +56,21 @@ export const {
 // REMEMBER TO EXPORT ACTIONS WITH
 //  export const {action1, action2,action3} = {...tasklist.actions}
 
-export const getActiveTimeStage = (state) => state.timer.stage;
+// selectors
+export const selectActiveStage = (state) => state.timer.stage;
+export const selectIsTicking = (state) => state.timer.isTicking;
+export const selectPomodoroCount = (state) => state.timer.pomodoroCnt;
+export const selectConsumedTime = (state) => state.timer.consumedSeconds;
+
+export const selectCurrentTime = createSelector(
+  (state) => state.timer.stage,
+  (state) => state.config.stageOptions,
+  (stage, options) => options[stage]
+);
+
+// thunks
+
+//reducers
 
 // logic with props from component
 export const getIsActiveOption = () =>

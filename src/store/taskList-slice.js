@@ -1,18 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { uiActions } from "./ui-slice";
+import { createSelector } from "reselect";
 
 const taskListSlice = createSlice({
   name: "tasksList",
   initialState: {
-    tasksList: [], // [] reset after loout
-    changed: false, // false after logout
+    tasksList: [],
+    changed: false,
     activeTask: null,
   },
   reducers: {
     replaceTaskList(state, action) {
       const newTaskList = action.payload;
-      console.log("action payload tasks");
-      console.log(newTaskList.tasks);
       state.tasksList = newTaskList;
     },
 
@@ -96,20 +94,10 @@ const taskListSlice = createSlice({
       );
       activeTask.actPomodoro++;
     },
-    updateTask2(state, action) {
-      // if currentStaege !==0 || activTask return
-      //
-      // updateTask find active and update active // main action
-
-      state.changed = true;
-      if (action.payload !== 0 || !state.activeTask) return;
-      const activeTask = state.tasksList.find(
-        (task) => task.id === state.activeTask
-      );
-      activeTask.actPomodoro++;
-    },
   },
 });
+
+// actions
 
 export const {
   replaceTaskList,
@@ -121,6 +109,28 @@ export const {
   deleteAllTasks,
   deleteDoneTasks,
   deleteFinishedTasks,
+  updateTask,
 } = taskListSlice.actions;
+
+// selectors
+
+export const selectTaskList = (state) => state.tasksList.tasksList;
+export const selectIsChanged = (state) => state.tasksList.changed;
+export const selectActiveTask = (state) => state.tasksList.activeTask;
+
+export const selectNumberToDoTasks = createSelector(
+  selectTaskList,
+  (taskList) =>
+    taskList.reduce(
+      (acu, task) => (task.done === false ? acu + task.estPomodoro : acu),
+      0
+    )
+);
+
+export const selectNumberDonePomodoro = createSelector(
+  selectTaskList,
+  (taskList) => taskList.reduce((acu, task) => acu + task.actPomodoro, 0)
+);
+
 export const taskListActions = taskListSlice.actions;
 export default taskListSlice;

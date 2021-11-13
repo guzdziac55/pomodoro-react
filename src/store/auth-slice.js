@@ -2,6 +2,48 @@
 import { createSlice } from "@reduxjs/toolkit";
 import configSlice from "./config-slice";
 
+const authSlice = createSlice({
+  name: "auth",
+  initialState: {
+    currentUser: null,
+  },
+
+  reducers: {
+    logout(state) {
+      state.currentUser = null;
+    },
+
+    singUp(state, action) {
+      state.currentUser = action.payload;
+    },
+  },
+});
+
+//actions
+export const { logout, singUp } = configSlice.actions;
+
+//selectors
+export const selectCurrentUser = (state) => state.auth.currentUser;
+
+// thunks
+
+// reducers export
+export const authActions = authSlice.actions;
+export default authSlice;
+
+// IMPORTTANT IMPLEMENT WHEN U GET NEW TOKEN DATA
+// useEffect(() => {
+//   // IDTIMEOUT = SETTIMEOUT(LOGOUTHANDLER , DATATOKEN.DURATION )   // SET NEW LOGAUNT BECOUSE WE GET NEW TOKEN
+//   return () => {
+//     cleanup;
+//   };
+// }, [TOKEN]);
+
+// localStorage.setItem("token", token); // store token better inside redux action
+// localStorage.removeItem("token");
+
+// cd timetokenremain
+
 // put this here and import ub auth Actions
 // pewnie redux slice jest inicjonowany przed auth Actions i nie widzi funkcji
 
@@ -36,35 +78,3 @@ import configSlice from "./config-slice";
 // if (tokenData) {
 //   initialToken = tokenData.token;
 // }
-
-const authSlice = createSlice({
-  name: "auth",
-  initialState: {
-    currentUser: null,
-  },
-
-  reducers: {
-    logout(state) {
-      state.currentUser = null;
-    },
-
-    singUp(state, action) {
-      state.currentUser = action.payload;
-    },
-  },
-});
-
-export const { logout, singUp } = configSlice.actions;
-export const authActions = authSlice.actions;
-export default authSlice;
-
-// IMPORTTANT IMPLEMENT WHEN U GET NEW TOKEN DATA
-// useEffect(() => {
-//   // IDTIMEOUT = SETTIMEOUT(LOGOUTHANDLER , DATATOKEN.DURATION )   // SET NEW LOGAUNT BECOUSE WE GET NEW TOKEN
-//   return () => {
-//     cleanup;
-//   };
-// }, [TOKEN]);
-
-// localStorage.setItem("token", token); // store token better inside redux action
-// localStorage.removeItem("token");

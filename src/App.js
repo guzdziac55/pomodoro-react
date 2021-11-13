@@ -1,3 +1,4 @@
+import React from "react";
 import Header from "./components/Layout/Header";
 import classes from "./App.module.css";
 import HookForm from "./components/SettingsApp/SettingsApp";
@@ -7,8 +8,7 @@ import {
   fetchFirebaseUserData,
   sendFirebaseTaskList,
   sendFirebaseSettings,
-} from "./store/taskList-actions";
-import React from "react";
+} from "./store/thunks/taskList-actions";
 
 // store
 import { useDispatch, useSelector } from "react-redux";
@@ -27,14 +27,6 @@ import { authActions } from "./store/auth-slice";
 let isInitial = true;
 
 function App() {
-  // useSelector with function inside no w przypadku
-  // select CurrentStage
-  // const currentStage = useSelector(state=>selectActiveStage(state,current))
-  // inside function "selectActivestage"
-  //  coś podobnego
-  // export const selectPostById = (state, postId) =>
-  // state.posts.find(post => post.id === postId)
-
   const dispatch = useDispatch();
   const taskList = useSelector((state) => state.tasksList.tasksList);
   const isChanged = useSelector((state) => state.tasksList.changed);

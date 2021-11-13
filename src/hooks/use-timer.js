@@ -1,52 +1,52 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { taskListActions } from "../store/taskList-slice";
-import { timerActions } from "../store/timer-slice";
-import { getActiveTimeStage } from "../store/timer-slice";
-import { getTimeOptions } from "../store/config-slice";
+import { updateTask } from "../store/taskList-slice";
+import {
+  consumeTime,
+  selectIsTicking,
+  selectConsumedTime,
+  selectActiveStage,
+  calculateNewStage,
+} from "../store/timer-slice";
+import { selectStageOptions, selectLongInterval } from "../store/config-slice";
+
 import { createSelector } from "reselect";
 
-// name conventions
-// get => geters for get part of state
-// select.name => selectors with reSelect
-
 const selectCurrentTime = createSelector(
-  getActiveTimeStage,
-  getTimeOptions,
+  selectActiveStage,
+  selectStageOptions,
   (stage, stageOptions) => stageOptions[stage]
 );
 
-// sellector with currentTime but stage is commping from / props / arg
-const selectCurrentTimeFromArg = (stage) =>
-  createSelector(getTimeOptions, (stageOptions) => stageOptions[stage]);
+// // sellector with currentTime but stage is commping from / props / arg
+// const selectCurrentTimeFromArg = (stage) =>
+//   createSelector(selectStageOptions, (stageOptions) => stageOptions[stage]);
 
-// move into thunk function ?
 export const useTimer = () => {
+  console.log("INSIDE USE TIMER HOOK");
   const dispatch = useDispatch();
-  const isTicking = useSelector((state) => state.timer.isTicking);
-  const consumedSeconds = useSelector((state) => state.timer.consumedSeconds);
-  const longBreakInterval = useSelector(
-    (state) => state.config.longBreakInterval
-  );
-  const activeStage = useSelector((state) => state.timer.stage);
+
+  const isTicking = useSelector(selectIsTicking);
+  const consumedSeconds = useSelector(selectConsumedTime);
+  const longBreakInterval = useSelector(selectLongInterval);
+  const activeStage = useSelector(selectActiveStage);
+
+  // opcja z createSelector i bez
   const currentTimeOptions = useSelector((state) => selectCurrentTime(state));
+  // const currentTimeOptions = useSelector((state) => selectCurrentTime(state));
 
-  const consumeTime = () => {
-    dispatch(timerActions.consumeTime());
-  };
-
+  // id first dispatch changing state that secound disptach will use
+  // we need to make redux thunk function
   const timeIsEndAction = () => {
-    // id first dispatch changing state that secound disptach will use
-    // we need to make redux thunk function
-    dispatch(taskListActions.updateTask(activeStage));
-    dispatch(timerActions.calculateNewStage(longBreakInterval)); // calculate next stage
+    dispatch(updateTask(activeStage));
+    dispatch(calculateNewStage(longBreakInterval));
   };
 
   useEffect(() => {
     let intervalId;
     if (isTicking && consumedSeconds <= currentTimeOptions) {
       intervalId = setInterval(() => {
-        consumeTime(); // update consumed secounds
+        dispatch(consumeTime());
       }, 1000);
     } else if (consumedSeconds > currentTimeOptions) {
       timeIsEndAction();
@@ -60,13 +60,13 @@ export const useTimer = () => {
 
   const counter = calculateCounter();
 
-  // dodać także minus Consumed Time
   const convertTime = (time) => {
     let minutes = parseInt(time / 60, 10);
     let seconds = parseInt(time % 60, 10);
     minutes = minutes < 10 ? "0" + minutes : minutes;
     seconds = seconds < 10 ? "0" + seconds : seconds;
     const outputTime = `${minutes}:${seconds}`;
+
     return outputTime;
   };
 

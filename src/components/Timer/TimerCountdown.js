@@ -4,6 +4,7 @@ import classes from "./TimerCountdown.module.css";
 import { useTimer } from "../../hooks/use-timer";
 
 const TimerCountdown = () => {
+  console.log("KOMPONENT COUNTDOWN TIMER");
   const convertedTimeout = useTimer();
   return (
     <>

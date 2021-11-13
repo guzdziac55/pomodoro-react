@@ -2,18 +2,6 @@ import React, { useCallback } from "react";
 import { useState } from "react";
 import { set } from "react-hook-form";
 
-// ROOZNICA MIEDZY DWOMA ROZWIAZANIAMI
-// FETTHC BY CUSTOMHOOK OR VS THUNK
-// CUSTOM HOOK HAVE STATE THAT CONNECT WITH COMPONENT
-// ERRORS AND NOTIFICATION ARE NOT GLOBAL // I think !
-// they are settet into component
-
-//
-
-// requestConfig => obj with configuration
-// specyfic function to do with data next
-
-//
 const useHttp = () => {
   const [isLoading, setIsLoading] = useState(false); // to zostanie przypisane do komponentu ktory używa hooka
   const [error, setError] = useState(null); // to zostanie przypisane do komponentu ktory yuzywa hooka
@@ -45,7 +33,6 @@ const useHttp = () => {
       setIsLoading(false);
     },
     [] // tu był reuqest config ale przenieslimy go z extermal
-    // function do wywolanej
   ); // też jest obiektem i funkcja
   //
   //

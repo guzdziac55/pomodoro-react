@@ -1,41 +1,48 @@
 import React from "react";
 import classes from "./FinishCalculate.module.css";
-import { useStatistics } from "../../hooks/use-statistics";
+import { useSelector } from "react-redux";
+import { selectPomodoroOption } from "../../store/config-slice";
+import {
+  selectNumberDonePomodoro,
+  selectNumberToDoTasks,
+} from "../../store/taskList-slice";
+import { useFinishTime } from "../../hooks/use-finishTime";
+import { createSelector } from "reselect";
 
-// jest rerender ze względu na APP &&taskList.length i zmiane toogla
+//in Minutes
+const selectPomTimeToAdd = createSelector(
+  selectPomodoroOption,
+  selectNumberToDoTasks,
+  (pomodoroOption, tasksNumber) => pomodoroOption * tasksNumber
+);
 
 const FinishCalculate = () => {
-  console.log("jestem wenątrz statistics");
-
-  // calculate Data
-  // hook that returns
-  // done
-  // to Do
-  // finish Time end
-
-  const { estTasks, actTasks, calculatedEndTime } = useStatistics();
+  console.log(
+    "FINISH CALCULATE COMPONENT !!!!!!!!!!!!!!!!!!!FINISH CALCULATE COMPONENT !!!!!!!!!!!!!!!!!!!"
+  );
+  const toDoTasks = useSelector(selectNumberToDoTasks);
+  const donePomodoro = useSelector(selectNumberDonePomodoro);
+  const timeToAdd = useSelector(selectPomTimeToAdd);
+  // check later with normal function => sprawdzić czy spowoduje ponowne wyrenderowanie
+  //komponentu z nornamlną funkcją
+  const { finishTime } = useFinishTime(timeToAdd);
 
   return (
     <div className={classes.statistics}>
       <div className={classes["statistics-details"]}>
         <span className={classes.label}>Est:</span>
-        <span className={classes.data}>{estTasks}</span>
+        <span className={classes.data}>{toDoTasks}</span>
       </div>
       <div className={classes["statistics-details"]}>
         <span className={classes.label}>Act:</span>
-        <span className={classes.data}>{actTasks}</span>
+        <span className={classes.data}>{donePomodoro}</span>
       </div>
       <div className={classes["statistics-details"]}>
         <span className={classes.label}>FINISH AT:</span>
-        <span className={classes.data}>{calculatedEndTime}</span>
+        <span className={classes.data}>{finishTime}</span>
       </div>
     </div>
   );
 };
-
-// est <=== all to Do
-// act <=== all done
-// finishTime <=== calculate finish time // pomodoroConfig * allToDo
-// + also calculate by endTime Date now
 
 export default React.memo(FinishCalculate);
