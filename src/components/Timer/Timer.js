@@ -7,8 +7,6 @@ import TimerButtonStart from "./TimerButtonStart";
 
 // we can use selector here and put intoProps
 
-const handleClickChangeOption = (option, theme) => {};
-
 const Timer = () => {
   return (
     <Card class={classes.timer}>

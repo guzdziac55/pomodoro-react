@@ -12,7 +12,7 @@ import {
 } from "../store/timer-slice";
 
 import {
-  selectLongInterval,
+  selectLongBrakInterval,
   selectPomodoroOptionTime,
 } from "../store/config-slice";
 
@@ -22,7 +22,7 @@ export const useTimer = () => {
   const consumedSeconds = useSelector(selectConsumedTime);
 
   const activeStage = useSelector(selectActiveStage);
-  const longBreakInterval = useSelector(selectLongInterval);
+  const longBreakInterval = useSelector(selectLongBrakInterval);
   const pomodoroTimeOption = useSelector(selectPomodoroOptionTime);
 
   const timeIsEndAction = () => {

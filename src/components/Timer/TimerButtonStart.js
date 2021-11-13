@@ -1,37 +1,27 @@
 import React, { useCallback } from "react";
-import { createSelector } from "@reduxjs/toolkit";
 import classes from "./TimerButtonStart.module.css";
 import { MdSkipNext } from "react-icons/md";
 import { useDispatch } from "react-redux";
-import { taskListActions } from "../../store/taskList-slice";
-import { timerActions } from "../../store/timer-slice";
 import { useSelector } from "react-redux";
-// change into action selector
-
-// component
-const selectCurrentOption = createSelector(
-  (state) => state.timer.stage,
-  (state) => state.config.stageOptions,
-  (stage, stageOptions) => stageOptions[stage]
-);
+import { updateTask } from "../../store/taskList-slice";
+import {
+  toggleTicking,
+  calculateNewStage,
+  selectActiveStage,
+} from "../../store/timer-slice";
+import { selectLongBrakInterval } from "../../store/config-slice";
 
 const TimerButtonStart = () => {
   const dispatch = useDispatch();
-
   const isTicking = useSelector((state) => state.timer.isTicking);
-  const longBreakInterval = useSelector(
-    (state) => state.config.longBreakInterval
-  );
+  const activeStage = useSelector(selectActiveStage);
+  const longBreakInterval = useSelector(selectLongBrakInterval);
 
-  const selectCurrentStage = useSelector((state) => state.timer.stage);
-  const currentOptions = useSelector((state) => selectCurrentOption(state));
-
-  const toggleTicking = useCallback(() => {
-    dispatch(timerActions.toggleTicking());
+  const onClickToggleTicking = useCallback(() => {
+    dispatch(toggleTicking());
   });
 
-  // logika wykorzystana w dwóch miejscach
-  const skipTimer = useCallback(() => {
+  const onClickSkipTimer = useCallback(() => {
     if (isTicking) {
       const alert = window.confirm(
         "Are you sure you want to finish the round early? (The remaining time will not be counted in the report.)"
@@ -40,20 +30,24 @@ const TimerButtonStart = () => {
         return;
       }
     }
-    dispatch(taskListActions.updateTask(selectCurrentStage));
-    dispatch(timerActions.calculateNewStage(longBreakInterval)); // calculate next stage
+    dispatch(updateTask(activeStage));
+    dispatch(calculateNewStage(longBreakInterval)); // calculate next stage
   });
 
   const showSkipButton = isTicking ? classes.show : "";
+  const startButtonClass = isTicking ? classes.active : "";
 
   return (
     <div>
-      <button onClick={toggleTicking} className={classes.buttonStart}>
+      <button
+        onClick={onClickToggleTicking}
+        className={`${classes.buttonStart} ${startButtonClass}`}
+      >
         START
       </button>
 
       <button
-        onClick={skipTimer}
+        onClick={onClickSkipTimer}
         className={`${classes.button} ${showSkipButton}`}
       >
         <MdSkipNext className={classes.icon}>START</MdSkipNext>

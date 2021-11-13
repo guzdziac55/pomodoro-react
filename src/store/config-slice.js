@@ -20,7 +20,7 @@ const configSlice = createSlice({
 //actions
 export const { setConfig } = configSlice.actions;
 
-export const selectLongInterval = (state) => state.config.longBreakInterval;
+export const selectLongBrakInterval = (state) => state.config.longBreakInterval;
 export const selectStageOptions = (state) => state.config.stageOptions;
 
 export const selectPomodoroOptionTime = createSelector(

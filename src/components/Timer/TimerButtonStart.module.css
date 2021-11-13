@@ -4,7 +4,7 @@
   margin: 20px 0px 0px;
   padding: 20px 10px;
   border-radius: 4px;
-  box-shadow: rgb(235 235 235) 0px 6px 0px;
+  box-shadow: rgb(230 200 200) 0px 6px 0px;
   font-size: 22px;
   color: var(--main-color);
   font-weight: bold;
@@ -12,10 +12,14 @@
   background-color: white;
 }
 
+.active {
+  box-shadow: none;
+  transform: translateY(6px);
+}
+
 .button {
   position: absolute;
   visibility: hidden;
-
   cursor: pointer;
   border: none;
   margin: 35px 15px;
