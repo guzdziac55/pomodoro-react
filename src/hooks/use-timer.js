@@ -2,60 +2,50 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateTask } from "../store/taskList-slice";
 import {
+  // actions
   consumeTime,
+  calculateNewStage,
+  // selectors
+  selectActiveStage,
   selectIsTicking,
   selectConsumedTime,
-  selectActiveStage,
-  calculateNewStage,
 } from "../store/timer-slice";
-import { selectStageOptions, selectLongInterval } from "../store/config-slice";
 
-import { createSelector } from "reselect";
-
-const selectCurrentTime = createSelector(
-  selectActiveStage,
-  selectStageOptions,
-  (stage, stageOptions) => stageOptions[stage]
-);
-
-// // sellector with currentTime but stage is commping from / props / arg
-// const selectCurrentTimeFromArg = (stage) =>
-//   createSelector(selectStageOptions, (stageOptions) => stageOptions[stage]);
+import {
+  selectLongInterval,
+  selectPomodoroOptionTime,
+} from "../store/config-slice";
 
 export const useTimer = () => {
-  console.log("INSIDE USE TIMER HOOK");
   const dispatch = useDispatch();
-
   const isTicking = useSelector(selectIsTicking);
   const consumedSeconds = useSelector(selectConsumedTime);
-  const longBreakInterval = useSelector(selectLongInterval);
+
   const activeStage = useSelector(selectActiveStage);
+  const longBreakInterval = useSelector(selectLongInterval);
+  const pomodoroTimeOption = useSelector(selectPomodoroOptionTime);
 
-  // opcja z createSelector i bez
-  const currentTimeOptions = useSelector((state) => selectCurrentTime(state));
-  // const currentTimeOptions = useSelector((state) => selectCurrentTime(state));
-
-  // id first dispatch changing state that secound disptach will use
-  // we need to make redux thunk function
   const timeIsEndAction = () => {
     dispatch(updateTask(activeStage));
     dispatch(calculateNewStage(longBreakInterval));
   };
 
+  // consumedTimeCalculations
   useEffect(() => {
     let intervalId;
-    if (isTicking && consumedSeconds <= currentTimeOptions) {
+    if (isTicking && consumedSeconds <= pomodoroTimeOption) {
       intervalId = setInterval(() => {
         dispatch(consumeTime());
       }, 1000);
-    } else if (consumedSeconds > currentTimeOptions) {
+    } else if (consumedSeconds > pomodoroTimeOption) {
       timeIsEndAction();
     }
     return () => clearInterval(intervalId); // to też się wywoła po setInterval
-  }, [isTicking, consumedSeconds, currentTimeOptions]);
+  }, [isTicking, consumedSeconds, pomodoroTimeOption]);
 
+  //
   const calculateCounter = () => {
-    return currentTimeOptions - consumedSeconds;
+    return pomodoroTimeOption * 60 - consumedSeconds;
   };
 
   const counter = calculateCounter();
@@ -66,7 +56,6 @@ export const useTimer = () => {
     minutes = minutes < 10 ? "0" + minutes : minutes;
     seconds = seconds < 10 ? "0" + seconds : seconds;
     const outputTime = `${minutes}:${seconds}`;
-
     return outputTime;
   };
 

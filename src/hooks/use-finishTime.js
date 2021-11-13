@@ -22,7 +22,5 @@ export const useFinishTime = (timeAdd) => {
     setFinishTime(`${hours}:${minutes}`);
   }, [timeAdd]);
 
-  // timetoAdd argument => pomodoro  * time per pomodoro
-
   return { finishTime };
 };

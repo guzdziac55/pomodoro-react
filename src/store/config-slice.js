@@ -20,16 +20,13 @@ const configSlice = createSlice({
 //actions
 export const { setConfig } = configSlice.actions;
 
-// selectors
-// export const selectStageOptions = (state) => state.config.stageOptions;
 export const selectLongInterval = (state) => state.config.longBreakInterval;
 export const selectStageOptions = (state) => state.config.stageOptions;
-export const selectPomodoroOption = (state) => state.config.stageOptions[0];
-// selector pomodoro option
-// export const selectPomodoroOption = createSelector(
-//   (state) => state.config.stageOptions,
-//   (options) => options[0]
-// );
+
+export const selectPomodoroOptionTime = createSelector(
+  (state) => state.config.stageOptions,
+  (options) => options[0]
+);
 
 // create selector ponieważ jest to tablica ?
 // export const selectStageOptions = createSelector(

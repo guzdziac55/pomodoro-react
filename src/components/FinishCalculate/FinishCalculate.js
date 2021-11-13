@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./FinishCalculate.module.css";
 import { useSelector } from "react-redux";
-import { selectPomodoroOption } from "../../store/config-slice";
+import { selectPomodoroOptionTime } from "../../store/config-slice";
 import {
   selectNumberDonePomodoro,
   selectNumberToDoTasks,
@@ -11,20 +11,19 @@ import { createSelector } from "reselect";
 
 //in Minutes
 const selectPomTimeToAdd = createSelector(
-  selectPomodoroOption,
+  selectPomodoroOptionTime,
   selectNumberToDoTasks,
   (pomodoroOption, tasksNumber) => pomodoroOption * tasksNumber
 );
 
+// TO DO HERE:
+// check later with normal function => sprawdzić czy spowoduje ponowne wyrenderowanie
+//  komponentu z nornamlną funkcją
+
 const FinishCalculate = () => {
-  console.log(
-    "FINISH CALCULATE COMPONENT !!!!!!!!!!!!!!!!!!!FINISH CALCULATE COMPONENT !!!!!!!!!!!!!!!!!!!"
-  );
   const toDoTasks = useSelector(selectNumberToDoTasks);
   const donePomodoro = useSelector(selectNumberDonePomodoro);
   const timeToAdd = useSelector(selectPomTimeToAdd);
-  // check later with normal function => sprawdzić czy spowoduje ponowne wyrenderowanie
-  //komponentu z nornamlną funkcją
   const { finishTime } = useFinishTime(timeToAdd);
 
   return (
