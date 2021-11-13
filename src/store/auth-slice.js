@@ -25,9 +25,6 @@ export const { logout, singUp } = configSlice.actions;
 //selectors
 export const selectCurrentUser = (state) => state.auth.currentUser;
 
-// thunks
-
-// reducers export
 export const authActions = authSlice.actions;
 export default authSlice;
 

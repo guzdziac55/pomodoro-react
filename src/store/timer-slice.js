@@ -53,8 +53,6 @@ export const {
   consumeTime,
   resetConsumedTime,
 } = timerSlice.actions;
-// REMEMBER TO EXPORT ACTIONS WITH
-//  export const {action1, action2,action3} = {...tasklist.actions}
 
 // selectors
 export const selectActiveStage = (state) => state.timer.stage;
@@ -67,10 +65,6 @@ export const selectCurrentTime = createSelector(
   (state) => state.config.stageOptions,
   (stage, options) => options[stage]
 );
-
-// thunks
-
-//reducers
 
 // logic with props from component
 export const getIsActiveOption = () =>

@@ -2,18 +2,49 @@ import React from "react";
 import TimerButtonOption from "./TimerButtonOption";
 import classes from "./TimerTab.module.css";
 
-//  props ? żeby przekazać z głównego komponent 'Timer' logike aplikacji
+import { selectIsTicking } from "../../store/timer-slice";
+import { useDispatch, useSelector } from "react-redux";
+import { changeActiveStage } from "../../store/timer-slice";
+import { changeTheme } from "../../store/ui-slice";
 
 const TimerTab = () => {
+  console.log("main timer Tab");
+
+  const isTicking = useSelector(selectIsTicking);
+  const dispatch = useDispatch();
+
+  const handleClickChangeOption = (timeOption, theme) => {
+    if (isTicking) {
+      const alert = window.confirm("pomodoro in progress wonna change ? ");
+      if (!alert) {
+        return;
+      }
+    }
+    dispatch(changeActiveStage(timeOption));
+    dispatch(changeTheme(theme));
+  };
+
   return (
-    <div className={classes["timer-tab"]}>
-      <TimerButtonOption theme={"pomodoroTheme"} timeOption={0}>
+    <div className={classes.timerTab}>
+      <TimerButtonOption
+        theme={"pomodoroTheme"}
+        timeOption={0}
+        onChangeTabOption={handleClickChangeOption}
+      >
         Pomodoro
       </TimerButtonOption>
-      <TimerButtonOption theme={"shortBreakTheme"} timeOption={1}>
+      <TimerButtonOption
+        theme={"shortBreakTheme"}
+        timeOption={1}
+        onChangeTabOption={handleClickChangeOption}
+      >
         Short Break
       </TimerButtonOption>
-      <TimerButtonOption theme={"longBreakTheme"} timeOption={2}>
+      <TimerButtonOption
+        theme={"longBreakTheme"}
+        timeOption={2}
+        onChangeTabOption={handleClickChangeOption}
+      >
         Long Break
       </TimerButtonOption>
     </div>
@@ -21,9 +52,3 @@ const TimerTab = () => {
 };
 
 export default TimerTab;
-
-// config slice można zmienić na obiekt
-// {
-//   pomodoro: 10        index obiektu ( time option)
-//   shortBreak: 20
-// }
