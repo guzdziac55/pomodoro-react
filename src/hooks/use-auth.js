@@ -46,7 +46,7 @@ const useAuthLogout = () => {
       setLoading(true);
       await auth.signOut();
     } catch (error) {
-      setError("Failed to create ACC");
+      setError("Failed to Logout User");
     }
     setLoading(false);
   };

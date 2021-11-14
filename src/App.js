@@ -96,7 +96,7 @@ function App() {
   return (
     <Fragment>
       {/* // boilerPlate with handleSettings hide go into HeaderInside It !  */}
-      {settingsShow && <HookForm onClose={handleSettingsHide} />}
+      {settingsShow && <HookForm onCloseSettings={handleSettingsHide} />}
 
       <main className={`${classes["main-app"]} ${classes[`${currentTheme}`]}`}>
         <Switch>

@@ -10,16 +10,17 @@ import {
   MdOutlineLogout,
 } from "react-icons/md";
 import { useAuthLogout } from "../../hooks/use-auth";
+import { selectCurrentUser } from "../../store/auth-slice";
 
 const HeaderMenuTab = (props) => {
-  // do poprawki z filmiku
   const isLogged = useSelector((state) => state.auth.isLogged);
+  const isCurrentUser = useSelector(selectCurrentUser);
+  // change is logged to is CurrentUser ? true false
 
   const { isLoading, error, authLogout } = useAuthLogout();
 
   const handleLogout = () => {
     authLogout();
-    // history route here to main acc or loading website With button test app
   };
 
   return (
@@ -35,7 +36,6 @@ const HeaderMenuTab = (props) => {
       {!isLogged && (
         <button onClick={props.onShow} className={classes.button}>
           <MdSettings className={classes.icon} />
-
           <span>Settings</span>
         </button>
       )}
@@ -71,11 +71,3 @@ const HeaderMenuTab = (props) => {
 };
 
 export default HeaderMenuTab;
-
-// <HeaderButtonMenu icon={<IconLogin />}>Report</HeaderButtonMenu>
-// <HeaderButtonMenu onShow={props.onShow} icon={<IconLogin />}>
-//   Settings
-// </HeaderButtonMenu>
-// <HeaderButtonMenu link="/login" icon={<IconLogin />}>
-//   Login
-// </HeaderButtonMenu>

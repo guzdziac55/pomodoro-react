@@ -14,6 +14,7 @@ import {
 import { taskListActions } from "../../../store/taskList-slice";
 import OutsideClickHandler from "react-outside-click-handler";
 
+//FORM WITHOUT EXTERNALL REACT HOOK FORM
 const TaskForm = React.forwardRef((props, ref) => {
   const dispatch = useDispatch();
 
@@ -82,7 +83,7 @@ const TaskForm = React.forwardRef((props, ref) => {
           estPomodoro: estPomodoroNumber,
         })
       );
-      props.toggleForm();
+      props.onToggleForm();
     } else {
       dispatch(
         taskListActions.addTask({
@@ -99,7 +100,7 @@ const TaskForm = React.forwardRef((props, ref) => {
   };
 
   return (
-    <OutsideClickHandler onOutsideClick={props.toggleForm}>
+    <OutsideClickHandler onOutsideClick={props.onToggleForm}>
       <Card class={classes.form}>
         <form ref={ref} onSubmit={handleAddEditTask}>
           <div className={classes.formMain}>
@@ -162,7 +163,7 @@ const TaskForm = React.forwardRef((props, ref) => {
             <div className={classes.menuRight}>
               <button
                 className={classes.btnCancel}
-                onClick={props.toggleForm}
+                onClick={props.onToggleForm}
                 type="button"
               >
                 Cancel

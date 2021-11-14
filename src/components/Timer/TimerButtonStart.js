@@ -50,7 +50,7 @@ const TimerButtonStart = () => {
         onClick={onClickSkipTimer}
         className={`${classes.button} ${showSkipButton}`}
       >
-        <MdSkipNext className={classes.icon}>START</MdSkipNext>
+        <MdSkipNext className={classes.icon}></MdSkipNext>
       </button>
     </div>
   );

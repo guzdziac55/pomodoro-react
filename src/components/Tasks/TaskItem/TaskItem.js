@@ -1,32 +1,23 @@
 import React, { useState, useCallback, useEffect, useRef } from "react";
 import classes from "../TaskItem/TaskItem.module.css";
-// import IconPlus from "../../UI/icons/IconPlus";
-import {
-  MdDoneOutline,
-  // MdModeEditOutline,
-  MdEditNote,
-  // MdOutlineDeleteSweep,
-  // MdOutlineAutoDelete,
-} from "react-icons/md";
+import { MdDoneOutline, MdEditNote } from "react-icons/md";
+
 import TaskForm from "./TaskForm";
 import { useSelector, useDispatch } from "react-redux";
 import { taskListActions } from "../../../store/taskList-slice";
 
 const TaskItem = (props) => {
-  console.log("task item");
   const dispatch = useDispatch();
-  const formScrollRef = useRef(); // to też trzeba dać do hooka ze Scroolsmooth
+  const formScrollRef = useRef();
 
   // problem w każdym tego używam
   const { id, title, actPomodoro, estPomodoro, isDone } = props.task;
   const activeId = useSelector((state) => state.tasksList.activeTask);
 
+  // to jest w każdym elemencie listy ! => może powinno być jedno na całą listę
   const [showEditForm, setShowEditForm] = useState(false);
-  //toggle hook ?
 
   useEffect(() => {
-    // change to reusable hook ==>> > > >
-    // (2 args targetRef + StateHandleTrue )
     if (showEditForm)
       formScrollRef.current.scrollIntoView({
         behavior: "smooth",
@@ -92,30 +83,3 @@ const TaskItem = (props) => {
 };
 
 export default React.memo(TaskItem);
-
-// const showIds = () => {
-//   console.log(props.id);
-// };
-
-// CTX.EDITtASKITEM <== DOKONCZYC
-// put values into
-
-// showIds();
-
-//  TO JEST TASK ITEM
-// TYCH TASK ITEMÓW JEST TYLE ILE TASK ITEMOW Z STATE
-// KAZDY Z NICH JEST INNYM SAMODZIELNYM KOMPONENTEM
-// KAZDY MA WEW TE FUNKCJE CO TUTAJ
-
-// E TARGET !== CURRENTtARGET
-// ZROB SETSHOEDIT(FALSE)
-
-// editingData={{
-//   // addItem ctx handler dać tu albo przekazać z handlea
-//   // zmienszy to długość łańcucha prosppsow
-//   id: props.id,
-//   taskTitle: props.title,
-//   taskDone: props.taskDone
-
-//   pomodoro: props.pomodoro,
-// }}

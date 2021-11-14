@@ -19,12 +19,14 @@ const PomodoroApp = () => {
       <WorkingOn />
       <Tasks />
       {!isEmptyTasks && <FinishCalculate />}
-      {/* put notification here */}
     </div>
   );
 };
 
 export default PomodoroApp;
+{
+  /* put notification here */
+}
 
 // {/* {notification && (
 //   <Notifications

@@ -10,7 +10,6 @@ const Header = (props) => {
         {/* add icon here logo APP */}
         <h1>Pomodoro</h1>
       </Link>
-
       <HeaderMenuTab onShow={props.onShow} />
     </header>
   );

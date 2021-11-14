@@ -1,16 +1,12 @@
 import React from "react";
 import classes from "./TasksButtonAdd.module.css";
-import { useDispatch } from "react-redux";
-import { uiActions } from "../../store/ui-slice";
+import { MdOutlineAddCircleOutline } from "react-icons/md";
 
-// reusable button
-const TasksButtonAdd = (props) => {
-  const { toggleForm } = props;
-
+const TasksButtonAdd = ({ onToggleForm, children }) => {
   return (
-    <button onClick={toggleForm} className={classes.button}>
-      <span className={classes.icon}>{props.icon}</span>
-      <span>{props.title}</span>
+    <button onClick={onToggleForm} className={classes.addButton}>
+      <MdOutlineAddCircleOutline className={classes.icon} />
+      <span>{children}</span>
     </button>
   );
 };

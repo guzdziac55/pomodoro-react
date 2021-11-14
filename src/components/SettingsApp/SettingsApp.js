@@ -13,7 +13,7 @@ import {
   InputWrapper,
 } from "./Components";
 
-const SettingsApp = (props) => {
+const SettingsApp = (props, onCloseSettings) => {
   const dispatch = useDispatch();
 
   const defaultConfigState = useSelector((state) => state.config);
@@ -22,7 +22,7 @@ const SettingsApp = (props) => {
   });
 
   const closeSettingsWindow = () => {
-    props.onClose();
+    onCloseSettings();
   };
 
   // form on submit
@@ -38,7 +38,7 @@ const SettingsApp = (props) => {
   };
 
   return (
-    <Modal onClose={props.onClose}>
+    <Modal onClose={onCloseSettings}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={classes.formMain}>
           <InputWrapper title="Time Options">

@@ -1,23 +1,24 @@
-.button {
+.addButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   width: 100%;
-  height: 60px;
+  padding: 20px;
+  gap: 5px;
   background-color: var(--main-color);
   border-radius: 8px;
-  display: flex;
   color: var(--font-main);
   font-size: 1.2rem;
   font-weight: 700;
-  -moz-box-pack: center;
-  justify-content: center;
-  -moz-box-align: center;
-  align-items: center;
   cursor: pointer;
   opacity: 0.8;
   margin-top: 12px;
   border: 2px dashed rgba(255, 255, 255, 0.74);
 }
 
-.button:hover {
+.addButton:hover {
   cursor: pointer;
   background-color: var(--main-dark);
 }
@@ -25,6 +26,5 @@
 .icon {
   width: 2rem;
   height: 2rem;
-  color: var(--font-main);
-  margin-right: 0.5rem;
+  text-align: center;
 }
