@@ -1,20 +1,21 @@
 import React, { useState, useCallback, useEffect, useRef } from "react";
+import TaskForm from "./TaskForm";
 import classes from "../TaskItem/TaskItem.module.css";
 import { MdDoneOutline, MdEditNote } from "react-icons/md";
-
-import TaskForm from "./TaskForm";
 import { useSelector, useDispatch } from "react-redux";
-import { taskListActions } from "../../../store/taskList-slice";
-
-const TaskItem = (props) => {
+import {
+  selectActiveTask,
+  setActiveTask,
+  toggleDoneTask,
+} from "../../../store/taskList-slice";
+const TaskItem = ({
+  task,
+  task: { id, title, actPomodoro, estPomodoro, isDone },
+}) => {
   const dispatch = useDispatch();
   const formScrollRef = useRef();
 
-  // problem w każdym tego używam
-  const { id, title, actPomodoro, estPomodoro, isDone } = props.task;
-  const activeId = useSelector((state) => state.tasksList.activeTask);
-
-  // to jest w każdym elemencie listy ! => może powinno być jedno na całą listę
+  const activeId = useSelector(selectActiveTask);
   const [showEditForm, setShowEditForm] = useState(false);
 
   useEffect(() => {
@@ -25,20 +26,21 @@ const TaskItem = (props) => {
       });
   }, [showEditForm]);
 
+  //check that callback is usefull here ?
   const toggleEditFormHandler = useCallback(() => {
     setShowEditForm((prevState) => setShowEditForm(!prevState));
   });
 
-  const setActiveTask = useCallback((e) => {
+  const onClickSetActiveTask = useCallback((e) => {
     if (e.target === e.currentTarget || e.target.parentNode === e.currentTarget)
-      dispatch(taskListActions.setActiveTask(id));
+      dispatch(setActiveTask(id));
   });
 
-  const handleToggleDoneTask = useCallback(() => {
-    dispatch(taskListActions.toggleDoneTask(id));
+  const onClickToggleDoneTask = useCallback(() => {
+    dispatch(toggleDoneTask(id));
   });
 
-  // is Li item Active ?
+  // styles done / active
   const itemIsActiveClass = id === activeId ? classes.active : "";
   const titleDoneClass = isDone ? classes.done : "";
   const iconDoneClass = isDone ? classes.done : "";
@@ -49,7 +51,8 @@ const TaskItem = (props) => {
       {showEditForm && (
         <TaskForm
           ref={formScrollRef}
-          toggleForm={toggleEditFormHandler}
+          onToggleForm={toggleEditFormHandler}
+          // sprawdzić wsadzenie dużego popa task
           taskData={{ id, title, estPomodoro }}
           editMode={true}
         ></TaskForm>
@@ -58,9 +61,9 @@ const TaskItem = (props) => {
       {!showEditForm && (
         <li
           className={`${classes.task} ${itemIsActiveClass}`}
-          onClick={setActiveTask}
+          onClick={onClickSetActiveTask}
         >
-          <span onClick={handleToggleDoneTask}>
+          <span onClick={onClickToggleDoneTask}>
             <MdDoneOutline className={`${classes.icon} ${iconDoneClass}`} />
           </span>
 
