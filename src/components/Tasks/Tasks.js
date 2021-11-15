@@ -14,12 +14,14 @@ const Tasks = () => {
 
   // check this
   useEffect(() => {
-    if (showForm)
-      formScrollRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "end",
-        inline: "nearest",
-      });
+    if (showForm) {
+      console.log("do poprawy");
+      // formScrollRef.current.scrollIntoView({
+      //   behavior: "smooth",
+      //   // block: "end",
+      //   // inline: "nearest",
+      // });
+    }
   }, [showForm]);
 
   return (

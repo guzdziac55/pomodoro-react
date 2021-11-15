@@ -9,8 +9,8 @@ import {
   toggleDoneTask,
 } from "../../../store/taskList-slice";
 const TaskItem = ({
-  task,
-  task: { id, title, actPomodoro, estPomodoro, isDone },
+  taskData,
+  taskData: { id, title, actPomodoro, estPomodoro, isDone },
 }) => {
   const dispatch = useDispatch();
   const formScrollRef = useRef();
@@ -18,12 +18,15 @@ const TaskItem = ({
   const activeId = useSelector(selectActiveTask);
   const [showEditForm, setShowEditForm] = useState(false);
 
+  // custom hook ?
   useEffect(() => {
-    if (showEditForm)
-      formScrollRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "end",
-      });
+    if (showEditForm) {
+      console.log("do poprawy");
+      // formScrollRef.current.scrollIntoView({
+      //   behavior: "smooth",
+      //   // block: "end",
+    }
+    // });
   }, [showEditForm]);
 
   //check that callback is usefull here ?
@@ -52,8 +55,7 @@ const TaskItem = ({
         <TaskForm
           ref={formScrollRef}
           onToggleForm={toggleEditFormHandler}
-          // sprawdzić wsadzenie dużego popa task
-          taskData={{ id, title, estPomodoro }}
+          taskData={taskData}
           editMode={true}
         ></TaskForm>
       )}

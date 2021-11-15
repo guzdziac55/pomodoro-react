@@ -28,6 +28,8 @@ export const selectCurrentUser = (state) => state.auth.currentUser;
 export const authActions = authSlice.actions;
 export default authSlice;
 
+//   for token :
+
 // IMPORTTANT IMPLEMENT WHEN U GET NEW TOKEN DATA
 // useEffect(() => {
 //   // IDTIMEOUT = SETTIMEOUT(LOGOUTHANDLER , DATATOKEN.DURATION )   // SET NEW LOGAUNT BECOUSE WE GET NEW TOKEN

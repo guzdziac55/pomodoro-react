@@ -98,7 +98,6 @@ const taskListSlice = createSlice({
 });
 
 // actions
-
 export const {
   replaceTaskList,
   addTask,
@@ -113,7 +112,6 @@ export const {
 } = taskListSlice.actions;
 
 // selectors
-
 export const selectTaskList = (state) => state.tasksList.tasksList;
 export const selectIsChanged = (state) => state.tasksList.changed;
 export const selectActiveTask = (state) => state.tasksList.activeTask;

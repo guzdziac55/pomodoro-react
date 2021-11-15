@@ -20,6 +20,8 @@ const configSlice = createSlice({
 //actions
 export const { setConfig } = configSlice.actions;
 
+//selectors
+export const selectConfig = (state) => state.config;
 export const selectLongBrakInterval = (state) => state.config.longBreakInterval;
 export const selectStageOptions = (state) => state.config.stageOptions;
 
@@ -28,21 +30,5 @@ export const selectPomodoroOptionTime = createSelector(
   (options) => options[0]
 );
 
-// create selector ponieważ jest to tablica ?
-// export const selectStageOptions = createSelector(
-//   (state) => state.config.stageOptions,
-//   (options) => options
-// );
-
-// export const selectStageOptions = createSelector(
-//   (state) => state.config.stageOptions,
-//   (state) => state.timer.stage,
-//   (options, stage) => options[stage]
-// );
-
-//thunks
-// ..
-// toDelete
 export const configActions = configSlice.actions;
-// slice change into export reducers !
 export default configSlice;

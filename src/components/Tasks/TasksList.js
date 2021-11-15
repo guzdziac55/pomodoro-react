@@ -10,7 +10,7 @@ const TasksList = () => {
   const tasksList = tasks.map((task) => (
     <TaskItem // taskItem & form inside
       key={task.id}
-      task={{
+      taskData={{
         id: task.id,
         title: task.title,
         actPomodoro: task.actPomodoro,

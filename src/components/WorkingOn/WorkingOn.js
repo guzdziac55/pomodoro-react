@@ -2,10 +2,11 @@ import React from "react";
 import useActiveTask from "../../hooks/use-activeTask";
 import classes from "./WorkingOn.module.css";
 import { useSelector } from "react-redux";
+import { selectPomodoroCount } from "../../store/timer-slice";
 
 const WorkingOn = () => {
   const { activeTask } = useActiveTask();
-  const pomodoroCnt = useSelector((state) => state.timer.pomodoroCnt);
+  const pomodoroCnt = useSelector(selectPomodoroCount);
 
   return (
     <div className={classes.activeTask}>

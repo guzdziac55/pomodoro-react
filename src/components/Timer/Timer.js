@@ -10,12 +10,8 @@ import TimerButtonStart from "./TimerButtonStart";
 const Timer = () => {
   return (
     <Card class={classes.timer}>
-      {/* is ticking, activestage */}
       <TimerTab></TimerTab>
-      {/* use timer = > currentTime, isTicking,consumedSecound, LongBreakInterval
-      ActiveStage, currentOptuonStage */}
       <TimerCountdown />
-      {/* currentTime, isTicking, longBreakInterval, activeStage */}
       <TimerButtonStart />
     </Card>
   );

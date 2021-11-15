@@ -20,6 +20,10 @@ import Profile from "./pages/Profile";
 import SignUpPage from "./pages/SignUp";
 import ResetPassword from "./pages/ResetPassword";
 
+import { selectTaskList, selectIsChanged } from "./store/taskList-slice";
+import { selectCurrentUser } from "./store/auth-slice";
+import { selectConfig } from "./store/config-slice";
+import { selectActiveStage } from "./store/timer-slice";
 // firebase
 import { auth } from "./firebase";
 import { authActions } from "./store/auth-slice";
@@ -28,25 +32,23 @@ let isInitial = true;
 
 function App() {
   const dispatch = useDispatch();
-  const taskList = useSelector((state) => state.tasksList.tasksList);
-  const isChanged = useSelector((state) => state.tasksList.changed);
+
+  const taskList = useSelector(selectTaskList);
+  const isChanged = useSelector(selectIsChanged);
+  // check that currentUser works like loggedIn ?
   const isLogged = useSelector((state) => state.auth.isLogged);
-  const configSettings = useSelector((state) => state.config);
+  const configSettings = useSelector(selectConfig);
+  const activeStage = useSelector(selectActiveStage);
+  const currentUser = useSelector(selectCurrentUser);
 
-  const stage = useSelector((state) => state.timer.stage);
   const themeClasses = ["pomodoroTheme", "shortBreakTheme", "longBreakTheme"];
-
   const [settingsShow, setSettingsShow] = useState(false);
-
-  // if TaskList change
-  const currentUser = useSelector((state) => state.auth.currentUser);
 
   useEffect(() => {
     if (isInitial) {
       isInitial = false;
       return;
     }
-    // jeśli jakaś zmiana i zalogowany user
     if (isChanged && currentUser) {
       const userId = currentUser.uid;
       dispatch(sendFirebaseTaskList(taskList, userId)); // array
@@ -92,7 +94,9 @@ function App() {
     setSettingsShow(false);
   };
 
-  const currentTheme = themeClasses[stage];
+  // getCurrentTheme
+  const currentTheme = themeClasses[activeStage];
+
   return (
     <Fragment>
       {/* // boilerPlate with handleSettings hide go into HeaderInside It !  */}

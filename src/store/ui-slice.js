@@ -31,15 +31,10 @@ const uiSlice = createSlice({
 export const { toogleForm, showNotification, changeTheme } = uiSlice.actions;
 
 //selectors
-
 export const selectShowForm = (state) => state.ui.selectShowForm;
 export const selectNotification = (state) => state.ui.notification;
 export const selectTheme = (state) => state.ui.theme;
 export const selectIsLoading = (state) => state.ui.isLoading;
-
-// thunks
-
-// reducers
 
 export default uiSlice;
 export const uiActions = uiSlice.actions;

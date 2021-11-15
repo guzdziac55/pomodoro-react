@@ -14,13 +14,13 @@ import {
 import { taskListActions } from "../../../store/taskList-slice";
 import OutsideClickHandler from "react-outside-click-handler";
 
-//FORM WITHOUT EXTERNALL REACT HOOK FORM
-const TaskForm = React.forwardRef((props, ref) => {
+const TaskForm = React.forwardRef((props) => {
   const dispatch = useDispatch();
 
-  // set initial Inputs / Editmode
   const { editMode } = props;
   const { id, title, estPomodoro } = { ...props.taskData };
+
+  // set initial edit form inputs
   const initialTitle = editMode ? title : "";
   const initialAmount = editMode ? estPomodoro : 1;
 
@@ -102,7 +102,7 @@ const TaskForm = React.forwardRef((props, ref) => {
   return (
     <OutsideClickHandler onOutsideClick={props.onToggleForm}>
       <Card class={classes.form}>
-        <form ref={ref} onSubmit={handleAddEditTask}>
+        <form ref={props.ref} onSubmit={handleAddEditTask}>
           <div className={classes.formMain}>
             <input
               id="title"
@@ -181,27 +181,3 @@ const TaskForm = React.forwardRef((props, ref) => {
 });
 
 export default TaskForm;
-
-{
-  /*  task amountValid jeśli !valid to dodaj style Error
-            //  można zrobić show notification  */
-}
-
-{
-  /* old */
-}
-{
-  /* <Input
-              valid={taskAmountValid} // wynik tej funkcji
-              label={"Est pomodoros"}
-              input={{
-                type: "number",
-                name: "numbers",
-                value: taskAmount,
-                onChange: handleInputChange,
-                min: "1",
-                max: "5",
-                step: "1",
-              }}
-            /> */
-}
