@@ -19,7 +19,7 @@ const ResetPassword = () => {
   };
 
   return (
-    <>
+    <div className={classes.container}>
       <Link to="/">
         <span className={classes.headerButton}>
           <MdDone className={classes.headerIcon} /> Pomodoro
@@ -60,7 +60,7 @@ const ResetPassword = () => {
           <span className={classes.createAccount}>Login</span>
         </Link>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -5,11 +5,11 @@ import Input from "../UI/Input";
 import { useState } from "react";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router";
+// import { useHistory } from "react-router";
 
 const ProfileForm = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
+  // const history = useHistory();
 
   const userToken = useSelector((state) => state.auth.token);
   const passwordRef = useRef();
@@ -36,7 +36,7 @@ const ProfileForm = () => {
       }
 
       const data = response.json();
-      history.replace("/");
+      // history.replace("/");
     } catch (err) {
       alert(err);
     }

@@ -24,7 +24,7 @@ const SignUp = () => {
   };
 
   return (
-    <>
+    <div className={classes.container}>
       <Link to="/">
         <span className={classes.headerButton}>
           <MdDone className={classes.headerIcon} /> Pomodoro
@@ -79,7 +79,7 @@ const SignUp = () => {
           <span className={classes.createAccount}>Create account</span>
         </Link>
       </div>
-    </>
+    </div>
   );
 };
 

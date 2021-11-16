@@ -1,9 +1,10 @@
 import React from "react";
-import Header from "./components/Layout/Header";
 import classes from "./App.module.css";
 import HookForm from "./components/SettingsApp/SettingsApp";
 import { Fragment, useState, useEffect } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import Header from "./components/Layout/Header";
+
 import {
   fetchFirebaseUserData,
   sendFirebaseTaskList,
@@ -14,11 +15,11 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 
 // Pages
-import PomodoroApp from "./pages/PomodoroApp";
-import Login from "./pages/Login";
-import Profile from "./pages/Profile";
-import SignUpPage from "./pages/SignUp";
-import ResetPassword from "./pages/ResetPassword";
+// import PomodoroApp from "./pages/PomodoroApp";
+// import Login from "./pages/Login";
+// import Profile from "./pages/Profile";
+// import SignUpPage from "./pages/SignUp";
+// import ResetPassword from "./pages/ResetPassword";
 
 import { selectTaskList, selectIsChanged } from "./store/taskList-slice";
 import { selectCurrentUser } from "./store/auth-slice";
@@ -27,6 +28,7 @@ import { selectActiveStage } from "./store/timer-slice";
 // firebase
 import { auth } from "./firebase";
 import { authActions } from "./store/auth-slice";
+import PomodoroApp from "./pages/PomodoroApp";
 
 let isInitial = true;
 
@@ -99,59 +101,58 @@ function App() {
 
   return (
     <Fragment>
-      {/* // boilerPlate with handleSettings hide go into HeaderInside It !  */}
       {settingsShow && <HookForm onCloseSettings={handleSettingsHide} />}
-
-      <main className={`${classes["main-app"]} ${classes[`${currentTheme}`]}`}>
-        <Switch>
-          <Route path="/" exact>
-            <Header onShow={handleSettingsShow}></Header>
-            <PomodoroApp />
-          </Route>
-
-          <Route path="/app">
-            <Header onShow={handleSettingsShow}></Header>
-            <PomodoroApp />
-          </Route>
-
-          {!isLogged && (
-            <Route path="/login">
-              <Header onShow={handleSettingsShow}></Header>
-              <Login />
-            </Route>
-          )}
-
-          {!isLogged && (
-            <Route path="/signup">
-              <Header onShow={handleSettingsShow}></Header>
-              <SignUpPage></SignUpPage>
-            </Route>
-          )}
-          {!isLogged && (
-            <Route path="/reset-password">
-              <Header onShow={handleSettingsShow}></Header>
-              <ResetPassword></ResetPassword>
-            </Route>
-          )}
-
-          {!isLogged && (
-            <Route path="/profile">
-              {/*  is useSelector Is logged in 
-              //  render Provile */}
-              {/* in !loggedin redirect do /Auth / opcja rejestracji / logowania */}
-              <Header onShow={handleSettingsShow}></Header>
-              <Profile />
-            </Route>
-          )}
-          {/* jesli path inna niż wszystko to redirect na główną  */}
-
-          <Route path="*">
-            <Redirect to="/" />
-          </Route>
-        </Switch>
+      <main className={`${classes.mainApp} ${classes[`${currentTheme}`]}`}>
+        <Header onShow={handleSettingsShow}></Header>
+        <Outlet />
       </main>
     </Fragment>
   );
 }
 
 export default App;
+
+// <Route path="/" exact>
+// <Header onShow={handleSettingsShow}></Header>
+// <PomodoroApp />
+// </Route>
+
+// <Route path="/app">
+// <Header onShow={handleSettingsShow}></Header>
+// <PomodoroApp />
+// </Route>
+
+// {!isLogged && (
+// <Route path="/login">
+//   <Header onShow={handleSettingsShow}></Header>
+//   <Login />
+// </Route>
+// )}
+
+// {!isLogged && (
+// <Route path="/signup">
+//   <Header onShow={handleSettingsShow}></Header>
+//   <SignUpPage></SignUpPage>
+// </Route>
+// )}
+// {!isLogged && (
+// <Route path="/reset-password">
+//   <Header onShow={handleSettingsShow}></Header>
+//   <ResetPassword></ResetPassword>
+// </Route>
+// )}
+
+// {!isLogged && (
+// <Route path="/profile">
+//   {/*  is useSelector Is logged in
+//   //  render Provile */}
+//   {/* in !loggedin redirect do /Auth / opcja rejestracji / logowania */}
+//   <Header onShow={handleSettingsShow}></Header>
+//   <Profile />
+// </Route>
+// )}
+// {/* jesli path inna niż wszystko to redirect na główną  */}
+
+// <Route path="*">
+// <Redirect to="/" />
+// </Route>

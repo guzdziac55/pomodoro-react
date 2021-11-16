@@ -23,7 +23,7 @@ const Login = () => {
   };
 
   return (
-    <>
+    <div className={classes.container}>
       <Link to="/">
         <span className={classes.headerButton}>
           <MdDone className={classes.headerIcon} /> Pomodoro
@@ -80,12 +80,9 @@ const Login = () => {
           <span className={classes.createAccount}>Create account</span>
         </Link>
       </div>
-    </>
+    </div>
   );
 };
-
-// forgot password ==> link to ==> Route wwww./reset-password
-// create new Account ==> link to ==> Route wwww./signup
 
 export default Login;
 

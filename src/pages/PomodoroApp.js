@@ -5,6 +5,7 @@ import Tasks from "../components/Tasks/Tasks";
 import FinishCalculate from "../components/FinishCalculate/FinishCalculate";
 import { useSelector } from "react-redux";
 import classes from "./PomodoroApp.module.css";
+import { Outlet } from "react-router";
 
 const PomodoroApp = () => {
   // const notification = useSelector((state) => state.ui.notification);
@@ -14,12 +15,16 @@ const PomodoroApp = () => {
     taskList.length === 0 || taskList === false ? true : false;
 
   return (
-    <div className={classes.pomodoroApp}>
-      <Timer></Timer>
-      <WorkingOn />
-      <Tasks />
-      {!isEmptyTasks && <FinishCalculate />}
-    </div>
+    <>
+      <div className={classes.pomodoroApp}>
+        <Timer></Timer>
+        <WorkingOn />
+        <Tasks />
+        {!isEmptyTasks && <FinishCalculate />}
+      </div>
+      <Outlet />
+      {/*  to i tak jest wew main css */}
+    </>
   );
 };
 
