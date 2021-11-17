@@ -4,6 +4,7 @@ import HookForm from "./components/SettingsApp/SettingsApp";
 import { Fragment, useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import Header from "./components/Layout/Header";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import {
   fetchFirebaseUserData,
@@ -29,6 +30,9 @@ import { selectActiveStage } from "./store/timer-slice";
 import { auth } from "./firebase";
 import { authActions } from "./store/auth-slice";
 import PomodoroApp from "./pages/PomodoroApp";
+import Login from "./components/auth/login";
+import Profile from "./pages/Profile";
+import AppInfo from "./components/AppInfoSection/AppInfo";
 
 let isInitial = true;
 
@@ -106,6 +110,11 @@ function App() {
         <Header onShow={handleSettingsShow}></Header>
         <Outlet />
       </main>
+
+      <Routes>
+        {/* info here !  */}
+        <Route path="/" element={<AppInfo />} />
+      </Routes>
     </Fragment>
   );
 }

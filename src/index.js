@@ -14,6 +14,7 @@ import ResetPassword from "./components/auth/resetPassword";
 import SignUp from "./components/auth/signUp";
 import Header from "./components/Layout/Header";
 import AppPage from "./pages/AppPage";
+import AppInfo from "./components/AppInfoSection/AppInfo";
 
 let persistor = persistStore(store);
 
@@ -23,20 +24,15 @@ ReactDOM.render(
       <PersistGate loading={null} persistor={persistor}>
         <Routes>
           <Route path="/" element={<App />}>
-            {/* add pomodoroPage */}
+            {/* nested */}
             <Route path="/" element={<PomodoroApp />} />
-
-            {/* stay on solo pomodoroApp */}
             <Route path="app" element={<PomodoroApp />} />
             <Route path="profile" element={<Profile />} />
-
-            {/* bez nav header te 3 poniżej */}
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<SignUp />} />
             <Route path="reset-password" element={<ResetPassword />} />
           </Route>
 
-          {/* /////////////////////// empty route */}
           <Route
             path="*"
             element={
