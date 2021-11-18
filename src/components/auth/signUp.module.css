@@ -7,9 +7,8 @@
 
 .header {
   text-align: center;
-  margin-top: 2rem;
-
-  font-size: 18px;
+  margin-top: 4rem;
+  font-size: 24px;
   text-decoration: none;
   color: #ffffff;
 }
@@ -17,7 +16,7 @@
 .headerButton {
   display: flex;
   text-align: center;
-  font-size: 48px;
+  font-size: 32px;
   font-weight: 800;
   align-items: center;
   justify-content: center;
@@ -36,15 +35,17 @@
   text-align: center;
   margin: auto;
   margin-top: 1rem;
-  max-width: 380px;
+  min-width: 380px;
   padding: 10px 10px;
   background-color: var(--main-light);
   height: 100%;
 }
 
-.googleLogin {
-  background-color: blanchedalmond;
-  color: #000000;
+.btnGoogleLogin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
 }
 
 .break {
@@ -91,6 +92,7 @@
   border-radius: 5px;
   margin: 1rem 0 0.5rem;
 }
+
 .form button:hover {
   background-color: var(--font-black);
 }
@@ -117,14 +119,13 @@
   background-color: rgb(131, 131, 131);
 }
 
-.form button[type="button"] {
+/* .form button[type="button"] {
   background-color: none;
   background: none;
-}
+} */
 
 .form-main {
   padding: 10px 20px 0px;
-  /* align-items: center; */
 }
 .form-menu {
   padding: 14px 20px;

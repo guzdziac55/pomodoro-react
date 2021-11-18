@@ -44,6 +44,15 @@ const HeaderMenuTab = (props) => {
       )}
 
       {!isLogged && (
+        <Link to="/signup">
+          <button className={classes.button}>
+            <MdPermIdentity className={classes.icon} />
+            <span>Sign up</span>
+          </button>
+        </Link>
+      )}
+
+      {!isLogged && (
         <Link to="/login">
           <button className={classes.button}>
             <MdLogin className={classes.icon} />

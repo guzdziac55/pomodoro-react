@@ -11,10 +11,8 @@ import {
   selectConsumedTime,
 } from "../store/timer-slice";
 
-import {
-  selectLongBrakInterval,
-  selectPomodoroOptionTime,
-} from "../store/config-slice";
+import { selectCurrentTime } from "../store/timer-slice";
+import { selectLongBrakInterval } from "../store/config-slice";
 
 export const useTimer = () => {
   const dispatch = useDispatch();
@@ -23,7 +21,7 @@ export const useTimer = () => {
 
   const activeStage = useSelector(selectActiveStage);
   const longBreakInterval = useSelector(selectLongBrakInterval);
-  const pomodoroTimeOption = useSelector(selectPomodoroOptionTime);
+  const currentTimeOption = useSelector(selectCurrentTime);
 
   const timeIsEndAction = () => {
     dispatch(updateTask(activeStage));
@@ -33,19 +31,19 @@ export const useTimer = () => {
   // consumedTimeCalculations
   useEffect(() => {
     let intervalId;
-    if (isTicking && consumedSeconds <= pomodoroTimeOption) {
+    if (isTicking && consumedSeconds <= currentTimeOption) {
       intervalId = setInterval(() => {
         dispatch(consumeTime());
       }, 1000);
-    } else if (consumedSeconds > pomodoroTimeOption) {
+    } else if (consumedSeconds > currentTimeOption) {
       timeIsEndAction();
     }
     return () => clearInterval(intervalId); // to też się wywoła po setInterval
-  }, [isTicking, consumedSeconds, pomodoroTimeOption]);
+  }, [isTicking, consumedSeconds, currentTimeOption]);
 
   //
   const calculateCounter = () => {
-    return pomodoroTimeOption * 60 - consumedSeconds;
+    return currentTimeOption * 60 - consumedSeconds;
   };
 
   const counter = calculateCounter();

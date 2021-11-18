@@ -3,7 +3,7 @@ import { createSelector } from "reselect";
 const configSlice = createSlice({
   name: "config",
   initialState: {
-    stageOptions: [10, 2, 3],
+    stageOptions: [25, 5, 20],
     autoBreak: false, // switch [ checkboox]
     autoPomodoros: true, // switch
     longBreakInterval: 4,

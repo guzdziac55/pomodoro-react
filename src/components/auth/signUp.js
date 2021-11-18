@@ -5,6 +5,8 @@ import classes from "./signUp.module.css";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
 import { MdDone } from "react-icons/md";
+import { FcGoogle } from "react-icons/fc";
+
 import { useSelector } from "react-redux";
 import { useAuthCreateAcc } from "../../hooks/use-auth";
 
@@ -32,11 +34,19 @@ const SignUp = () => {
       </Link>
 
       <h1 className={classes.header}>Create Account</h1>
-      <p>error is: {error}</p>
+      {/* <p>error is: {error}</p> */}
+      {/* handle errors here */}
       <Card class={classes.auth}>
         <form onSubmit={submitForm} className={classes.form}>
-          <button type="button" class={classes.googleLogin}>
-            SignUp with Google
+          <button
+            type="button"
+            onClick={() => {
+              window.alert("this function currently not working yet ! ");
+            }}
+            class={classes.btnGoogleLogin}
+          >
+            <FcGoogle />
+            Sign up with Google
           </button>
           <span class={classes.break}>or</span>
           <Input
@@ -60,23 +70,13 @@ const SignUp = () => {
               placeholder: "",
             }}
           />
-          {!isLoading && (
-            <button className={classes.login}>
-              Sign up with email
-              {/* {isLogin ? "LOGIN" : "CREATE ACCOUNT"} */}
-            </button>
-          )}
-          {/* loading spinner later */}
-          {/* {isLoading && <p>Loading ...</p>}
-        <button type="button" onClick={switchAuthModelHandler}>
-          {isLogin ? "Create new Account" : "Login with existing account"}Submit
-        </button> */}
+          {!isLoading && <button>Sign up with email</button>}
         </form>
       </Card>
       <div className={classes.createWrapper}>
         <span className={classes.createLabel}>Already have an account?</span>
         <Link to="/login">
-          <span className={classes.createAccount}>Create account</span>
+          <span className={classes.createAccount}>Go to Login</span>
         </Link>
       </div>
     </div>
