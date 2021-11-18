@@ -13,10 +13,7 @@ import { useAuthLogout } from "../../hooks/use-auth";
 import { selectCurrentUser } from "../../store/auth-slice";
 
 const HeaderMenuTab = (props) => {
-  const isLogged = useSelector((state) => state.auth.isLogged);
-  const isCurrentUser = useSelector(selectCurrentUser);
-  // change is logged to is CurrentUser ? true false
-
+  const isLogged = useSelector(selectCurrentUser);
   const { isLoading, error, authLogout } = useAuthLogout();
 
   const handleLogout = () => {
@@ -25,26 +22,22 @@ const HeaderMenuTab = (props) => {
 
   return (
     <div className={classes.tabMenu}>
-      {!isLogged && (
+      {isLogged && (
         <button className={classes.button}>
           <MdQueryStats className={classes.icon} />
-
           <span>Report</span>
         </button>
       )}
 
-      {!isLogged && (
-        <button onClick={props.onShow} className={classes.button}>
-          <MdSettings className={classes.icon} />
-          <span>Settings</span>
-        </button>
-      )}
+      <button onClick={props.onShow} className={classes.button}>
+        <MdSettings className={classes.icon} />
+        <span>Settings</span>
+      </button>
 
-      {!isLogged && (
+      {isLogged && (
         <Link to="/profile">
           <button className={classes.button}>
             <MdPermIdentity className={classes.icon} />
-
             <span>Profile</span>
           </button>
         </Link>
@@ -54,19 +47,17 @@ const HeaderMenuTab = (props) => {
         <Link to="/login">
           <button className={classes.button}>
             <MdLogin className={classes.icon} />
-
             <span>Login</span>
           </button>
         </Link>
       )}
-      {!isLogged && (
+      {isLogged && (
         <button onClick={handleLogout} className={classes.button}>
           <MdOutlineLogout className={classes.icon} />
           <span>Logout</span>
         </button>
       )}
     </div>
-    // </IconContext.Provider>
   );
 };
 

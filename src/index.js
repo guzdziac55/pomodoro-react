@@ -17,7 +17,6 @@ import selectCurrentUser from "./store/auth-slice";
 
 let persistor = persistStore(store);
 
-// to może być tylko w komponencie wywołane
 const Routing = () => {
   const currentUser = useSelector((state) => state.auth.currentUser);
 
@@ -36,7 +35,6 @@ const Routing = () => {
   );
 };
 
-// get selector with userLogin information that is login / or no
 const RenderApp = () => {
   ReactDOM.render(
     <BrowserRouter>
