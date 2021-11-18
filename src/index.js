@@ -12,11 +12,9 @@ import { persistStore } from "redux-persist";
 import Profile from "./pages/Profile";
 import ResetPassword from "./components/auth/resetPassword";
 import SignUp from "./components/auth/signUp";
-import Header from "./components/Layout/Header";
-import AppPage from "./pages/AppPage";
-import AppInfo from "./components/AppInfoSection/AppInfo";
 
 let persistor = persistStore(store);
+// get selector with userLogin information that is login / or no
 
 ReactDOM.render(
   <BrowserRouter>
@@ -25,6 +23,11 @@ ReactDOM.render(
         <Routes>
           <Route path="/" element={<App />}>
             {/* nested */}
+            {/* to jest komponent wiec można go renderować dalej jako
+            conditional state 
+            
+            {user.isLogin && (Route ... etc)}
+            */}
             <Route path="/" element={<PomodoroApp />} />
             <Route path="app" element={<PomodoroApp />} />
             <Route path="profile" element={<Profile />} />
@@ -35,6 +38,8 @@ ReactDOM.render(
 
           <Route
             path="*"
+            //  or redirect the user !
+            // Redirect To '/'  => global app
             element={
               <main style={{ padding: "1rem" }}>
                 <p>There's nothing here!</p>

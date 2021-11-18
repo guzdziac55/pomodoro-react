@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { auth } from "../firebase";
+import { useNavigate } from "react-router";
 
 export { useAuthLogin, useAuthCreateAcc, useAuthLogout, useAuthResetPassword };
 
 const useAuthLogin = () => {
   const [isLoading, setLoading] = useState(false); // to zostanie przypisane do komponentu ktory używa hooka
   const [error, setError] = useState(null); // to zostanie przypisane do komponentu ktory yuzywa hooka
+  const navigate = useNavigate();
   const authLogin = async (email, password) => {
     try {
       setError("");
@@ -14,6 +16,7 @@ const useAuthLogin = () => {
     } catch (error) {
       setError("Failed login in");
     }
+    navigate("/", { replace: true });
     setLoading(false);
   };
 
@@ -23,6 +26,7 @@ const useAuthLogin = () => {
 const useAuthCreateAcc = () => {
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
   const authCreateAcc = async (email, password) => {
     try {
       setError("");
@@ -31,6 +35,8 @@ const useAuthCreateAcc = () => {
     } catch (error) {
       setError("Failed to create ACC");
     }
+    navigate("/", { replace: true });
+
     setLoading(false);
   };
 
@@ -57,6 +63,7 @@ const useAuthLogout = () => {
 const useAuthResetPassword = () => {
   const [isLoading, setLoading] = useState(false); // to zostanie przypisane do komponentu ktory używa hooka
   const [error, setError] = useState(null); // to zostanie przypisane do komponentu ktory yuzywa hooka
+  const navigate = useNavigate();
   const authResetPassword = async (email) => {
     try {
       setError("");
@@ -65,6 +72,7 @@ const useAuthResetPassword = () => {
     } catch (error) {
       setError("Failed to create ACC");
     }
+    navigate("/", { replace: true });
     setLoading(false);
   };
 
