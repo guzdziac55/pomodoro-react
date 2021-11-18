@@ -1,9 +1,10 @@
 import "./index.css";
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import App from "./App";
 import store from "./store";
+import { useSelector } from "react-redux";
 import Login from "./components/auth/login";
 import PomodoroApp from "./pages/PomodoroApp";
 import { Provider } from "react-redux";
@@ -12,44 +13,41 @@ import { persistStore } from "redux-persist";
 import Profile from "./pages/Profile";
 import ResetPassword from "./components/auth/resetPassword";
 import SignUp from "./components/auth/signUp";
+import selectCurrentUser from "./store/auth-slice";
 
 let persistor = persistStore(store);
+
+// to może być tylko w komponencie wywołane
+const Routing = () => {
+  const currentUser = useSelector((state) => state.auth.currentUser);
+
+  return (
+    <Routes>
+      <Route path="/" element={<App />}>
+        <Route path="/" element={<PomodoroApp />} />
+        <Route path="app" element={<PomodoroApp />} />
+        {currentUser && <Route path="profile" element={<Profile />} />}
+        {!currentUser && <Route path="login" element={<Login />} />}
+        <Route path="signup" element={<SignUp />} />
+        <Route path="reset-password" element={<ResetPassword />} />
+      </Route>
+      <Route path="*" element={<Navigate replace to="/" />} />
+    </Routes>
+  );
+};
+
 // get selector with userLogin information that is login / or no
+const RenderApp = () => {
+  ReactDOM.render(
+    <BrowserRouter>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <Routing />
+        </PersistGate>
+      </Provider>
+    </BrowserRouter>,
 
-ReactDOM.render(
-  <BrowserRouter>
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <Routes>
-          <Route path="/" element={<App />}>
-            {/* nested */}
-            {/* to jest komponent wiec można go renderować dalej jako
-            conditional state 
-            
-            {user.isLogin && (Route ... etc)}
-            */}
-            <Route path="/" element={<PomodoroApp />} />
-            <Route path="app" element={<PomodoroApp />} />
-            <Route path="profile" element={<Profile />} />
-            <Route path="login" element={<Login />} />
-            <Route path="signup" element={<SignUp />} />
-            <Route path="reset-password" element={<ResetPassword />} />
-          </Route>
-
-          <Route
-            path="*"
-            //  or redirect the user !
-            // Redirect To '/'  => global app
-            element={
-              <main style={{ padding: "1rem" }}>
-                <p>There's nothing here!</p>
-              </main>
-            }
-          />
-        </Routes>
-      </PersistGate>
-    </Provider>
-  </BrowserRouter>,
-
-  document.getElementById("root")
-);
+    document.getElementById("root")
+  );
+};
+RenderApp();
