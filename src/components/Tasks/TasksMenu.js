@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import classes from "./TasksMenu.module.css";
 import { useDispatch } from "react-redux";
 import {
@@ -9,7 +9,7 @@ import {
   MdSave,
 } from "react-icons/md";
 
-import OutsideClickHandler from "react-outside-click-handler";
+import { useClickOutside } from "../../hooks/use-clickOutside";
 import {
   deleteAllTasks,
   deleteFinishedTasks,
@@ -18,70 +18,61 @@ import {
 
 const TasksMenu = () => {
   const dispatch = useDispatch();
-  const [showTaskMenu, setShowTaskMenu] = useState(false);
+  const [open, setOpen] = useState(false);
+  const menuRef = useRef();
 
-  TasksMenu.handleClickOutside = () => setShowTaskMenu(false);
-
-  const toggleTaskMenu = () => {
-    setShowTaskMenu((state) => !state);
-  };
-
-  const closeTaskMenu = () => {
-    if (showTaskMenu) setShowTaskMenu(false);
-  };
+  useClickOutside(menuRef, () => {
+    if (open) setOpen(false);
+  });
 
   // context menu actions
   const onClickDeleteAllTasks = () => {
     dispatch(deleteAllTasks());
-    setShowTaskMenu(false);
+    setOpen(false);
   };
 
   const onClickDeleteFinishedTasks = () => {
     dispatch(deleteFinishedTasks());
-    setShowTaskMenu(false);
+    setOpen(false);
   };
 
   const onClickDeleteDoneTasks = () => {
     dispatch(deleteDoneTasks());
-    setShowTaskMenu(false);
+    setOpen(false);
   };
 
   return (
     <section className={classes.tasksMenu}>
       <span>Tasks</span>
-      {/* outside click */}
-      <OutsideClickHandler onOutsideClick={closeTaskMenu}>
-        <div className={classes.options}>
-          <button className={classes.button} onClick={toggleTaskMenu}>
-            <MdOutlineAutoDelete className={classes.icon} />
-          </button>
+      <div className={classes.options}>
+        <button className={classes.button} onClick={() => setOpen(true)}>
+          <MdOutlineAutoDelete className={classes.icon} />
+        </button>
 
-          {/* make another /  different context Menu component !  */}
-          {showTaskMenu && (
-            <ul className={classes.optionsList}>
-              <li
-                className={classes.listItem}
-                onClick={onClickDeleteFinishedTasks}
-              >
-                <MdDeleteSweep className={classes.iconSmall} /> delete finished
-              </li>
-              <li className={classes.listItem} onClick={onClickDeleteDoneTasks}>
-                <MdDoneAll className={classes.iconSmall} />
-                delete done
-              </li>
-              <li className={classes.listItem} onClick={onClickDeleteDoneTasks}>
-                <MdSave className={classes.iconSmall} />
-                save as template
-              </li>
-              <hr className={classes.break}></hr>
-              <li className={classes.listItem} onClick={onClickDeleteAllTasks}>
-                <MdDeleteForever className={classes.iconSmall} />
-                delete all
-              </li>
-            </ul>
-          )}
-        </div>
-      </OutsideClickHandler>
+        {open && (
+          <ul ref={menuRef} className={classes.optionsList}>
+            <li
+              className={classes.listItem}
+              onClick={onClickDeleteFinishedTasks}
+            >
+              <MdDeleteSweep className={classes.iconSmall} /> delete finished
+            </li>
+            <li className={classes.listItem} onClick={onClickDeleteDoneTasks}>
+              <MdDoneAll className={classes.iconSmall} />
+              delete done
+            </li>
+            <li className={classes.listItem} onClick={onClickDeleteDoneTasks}>
+              <MdSave className={classes.iconSmall} />
+              save as template
+            </li>
+            <hr className={classes.break}></hr>
+            <li className={classes.listItem} onClick={onClickDeleteAllTasks}>
+              <MdDeleteForever className={classes.iconSmall} />
+              delete all
+            </li>
+          </ul>
+        )}
+      </div>
     </section>
   );
 };
