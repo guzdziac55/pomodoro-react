@@ -4,7 +4,7 @@ import HeaderMenuTab from "./HeaderMenuTab";
 import { Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 
-const Header = (props) => {
+const Header = ({ onOpen }) => {
   return (
     <>
       <header className={classes.header}>
@@ -12,7 +12,7 @@ const Header = (props) => {
           {/* add icon here logo APP */}
           <h1>Pomodoro</h1>
         </Link>
-        <HeaderMenuTab onShow={props.onShow} />
+        <HeaderMenuTab onOpen={onOpen} />
       </header>
     </>
   );

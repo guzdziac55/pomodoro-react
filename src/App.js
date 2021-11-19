@@ -46,7 +46,6 @@ function App() {
   const currentUser = useSelector(selectCurrentUser);
 
   const themeClasses = ["pomodoroTheme", "shortBreakTheme", "longBreakTheme"];
-  const [settingsShow, setSettingsShow] = useState(false);
 
   useEffect(() => {
     if (isInitial) {
@@ -90,22 +89,21 @@ function App() {
     return unsubscribe;
   }, [dispatch]);
 
-  const handleSettingsShow = () => {
-    setSettingsShow(true);
-  };
+  // const handleSettingsShow = () => {
+  //   setSettingsShow(true);
+  // };
 
-  const handleSettingsHide = () => {
-    setSettingsShow(false);
-  };
+  // const handleSettingsHide = () => {
+  //   setSettingsShow(false);
+  // };
 
   // getCurrentTheme
   const currentTheme = themeClasses[activeStage];
 
   return (
     <Fragment>
-      {settingsShow && <HookForm onCloseSettings={handleSettingsHide} />}
       <main className={`${classes.mainApp} ${classes[`${currentTheme}`]}`}>
-        <Header onShow={handleSettingsShow}></Header>
+        <Header></Header>
         <Outlet />
       </main>
 

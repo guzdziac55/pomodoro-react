@@ -13,7 +13,6 @@ import { persistStore } from "redux-persist";
 import Profile from "./pages/Profile";
 import ResetPassword from "./components/auth/resetPassword";
 import SignUp from "./components/auth/signUp";
-import selectCurrentUser from "./store/auth-slice";
 
 let persistor = persistStore(store);
 

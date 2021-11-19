@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import classes from "./SettingsApp.module.css";
 import Modal from "../UI/Modal";
 import { useForm } from "react-hook-form";
@@ -13,17 +13,14 @@ import {
   InputWrapper,
 } from "./Components";
 
-const SettingsApp = (props, onCloseSettings) => {
+const SettingsApp = (props) => {
+  const onClose = props.onClose;
+  const refForm = props.formRef;
   const dispatch = useDispatch();
-
   const defaultConfigState = useSelector((state) => state.config);
   const { register, handleSubmit } = useForm({
     defaultValues: { ...defaultConfigState }, // default values from settings redux
   });
-
-  const closeSettingsWindow = () => {
-    onCloseSettings();
-  };
 
   // form on submit
   const onSubmit = (data) => {
@@ -34,12 +31,12 @@ const SettingsApp = (props, onCloseSettings) => {
     };
     console.log(newConfigState);
     dispatch(configActions.setConfig(newConfigState));
-    closeSettingsWindow();
+    onClose();
   };
 
   return (
-    <Modal onClose={onCloseSettings}>
-      <form onSubmit={handleSubmit(onSubmit)}>
+    <Modal>
+      <form ref={refForm} onSubmit={handleSubmit(onSubmit)}>
         <div className={classes.formMain}>
           <InputWrapper title="Time Options">
             <InputColumn
@@ -115,11 +112,7 @@ const SettingsApp = (props, onCloseSettings) => {
           {/*  bottom menu */}
         </div>
         <div className={classes.formMenu}>
-          <button
-            type="button"
-            className={classes.btnCancel}
-            onClick={closeSettingsWindow}
-          >
+          <button type="button" className={classes.btnCancel} onClick={onClose}>
             Cancel
           </button>
           <button type="submit">Confirm</button>
