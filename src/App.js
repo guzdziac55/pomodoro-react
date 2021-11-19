@@ -43,12 +43,12 @@ function App() {
   // nie wczytuje z localStorage kiedy użytkownik jest nie zalogowany !
 
   useEffect(() => {
-    console.log(isInitialTask);
     if (isInitialTask) {
       isInitialTask = false;
       return;
     }
     if (isTaskChanged && currentUser) {
+      console.log("CZY CHCE WYSYŁAĆ TASKI");
       const userId = currentUser.uid;
       dispatch(sendFirebaseTaskList(taskList, userId)); // array
     }
@@ -60,9 +60,9 @@ function App() {
       isInitialSettings = false;
       return;
     }
-    //  add isChanged to settings ! ! ! !
     if (isConfigChanged && currentUser) {
-      console.log("CZY WYSYLAM");
+      console.log("CZY CHCE WYSYŁAĆ CONFIG");
+
       const userId = currentUser.uid;
       dispatch(sendFirebaseSettings(configSettings, userId)); // obj
     }

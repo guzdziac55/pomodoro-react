@@ -1,6 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
 
+export const defaultState = {
+  configChanged: false,
+  stageOptions: [25, 5, 20],
+  autoBreak: false, // switch [ checkboox]
+  autoPomodoros: true, // switch
+  longBreakInterval: 4,
+  alarmSound: "sound1",
+  viewModal: true,
+};
+
 const configSlice = createSlice({
   name: "config",
   initialState: {

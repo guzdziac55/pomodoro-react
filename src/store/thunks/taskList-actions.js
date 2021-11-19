@@ -1,5 +1,6 @@
 import { showNotification } from "../ui-slice";
 import { replaceTaskList } from "../taskList-slice";
+import { defaultState } from "../config-slice";
 import { setConfig } from "../config-slice";
 import { database } from "../../firebase";
 import { ref, update } from "firebase/database";
@@ -104,7 +105,7 @@ const fetchFirebaseUserData = (uid) => {
       const settingsData = snapshotSettings.val();
 
       dispatch(replaceTaskList(taskListData || []));
-      dispatch(setConfig(settingsData || {}));
+      dispatch(setConfig(settingsData || { ...defaultState }));
 
       dispatch(
         showNotification({
