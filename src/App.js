@@ -1,10 +1,9 @@
 import React from "react";
 import classes from "./App.module.css";
-import HookForm from "./components/SettingsApp/SettingsApp";
-import { Fragment, useState, useEffect } from "react";
+import { Fragment, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import Header from "./components/Layout/Header";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import {
   fetchFirebaseUserData,
@@ -12,64 +11,64 @@ import {
   sendFirebaseSettings,
 } from "./store/thunks/taskList-actions";
 
-// store
 import { useDispatch, useSelector } from "react-redux";
-
-// Pages
-// import PomodoroApp from "./pages/PomodoroApp";
-// import Login from "./pages/Login";
-// import Profile from "./pages/Profile";
-// import SignUpPage from "./pages/SignUp";
-// import ResetPassword from "./pages/ResetPassword";
-
-import { selectTaskList, selectIsChanged } from "./store/taskList-slice";
+import { selectTaskList, selectTaskListChanged } from "./store/taskList-slice";
 import { selectCurrentUser } from "./store/auth-slice";
-import { selectConfig } from "./store/config-slice";
+import { selectConfig, selectConfigChanges } from "./store/config-slice";
 import { selectActiveStage } from "./store/timer-slice";
 // firebase
 import { auth } from "./firebase";
 import { authActions } from "./store/auth-slice";
-import PomodoroApp from "./pages/PomodoroApp";
-import Login from "./components/auth/login";
-import Profile from "./pages/Profile";
 import AppInfo from "./components/AppInfoSection/AppInfo";
 
-let isInitial = true;
+let isInitialTask = true;
+let isInitialSettings = true;
 
 function App() {
   const dispatch = useDispatch();
 
   const taskList = useSelector(selectTaskList);
-  const isChanged = useSelector(selectIsChanged);
+  const isTaskChanged = useSelector(selectTaskListChanged);
+  const isConfigChanged = useSelector(selectConfigChanges);
   const configSettings = useSelector(selectConfig);
   const activeStage = useSelector(selectActiveStage);
   const currentUser = useSelector(selectCurrentUser);
 
   const themeClasses = ["pomodoroTheme", "shortBreakTheme", "longBreakTheme"];
 
+  // MAIN PROBLEM
+  // isChanged is persistet intoLocalStorage ? !! its bad
+  // pamięta po pierwszej zmienie że jest changed
+
+  // nie wczytuje z localStorage kiedy użytkownik jest nie zalogowany !
+
   useEffect(() => {
-    if (isInitial) {
-      isInitial = false;
+    console.log(isInitialTask);
+    if (isInitialTask) {
+      isInitialTask = false;
       return;
     }
-    if (isChanged && currentUser) {
+    if (isTaskChanged && currentUser) {
       const userId = currentUser.uid;
       dispatch(sendFirebaseTaskList(taskList, userId)); // array
     }
   }, [taskList, dispatch]);
 
-  // sendSettings
+  // sendSettings // problem wysyła ten z initialStatu
   useEffect(() => {
-    if (isInitial) {
-      isInitial = false;
+    if (isInitialSettings) {
+      isInitialSettings = false;
       return;
     }
-    if (isChanged && currentUser) {
+    //  add isChanged to settings ! ! ! !
+    if (isConfigChanged && currentUser) {
+      console.log("CZY WYSYLAM");
       const userId = currentUser.uid;
       dispatch(sendFirebaseSettings(configSettings, userId)); // obj
     }
   }, [configSettings, dispatch]);
 
+  // use Login / Logout // pobierz taskList i settings
   useEffect(() => {
     if (currentUser) {
       const userId = currentUser.uid;
@@ -81,7 +80,7 @@ function App() {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
-        dispatch(authActions.singUp(user)); // <=== akcja ze slice auth // przypisane tokena
+        dispatch(authActions.singUp(user));
       } else {
         dispatch(authActions.logout());
       }
@@ -89,15 +88,6 @@ function App() {
     return unsubscribe;
   }, [dispatch]);
 
-  // const handleSettingsShow = () => {
-  //   setSettingsShow(true);
-  // };
-
-  // const handleSettingsHide = () => {
-  //   setSettingsShow(false);
-  // };
-
-  // getCurrentTheme
   const currentTheme = themeClasses[activeStage];
 
   return (

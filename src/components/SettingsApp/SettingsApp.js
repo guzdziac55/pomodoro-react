@@ -4,7 +4,8 @@ import Modal from "../UI/Modal";
 import { useForm } from "react-hook-form";
 import { connect } from "react-redux"; // example to save form into Store ? ?
 import { useDispatch, useSelector } from "react-redux";
-import { configActions } from "../../store/config-slice";
+
+import { setConfig, setConfigChanged } from "../../store/config-slice";
 import {
   Select,
   InputColumn,
@@ -29,8 +30,9 @@ const SettingsApp = (props) => {
       ...dataRest,
       stageOptions: [+pomodoroTime, +shortBreak, +longBreak],
     };
-    console.log(newConfigState);
-    dispatch(configActions.setConfig(newConfigState));
+    // replace From form config
+    dispatch(setConfig(newConfigState));
+    dispatch(setConfigChanged());
     onClose();
   };
 

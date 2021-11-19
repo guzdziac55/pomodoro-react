@@ -5,7 +5,7 @@ const taskListSlice = createSlice({
   name: "tasksList",
   initialState: {
     tasksList: [],
-    changed: false,
+    taskListChanged: false,
     activeTask: null,
   },
   reducers: {
@@ -17,7 +17,7 @@ const taskListSlice = createSlice({
     addTask(state, action) {
       const newTask = action.payload; // gotowy obiekt
       const id = Math.floor(new Date().valueOf() * Math.random());
-      state.changed = true;
+      state.taskListChanged = true;
       state.tasksList.push({
         id: id,
         title: newTask.title,
@@ -28,26 +28,26 @@ const taskListSlice = createSlice({
     },
 
     deleteTask(state, action) {
-      state.changed = true;
+      state.taskListChanged = true;
       const id = action.payload;
       state.tasksList = state.tasksList.filter((task) => task.id !== id);
     },
 
     setActiveTask(state, action) {
-      state.changed = true;
+      state.taskListChanged = true;
       const id = action.payload;
       state.activeTask = id;
     },
 
     toggleDoneTask(state, action) {
-      state.changed = true;
+      state.taskListChanged = true;
       const id = action.payload;
       const toggledItem = state.tasksList.find((task) => task.id === id);
       toggledItem.done = !toggledItem.done;
     },
 
     editTaskItem(state, action) {
-      state.changed = true;
+      state.taskListChanged = true;
       const editData = action.payload; // gotowy obiekt
       const editedItem = state.tasksList.find(
         (task) => task.id === editData.id
@@ -59,13 +59,13 @@ const taskListSlice = createSlice({
     },
 
     deleteAllTasks(state) {
-      state.changed = true;
+      state.taskListChanged = true;
       state.tasksList = [];
       state.activeTask = null;
     },
 
     deleteDoneTasks(state) {
-      state.changed = true;
+      state.taskListChanged = true;
       state.tasksList = state.tasksList.filter((task) => task.done !== true);
       state.activeTask = state.tasksList.some(
         (task) => task.id === state.activeTask
@@ -75,7 +75,7 @@ const taskListSlice = createSlice({
     },
 
     deleteFinishedTasks(state) {
-      state.changed = true;
+      state.taskListChanged = true;
       state.tasksList = state.tasksList.filter(
         (task) => task.actPomodoro <= task.estPomodoro
       );
@@ -87,7 +87,7 @@ const taskListSlice = createSlice({
     },
 
     updateTask(state, action) {
-      state.changed = true;
+      state.taskListChanged = true;
       if (action.payload !== 0 || !state.activeTask) return;
       const activeTask = state.tasksList.find(
         (task) => task.id === state.activeTask
@@ -113,7 +113,7 @@ export const {
 
 // selectors
 export const selectTaskList = (state) => state.tasksList.tasksList;
-export const selectIsChanged = (state) => state.tasksList.changed;
+export const selectTaskListChanged = (state) => state.tasksList.taskListChanged;
 export const selectActiveTask = (state) => state.tasksList.activeTask;
 
 export const selectNumberToDoTasks = createSelector(

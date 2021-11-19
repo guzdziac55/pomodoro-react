@@ -52,6 +52,8 @@ const sendFirebaseSettings = (settings, uid) => {
     );
 
     const sendRequest = async () => {
+      console.log("WYSYŁAM USTAWIENIA ");
+      console.log(settings);
       update(ref(database, "users/" + uid), {
         Settings: settings,
       });

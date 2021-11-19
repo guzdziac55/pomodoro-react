@@ -1,8 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
+
 const configSlice = createSlice({
   name: "config",
   initialState: {
+    configChanged: false,
     stageOptions: [25, 5, 20],
     autoBreak: false, // switch [ checkboox]
     autoPomodoros: true, // switch
@@ -11,19 +13,24 @@ const configSlice = createSlice({
     viewModal: true,
   },
   reducers: {
-    setConfig(state, action) {
+    setConfig: (state, action) => {
+      // state.changed = true;
       return action.payload; //Zamiast tego, aby zastąpić istniejący stan, należy bezpośrednio zwrócić nową wartość:
+    },
+    setConfigChanged(state) {
+      state.configChanged = true;
     },
   },
 });
 
 //actions
-export const { setConfig } = configSlice.actions;
+export const { setConfig, setConfigChanged } = configSlice.actions;
 
 //selectors
 export const selectConfig = (state) => state.config;
 export const selectLongBrakInterval = (state) => state.config.longBreakInterval;
 export const selectStageOptions = (state) => state.config.stageOptions;
+export const selectConfigChanges = (state) => state.config.configChanged;
 
 export const selectPomodoroOptionTime = createSelector(
   (state) => state.config.stageOptions,
