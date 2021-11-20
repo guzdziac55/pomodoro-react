@@ -8,7 +8,7 @@ const TasksList = () => {
   const tasks = useSelector(selectTaskList);
 
   const tasksList = tasks.map((task) => (
-    <TaskItem // taskItem & form inside
+    <TaskItem
       key={task.id}
       taskData={{
         id: task.id,

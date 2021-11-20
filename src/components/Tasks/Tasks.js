@@ -4,38 +4,32 @@ import TaskForm from "./TaskItem/TaskForm";
 import TasksButtonAdd from "./TasksButtonAdd";
 
 import TasksList from "./TasksList";
+import { useClickOutside } from "../../hooks/use-clickOutside";
 
 const Tasks = () => {
-  const formScrollRef = useRef();
-  const [showForm, setShowForm] = useState(false);
-  const toggleFormHandler = () => {
-    setShowForm((prevState) => !prevState);
+  const [openNewTask, setNewTask] = useState(false);
+  const newTaskRef = useRef();
+
+  const toogleNewTaskForm = () => {
+    setNewTask((prevState) => setNewTask(!prevState));
   };
 
-  // check this
-  useEffect(() => {
-    if (showForm) {
-      console.log("do poprawy");
-      // formScrollRef.current.scrollIntoView({
-      //   behavior: "smooth",
-      //   // block: "end",
-      //   // inline: "nearest",
-      // });
-    }
-  }, [showForm]);
+  useClickOutside(newTaskRef, () => {
+    if (openNewTask) setNewTask(false);
+  });
 
   return (
     <>
       <TasksMenu />
       <TasksList />
-      {!showForm && (
-        <TasksButtonAdd onToggleForm={toggleFormHandler}>
+      {!openNewTask && (
+        <TasksButtonAdd onToggleForm={toogleNewTaskForm}>
           Add Task
         </TasksButtonAdd>
       )}
 
-      {showForm && (
-        <TaskForm ref={formScrollRef} onToggleForm={toggleFormHandler} />
+      {openNewTask && (
+        <TaskForm onRef={newTaskRef} onToggleForm={toogleNewTaskForm} />
       )}
     </>
   );

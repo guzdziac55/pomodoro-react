@@ -3,6 +3,7 @@ import TaskForm from "./TaskForm";
 import classes from "../TaskItem/TaskItem.module.css";
 import { MdDoneOutline, MdEditNote } from "react-icons/md";
 import { useSelector, useDispatch } from "react-redux";
+import { useClickOutside } from "../../../hooks/use-clickOutside";
 import {
   selectActiveTask,
   setActiveTask,
@@ -13,25 +14,19 @@ const TaskItem = ({
   taskData: { id, title, actPomodoro, estPomodoro, isDone },
 }) => {
   const dispatch = useDispatch();
-  const formScrollRef = useRef();
 
   const activeId = useSelector(selectActiveTask);
-  const [showEditForm, setShowEditForm] = useState(false);
+  const [openEdit, setOpenEdit] = useState(false);
+  const editRef = useRef();
 
-  // custom hook ?
-  useEffect(() => {
-    if (showEditForm) {
-      console.log("do poprawy");
-      // formScrollRef.current.scrollIntoView({
-      //   behavior: "smooth",
-      //   // block: "end",
-    }
-    // });
-  }, [showEditForm]);
+  // close when open // when not click on ref !
+  useClickOutside(editRef, () => {
+    if (openEdit) setOpenEdit(false);
+  });
 
-  //check that callback is usefull here ?
+  // when cancel and when submit
   const toggleEditFormHandler = useCallback(() => {
-    setShowEditForm((prevState) => setShowEditForm(!prevState));
+    setOpenEdit((prevState) => setOpenEdit(!prevState));
   });
 
   const onClickSetActiveTask = useCallback((e) => {
@@ -51,16 +46,17 @@ const TaskItem = ({
   return (
     <>
       {/* Edit Task */}
-      {showEditForm && (
+      {openEdit && (
         <TaskForm
-          ref={formScrollRef}
+          // ref={formScrollRef}
+          onRef={editRef}
           onToggleForm={toggleEditFormHandler}
           taskData={taskData}
           editMode={true}
         ></TaskForm>
       )}
       {/* Show Task */}
-      {!showEditForm && (
+      {!openEdit && (
         <li
           className={`${classes.task} ${itemIsActiveClass}`}
           onClick={onClickSetActiveTask}

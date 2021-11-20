@@ -27,6 +27,7 @@ const TaskForm = React.forwardRef((props) => {
   // inputs controlled form
   const [taskTitle, setTaskTitle] = useState(initialTitle);
   const [formIsValid, setFormIsValid] = useState(null);
+  const [openNote, setOpenNote] = useState(true);
 
   // test + / -
   const [
@@ -100,83 +101,87 @@ const TaskForm = React.forwardRef((props) => {
   };
 
   return (
-    <OutsideClickHandler onOutsideClick={props.onToggleForm}>
-      <Card class={classes.form}>
-        <form ref={props.ref} onSubmit={handleAddEditTask}>
-          <div className={classes.formMain}>
+    <Card class={classes.form}>
+      <form ref={props.onRef} onSubmit={handleAddEditTask}>
+        <div className={classes.formMain}>
+          <input
+            id="title"
+            value={taskTitle}
+            name="title"
+            type="text"
+            onChange={handleInputChange}
+            placeholder="What are u working on?"
+            className={classes.large}
+          />
+          <label className={classes.number}>Est pomodoros</label>
+          <div className={classes.inputWrapper}>
             <input
-              id="title"
-              value={taskTitle}
-              name="title"
-              type="text"
+              value={currentEstPomodoro}
+              name="numbers"
+              type="number"
               onChange={handleInputChange}
-              placeholder="What are u working on?"
-              className={classes.large}
+              className={classes.number}
+              min="1"
+              max="5"
+              step="1"
             />
-            <label className={classes.number}>Est pomodoros</label>
-            <div className={classes.inputWrapper}>
-              <input
-                value={currentEstPomodoro}
-                name="numbers"
-                type="number"
-                onChange={handleInputChange}
-                className={classes.number}
-                min="1"
-                max="5"
-                step="1"
-              />
 
-              <button onClick={addEstPomodoro} type="button">
-                <MdExposurePlus1 className={classes.icon} />
-              </button>
-              <button onClick={removeEstPomodoro} type="button">
-                <MdExposureNeg1 className={classes.icon} />
-              </button>
-            </div>
-            <div className={classes.formNote}>
-              <button type="button">
-                <MdEditNote className={classes.icon} />
-                <span>add note</span>
-              </button>
-
-              <button type="button">
-                <MdNoteAdd className={classes.icon} />
-                <span>add project</span>
-              </button>
-            </div>
+            <button onClick={addEstPomodoro} type="button">
+              <MdExposurePlus1 className={classes.icon} />
+            </button>
+            <button onClick={removeEstPomodoro} type="button">
+              <MdExposureNeg1 className={classes.icon} />
+            </button>
           </div>
+          <div className={classes.formNote}>
+            <button type="button">
+              <MdEditNote className={classes.icon} />
+              <span>add note</span>
+            </button>
 
-          <div className={classes.formMenu}>
-            {/* menu left */}
-            <div className={classes.menuLeft}>
-              {editMode && (
-                <button
-                  className={classes.btnDelete}
-                  type="button"
-                  onClick={handleDelateTask}
-                >
-                  Delete
-                </button>
-              )}
-            </div>
-            {/* menu right */}
-            <div className={classes.menuRight}>
+            <button type="button">
+              <MdNoteAdd className={classes.icon} />
+              <span>add project</span>
+            </button>
+          </div>
+          {openNote && (
+            <textarea
+              placeholder="add note here"
+              className={classes.note}
+            ></textarea>
+          )}
+        </div>
+
+        <div className={classes.formMenu}>
+          {/* menu left */}
+          <div className={classes.menuLeft}>
+            {editMode && (
               <button
-                className={classes.btnCancel}
-                onClick={props.onToggleForm}
+                className={classes.btnDelete}
                 type="button"
+                onClick={handleDelateTask}
               >
-                Cancel
+                Delete
               </button>
-
-              <button type="submit" disabled={formIsValid ? false : true}>
-                {editMode ? "Edit" : "Save"}
-              </button>
-            </div>
+            )}
           </div>
-        </form>
-      </Card>
-    </OutsideClickHandler>
+          {/* menu right */}
+          <div className={classes.menuRight}>
+            <button
+              className={classes.btnCancel}
+              onClick={props.onToggleForm}
+              type="button"
+            >
+              Cancel
+            </button>
+
+            <button type="submit" disabled={formIsValid ? false : true}>
+              {editMode ? "Edit" : "Save"}
+            </button>
+          </div>
+        </div>
+      </form>
+    </Card>
   );
 });
 
