@@ -21,10 +21,13 @@ const taskListSlice = createSlice({
       state.tasksList.push({
         id: id,
         title: newTask.title,
+        note: newTask.note,
+        // note: newTask.note ? newTask.note : undefined,
         actPomodoro: 0,
         estPomodoro: newTask.estPomodoro,
         done: false,
       });
+      console.log("po dodaniu takslist ");
     },
 
     deleteTask(state, action) {

@@ -15,6 +15,7 @@ const Tasks = () => {
   };
 
   useClickOutside(newTaskRef, () => {
+    console.log("CZY ROBI OUTSIDE LCICK CHU JJEBANY");
     if (openNewTask) setNewTask(false);
   });
 

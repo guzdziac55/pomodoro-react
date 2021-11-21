@@ -11,10 +11,9 @@ import {
 } from "../../../store/taskList-slice";
 const TaskItem = ({
   taskData,
-  taskData: { id, title, actPomodoro, estPomodoro, isDone },
+  taskData: { id, title, note, actPomodoro, estPomodoro, isDone },
 }) => {
   const dispatch = useDispatch();
-
   const activeId = useSelector(selectActiveTask);
   const [openEdit, setOpenEdit] = useState(false);
   const editRef = useRef();
@@ -77,6 +76,8 @@ const TaskItem = ({
           <span onClick={toggleEditFormHandler} className={classes.icon}>
             <MdEditNote className={classes.icon} />
           </span>
+          <div className={classes.lineBreak}></div>
+          {note && <p className={classes.noteItem}>{note}</p>}
         </li>
       )}
     </>

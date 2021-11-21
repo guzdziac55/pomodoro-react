@@ -33,6 +33,11 @@
 
 /* note menu style buttons */
 
+.noteArea {
+  margin-top: 10px;
+  resize: none;
+}
+
 .formNote {
   margin-top: 20px;
   display: flex;
@@ -59,6 +64,10 @@
   margin-right: 4px;
   height: 1rem;
   width: 1rem;
+}
+
+.formNote .note {
+  resize: none;
 }
 
 /* bottom menu button style */

@@ -13,6 +13,7 @@ const TasksList = () => {
       taskData={{
         id: task.id,
         title: task.title,
+        note: task.note,
         actPomodoro: task.actPomodoro,
         estPomodoro: task.estPomodoro,
         isDone: task.done,
