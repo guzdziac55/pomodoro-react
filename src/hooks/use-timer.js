@@ -11,7 +11,6 @@ import {
   selectConsumedTime,
 } from "../store/timer-slice";
 
-import { selectCurrentTime } from "../store/timer-slice";
 import { selectLongBrakInterval } from "../store/config-slice";
 import { selectCurrentSeconds } from "../store/timer-slice";
 

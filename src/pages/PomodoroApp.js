@@ -6,7 +6,7 @@ import FinishCalculate from "../components/FinishCalculate/FinishCalculate";
 import { useSelector } from "react-redux";
 import classes from "./PomodoroApp.module.css";
 import { Outlet } from "react-router";
-
+import ProgressBar from "./../components/ProgressBar/ProgressBar";
 const PomodoroApp = () => {
   // const notification = useSelector((state) => state.ui.notification);
 
@@ -17,6 +17,7 @@ const PomodoroApp = () => {
   return (
     <>
       <div className={classes.pomodoroApp}>
+        <ProgressBar></ProgressBar>
         <Timer></Timer>
         <WorkingOn />
         <Tasks />

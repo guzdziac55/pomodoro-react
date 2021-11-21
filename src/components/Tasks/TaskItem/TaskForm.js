@@ -80,16 +80,11 @@ const TaskForm = React.forwardRef((props) => {
     const estPomodoroNumber = +enteredEstPomodoro;
     const enteredTaskNote = taskNote;
 
-    console.log("entered task note");
-    console.log(taskNote);
-    console.log(enteredTaskNote);
-
     if (!formIsValid) {
       return;
     }
 
     if (editMode) {
-      console.log("wchodzi tutaj ? ");
       dispatch(
         taskListActions.editTaskItem({
           id: id,
@@ -110,7 +105,7 @@ const TaskForm = React.forwardRef((props) => {
     }
   };
 
-  const handleToogleNote = (e) => {
+  const handleToogleNote = () => {
     setOpenNote((prevState) => setOpenNote(!prevState));
     if (openNote) setTaskNote("");
   };
@@ -170,12 +165,14 @@ const TaskForm = React.forwardRef((props) => {
             </textarea>
           )}
           <div className={classes.formNote}>
-            <button type="button" onClick={handleToogleNote}>
-              <MdEditNote className={classes.icon} />
-              <span>add note</span>
-            </button>
+            {!openNote && (
+              <button type="button" onClick={handleToogleNote}>
+                <MdEditNote className={classes.icon} />
+                <span> {openNote ? "hide note" : "add note"}</span>
+              </button>
+            )}
 
-            <button type="button" onClick={handleToogleNote}>
+            <button type="button">
               <MdNoteAdd className={classes.icon} />
               <span>add project</span>
             </button>
