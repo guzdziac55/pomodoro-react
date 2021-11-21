@@ -13,6 +13,7 @@ import {
 
 import { selectCurrentTime } from "../store/timer-slice";
 import { selectLongBrakInterval } from "../store/config-slice";
+import { selectCurrentSeconds } from "../store/timer-slice";
 
 export const useTimer = () => {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ export const useTimer = () => {
 
   const activeStage = useSelector(selectActiveStage);
   const longBreakInterval = useSelector(selectLongBrakInterval);
-  const currentTimeOption = useSelector(selectCurrentTime);
+  const currentTimeOption = useSelector(selectCurrentSeconds);
 
   const timeIsEndAction = () => {
     dispatch(updateTask(activeStage));
@@ -43,7 +44,7 @@ export const useTimer = () => {
 
   //
   const calculateCounter = () => {
-    return currentTimeOption * 60 - consumedSeconds;
+    return currentTimeOption - consumedSeconds;
   };
 
   const counter = calculateCounter();
