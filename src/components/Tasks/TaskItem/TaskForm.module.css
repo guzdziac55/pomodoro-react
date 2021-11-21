@@ -36,6 +36,7 @@
 .noteArea {
   margin-top: 10px;
   resize: none;
+  outline: none;
 }
 
 .formNote {

@@ -72,7 +72,6 @@ const TaskItem = ({
             <span className={classes.pomodoroAct}>{estPomodoro}</span>
           </div>
 
-          {/*    */}
           <span onClick={toggleEditFormHandler} className={classes.icon}>
             <MdEditNote className={classes.icon} />
           </span>

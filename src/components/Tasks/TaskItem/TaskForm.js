@@ -15,12 +15,9 @@ import {
 import { taskListActions } from "../../../store/taskList-slice";
 
 const TaskForm = React.forwardRef((props) => {
-  console.log("CAŁKOWITY RERENDER KOMPONENTU ? ");
-  console.log();
   const dispatch = useDispatch();
   const taskList = useSelector(selectTaskList);
-  console.log("nasza lista ");
-  console.log(taskList);
+
   const { editMode } = props;
   const { id, title, estPomodoro, note } = { ...props.taskData };
 
@@ -63,8 +60,6 @@ const TaskForm = React.forwardRef((props) => {
   useEffect(() => {
     if (
       taskTitle.trim().length === 0 ||
-      // only when taskNote is enable !
-      // taskNote.trim().length === 0 ||
       currentEstPomodoro < 1 ||
       currentEstPomodoro > 5
     ) {
@@ -155,8 +150,11 @@ const TaskForm = React.forwardRef((props) => {
           {openNote && (
             <textarea
               id="note"
+              cols="30"
+              rows="5"
               type="text"
               name="note"
+              maxLength="700"
               value={taskNote}
               onChange={handleInputChange}
               placeholder="add note here"
