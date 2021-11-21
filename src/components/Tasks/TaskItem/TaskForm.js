@@ -22,16 +22,16 @@ const TaskForm = React.forwardRef((props) => {
   const { id, title, estPomodoro, note } = { ...props.taskData };
 
   // set initial edit form inputs
-  const initialNote = editMode ? note : "";
+  const initialNote = editMode && note ? note : "";
   const initialTitle = editMode ? title : "";
   const initialAmount = editMode ? estPomodoro : 1;
 
   // inputs controlled form
   const [taskTitle, setTaskTitle] = useState(initialTitle);
   const [taskNote, setTaskNote] = useState(initialNote);
-  const [formIsValid, setFormIsValid] = useState(null);
-  const [openNote, setOpenNote] = useState(false);
 
+  const [openNote, setOpenNote] = useState(note ? true : false);
+  const [formIsValid, setFormIsValid] = useState(null);
   // test + / -
   const [
     currentEstPomodoro,
@@ -80,15 +80,21 @@ const TaskForm = React.forwardRef((props) => {
     const estPomodoroNumber = +enteredEstPomodoro;
     const enteredTaskNote = taskNote;
 
+    console.log("entered task note");
+    console.log(taskNote);
+    console.log(enteredTaskNote);
+
     if (!formIsValid) {
       return;
     }
 
     if (editMode) {
+      console.log("wchodzi tutaj ? ");
       dispatch(
         taskListActions.editTaskItem({
           id: id,
           title: enteredTaskTitle,
+          note: enteredTaskNote.trim().length > 0 ? enteredTaskNote : "",
           estPomodoro: estPomodoroNumber,
         })
       );
@@ -150,16 +156,18 @@ const TaskForm = React.forwardRef((props) => {
           {openNote && (
             <textarea
               id="note"
+              // value={taskNote}
               cols="30"
               rows="5"
               type="text"
               name="note"
               maxLength="700"
-              value={taskNote}
               onChange={handleInputChange}
               placeholder="add note here"
               className={classes.noteArea}
-            ></textarea>
+            >
+              {taskNote}
+            </textarea>
           )}
           <div className={classes.formNote}>
             <button type="button" onClick={handleToogleNote}>

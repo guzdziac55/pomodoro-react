@@ -58,6 +58,7 @@ const taskListSlice = createSlice({
 
       editedItem.id = editData.id;
       editedItem.title = editData.title;
+      editedItem.note = editData.note;
       editedItem.estPomodoro = editData.estPomodoro;
     },
 
