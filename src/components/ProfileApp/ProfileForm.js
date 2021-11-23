@@ -1,27 +1,54 @@
-import Card from "../UI/Card";
-import React from "react";
+import React, { useState } from "react";
 import classes from "./ProfileForm.module.css";
-import Input from "../UI/Input";
-import { useState } from "react";
-import { useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+
+import { MdAddCircleOutline } from "react-icons/md";
+import { useDispatch } from "react-redux";
+import { InputWrapper } from "../SettingsApp/FormComponents";
 import Modal from "../UI/Modal";
+import AvatarsList from "../AvatarsList/AvatarsList";
 
 const ProfileForm = ({ formRef, onClose }) => {
+  const [avatarUrl, setAvatarUrl] = useState("");
+  const [openAvatars, setOpenAvatars] = useState(false);
+  //  pick avatar in another modal window ? ? ? ?
+  const avatarsList = ["images/avatar1.png", "images/avatar2.png"];
+  //  or
+
+  // upload by local ==> trudniejsze
+
   const dispatch = useDispatch();
   const submitHandler = (e) => {
     e.preventDefault();
 
-    // send urlAvatar into fireBase
-    // ProfileData with urlAvatar
+    //  save avatar url into Redux => send url avatar into firebase
   };
 
   return (
     <Modal>
       <form ref={formRef}>
         <div className={classes.formMain}>
-          <p>form data inside !</p>
+          <div className={classes.formControlColumn}>
+            <span className={classes.labelLarge}>Set user Avatar</span>
+            <button
+              type="button"
+              className={classes.circleButton}
+              onClick={() => {
+                if (!openAvatars) setOpenAvatars(true);
+              }}
+            >
+              <MdAddCircleOutline className={classes.icon}></MdAddCircleOutline>
+            </button>
+          </div>
+
+          {/* <InputWrapper title="Profile Options" /> */}
         </div>
+        {openAvatars && (
+          <div>
+            <AvatarsList></AvatarsList>
+          </div>
+        )}
+        {/* AVATAR LIST HERE !  */}
+
         <div className={classes.formMenu}>
           <button type="button" className={classes.btnCancel} onClick={onClose}>
             Cancel

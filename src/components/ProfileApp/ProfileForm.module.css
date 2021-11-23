@@ -39,3 +39,50 @@
   background-color: #000000;
   color: var(--font-main);
 }
+
+/*  avatar row form  */
+
+.formControlColumn {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0;
+  border-bottom: 1px solid black;
+}
+
+.labelLarge {
+  font-size: 20px;
+  display: inline-block;
+  text-align: center;
+  color: rgb(85, 85, 85);
+  width: 100%;
+  box-sizing: border-box;
+  font-weight: bold;
+}
+
+.circleButton {
+  width: 100px;
+  height: 100px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #000000;
+}
+
+.circleButton:hover {
+  width: 100px;
+  height: 100px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.icon {
+  height: 100%;
+  width: 100%;
+  color: #000000;
+  opacity: 0.5;
+}
