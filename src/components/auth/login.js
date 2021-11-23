@@ -29,8 +29,6 @@ const Login = () => {
       </Link>
 
       <h1 className={classes.header}>Login</h1>
-      {/* hendling error here  */}
-      {/* <p>error is: {error}</p> */}
       <Card class={classes.auth}>
         <form onSubmit={submitForm} className={classes.form}>
           <button

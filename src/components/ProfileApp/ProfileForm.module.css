@@ -1,0 +1,41 @@
+.formMain {
+  padding: 2rem 1rem;
+}
+.formMenu {
+  padding: 14px 20px;
+  display: flex;
+  color: #ffffff;
+  background-color: gainsboro;
+  justify-content: space-between;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  justify-content: flex-end;
+}
+.formMenu button {
+  border-style: none;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  font-size: 14px;
+}
+
+.btnCancel {
+  color: #525252;
+  font-weight: 600;
+  margin-right: 40px;
+}
+
+.btnCancel:hover {
+  color: #000000;
+  font-weight: 600;
+}
+
+.formMenu button[type="submit"] {
+  background-color: #111111;
+  color: var(--font-main);
+}
+
+.formMenu button[type="submit"]:hover {
+  background-color: #000000;
+  color: var(--font-main);
+}

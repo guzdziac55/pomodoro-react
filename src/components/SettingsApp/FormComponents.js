@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./Components.module.css";
+import classes from "./FormComponents.module.css";
 
 export const InputWrapper = ({ title, children }) => {
   return (

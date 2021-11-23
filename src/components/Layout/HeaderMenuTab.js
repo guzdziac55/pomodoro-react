@@ -9,35 +9,52 @@ import {
   MdPermIdentity,
   MdOutlineLogout,
 } from "react-icons/md";
+
 import { useAuthLogout } from "../../hooks/use-auth";
 import { selectCurrentUser } from "../../store/auth-slice";
-import HookForm from "../SettingsApp/SettingsApp";
+import SettingsForm from "../SettingsApp/Settings";
 import { useClickOutside } from "../../hooks/use-clickOutside";
+import ProfileForm from "../ProfileApp/ProfileForm";
 
 const HeaderMenuTab = ({ onSetOpen }) => {
   const isLogged = useSelector(selectCurrentUser);
   const { isLoading, error, authLogout } = useAuthLogout();
-  const [open, setOpen] = useState(false);
+  const [openSettings, setOpenSettings] = useState(false);
+  const [openProfile, setOpenProfile] = useState(false);
 
-  const formRef = useRef();
+  const profileFormRef = useRef();
+  const settingsFormRef = useRef();
 
   const handleLogout = () => {
     authLogout();
   };
 
-  useClickOutside(formRef, () => {
-    if (open) setOpen(false);
+  useClickOutside(profileFormRef, () => {
+    console.log("outside click Formref");
+    if (openProfile) setOpenProfile(false);
+  });
+
+  useClickOutside(settingsFormRef, () => {
+    if (openSettings) setOpenSettings(false);
   });
 
   return (
     <>
-      {/* Render Settings Form  */}
-      {open && (
-        <HookForm
+      {openProfile && (
+        <ProfileForm
           onClose={() => {
-            setOpen(false);
+            setOpenProfile(false);
           }}
-          formRef={formRef}
+          formRef={profileFormRef}
+        />
+      )}
+      {/*  */}
+      {openSettings && (
+        <SettingsForm
+          onClose={() => {
+            setOpenSettings(false);
+          }}
+          formRef={settingsFormRef}
         />
       )}
       <div className={classes.tabMenu}>
@@ -48,18 +65,22 @@ const HeaderMenuTab = ({ onSetOpen }) => {
           </button>
         )}
 
-        <button onClick={() => setOpen(true)} className={classes.button}>
+        <button
+          onClick={() => setOpenSettings(true)}
+          className={classes.button}
+        >
           <MdSettings className={classes.icon} />
           <span>Settings</span>
         </button>
 
         {isLogged && (
-          <Link to="/profile">
-            <button className={classes.button}>
-              <MdPermIdentity className={classes.icon} />
-              <span>Profile</span>
-            </button>
-          </Link>
+          <button
+            className={classes.button}
+            onClick={() => setOpenProfile(true)}
+          >
+            <MdPermIdentity className={classes.icon} />
+            <span>Profile</span>
+          </button>
         )}
 
         {!isLogged && (

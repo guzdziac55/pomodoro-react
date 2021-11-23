@@ -24,7 +24,7 @@ const Routing = () => {
       <Route path="/" element={<App />}>
         <Route path="/" element={<PomodoroApp />} />
         <Route path="app" element={<PomodoroApp />} />
-        {currentUser && <Route path="profile" element={<Profile />} />}
+        {/* {currentUser && <Route path="profile" element={<Profile />} />} */}
         {!currentUser && <Route path="login" element={<Login />} />}
         <Route path="signup" element={<SignUp />} />
         <Route path="reset-password" element={<ResetPassword />} />

@@ -1,5 +1,5 @@
-import React, { useRef } from "react";
-import classes from "./SettingsApp.module.css";
+import React from "react";
+import classes from "./Settings.module.css";
 import Modal from "../UI/Modal";
 import { useForm } from "react-hook-form";
 import { connect } from "react-redux"; // example to save form into Store ? ?
@@ -12,11 +12,11 @@ import {
   InputRow,
   Switch,
   InputWrapper,
-} from "./Components";
+} from "./FormComponents";
 
-const SettingsApp = (props) => {
+const Settings = (props) => {
   const onClose = props.onClose;
-  const refForm = props.formRef;
+  const ref = props.formRef;
   const dispatch = useDispatch();
   const defaultConfigState = useSelector((state) => state.config);
   const { register, handleSubmit } = useForm({
@@ -38,7 +38,7 @@ const SettingsApp = (props) => {
 
   return (
     <Modal>
-      <form ref={refForm} onSubmit={handleSubmit(onSubmit)}>
+      <form ref={ref} onSubmit={handleSubmit(onSubmit)}>
         <div className={classes.formMain}>
           <InputWrapper title="Time Options">
             <InputColumn
@@ -124,6 +124,6 @@ const SettingsApp = (props) => {
   );
 };
 
-const HookForm = connect()(SettingsApp);
+const SettingsForm = connect()(Settings);
 
-export default HookForm;
+export default SettingsForm;
