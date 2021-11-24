@@ -13,3 +13,9 @@ const AvatarsList = ({ onPickAvatar }) => {
 };
 
 export default AvatarsList;
+
+// what should contains avatar component:
+
+//  send StateHandler function // as props
+
+// handler function with submit form after upp component

@@ -15,6 +15,7 @@ import { selectCurrentUser } from "../../store/auth-slice";
 import SettingsForm from "../SettingsApp/Settings";
 import { useClickOutside } from "../../hooks/use-clickOutside";
 import ProfileForm from "../ProfileApp/ProfileForm";
+import UserAvatarHeader from "./UserAvatarHeader";
 
 const HeaderMenuTab = ({ onSetOpen }) => {
   const isLogged = useSelector(selectCurrentUser);
@@ -83,6 +84,12 @@ const HeaderMenuTab = ({ onSetOpen }) => {
           </button>
         )}
 
+        {/* PODMIANKA LOGO AVATAR IMAGE  */}
+        {/* PODMIANKA LOGO AVATAR IMAGE  */}
+        {/* PODMIANKA LOGO AVATAR IMAGE  */}
+
+        {isLogged && <UserAvatarHeader onClick={() => setOpenProfile(true)} />}
+
         {!isLogged && (
           <Link to="/signup">
             <button className={classes.button}>
@@ -112,3 +119,12 @@ const HeaderMenuTab = ({ onSetOpen }) => {
 };
 
 export default HeaderMenuTab;
+
+//  OLD PROFILE
+// <button
+//   className={classes.button}
+//   onClick={() => setOpenProfile(true)}
+// >
+//   <MdPermIdentity className={classes.icon} />
+//   <span>Profile</span>
+// </button>

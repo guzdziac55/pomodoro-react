@@ -5,7 +5,7 @@ const profileSlice = createSlice({
   name: "profile",
   initialState: {
     profileChanged: false,
-    avatarUrl: "images/avatar1.png",
+    avatarUrl: "",
   },
   reducers: {
     setAvatarUrl(state, action) {
