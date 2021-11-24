@@ -5,13 +5,13 @@ import { MdAddCircleOutline } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import Modal from "../UI/Modal";
 import AvatarsList from "../AvatarsList/AvatarsList";
+import { setAvatarUrl } from "../../store/profile-slice";
 
 const ProfileForm = ({ formRef, onClose }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   // const avatarsList = ["images/avatar1.png", "images/avatar2.png"];
   const userAvatar = useSelector(selectUserAvatar);
-  console.log("user avatar us ");
-  console.log(userAvatar);
+
   const [openAvatars, setOpenAvatars] = useState(false);
   const [pickedAvatar, setPickedAvatar] = useState(userAvatar);
 
@@ -26,10 +26,8 @@ const ProfileForm = ({ formRef, onClose }) => {
 
   const submitForm = (e) => {
     e.preventDefault();
-
-    //  save avatar into config storage and send into firebase
-    // dispatch
-    //
+    dispatch(setAvatarUrl(pickedAvatar));
+    onClose();
   };
 
   return (

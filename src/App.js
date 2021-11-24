@@ -9,6 +9,7 @@ import {
   fetchFirebaseUserData,
   sendFirebaseTaskList,
   sendFirebaseSettings,
+  sendFireBaseUserProfile,
 } from "./store/thunks/taskList-actions";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -16,6 +17,11 @@ import { selectTaskList, selectTaskListChanged } from "./store/taskList-slice";
 import { selectCurrentUser } from "./store/auth-slice";
 import { selectConfig, selectConfigChanges } from "./store/config-slice";
 import { selectActiveStage } from "./store/timer-slice";
+import {
+  selectUserProfile,
+  selectUserAvatar,
+  selectProfieChanged,
+} from "./store/profile-slice";
 // firebase
 import { auth } from "./firebase";
 import { authActions } from "./store/auth-slice";
@@ -23,6 +29,7 @@ import AppInfo from "./components/AppInfoSection/AppInfo";
 
 let isInitialTask = true;
 let isInitialSettings = true;
+let isInitialProfile = true;
 
 function App() {
   const dispatch = useDispatch();
@@ -30,13 +37,15 @@ function App() {
   const taskList = useSelector(selectTaskList);
   const isTaskChanged = useSelector(selectTaskListChanged);
   const isConfigChanged = useSelector(selectConfigChanges);
+  const isProfileChanged = useSelector(selectProfieChanged);
   const configSettings = useSelector(selectConfig);
   const activeStage = useSelector(selectActiveStage);
   const currentUser = useSelector(selectCurrentUser);
 
-  const themeClasses = ["pomodoroTheme", "shortBreakTheme", "longBreakTheme"];
-
+  // const userProfile = useSelector(selectUserProfile);
+  const userAvatar = useSelector(selectUserAvatar);
   // MAIN PROBLEM
+  const themeClasses = ["pomodoroTheme", "shortBreakTheme", "longBreakTheme"];
   // isChanged is persistet intoLocalStorage ? !! its bad
   // pamięta po pierwszej zmienie że jest changed
 
@@ -54,19 +63,27 @@ function App() {
     }
   }, [taskList, dispatch]);
 
-  // sendSettings // problem wysyła ten z initialStatu
   useEffect(() => {
     if (isInitialSettings) {
       isInitialSettings = false;
       return;
     }
     if (isConfigChanged && currentUser) {
-      console.log("CZY CHCE WYSYŁAĆ CONFIG");
-
       const userId = currentUser.uid;
       dispatch(sendFirebaseSettings(configSettings, userId)); // obj
     }
   }, [configSettings, dispatch]);
+
+  useEffect(() => {
+    if (isInitialProfile) {
+      isInitialProfile = false;
+      return;
+    }
+    if (isProfileChanged && currentUser) {
+      const userId = currentUser.uid;
+      dispatch(sendFireBaseUserProfile(userAvatar, userId));
+    }
+  }, [userAvatar, dispatch]);
 
   // use Login / Logout // pobierz taskList i settings
   useEffect(() => {

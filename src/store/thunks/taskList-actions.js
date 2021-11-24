@@ -4,7 +4,13 @@ import { defaultState } from "../config-slice";
 import { setConfig } from "../config-slice";
 import { database } from "../../firebase";
 import { ref, update } from "firebase/database";
-export { sendFirebaseTaskList, sendFirebaseSettings, fetchFirebaseUserData };
+import { setAvatarUrl } from "../profile-slice";
+export {
+  sendFirebaseTaskList,
+  sendFirebaseSettings,
+  sendFireBaseUserProfile,
+  fetchFirebaseUserData,
+};
 
 const sendFirebaseTaskList = (taskList, uid) => {
   return async (dispatch) => {
@@ -81,6 +87,44 @@ const sendFirebaseSettings = (settings, uid) => {
   };
 };
 
+const sendFireBaseUserProfile = (userProfile, uid) => {
+  return async (dispatch) => {
+    dispatch(
+      showNotification({
+        status: "sending",
+        title: "sending profile ...",
+        message: "sending profile data",
+      })
+    );
+
+    const sendProfileUser = async () => {
+      update(ref(database, "users/" + uid), {
+        UserProfile: userProfile, // object from redux
+      });
+    };
+
+    try {
+      await sendProfileUser(); //
+      console.log("inside thunk send profile user ! ");
+      dispatch(
+        showNotification({
+          status: "success",
+          title: "success...",
+          message: "send userData  success",
+        })
+      );
+    } catch (err) {
+      dispatch(
+        showNotification({
+          status: "error",
+          title: "some error !",
+          message: "sending Tasklist data failed",
+        })
+      );
+    }
+  };
+};
+
 const fetchFirebaseUserData = (uid) => {
   return async (dispatch) => {
     dispatch(
@@ -94,18 +138,24 @@ const fetchFirebaseUserData = (uid) => {
     const fetchRequest = async () => {
       const tasksRef = database.ref("users/" + uid + "/TasksList");
       const settingsRef = database.ref("users/" + uid + "/Settings");
-      return [tasksRef, settingsRef];
+      const userProfileRef = database.ref("users/" + uid + "/UserProfile");
+      return [tasksRef, settingsRef, userProfileRef];
     };
 
     try {
-      const [tasksRef, settingsRef] = await fetchRequest();
+      const [tasksRef, settingsRef, userProfileRef] = await fetchRequest();
+
       const snapshotTasks = await tasksRef.once("value");
       const snapshotSettings = await settingsRef.once("value");
+      const snapshotUserProfile = await userProfileRef.once("value");
+
       const taskListData = snapshotTasks.val();
       const settingsData = snapshotSettings.val();
+      const userProfileData = snapshotUserProfile.val();
 
       dispatch(replaceTaskList(taskListData || []));
       dispatch(setConfig(settingsData || { ...defaultState }));
+      dispatch(setAvatarUrl(userProfileData || "images/avatar1.png"));
 
       dispatch(
         showNotification({
