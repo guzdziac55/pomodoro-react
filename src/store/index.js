@@ -7,6 +7,7 @@ import uiSlice from "./ui-slice";
 import timerSlice from "./timer-slice";
 import configSlice from "./config-slice";
 import authSlice from "./auth-slice";
+import profileSlice from "./profile-slice";
 
 const combinedReducers = combineReducers({
   tasksList: taskListSlice.reducer,
@@ -14,6 +15,7 @@ const combinedReducers = combineReducers({
   timer: timerSlice.reducer,
   config: configSlice.reducer,
   auth: authSlice.reducer,
+  profile: profileSlice.reducer,
 });
 
 // config and middleware Ignore list + storage [ local, seasion etc.]

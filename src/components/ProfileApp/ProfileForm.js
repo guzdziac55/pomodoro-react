@@ -1,50 +1,65 @@
 import React, { useState } from "react";
 import classes from "./ProfileForm.module.css";
-
+import { selectUserAvatar } from "../../store/profile-slice";
 import { MdAddCircleOutline } from "react-icons/md";
-import { useDispatch } from "react-redux";
-import { InputWrapper } from "../SettingsApp/FormComponents";
+import { useDispatch, useSelector } from "react-redux";
 import Modal from "../UI/Modal";
 import AvatarsList from "../AvatarsList/AvatarsList";
 
 const ProfileForm = ({ formRef, onClose }) => {
-  const [avatarUrl, setAvatarUrl] = useState("");
+  // const dispatch = useDispatch();
+  // const avatarsList = ["images/avatar1.png", "images/avatar2.png"];
+  const userAvatar = useSelector(selectUserAvatar);
+  console.log("user avatar us ");
+  console.log(userAvatar);
   const [openAvatars, setOpenAvatars] = useState(false);
-  //  pick avatar in another modal window ? ? ? ?
-  const avatarsList = ["images/avatar1.png", "images/avatar2.png"];
-  //  or
+  const [pickedAvatar, setPickedAvatar] = useState(userAvatar);
 
-  // upload by local ==> trudniejsze
+  const onPickAvatarHandler = (urlAvatar) => {
+    console.log("avatar picker");
+    setPickedAvatar(urlAvatar);
+  };
 
-  const dispatch = useDispatch();
-  const submitHandler = (e) => {
+  // when log in getUserUrl from firebase
+  // put into slice => auth or somewhere userData
+  // useSelector to pick this data from redux
+
+  const submitForm = (e) => {
     e.preventDefault();
 
-    //  save avatar url into Redux => send url avatar into firebase
+    //  save avatar into config storage and send into firebase
+    // dispatch
+    //
   };
 
   return (
     <Modal>
-      <form ref={formRef}>
+      <form onSubmit={submitForm} ref={formRef}>
         <div className={classes.formMain}>
           <div className={classes.formControlColumn}>
             <span className={classes.labelLarge}>Set user Avatar</span>
-            <button
-              type="button"
-              className={classes.circleButton}
-              onClick={() => {
-                if (!openAvatars) setOpenAvatars(true);
-              }}
-            >
-              <MdAddCircleOutline className={classes.icon}></MdAddCircleOutline>
-            </button>
+
+            <div className={classes.avatarPicker}>
+              <img src={pickedAvatar} className={classes.userAvatar}></img>
+              <button
+                type="button"
+                className={classes.circleButton}
+                onClick={() => {
+                  if (!openAvatars) setOpenAvatars(true);
+                }}
+              >
+                <MdAddCircleOutline
+                  className={classes.icon}
+                ></MdAddCircleOutline>
+              </button>
+            </div>
           </div>
 
           {/* <InputWrapper title="Profile Options" /> */}
         </div>
         {openAvatars && (
           <div>
-            <AvatarsList></AvatarsList>
+            <AvatarsList onPickAvatar={onPickAvatarHandler}></AvatarsList>
           </div>
         )}
         {/* AVATAR LIST HERE !  */}

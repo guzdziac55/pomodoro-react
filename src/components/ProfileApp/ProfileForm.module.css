@@ -63,26 +63,43 @@
   font-weight: bold;
 }
 
-.circleButton {
-  width: 100px;
-  height: 100px;
-  background-color: rgba(0, 0, 0, 0.3);
-  border-radius: 50%;
-  overflow: hidden;
-  border: 2px solid #000000;
+.avatarPicker {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
 }
 
-.circleButton:hover {
+.avatarPicker:hover .icon {
+  opacity: 0.8;
+}
+
+.avatarPicker:hover .circleButton {
+  background-color: rgba(46, 46, 46, 0.5);
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.userAvatar {
   width: 100px;
   height: 100px;
-  background-color: rgba(0, 0, 0, 0.7);
-  border-radius: 50%;
+}
+
+.circleButton {
+  position: absolute;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  border: none;
   overflow: hidden;
 }
 
 .icon {
-  height: 100%;
-  width: 100%;
-  color: #000000;
-  opacity: 0.5;
+  height: 50px;
+  width: 50px;
+  color: #ffffff;
+  opacity: 0.3;
 }
