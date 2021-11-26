@@ -41,6 +41,7 @@ export const selectConfig = (state) => state.config;
 export const selectLongBrakInterval = (state) => state.config.longBreakInterval;
 export const selectStageOptions = (state) => state.config.stageOptions;
 export const selectConfigChanges = (state) => state.config.configChanged;
+export const selectAlarmSound = (state) => state.config.alarmSound;
 
 export const selectPomodoroOptionTime = createSelector(
   (state) => state.config.stageOptions,

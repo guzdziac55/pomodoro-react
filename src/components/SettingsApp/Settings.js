@@ -14,6 +14,8 @@ import {
   InputWrapper,
 } from "./FormComponents";
 
+import { notifications } from "../../assets/notifications/notifications";
+
 const Settings = (props) => {
   const onClose = props.onClose;
   const ref = props.formRef;
@@ -22,6 +24,8 @@ const Settings = (props) => {
   const { register, handleSubmit } = useForm({
     defaultValues: { ...defaultConfigState }, // default values from settings redux
   });
+
+  // const noti = notifications.map((notification) => notification.name);
 
   // form on submit
   const onSubmit = (data) => {
@@ -75,9 +79,17 @@ const Settings = (props) => {
 
           <Select
             name="alarmSound"
-            options={["sound1", "sound2", "sound3"]}
+            options={notifications.map((notification) => notification.name)}
             register={register}
             title="Alarm Sound"
+            // options={notificationOptions}
+            // options={() => {
+            //   const noti = notifications.map((notification) => {
+            //     console.log("inside map");
+            //     return notification.name;
+            //   });
+            //   return noti;
+            // }}
           />
 
           <Switch

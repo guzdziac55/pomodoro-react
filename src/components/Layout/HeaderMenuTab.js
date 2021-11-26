@@ -20,8 +20,8 @@ import UserAvatarHeader from "./UserAvatarHeader";
 const HeaderMenuTab = ({ onSetOpen }) => {
   const isLogged = useSelector(selectCurrentUser);
   const { isLoading, error, authLogout } = useAuthLogout();
-  const [openSettings, setOpenSettings] = useState(false);
-  const [openProfile, setOpenProfile] = useState(false);
+  const [openSettingsModal, setOpenSettingsModal] = useState(false);
+  const [openProfileModal, setOpenProfileModal] = useState(false);
 
   const profileFormRef = useRef();
   const settingsFormRef = useRef();
@@ -32,28 +32,28 @@ const HeaderMenuTab = ({ onSetOpen }) => {
 
   useClickOutside(profileFormRef, () => {
     console.log("outside click Formref");
-    if (openProfile) setOpenProfile(false);
+    if (openProfileModal) setOpenProfileModal(false);
   });
 
   useClickOutside(settingsFormRef, () => {
-    if (openSettings) setOpenSettings(false);
+    if (openSettingsModal) setOpenSettingsModal(false);
   });
 
   return (
     <>
-      {openProfile && (
+      {openProfileModal && (
         <ProfileForm
           onClose={() => {
-            setOpenProfile(false);
+            setOpenProfileModal(false);
           }}
           formRef={profileFormRef}
         />
       )}
       {/*  */}
-      {openSettings && (
+      {openSettingsModal && (
         <SettingsForm
           onClose={() => {
-            setOpenSettings(false);
+            setOpenSettingsModal(false);
           }}
           formRef={settingsFormRef}
         />
@@ -67,28 +67,12 @@ const HeaderMenuTab = ({ onSetOpen }) => {
         )}
 
         <button
-          onClick={() => setOpenSettings(true)}
+          onClick={() => setOpenSettingsModal(true)}
           className={classes.button}
         >
           <MdSettings className={classes.icon} />
           <span>Settings</span>
         </button>
-
-        {isLogged && (
-          <button
-            className={classes.button}
-            onClick={() => setOpenProfile(true)}
-          >
-            <MdPermIdentity className={classes.icon} />
-            <span>Profile</span>
-          </button>
-        )}
-
-        {/* PODMIANKA LOGO AVATAR IMAGE  */}
-        {/* PODMIANKA LOGO AVATAR IMAGE  */}
-        {/* PODMIANKA LOGO AVATAR IMAGE  */}
-
-        {isLogged && <UserAvatarHeader onClick={() => setOpenProfile(true)} />}
 
         {!isLogged && (
           <Link to="/signup">
@@ -113,18 +97,13 @@ const HeaderMenuTab = ({ onSetOpen }) => {
             <span>Logout</span>
           </button>
         )}
+
+        {isLogged && (
+          <UserAvatarHeader onClick={() => setOpenProfileModal(true)} />
+        )}
       </div>
     </>
   );
 };
 
 export default HeaderMenuTab;
-
-//  OLD PROFILE
-// <button
-//   className={classes.button}
-//   onClick={() => setOpenProfile(true)}
-// >
-//   <MdPermIdentity className={classes.icon} />
-//   <span>Profile</span>
-// </button>
