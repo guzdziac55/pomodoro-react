@@ -2,30 +2,47 @@ import React from "react";
 import classes from "./Settings.module.css";
 import Modal from "../UI/Modal";
 import { useForm } from "react-hook-form";
+import { useState, useEffect } from "react";
 import { connect } from "react-redux"; // example to save form into Store ? ?
 import { useDispatch, useSelector } from "react-redux";
-
-import { setConfig, setConfigChanged } from "../../store/config-slice";
+import { notifications } from "../../assets/notifications/notifications";
+import useSound from "use-sound";
 import {
-  Select,
+  setConfig,
+  setConfigChanged,
+  selectAlarmSound,
+} from "../../store/config-slice";
+import {
+  SelectNotification,
   InputColumn,
   InputRow,
   Switch,
   InputWrapper,
 } from "./FormComponents";
 
-import { notifications } from "../../assets/notifications/notifications";
+import { findNotification } from "../../hooks/findNotification";
 
 const Settings = (props) => {
+  const dispatch = useDispatch();
   const onClose = props.onClose;
   const ref = props.formRef;
-  const dispatch = useDispatch();
+
   const defaultConfigState = useSelector((state) => state.config);
+  const initialSelectNotification = useSelector(selectAlarmSound);
+  const [notification, setNotification] = useState(initialSelectNotification);
+  const [play] = useSound(findNotification(notification));
+
   const { register, handleSubmit } = useForm({
     defaultValues: { ...defaultConfigState }, // default values from settings redux
   });
+  const notificationsOption = notifications.map(
+    (notification) => notification.name
+  );
 
-  // const noti = notifications.map((notification) => notification.name);
+  // useEffect(() => {
+
+  //   play();
+  // }, [notification]);
 
   // form on submit
   const onSubmit = (data) => {
@@ -77,19 +94,17 @@ const Settings = (props) => {
             />
           </InputWrapper>
 
-          <Select
+          <SelectNotification
             name="alarmSound"
-            options={notifications.map((notification) => notification.name)}
+            options={notificationsOption}
+            playSound={play}
             register={register}
             title="Alarm Sound"
-            // options={notificationOptions}
-            // options={() => {
-            //   const noti = notifications.map((notification) => {
-            //     console.log("inside map");
-            //     return notification.name;
-            //   });
-            //   return noti;
-            // }}
+            onChange={(e) => {
+              console.log("z inputa");
+              console.log(e.target.value);
+              setNotification(e.target.value);
+            }}
           />
 
           <Switch

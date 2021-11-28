@@ -1,5 +1,6 @@
 import React from "react";
 import classes from "./FormComponents.module.css";
+import { MdOutlineNotificationsNone } from "react-icons/md";
 
 export const InputWrapper = ({ title, children }) => {
   return (
@@ -28,17 +29,32 @@ export const InputRow = ({ register, name, title, ...rest }) => {
   );
 };
 
-export const Select = ({ register, options, name, title, ...rest }) => {
+export const SelectNotification = ({
+  register,
+  options,
+  name,
+  title,
+  playSound,
+  ...rest
+}) => {
   return (
-    <div className={classes.formControlRow}>
+    <div className={[classes.formControlRow, classes.controlGap].join(" ")}>
       <span className={classes.labelLarge}>{title}</span>
-      <select className={classes.selectControl} {...register(name)} {...rest}>
-        {options.map((value) => (
-          <option className={classes.option} value={value}>
-            {value}
-          </option>
-        ))}
-      </select>
+      <div className={classes.select}>
+        <select {...register(name)} {...rest}>
+          {options.map((value) => (
+            <option className={classes.option} value={value}>
+              {value}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <button className={classes.buttonSound} type="button" onClick={playSound}>
+        <MdOutlineNotificationsNone
+          className={classes.icon}
+        ></MdOutlineNotificationsNone>
+      </button>
     </div>
   );
 };

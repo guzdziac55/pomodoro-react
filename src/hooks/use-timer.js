@@ -13,9 +13,7 @@ import {
 
 import { selectLongBrakInterval } from "../store/config-slice";
 import { selectCurrentSeconds } from "../store/timer-slice";
-import useNotifcationAudio from "./use-notificationAudio";
 import { selectAlarmSound } from "../store/config-slice";
-import { notifications } from "../assets/notifications/notifications";
 
 export const useTimer = () => {
   const dispatch = useDispatch();
@@ -28,18 +26,10 @@ export const useTimer = () => {
 
   const alarmSound = useSelector(selectAlarmSound);
 
-  console.log("notificationsnotificationsnotificationsnotifications");
-  console.log(notifications);
-  const [playing, playNotification, toogle] =
-    useNotifcationAudio(notifications);
-
-  console.log("alarmSound");
-  console.log(alarmSound.alarmSound);
-
   const timeIsEndAction = () => {
     dispatch(updateTask(activeStage));
     dispatch(calculateNewStage(longBreakInterval));
-    playNotification();
+    // playNotification();
   };
 
   // consumedTimeCalculations
@@ -48,7 +38,7 @@ export const useTimer = () => {
     if (isTicking && consumedSeconds <= currentTimeOption) {
       intervalId = setInterval(() => {
         dispatch(consumeTime());
-        playNotification();
+        // playNotification();
       }, 1000);
     } else if (consumedSeconds > currentTimeOption) {
       timeIsEndAction();
