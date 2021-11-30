@@ -15,7 +15,7 @@ import { selectCurrentUser } from "../../store/auth-slice";
 import SettingsForm from "../SettingsApp/Settings";
 import { useClickOutside } from "../../hooks/use-clickOutside";
 import ProfileForm from "../ProfileApp/ProfileForm";
-import UserAvatarHeader from "./UserAvatarHeader";
+import UserAvatarHeader from "../Avatars/UserAvatarHeader";
 
 const HeaderMenuTab = ({ onSetOpen }) => {
   const isLogged = useSelector(selectCurrentUser);

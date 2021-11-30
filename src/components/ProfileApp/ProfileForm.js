@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import classes from "./ProfileForm.module.css";
 import { selectUserAvatar } from "../../store/profile-slice";
-import { MdAddCircleOutline } from "react-icons/md";
+import { MdAddCircleOutline, MdRefresh } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import Modal from "../UI/Modal";
-import AvatarsList from "../AvatarsList/AvatarsList";
+import { getRandomAvatar } from "../../store/thunks/avatar-actions";
+import AvatarsList from "../Avatars/AvatarsList";
 import { setAvatarUrl } from "../../store/profile-slice";
 
 const ProfileForm = ({ formRef, onClose }) => {
@@ -14,15 +15,22 @@ const ProfileForm = ({ formRef, onClose }) => {
 
   const [openAvatars, setOpenAvatars] = useState(false);
   const [pickedAvatar, setPickedAvatar] = useState(userAvatar);
+  const [userName, setUserName] = useState(""); // or load <== if exist in config select
 
   const onPickAvatarHandler = (urlAvatar) => {
     console.log("avatar picker");
     setPickedAvatar(urlAvatar);
   };
 
-  // when log in getUserUrl from firebase
-  // put into slice => auth or somewhere userData
-  // useSelector to pick this data from redux
+  // component and api call for random avatar
+  // button with refresh avatar
+  // wynik daj do setPicked i submit zatwierdza
+
+  const getAvatar = () => {
+    dispatch(getRandomAvatar());
+  };
+
+  //  TO GET RANDOM AVATAR WE SHOULD PASS RANDOM STRING INTO API CALL ?
 
   const submitForm = (e) => {
     e.preventDefault();
@@ -36,9 +44,21 @@ const ProfileForm = ({ formRef, onClose }) => {
         <div className={classes.formMain}>
           <div className={classes.formControlColumn}>
             <span className={classes.labelLarge}>Set user Avatar</span>
-
+            <input
+              id="name"
+              type="text"
+              placeholder="Set your name"
+              value={userName}
+              onChange={(e) => {
+                setUserName(e.target.value);
+              }}
+            ></input>
             <div className={classes.avatarPicker}>
-              <img src={pickedAvatar} className={classes.userAvatar}></img>
+              <img
+                src={`https://api.multiavatar.com/${userName}.png`}
+                className={classes.userAvatar}
+              ></img>
+
               <button
                 type="button"
                 className={classes.circleButton}
@@ -47,10 +67,17 @@ const ProfileForm = ({ formRef, onClose }) => {
                 }}
               >
                 <MdAddCircleOutline
-                  className={classes.icon}
+                  className={classes.iconBig}
                 ></MdAddCircleOutline>
               </button>
             </div>
+            <button
+              type="button"
+              className={classes.getAvatarButton}
+              // onClick={getAvatar}
+            >
+              <MdRefresh className={classes.iconSmall}></MdRefresh>
+            </button>
           </div>
 
           {/* <InputWrapper title="Profile Options" /> */}

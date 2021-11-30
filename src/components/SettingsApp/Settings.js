@@ -39,12 +39,6 @@ const Settings = (props) => {
     (notification) => notification.name
   );
 
-  // useEffect(() => {
-
-  //   play();
-  // }, [notification]);
-
-  // form on submit
   const onSubmit = (data) => {
     const { pomodoroTime, shortBreak, longBreak, ...dataRest } = data;
     const newConfigState = {

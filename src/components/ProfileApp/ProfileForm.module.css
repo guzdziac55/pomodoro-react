@@ -97,9 +97,30 @@
   overflow: hidden;
 }
 
-.icon {
-  height: 50px;
-  width: 50px;
+.getAvatarButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  overflow: hidden;
+  background-color: #2195f39f;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+.getAvatarButton:hover {
+  cursor: pointer;
+  background-color: #2196f3;
+}
+
+.iconBig {
+  height: 80px;
+  width: 80px;
   color: #ffffff;
   opacity: 0.3;
+}
+.iconSmall {
+  height: 20px;
+  width: 20px;
+  color: #ffffff;
 }

@@ -15,14 +15,12 @@ const SignUp = () => {
 
   const emailRef = useRef();
   const passwordRef = useRef();
-  const currentUser = useSelector((state) => state.auth.currentUser);
 
   const submitForm = (e) => {
     e.preventDefault();
     const enteredEmail = emailRef.current.value;
     const enteredPassword = passwordRef.current.value;
     authCreateAcc(enteredEmail, enteredPassword);
-    console.log(JSON.stringify(currentUser));
   };
 
   return (

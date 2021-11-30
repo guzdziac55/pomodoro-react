@@ -1,12 +1,11 @@
 import React from "react";
 import AvatarItem from "./AvatarItem";
 import classes from "./AvatarsList.module.css";
+import { avatars } from "../../assets/avatars/avatars";
 
 const AvatarsList = ({ onPickAvatar }) => {
-  const avatarsURL = ["images/avatar1.png", "images/avatar2.png"];
-
-  const avatarsList = avatarsURL.map((avatarUrl) => (
-    <AvatarItem url={avatarUrl} onPickAvatar={onPickAvatar} />
+  const avatarsList = avatars.map((avatar) => (
+    <AvatarItem url={avatar.url} onPickAvatar={onPickAvatar} />
   ));
 
   return <div className={classes.avatarsList}>{avatarsList}</div>;
