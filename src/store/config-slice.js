@@ -7,7 +7,7 @@ export const defaultState = {
   autoBreak: false, // switch [ checkboox]
   autoPomodoros: true, // switch
   longBreakInterval: 4,
-  alarmSound: "sound1",
+  alarmSound: "notification1",
   viewModal: true,
 };
 
@@ -19,7 +19,7 @@ const configSlice = createSlice({
     autoBreak: false, // switch [ checkboox]
     autoPomodoros: true, // switch
     longBreakInterval: 4,
-    alarmSound: "sound1",
+    alarmSound: "notification1",
     viewModal: true,
   },
   reducers: {
