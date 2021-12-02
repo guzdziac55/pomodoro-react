@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
 
-export const defaultState = {
+export const defaultConfigState = {
   configChanged: false,
   stageOptions: [25, 5, 20],
   autoBreak: false, // switch [ checkboox]

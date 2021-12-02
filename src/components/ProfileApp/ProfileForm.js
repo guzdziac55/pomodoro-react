@@ -1,40 +1,47 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./ProfileForm.module.css";
-import { selectUserAvatar } from "../../store/profile-slice";
+
 import { MdAddCircleOutline, MdRefresh } from "react-icons/md";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Modal from "../UI/Modal";
-import { getRandomAvatar } from "../../store/thunks/avatar-actions";
-import AvatarsList from "../Avatars/AvatarsList";
-import { setAvatarUrl } from "../../store/profile-slice";
+import { useCheckImage } from "../../hooks/use-checkImage";
+import {
+  selectUserName,
+  selectUserAvatar,
+  setAvatarUrl,
+  setUserName,
+} from "../../store/profile-slice";
 
 const ProfileForm = ({ formRef, onClose }) => {
   const dispatch = useDispatch();
-  // const avatarsList = ["images/avatar1.png", "images/avatar2.png"];
-  const userAvatar = useSelector(selectUserAvatar);
+
+  const initialName = useSelector(selectUserName);
+  const initialAvatar = useSelector(selectUserAvatar);
 
   const [openAvatars, setOpenAvatars] = useState(false);
-  const [pickedAvatar, setPickedAvatar] = useState(userAvatar);
-  const [userName, setUserName] = useState(""); // or load <== if exist in config select
+  const [name, setName] = useState(initialName); // or load <== if exist in config select
+  const [avatarId, setAvatarId] = useState(initialAvatar);
 
-  const onPickAvatarHandler = (urlAvatar) => {
-    console.log("avatar picker");
-    setPickedAvatar(urlAvatar);
+  const [imageExist, checkImage] = useCheckImage();
+
+  const getRandomAvatar = () => {
+    const randomAvatar = Math.random().toString(36).substr(2, 5);
+    checkImage(`https://api.multiavatar.com/${randomAvatar}.png`);
+    if (imageExist) setAvatarId(randomAvatar);
   };
 
-  // component and api call for random avatar
-  // button with refresh avatar
-  // wynik daj do setPicked i submit zatwierdza
-
-  const getAvatar = () => {
-    dispatch(getRandomAvatar());
+  const getAvatarFromName = () => {
+    checkImage(`https://api.multiavatar.com/${name}.png`);
+    if (imageExist) setAvatarId(name);
   };
 
-  //  TO GET RANDOM AVATAR WE SHOULD PASS RANDOM STRING INTO API CALL ?
+  useEffect(() => {
+    checkImage(`https://api.multiavatar.com/${initialName}.png`);
+  }, []);
 
   const submitForm = (e) => {
-    e.preventDefault();
-    dispatch(setAvatarUrl(pickedAvatar));
+    dispatch(setUserName(name));
+    dispatch(setAvatarUrl(avatarId));
     onClose();
   };
 
@@ -44,38 +51,56 @@ const ProfileForm = ({ formRef, onClose }) => {
         <div className={classes.formMain}>
           <div className={classes.formControlColumn}>
             <span className={classes.labelLarge}>Set user Avatar</span>
-            <input
-              id="name"
-              type="text"
-              placeholder="Set your name"
-              value={userName}
-              onChange={(e) => {
-                setUserName(e.target.value);
-              }}
-            ></input>
-            <div className={classes.avatarPicker}>
-              <img
-                src={`https://api.multiavatar.com/${userName}.png`}
-                className={classes.userAvatar}
-              ></img>
-
-              <button
-                type="button"
-                className={classes.circleButton}
-                onClick={() => {
-                  if (!openAvatars) setOpenAvatars(true);
+            <div className={classes.nameContainer}>
+              <input
+                id="name"
+                className={classes.nameInput}
+                type="text"
+                onChange={(e) => {
+                  setName(e.target.value);
                 }}
+                value={name}
+                placeholder="Set your name to draw avatar"
+              ></input>
+              <button
+                className={classes.nameSubmit}
+                onClick={getAvatarFromName}
+                type="button"
               >
-                <MdAddCircleOutline
-                  className={classes.iconBig}
-                ></MdAddCircleOutline>
+                getAvatar
               </button>
             </div>
+
+            {imageExist && (
+              <div className={classes.avatarPicker}>
+                <div className={classes.avatarContainer}>
+                  <img
+                    src={`https://api.multiavatar.com/${avatarId}.png`}
+                    className={classes.avatarImg}
+                  ></img>
+                </div>
+
+                <button
+                  type="button"
+                  className={classes.circleButton}
+                  onClick={() => {
+                    if (!openAvatars) setOpenAvatars(true);
+                  }}
+                >
+                  <MdAddCircleOutline
+                    className={classes.iconBig}
+                  ></MdAddCircleOutline>
+                </button>
+              </div>
+            )}
+            {!imageExist && <p> cannot get avatar // too many api calls </p>}
+            {/*  or Call function !  */}
             <button
               type="button"
               className={classes.getAvatarButton}
-              // onClick={getAvatar}
+              onClick={getRandomAvatar}
             >
+              random
               <MdRefresh className={classes.iconSmall}></MdRefresh>
             </button>
           </div>
@@ -84,7 +109,7 @@ const ProfileForm = ({ formRef, onClose }) => {
         </div>
         {openAvatars && (
           <div>
-            <AvatarsList onPickAvatar={onPickAvatarHandler}></AvatarsList>
+            {/* <AvatarsList onPickAvatar={onPickAvatarHandler}></AvatarsList> */}
           </div>
         )}
         {/* AVATAR LIST HERE !  */}
