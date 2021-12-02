@@ -1,7 +1,8 @@
 import { showNotification } from "../ui-slice";
 
-export const getRandomAvatar = (id) => {
+export const getRandomAvatar = (name) => {
   return async (dispatch) => {
+    console.log("fetching svg");
     dispatch(
       showNotification({
         status: "pending",
@@ -10,20 +11,16 @@ export const getRandomAvatar = (id) => {
       })
     );
 
+    console.log("wewnątrz getrandomavatar");
+
     const sendRequest = async () => {
-      const response = fetch("https://api.multiavatar.com/BinxBond.png");
+      const response = fetch(`https://api.multiavatar.com/${name}`);
       return response;
     };
 
     try {
       const response = await sendRequest();
-      //   const data = await response.json();
-      // dispatch to send data here !
-      // dispatch replace avatar
       const data = await response.text(); // returns svg !
-      console.log(data);
-      //   console.log(data);
-
       dispatch(
         showNotification({
           status: "success",
@@ -31,7 +28,10 @@ export const getRandomAvatar = (id) => {
           message: "Data loading success",
         })
       );
+
+      return data;
     } catch (err) {
+      console.log("error svg");
       dispatch(
         showNotification({
           status: "error",

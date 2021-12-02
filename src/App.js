@@ -42,8 +42,7 @@ function App() {
   const activeStage = useSelector(selectActiveStage);
   const currentUser = useSelector(selectCurrentUser);
 
-  // const userProfile = useSelector(selectUserProfile);
-  const userAvatar = useSelector(selectUserAvatar);
+  const userProfile = useSelector(selectUserProfile);
   // MAIN PROBLEM
   const themeClasses = ["pomodoroTheme", "shortBreakTheme", "longBreakTheme"];
   // isChanged is persistet intoLocalStorage ? !! its bad
@@ -81,9 +80,9 @@ function App() {
     }
     if (isProfileChanged && currentUser) {
       const userId = currentUser.uid;
-      dispatch(sendFireBaseUserProfile(userAvatar, userId));
+      dispatch(sendFireBaseUserProfile(userProfile, userId));
     }
-  }, [userAvatar, dispatch]);
+  }, [userProfile, dispatch]);
 
   // use Login / Logout // pobierz taskList i settings
   useEffect(() => {

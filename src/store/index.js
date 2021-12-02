@@ -27,7 +27,6 @@ const persistConfig = {
 // slices reducers
 const rootReducer = (state, action) => {
   if (action.type === "auth/logout") {
-    console.log("ma ten jebany logout ? ");
     state = undefined;
   }
   return combinedReducers(state, action);

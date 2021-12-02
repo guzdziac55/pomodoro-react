@@ -1,10 +1,12 @@
 import { showNotification } from "../ui-slice";
 import { replaceTaskList } from "../taskList-slice";
-import { defaultState } from "../config-slice";
+import { defaultConfigState } from "../config-slice";
+import { defaultProfileState } from "../profile-slice";
 import { setConfig } from "../config-slice";
 import { database } from "../../firebase";
 import { ref, update } from "firebase/database";
-import { setAvatarUrl } from "../profile-slice";
+import { setProfile } from "../profile-slice";
+
 export {
   sendFirebaseTaskList,
   sendFirebaseSettings,
@@ -154,8 +156,8 @@ const fetchFirebaseUserData = (uid) => {
       const userProfileData = snapshotUserProfile.val();
 
       dispatch(replaceTaskList(taskListData || []));
-      dispatch(setConfig(settingsData || { ...defaultState }));
-      dispatch(setAvatarUrl(userProfileData || "images/avatar1.png"));
+      dispatch(setConfig(settingsData || { ...defaultConfigState }));
+      dispatch(setProfile(userProfileData || { ...defaultProfileState }));
 
       dispatch(
         showNotification({
