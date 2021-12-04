@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import classes from "./ProfileForm.module.css";
 
-import { MdAddCircleOutline, MdRefresh } from "react-icons/md";
+import { MdRefresh } from "react-icons/md";
+
 import { useSelector, useDispatch } from "react-redux";
 import Modal from "../UI/Modal";
 import { useCheckImage } from "../../hooks/use-checkImage";
@@ -11,6 +12,7 @@ import {
   setAvatarUrl,
   setUserName,
 } from "../../store/profile-slice";
+import { generateAvatarURL } from "../../store/constants/app.constants";
 
 const ProfileForm = ({ formRef, onClose }) => {
   const dispatch = useDispatch();
@@ -18,11 +20,17 @@ const ProfileForm = ({ formRef, onClose }) => {
   const initialName = useSelector(selectUserName);
   const initialAvatar = useSelector(selectUserAvatar);
 
-  const [openAvatars, setOpenAvatars] = useState(false);
-  const [name, setName] = useState(initialName); // or load <== if exist in config select
+  // perpered for more avatars load => get api key for more
+  // const [openAvatars, setOpenAvatars] = useState(false);
+  const [name, setName] = useState(initialName);
   const [avatarId, setAvatarId] = useState(initialAvatar);
 
-  const [imageExist, checkImage] = useCheckImage();
+  const [imageExist, isLoading, checkImage] = useCheckImage();
+
+  const getAvatarFromName = () => {
+    checkImage(`https://api.multiavatar.com/${name}.png`);
+    if (imageExist) setAvatarId(name);
+  };
 
   const getRandomAvatar = () => {
     const randomAvatar = Math.random().toString(36).substr(2, 5);
@@ -30,26 +38,34 @@ const ProfileForm = ({ formRef, onClose }) => {
     if (imageExist) setAvatarId(randomAvatar);
   };
 
-  const getAvatarFromName = () => {
-    checkImage(`https://api.multiavatar.com/${name}.png`);
-    if (imageExist) setAvatarId(name);
+  const confirmAvatar = () => {
+    dispatch(setAvatarUrl(avatarId));
   };
 
   useEffect(() => {
     checkImage(`https://api.multiavatar.com/${initialName}.png`);
   }, []);
 
-  const submitForm = (e) => {
+  const submitForm = () => {
     dispatch(setUserName(name));
-    dispatch(setAvatarUrl(avatarId));
     onClose();
   };
+
+  const isLoadingClass = isLoading ? classes.hidden : "";
 
   return (
     <Modal>
       <form onSubmit={submitForm} ref={formRef}>
         <div className={classes.formMain}>
+          <h1>Hello {initialName}</h1>
           <div className={classes.formControlColumn}>
+            <div className={classes.avatarContainer}>
+              <img
+                src={generateAvatarURL(initialAvatar)}
+                className={classes.avatarImg}
+              ></img>
+            </div>
+
             <span className={classes.labelLarge}>Set user Avatar</span>
             <div className={classes.nameContainer}>
               <input
@@ -62,8 +78,9 @@ const ProfileForm = ({ formRef, onClose }) => {
                 value={name}
                 placeholder="Set your name to draw avatar"
               ></input>
+
               <button
-                className={classes.nameSubmit}
+                className={`${classes.nameSubmit} ${isLoadingClass}`}
                 onClick={getAvatarFromName}
                 type="button"
               >
@@ -73,47 +90,33 @@ const ProfileForm = ({ formRef, onClose }) => {
 
             {imageExist && (
               <div className={classes.avatarPicker}>
-                <div className={classes.avatarContainer}>
+                <div className={classes.rollAvatarContainer}>
                   <img
-                    src={`https://api.multiavatar.com/${avatarId}.png`}
+                    src={generateAvatarURL(avatarId)}
                     className={classes.avatarImg}
                   ></img>
                 </div>
 
                 <button
                   type="button"
-                  className={classes.circleButton}
-                  onClick={() => {
-                    if (!openAvatars) setOpenAvatars(true);
-                  }}
+                  className={`${classes.getAvatarButton} ${isLoadingClass}`}
+                  onClick={getRandomAvatar}
                 >
-                  <MdAddCircleOutline
-                    className={classes.iconBig}
-                  ></MdAddCircleOutline>
+                  <MdRefresh className={classes.iconSmall}></MdRefresh>
+                </button>
+                <button
+                  type="button"
+                  onClick={confirmAvatar}
+                  className={isLoadingClass}
+                >
+                  ok
                 </button>
               </div>
             )}
             {!imageExist && <p> cannot get avatar // too many api calls </p>}
-            {/*  or Call function !  */}
-            <button
-              type="button"
-              className={classes.getAvatarButton}
-              onClick={getRandomAvatar}
-            >
-              random
-              <MdRefresh className={classes.iconSmall}></MdRefresh>
-            </button>
           </div>
-
-          {/* <InputWrapper title="Profile Options" /> */}
         </div>
-        {openAvatars && (
-          <div>
-            {/* <AvatarsList onPickAvatar={onPickAvatarHandler}></AvatarsList> */}
-          </div>
-        )}
-        {/* AVATAR LIST HERE !  */}
-
+        {openAvatars && <div></div>}
         <div className={classes.formMenu}>
           <button type="button" className={classes.btnCancel} onClick={onClose}>
             Cancel

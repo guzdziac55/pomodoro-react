@@ -65,9 +65,10 @@
 
 .avatarPicker {
   display: flex;
-
   justify-content: center;
   align-items: center;
+  gap: 20px;
+  flex-direction: row;
 }
 
 .avatarPicker:hover .icon {
@@ -81,9 +82,15 @@
 }
 
 .avatarContainer {
+  width: 150px;
+  height: 150px;
+}
+
+.rollAvatarContainer {
   width: 100px;
   height: 100px;
 }
+
 .avatarImg {
   max-width: 100%;
   max-height: 100%;
@@ -119,6 +126,7 @@
 }
 
 .getAvatarButton {
+  /* visibility: hidden; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -144,4 +152,13 @@
   height: 20px;
   width: 20px;
   color: #ffffff;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.formMain h1 {
+  color: #000000;
+  text-align: center;
 }

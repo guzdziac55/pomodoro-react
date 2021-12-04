@@ -10,8 +10,8 @@ const profileSlice = createSlice({
   name: "profile",
   initialState: {
     profileChanged: false,
-    userName: "dawid",
-    avatarUrl: "dawid",
+    userName: "",
+    avatarUrl: "",
   },
   reducers: {
     setProfile: (state, action) => {

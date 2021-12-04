@@ -1,3 +1,6 @@
+export const generateAvatarURL = (avatarId) =>
+  `https://api.multiavatar.com/${avatarId}.png`;
+
 // const notification1 = require("../notifications/notification-1.mp3");
 // const notification2 = require("../notifications/notification-2.mp3");
 // const notification3 = require("../notifications/notification-3.mp3");
