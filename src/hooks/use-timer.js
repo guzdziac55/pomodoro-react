@@ -11,9 +11,12 @@ import {
   selectConsumedTime,
 } from "../store/timer-slice";
 
+import { nextStageWithConfig } from "../store/thunks/calculateNextStage-actions";
 import { selectLongBrakInterval } from "../store/config-slice";
 import { selectCurrentSeconds } from "../store/timer-slice";
 import { selectAlarmSound } from "../store/config-slice";
+import useSound from "use-sound";
+import { findNotification } from "./findNotification";
 
 export const useTimer = () => {
   const dispatch = useDispatch();
@@ -23,13 +26,13 @@ export const useTimer = () => {
   const activeStage = useSelector(selectActiveStage);
   const longBreakInterval = useSelector(selectLongBrakInterval);
   const currentTimeOption = useSelector(selectCurrentSeconds);
-
   const alarmSound = useSelector(selectAlarmSound);
+
+  const [play] = useSound(findNotification(alarmSound));
 
   const timeIsEndAction = () => {
     dispatch(updateTask(activeStage));
-    dispatch(calculateNewStage(longBreakInterval));
-    // playNotification();
+    dispatch(nextStageWithConfig());
   };
 
   // consumedTimeCalculations
@@ -38,10 +41,10 @@ export const useTimer = () => {
     if (isTicking && consumedSeconds <= currentTimeOption) {
       intervalId = setInterval(() => {
         dispatch(consumeTime());
-        // playNotification();
       }, 1000);
     } else if (consumedSeconds > currentTimeOption) {
       timeIsEndAction();
+      play();
     }
     return () => clearInterval(intervalId); // to też się wywoła po setInterval
   }, [isTicking, consumedSeconds, currentTimeOption]);

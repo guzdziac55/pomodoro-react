@@ -91,6 +91,7 @@ const taskListSlice = createSlice({
     },
 
     updateTask(state, action) {
+      console.log("inside update taks");
       state.taskListChanged = true;
       if (action.payload !== 0 || !state.activeTask) return;
       const activeTask = state.tasksList.find(

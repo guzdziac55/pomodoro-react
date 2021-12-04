@@ -11,6 +11,7 @@ const Timer = () => {
   return (
     <Card class={classes.timer}>
       <TimerTab></TimerTab>
+      {/* here we need play sound */}
       <TimerCountdown />
       <TimerButtonStart />
     </Card>

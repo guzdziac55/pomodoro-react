@@ -13,11 +13,8 @@ export const useCheckImage = () => {
     request.onload = function () {
       let status = request.status;
       if (request.status == 200) {
-        console.log("istnieje");
         setImageExist(true);
       } else {
-        // toastify !
-        console.log("brak obrazka");
         setImageExist(false);
       }
       setIsLoading(false);

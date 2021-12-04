@@ -26,6 +26,7 @@ import {
 import { auth } from "./firebase";
 import { authActions } from "./store/auth-slice";
 import AppInfo from "./components/AppInfoSection/AppInfo";
+import Login from "./components/auth/login";
 
 let isInitialTask = true;
 let isInitialSettings = true;
@@ -116,6 +117,7 @@ function App() {
       <Routes>
         {/* info here !  */}
         <Route path="/" element={<AppInfo />} />
+        {/* <Route path="app" element={<Login />} /> */}
       </Routes>
     </Fragment>
   );

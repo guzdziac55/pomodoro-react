@@ -7,6 +7,7 @@ import { connect } from "react-redux"; // example to save form into Store ? ?
 import { useDispatch, useSelector } from "react-redux";
 import { notifications } from "../../assets/notifications/notifications";
 import useSound from "use-sound";
+
 import {
   setConfig,
   setConfigChanged,
@@ -26,6 +27,8 @@ const Settings = (props) => {
   const dispatch = useDispatch();
   const onClose = props.onClose;
   const ref = props.formRef;
+
+  // hook chyba nie działający
 
   const defaultConfigState = useSelector((state) => state.config);
   const initialSelectNotification = useSelector(selectAlarmSound);
@@ -95,8 +98,6 @@ const Settings = (props) => {
             register={register}
             title="Alarm Sound"
             onChange={(e) => {
-              console.log("z inputa");
-              console.log(e.target.value);
               setNotification(e.target.value);
             }}
           />

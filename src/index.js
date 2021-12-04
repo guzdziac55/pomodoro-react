@@ -21,6 +21,8 @@ const Routing = () => {
 
   return (
     <Routes>
+      {/* our hedder // global Render 
+      it renders elements on every child Routers => outlet is child */}
       <Route path="/" element={<App />}>
         <Route path="/" element={<PomodoroApp />} />
         <Route path="app" element={<PomodoroApp />} />

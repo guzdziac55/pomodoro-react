@@ -10,15 +10,24 @@ const timerSlice = createSlice({
     consumedSeconds: 0,
   },
   reducers: {
+    // potrzebne z settings
+    // auto Pomodoros
+    // auto
+
     calculateNewStage(state, action) {
-      const longBreakInterval = action.payload;
-      state.isTicking = false;
+      const config = action.payload;
+      const longBreakInterval = config.longBreakInterval;
+      const autoBreak = config.autoBreak;
+      const autoPomodoros = config.autoPomodoros;
+
       state.consumedSeconds = 0;
       if (state.stage === 0) {
         state.pomodoroCnt++;
         state.stage = state.pomodoroCnt % longBreakInterval == 0 ? 2 : 1;
+        state.isTicking = autoBreak ? true : false;
       } else {
         state.stage = 0;
+        state.isTicking = autoPomodoros ? true : false;
       }
     },
 
@@ -68,7 +77,7 @@ export const selectCurrentTime = createSelector(
 export const selectCurrentSeconds = createSelector(
   (state) => state.timer.stage,
   (state) => state.config.stageOptions,
-  (stage, options) => options[stage] * 60
+  (stage, options) => options[stage] // * 60
 );
 
 // logic with props from component
