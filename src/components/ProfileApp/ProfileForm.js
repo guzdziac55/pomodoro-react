@@ -116,7 +116,7 @@ const ProfileForm = ({ formRef, onClose }) => {
             {!imageExist && <p> cannot get avatar // too many api calls </p>}
           </div>
         </div>
-        {openAvatars && <div></div>}
+        {/* {openAvatars && <div></div>} */}
         <div className={classes.formMenu}>
           <button type="button" className={classes.btnCancel} onClick={onClose}>
             Cancel
