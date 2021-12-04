@@ -51,12 +51,13 @@ const ProfileForm = ({ formRef, onClose }) => {
     onClose();
   };
 
-  const isLoadingClass = isLoading ? classes.hidden : "";
+  const isLoadingClass = isLoading ? classes.hidden : classes.show;
 
   return (
     <Modal>
       <form onSubmit={submitForm} ref={formRef}>
         <div className={classes.formMain}>
+          {/* CURRENT AVATAR SHOW */}
           <h1>Hello {initialName}</h1>
           <div className={classes.formControlColumn}>
             <div className={classes.avatarContainer}>
@@ -66,6 +67,7 @@ const ProfileForm = ({ formRef, onClose }) => {
               ></img>
             </div>
 
+            {/* AVATAR GENERATOR BY NAME  */}
             <span className={classes.labelLarge}>Set user Avatar</span>
             <div className={classes.nameContainer}>
               <input
@@ -88,6 +90,7 @@ const ProfileForm = ({ formRef, onClose }) => {
               </button>
             </div>
 
+            {/* AVATAR GENERATOR RANDOM */}
             {imageExist && (
               <div className={classes.avatarPicker}>
                 <div className={classes.rollAvatarContainer}>
