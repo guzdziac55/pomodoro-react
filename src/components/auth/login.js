@@ -29,6 +29,8 @@ const Login = () => {
       </Link>
 
       <h1 className={classes.header}>Login</h1>
+      {/*  spinner here = >  */}
+      {error && <p className={classes.loginError}>{error}</p>}
       <Card class={classes.auth}>
         <form onSubmit={submitForm} className={classes.form}>
           <button
@@ -62,7 +64,8 @@ const Login = () => {
               placeholder: "",
             }}
           />
-          {!isLoading && <button>LOGIN</button>}
+
+          <button>LOGIN</button>
 
           <Link to="/reset-password">
             <span className={classes.forgotPass}>Forgot Password</span>

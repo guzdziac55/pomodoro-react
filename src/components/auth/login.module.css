@@ -49,6 +49,15 @@
   gap: 5px;
 }
 
+.loginError {
+  color: #ffffff;
+  font-size: 14px;
+
+  font-style: italic;
+  font-weight: 400;
+  text-align: center;
+}
+
 .break {
   display: block;
   color: #ffffff;

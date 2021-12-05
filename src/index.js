@@ -13,16 +13,14 @@ import { persistStore } from "redux-persist";
 import Profile from "./pages/Profile";
 import ResetPassword from "./components/auth/resetPassword";
 import SignUp from "./components/auth/signUp";
+import { ToastContainer } from "react-toastify";
 
 let persistor = persistStore(store);
 
 const Routing = () => {
   const currentUser = useSelector((state) => state.auth.currentUser);
-
   return (
     <Routes>
-      {/* our hedder // global Render 
-      it renders elements on every child Routers => outlet is child */}
       <Route path="/" element={<App />}>
         <Route path="/" element={<PomodoroApp />} />
         <Route path="app" element={<PomodoroApp />} />
@@ -42,6 +40,11 @@ const RenderApp = () => {
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <Routing />
+          <ToastContainer
+            autoClose={2000}
+            position="bottom-center"
+            hideProgressBar
+          />
         </PersistGate>
       </Provider>
     </BrowserRouter>,
