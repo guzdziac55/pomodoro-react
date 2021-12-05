@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { useState } from "react";
 
 export const useCheckImage = () => {
-  const [imageExist, setImageExist] = useState(true);
+  const [imageExist, setImageExist] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const checkImage = useCallback((url) => {
@@ -20,5 +20,6 @@ export const useCheckImage = () => {
       setIsLoading(false);
     };
   }, []);
+
   return [imageExist, isLoading, checkImage];
 };

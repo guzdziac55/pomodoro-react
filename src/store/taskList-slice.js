@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
+import { toast } from "react-toastify";
 
 const taskListSlice = createSlice({
   name: "tasksList",
@@ -22,18 +23,19 @@ const taskListSlice = createSlice({
         id: id,
         title: newTask.title,
         note: newTask.note,
-        // note: newTask.note ? newTask.note : undefined,
         actPomodoro: 0,
         estPomodoro: newTask.estPomodoro,
         done: false,
       });
-      console.log("po dodaniu takslist ");
+
+      toast.info("Task added");
     },
 
     deleteTask(state, action) {
       state.taskListChanged = true;
       const id = action.payload;
       state.tasksList = state.tasksList.filter((task) => task.id !== id);
+      toast.info("Task deleted");
     },
 
     setActiveTask(state, action) {
@@ -60,15 +62,20 @@ const taskListSlice = createSlice({
       editedItem.title = editData.title;
       editedItem.note = editData.note;
       editedItem.estPomodoro = editData.estPomodoro;
+      toast.info("Task edited");
     },
 
     deleteAllTasks(state) {
       state.taskListChanged = true;
       state.tasksList = [];
       state.activeTask = null;
+      toast.info("All tasks deleted");
     },
 
     deleteDoneTasks(state) {
+      const isDone = (task) => task.done === true;
+      const dones = state.tasksList.some(isDone);
+
       state.taskListChanged = true;
       state.tasksList = state.tasksList.filter((task) => task.done !== true);
       state.activeTask = state.tasksList.some(
@@ -76,18 +83,31 @@ const taskListSlice = createSlice({
       )
         ? state.activeTask
         : null;
+
+      const toastInfo = dones
+        ? "DONE tasks deleted"
+        : "There are no completed tasks to delete";
+      toast.info(toastInfo);
     },
 
     deleteFinishedTasks(state) {
+      const isFinished = (task) => task.estPomodoro <= task.actPomodoro;
+      const finished = state.tasksList.some(isFinished);
+
       state.taskListChanged = true;
       state.tasksList = state.tasksList.filter(
-        (task) => task.actPomodoro <= task.estPomodoro
+        (task) => task.actPomodoro < task.estPomodoro
       );
       state.activeTask = state.tasksList.some(
         (task) => task.id === state.activeTask
       )
         ? state.activeTask
         : null;
+
+      const toastInfo = finished
+        ? "FINISHED tasks deleted"
+        : "There are no finished tasks to delete";
+      toast.info(toastInfo);
     },
 
     updateTask(state, action) {
@@ -98,6 +118,7 @@ const taskListSlice = createSlice({
         (task) => task.id === state.activeTask
       );
       activeTask.actPomodoro++;
+      toast.info("Active task updated");
     },
   },
 });

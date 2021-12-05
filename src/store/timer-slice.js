@@ -10,10 +10,6 @@ const timerSlice = createSlice({
     consumedSeconds: 0,
   },
   reducers: {
-    // potrzebne z settings
-    // auto Pomodoros
-    // auto
-
     calculateNewStage(state, action) {
       const config = action.payload;
       const longBreakInterval = config.longBreakInterval;

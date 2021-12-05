@@ -5,6 +5,9 @@ import { Outlet } from "react-router-dom";
 import Header from "./components/Layout/Header";
 import { Routes, Route } from "react-router-dom";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import {
   fetchFirebaseUserData,
   sendFirebaseTaskList,
@@ -112,12 +115,14 @@ function App() {
       <main className={`${classes.mainApp} ${classes[`${currentTheme}`]}`}>
         <Header></Header>
         <Outlet />
+        <ToastContainer
+          autoClose={2000}
+          position="bottom-center"
+          hideProgressBar
+        />
       </main>
-
       <Routes>
-        {/* info here !  */}
         <Route path="/" element={<AppInfo />} />
-        {/* <Route path="app" element={<Login />} /> */}
       </Routes>
     </Fragment>
   );
