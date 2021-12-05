@@ -16,13 +16,13 @@ import SettingsForm from "../SettingsApp/Settings";
 import { useClickOutside } from "../../hooks/use-clickOutside";
 import ProfileForm from "../ProfileApp/ProfileForm";
 import UserAvatarHeader from "../Avatars/UserAvatarHeader";
+import { toast } from "react-toastify";
 
 const HeaderMenuTab = ({ onSetOpen }) => {
   const isLogged = useSelector(selectCurrentUser);
-  const { isLoading, error, authLogout } = useAuthLogout();
+  const { authLogout } = useAuthLogout();
   const [openSettingsModal, setOpenSettingsModal] = useState(false);
   const [openProfileModal, setOpenProfileModal] = useState(false);
-
   const profileFormRef = useRef();
   const settingsFormRef = useRef();
 
@@ -41,6 +41,7 @@ const HeaderMenuTab = ({ onSetOpen }) => {
 
   return (
     <>
+      {/* MODAL ! */}
       {openProfileModal && (
         <ProfileForm
           onClose={() => {
@@ -49,7 +50,6 @@ const HeaderMenuTab = ({ onSetOpen }) => {
           formRef={profileFormRef}
         />
       )}
-      {/*  */}
       {openSettingsModal && (
         <SettingsForm
           onClose={() => {
@@ -58,14 +58,9 @@ const HeaderMenuTab = ({ onSetOpen }) => {
           formRef={settingsFormRef}
         />
       )}
-      <div className={classes.tabMenu}>
-        {isLogged && (
-          <button className={classes.button}>
-            <MdQueryStats className={classes.icon} />
-            <span>Report</span>
-          </button>
-        )}
 
+      {/* navigation !  */}
+      <div className={classes.tabMenu}>
         <button
           onClick={() => setOpenSettingsModal(true)}
           className={classes.button}
@@ -74,32 +69,43 @@ const HeaderMenuTab = ({ onSetOpen }) => {
           <span>Settings</span>
         </button>
 
-        {!isLogged && (
-          <Link to="/signup">
-            <button className={classes.button}>
-              <MdPermIdentity className={classes.icon} />
-              <span>Sign up</span>
+        {isLogged && (
+          <>
+            <button
+              onClick={() => {
+                toast.info("This functionality comming soon");
+              }}
+              className={classes.button}
+            >
+              <MdQueryStats className={classes.icon} />
+              <span>Report</span>
             </button>
-          </Link>
+
+            <button onClick={handleLogout} className={classes.button}>
+              <MdOutlineLogout className={classes.icon} />
+              <span>Logout</span>
+            </button>
+
+            <UserAvatarHeader onClick={() => setOpenProfileModal(true)} />
+          </>
         )}
 
         {!isLogged && (
-          <Link to="/login">
-            <button className={classes.button}>
-              <MdLogin className={classes.icon} />
-              <span>Login</span>
-            </button>
-          </Link>
-        )}
-        {isLogged && (
-          <button onClick={handleLogout} className={classes.button}>
-            <MdOutlineLogout className={classes.icon} />
-            <span>Logout</span>
-          </button>
-        )}
+          <>
+            <Link to="/signup">
+              <button className={classes.button}>
+                <MdPermIdentity className={classes.icon} />
+                <span>Sign up</span>
+              </button>
+            </Link>
 
-        {isLogged && (
-          <UserAvatarHeader onClick={() => setOpenProfileModal(true)} />
+            <Link to="/login">
+              <button className={classes.button}>
+                <MdLogin className={classes.icon} />
+                <span>Login</span>
+              </button>
+            </Link>
+          </>
         )}
       </div>
     </>
