@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
+import { toast } from "react-toastify";
 
 export const defaultConfigState = {
   configChanged: false,
@@ -24,8 +25,7 @@ const configSlice = createSlice({
   },
   reducers: {
     setConfig: (state, action) => {
-      // state.changed = true;
-      return action.payload; //Zamiast tego, aby zastąpić istniejący stan, należy bezpośrednio zwrócić nową wartość:
+      return action.payload;
     },
     setConfigChanged(state) {
       state.configChanged = true;

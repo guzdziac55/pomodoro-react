@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 
 export const defaultProfileState = {
   profileChanged: false,
@@ -21,16 +22,17 @@ const profileSlice = createSlice({
     setUserName(state, action) {
       state.userName = action.payload;
       state.profileChanged = true;
+      toast.success("Profile saved");
     },
 
     setAvatarUrl(state, action) {
       state.avatarUrl = action.payload;
       state.profileChanged = true;
+
+      toast.success("Avatar saved");
     },
 
-    setProfileChanged(state) {
-      // state.profileChanged = true;
-    },
+    setProfileChanged(state) {},
   },
 });
 

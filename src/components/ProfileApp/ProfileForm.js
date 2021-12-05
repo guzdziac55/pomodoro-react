@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import classes from "./ProfileForm.module.css";
-
 import { MdRefresh } from "react-icons/md";
-
 import { useSelector, useDispatch } from "react-redux";
 import Modal from "../UI/Modal";
 import { useCheckImage } from "../../hooks/use-checkImage";
@@ -20,31 +18,22 @@ const ProfileForm = ({ formRef, onClose }) => {
   const initialName = useSelector(selectUserName);
   const initialAvatar = useSelector(selectUserAvatar);
 
-  // perpered for more avatars load => get api key for more
-  // const [openAvatars, setOpenAvatars] = useState(false);
   const [name, setName] = useState(initialName);
-  const [avatarId, setAvatarId] = useState(initialAvatar);
+  const [isLoading, imageExist, avatarId, checkImage] = useCheckImage();
 
-  const [imageExist, isLoading, checkImage] = useCheckImage();
-
-  const getAvatarFromName = () => {
-    checkImage(`https://api.multiavatar.com/${name}.png`);
-    if (imageExist) setAvatarId(name);
-  };
+  useEffect(() => {
+    checkImage(initialName);
+  }, []);
 
   const getRandomAvatar = () => {
+    // utils get random numeber =>
     const randomAvatar = Math.random().toString(36).substr(2, 5);
-    checkImage(`https://api.multiavatar.com/${randomAvatar}.png`);
-    if (imageExist) setAvatarId(randomAvatar);
+    checkImage(randomAvatar);
   };
 
   const confirmAvatar = () => {
     dispatch(setAvatarUrl(avatarId));
   };
-
-  useEffect(() => {
-    checkImage(`https://api.multiavatar.com/${initialName}.png`);
-  }, []);
 
   const submitForm = () => {
     dispatch(setUserName(name));
@@ -83,7 +72,9 @@ const ProfileForm = ({ formRef, onClose }) => {
 
               <button
                 className={`${classes.nameSubmit} ${isLoadingClass}`}
-                onClick={getAvatarFromName}
+                onClick={() => {
+                  checkImage(name);
+                }}
                 type="button"
               >
                 getAvatar

@@ -7,6 +7,7 @@ import { connect } from "react-redux"; // example to save form into Store ? ?
 import { useDispatch, useSelector } from "react-redux";
 import { notifications } from "../../assets/notifications/notifications";
 import useSound from "use-sound";
+import { toast } from "react-toastify";
 
 import {
   setConfig,
@@ -51,6 +52,7 @@ const Settings = (props) => {
     // replace From form config
     dispatch(setConfig(newConfigState));
     dispatch(setConfigChanged());
+    toast.success("Settings saved");
     onClose();
   };
 

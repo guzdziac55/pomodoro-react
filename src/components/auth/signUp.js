@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Card from "../UI/Card";
 import Input from "../UI/Input";
 import classes from "./signUp.module.css";
@@ -6,8 +6,6 @@ import { Link } from "react-router-dom";
 import { useRef } from "react";
 import { MdDone } from "react-icons/md";
 import { FcGoogle } from "react-icons/fc";
-
-import { useSelector } from "react-redux";
 import { useAuthCreateAcc } from "../../hooks/use-auth";
 
 const SignUp = () => {
@@ -32,8 +30,8 @@ const SignUp = () => {
       </Link>
 
       <h1 className={classes.header}>Create Account</h1>
-      {/* <p>error is: {error}</p> */}
-      {/* handle errors here */}
+      {error && <p className={classes.singUpError}>{error}</p>}
+
       <Card class={classes.auth}>
         <form onSubmit={submitForm} className={classes.form}>
           <button
@@ -68,7 +66,7 @@ const SignUp = () => {
               placeholder: "",
             }}
           />
-          {!isLoading && <button>Sign up with email</button>}
+          <button>Sign up with email</button>
         </form>
       </Card>
       <div className={classes.createWrapper}>
