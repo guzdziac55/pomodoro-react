@@ -30,7 +30,7 @@ const SignUp = () => {
       </Link>
 
       <h1 className={classes.header}>Create Account</h1>
-      {error && <p className={classes.singUpError}>{error}</p>}
+      {error && <p className={classes.error}>{error}</p>}
 
       <Card class={classes.auth}>
         <form onSubmit={submitForm} className={classes.form}>

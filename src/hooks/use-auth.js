@@ -17,8 +17,8 @@ const useAuthLogin = () => {
       await auth.signInWithEmailAndPassword(email, password);
       toast.success("User login success");
       navigate("/", { replace: true });
-    } catch (error) {
-      setError("Wrong e-mail or password");
+    } catch (err) {
+      setError(`${err}`);
     }
     setLoading(false);
   };
@@ -36,8 +36,8 @@ const useAuthCreateAcc = () => {
       await auth.createUserWithEmailAndPassword(email, password); // async make await
       toast.success("automatically logged in to the new account");
       navigate("/", { replace: true });
-    } catch (error) {
-      setError("Failed to create ACC");
+    } catch (err) {
+      setError(`${err}`);
     }
     setLoading(false);
   };

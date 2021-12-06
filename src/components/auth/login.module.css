@@ -35,7 +35,7 @@
   text-align: center;
   margin: auto;
   margin-top: 1rem;
-  /* max-width: 380px; */
+  max-width: 380px;
   min-width: 380px;
   padding: 10px 10px;
   background-color: var(--main-light);
@@ -49,10 +49,9 @@
   gap: 5px;
 }
 
-.loginError {
+.error {
   color: #ffffff;
   font-size: 14px;
-
   font-style: italic;
   font-weight: 400;
   text-align: center;

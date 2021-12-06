@@ -49,6 +49,7 @@ const Settings = (props) => {
       ...dataRest,
       stageOptions: [+pomodoroTime, +shortBreak, +longBreak],
     };
+
     // replace From form config
     dispatch(setConfig(newConfigState));
     dispatch(setConfigChanged());

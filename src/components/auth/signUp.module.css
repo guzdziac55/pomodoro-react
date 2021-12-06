@@ -1,5 +1,9 @@
 .container {
   position: absolute;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -11,6 +15,15 @@
   font-size: 24px;
   text-decoration: none;
   color: #ffffff;
+}
+
+.error {
+  color: #ffffff;
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 400;
+  text-align: center;
+  word-wrap: break-word;
 }
 
 .headerButton {
@@ -36,6 +49,7 @@
   margin: auto;
   margin-top: 1rem;
   min-width: 380px;
+  max-width: 380px;
   padding: 10px 10px;
   background-color: var(--main-light);
   height: 100%;

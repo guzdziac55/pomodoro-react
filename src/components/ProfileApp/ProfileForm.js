@@ -11,6 +11,7 @@ import {
   setUserName,
 } from "../../store/profile-slice";
 import { generateAvatarURL } from "../../store/constants/app.constants";
+import { randomString } from "../../utils/helperFunctions";
 
 const ProfileForm = ({ formRef, onClose }) => {
   const dispatch = useDispatch();
@@ -26,9 +27,8 @@ const ProfileForm = ({ formRef, onClose }) => {
   }, []);
 
   const getRandomAvatar = () => {
-    // utils get random numeber =>
-    const randomAvatar = Math.random().toString(36).substr(2, 5);
-    checkImage(randomAvatar);
+    const random = randomString();
+    checkImage(random);
   };
 
   const confirmAvatar = () => {
