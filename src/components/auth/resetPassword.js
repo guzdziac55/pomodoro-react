@@ -27,7 +27,8 @@ const ResetPassword = () => {
       </Link>
 
       <h1 className={classes.header}> Reset Password</h1>
-      <p>{error}</p>
+      {error && <p className={classes.error}>{error}</p>}
+
       <Card class={classes.auth}>
         <form onSubmit={submitForm} className={classes.form}>
           <Input
@@ -42,16 +43,8 @@ const ResetPassword = () => {
           />
 
           {!isLoading && (
-            <button className={classes.login}>
-              Reset Password
-              {/* {isLogin ? "LOGIN" : "CREATE ACCOUNT"} */}
-            </button>
+            <button className={classes.login}>Reset Password</button>
           )}
-          {/* loading spinner later */}
-          {/* {isLoading && <p>Loading ...</p>}
-        <button type="button" onClick={switchAuthModelHandler}>
-          {isLogin ? "Create new Account" : "Login with existing account"}Submit
-        </button> */}
         </form>
       </Card>
       <div className={classes.createWrapper}>

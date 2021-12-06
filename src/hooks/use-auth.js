@@ -75,8 +75,8 @@ const useAuthResetPassword = () => {
       await auth.sendPasswordResetEmail(email);
       toast.success("User password restart success - check your email !");
       navigate("/", { replace: true });
-    } catch (error) {
-      setError("Failed to create ACC");
+    } catch (err) {
+      setError(`${err}`);
     }
     setLoading(false);
   };
