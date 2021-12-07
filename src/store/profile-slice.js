@@ -28,11 +28,8 @@ const profileSlice = createSlice({
     setAvatarUrl(state, action) {
       state.avatarUrl = action.payload;
       state.profileChanged = true;
-
       toast.success("Avatar saved");
     },
-
-    setProfileChanged(state) {},
   },
 });
 

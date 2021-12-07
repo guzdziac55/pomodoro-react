@@ -13,14 +13,14 @@ const authSlice = createSlice({
       state.currentUser = null;
     },
 
-    singUp(state, action) {
+    signUp(state, action) {
       state.currentUser = action.payload;
     },
   },
 });
 
 //actions
-export const { logout, singUp } = configSlice.actions;
+export const { logout, signUp } = configSlice.actions;
 
 //selectors
 export const selectCurrentUser = (state) => state.auth.currentUser;

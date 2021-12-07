@@ -9,36 +9,63 @@ import configSlice from "./config-slice";
 import authSlice from "./auth-slice";
 import profileSlice from "./profile-slice";
 
-const combinedReducers = combineReducers({
-  tasksList: taskListSlice.reducer,
-  ui: uiSlice.reducer,
-  timer: timerSlice.reducer,
-  config: configSlice.reducer,
-  auth: authSlice.reducer,
-  profile: profileSlice.reducer,
-});
+// OUT BLACKLIST !!!
 
-// config and middleware Ignore list + storage [ local, seasion etc.]
+const profilePersist = {
+  key: "profile",
+  storage,
+  blacklist: ["profileChanged"],
+};
+
+const configPersist = {
+  key: "config",
+  storage,
+  blacklist: ["configChanged"],
+};
+
+const taskListPersist = {
+  key: "tasksList",
+  storage,
+  blacklist: ["taskListChanged"],
+};
+
 const persistConfig = {
   key: "root",
   storage,
+  blacklist: ["profile", "config", "tasksList"],
 };
 
-// slices reducers
+//  we can make other reducers outside and put here only less
+//  blackListed and rest
+
+const combinedReducers = combineReducers({
+  ui: uiSlice.reducer,
+  timer: timerSlice.reducer,
+  auth: authSlice.reducer,
+  // reducers for blackList
+  tasksList: persistReducer(taskListPersist, taskListSlice.reducer),
+  config: persistReducer(configPersist, configSlice.reducer),
+  profile: persistReducer(profilePersist, profileSlice.reducer),
+});
+
 const rootReducer = (state, action) => {
   if (action.type === "auth/logout") {
-    state = undefined;
+    state.tasksList.taskListChanged = false;
+    state.config.configChanged = false;
+    state.profile.profileChanged = false;
+  }
+  if (action.type === "auth/signUp") {
+    state.tasksList.taskListChanged = false;
+    state.config.configChanged = false;
+    state.profile.profileChanged = false;
   }
   return combinedReducers(state, action);
 };
 
-// persistedReducer slicesReducers + config
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-// store = slicesReducers + config
 const store = configureStore({
-  reducer: persistedReducer, // root + persist config
+  reducer: persistedReducer,
 });
 
-// export store and use persistStore ( persistor )
 export default store;

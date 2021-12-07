@@ -44,13 +44,16 @@ const Settings = (props) => {
   );
 
   const onSubmit = (data) => {
-    const { pomodoroTime, shortBreak, longBreak, ...dataRest } = data;
+    const { pomodoroTime, shortBreak, longBreak, configChanged, ...dataRest } =
+      data;
     const newConfigState = {
       ...dataRest,
       stageOptions: [+pomodoroTime, +shortBreak, +longBreak],
     };
-
-    // replace From form config
+    console.log("settings data");
+    console.log(data);
+    // to powinien być thunk ? = > bo po zrobieniu setConfig będzie widział zmiane
+    // ale jej nie wyśle bo nie będzie config changed
     dispatch(setConfig(newConfigState));
     dispatch(setConfigChanged());
     toast.success("Settings saved");

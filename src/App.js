@@ -39,9 +39,11 @@ function App() {
   const dispatch = useDispatch();
 
   const taskList = useSelector(selectTaskList);
+
   const isTaskChanged = useSelector(selectTaskListChanged);
   const isConfigChanged = useSelector(selectConfigChanges);
   const isProfileChanged = useSelector(selectProfieChanged);
+
   const configSettings = useSelector(selectConfig);
   const activeStage = useSelector(selectActiveStage);
   const currentUser = useSelector(selectCurrentUser);
@@ -51,62 +53,76 @@ function App() {
   const themeClasses = ["pomodoroTheme", "shortBreakTheme", "longBreakTheme"];
   // isChanged is persistet intoLocalStorage ? !! its bad
   // pamięta po pierwszej zmienie że jest changed
-
   // nie wczytuje z localStorage kiedy użytkownik jest nie zalogowany !
 
   useEffect(() => {
-    if (isInitialTask) {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      console.log("ZMIANA W CURRENT USER ?");
+      if (user) {
+        dispatch(authActions.signUp(user));
+        console.log("ZALAGOWANY");
+      } else {
+        dispatch(authActions.logout());
+        console.log("WYLOGOWANY");
+      }
+    });
+    return unsubscribe;
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (currentUser) {
+      console.log("pobierz Fetch user Data");
+      const userId = currentUser.uid;
+      dispatch(fetchFirebaseUserData(userId)); // redux thunk
+    }
+  }, [currentUser, dispatch]);
+
+  // TO DZIAŁA OK PRZY INITIAL !! ! !!
+  useEffect(() => {
+    if (isInitialTask && currentUser) {
+      console.log("tasks ale nie wysylaj bo initial");
       isInitialTask = false;
       return;
     }
     if (isTaskChanged && currentUser) {
-      console.log("CZY CHCE WYSYŁAĆ TASKI");
+      console.log("tasks  WYSLIJ ! ");
       const userId = currentUser.uid;
       dispatch(sendFirebaseTaskList(taskList, userId)); // array
     }
   }, [taskList, dispatch]);
 
+  //////////////////////////////
   useEffect(() => {
-    if (isInitialSettings) {
+    if (isInitialSettings && currentUser) {
+      console.log("settings ale nie wysylaj bo initial");
       isInitialSettings = false;
       return;
     }
     if (isConfigChanged && currentUser) {
+      console.log("settings wyslij dane ");
       const userId = currentUser.uid;
       dispatch(sendFirebaseSettings(configSettings, userId)); // obj
     }
   }, [configSettings, dispatch]);
 
   useEffect(() => {
-    if (isInitialProfile) {
+    if (isInitialProfile && currentUser) {
+      console.log("wyslij dane - ale nie wysylaj bo initial");
       isInitialProfile = false;
       return;
     }
     if (isProfileChanged && currentUser) {
+      console.log(
+        "wyslij dane POST user Data -- profile changed // i zalgoowany"
+      );
       const userId = currentUser.uid;
       dispatch(sendFireBaseUserProfile(userProfile, userId));
     }
   }, [userProfile, dispatch]);
 
   // use Login / Logout // pobierz taskList i settings
-  useEffect(() => {
-    if (currentUser) {
-      const userId = currentUser.uid;
-      dispatch(fetchFirebaseUserData(userId)); // redux thunk
-    }
-  }, [currentUser, dispatch]);
 
-  // current User Change status
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        dispatch(authActions.singUp(user));
-      } else {
-        dispatch(authActions.logout());
-      }
-    });
-    return unsubscribe;
-  }, [dispatch]);
+  // WHEN USER LOG IN OR LOG OUT !!!!GIT G
 
   const currentTheme = themeClasses[activeStage];
 
