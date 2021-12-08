@@ -33,11 +33,16 @@ const configSlice = createSlice({
     setConfigChanged(state) {
       state.configChanged = true;
     },
+
+    setConfigInitialChange(state, action) {
+      state.configChanged = false;
+    },
   },
 });
 
 //actions
-export const { setConfig, setConfigChanged } = configSlice.actions;
+export const { setConfig, setConfigChanged, setConfigInitialChange } =
+  configSlice.actions;
 
 //selectors
 export const selectConfig = (state) => state.config;

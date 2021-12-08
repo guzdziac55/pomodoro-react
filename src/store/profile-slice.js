@@ -30,11 +30,20 @@ const profileSlice = createSlice({
       state.profileChanged = true;
       toast.success("Avatar saved");
     },
+
+    setProfileInitialChange(state, action) {
+      state.profileChanged = false;
+    },
   },
 });
 
 // actions
-export const { setAvatarUrl, setUserName, setProfile } = profileSlice.actions;
+export const {
+  setAvatarUrl,
+  setUserName,
+  setProfile,
+  setProfileInitialChange,
+} = profileSlice.actions;
 
 //selectors
 export const selectUserProfile = (state) => state.profile;
