@@ -23,7 +23,7 @@ const ProfileForm = ({ formRef, onClose }) => {
   const [isLoading, imageExist, avatarId, checkImage] = useCheckImage();
 
   useEffect(() => {
-    checkImage(initialName);
+    checkImage("default");
   }, []);
 
   const getRandomAvatar = () => {

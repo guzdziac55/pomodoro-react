@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 
 export const defaultProfileState = {
   profileChanged: false,
-  userName: "defaultUserName",
+  userName: "",
   avatarUrl: "default",
 };
 
