@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { auth } from "../firebase";
+import { persistor } from "..";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { Navigate } from "react-router";
@@ -17,6 +18,7 @@ const useAuthLogin = () => {
       await auth.signInWithEmailAndPassword(email, password);
       toast.success("User login success");
       navigate("/", { replace: true });
+      persistor.pause();
     } catch (err) {
       setError(`${err}`);
     }
@@ -36,6 +38,7 @@ const useAuthCreateAcc = () => {
       await auth.createUserWithEmailAndPassword(email, password); // async make await
       toast.success("automatically logged in to the new account");
       navigate("/", { replace: true });
+      // persistor.pause();
     } catch (err) {
       setError(`${err}`);
     }
@@ -55,6 +58,7 @@ const useAuthLogout = () => {
       await auth.signOut();
       toast.success("User Logout success");
       navigate("/", { replace: true });
+      // persistor.persist();
     } catch (error) {
       setError("Failed to Logout User");
     }

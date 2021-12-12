@@ -6,6 +6,7 @@ import Header from "./components/Layout/Header";
 import { Routes, Route } from "react-router-dom";
 
 import "react-toastify/dist/ReactToastify.css";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   fetchFirebaseUserData,
@@ -14,22 +15,22 @@ import {
   sendFireBaseUserProfile,
 } from "./store/thunks/taskList-actions";
 
-import { useDispatch, useSelector } from "react-redux";
+import AppInfoSection from "./components/AppInfoSection/AppInfoSection";
+import Footer from "./components/Footer/Footer";
+
 import { selectTaskList, selectTaskListChanged } from "./store/taskList-slice";
-import { selectCurrentUser } from "./store/auth-slice";
 import { selectConfig, selectConfigChanges } from "./store/config-slice";
+import { selectUserProfile, selectProfieChanged } from "./store/profile-slice";
+
+import { persistor } from ".";
+import { selectCurrentUser } from "./store/auth-slice";
 import { selectActiveStage } from "./store/timer-slice";
-import {
-  selectUserProfile,
-  selectUserAvatar,
-  selectProfieChanged,
-} from "./store/profile-slice";
 // firebase
 import { auth } from "./firebase";
 import { authActions } from "./store/auth-slice";
-import AppInfo from "./components/AppInfoSection/AppInfo";
-import Login from "./components/auth/login";
 import { ToastContainer } from "react-toastify";
+
+// import selectConfig
 
 let isInitialTask = true;
 let isInitialSettings = true;
@@ -39,16 +40,21 @@ function App() {
   const dispatch = useDispatch();
 
   const taskList = useSelector(selectTaskList);
+  // const taskList = createSelector(selectTaskList);
+
+  // SPRAWDZIC SELEKTOR CZY DOBRZE NAPISANE CZY DOBRZE REAGUJĄ !
 
   const isTaskChanged = useSelector(selectTaskListChanged);
   const isConfigChanged = useSelector(selectConfigChanges);
   const isProfileChanged = useSelector(selectProfieChanged);
 
   const configSettings = useSelector(selectConfig);
+  // const configSettings = createSelector(selectConfig);
+
   const activeStage = useSelector(selectActiveStage);
   const currentUser = useSelector(selectCurrentUser);
-
   const userProfile = useSelector(selectUserProfile);
+
   // MAIN PROBLEM
   const themeClasses = ["pomodoroTheme", "shortBreakTheme", "longBreakTheme"];
   // isChanged is persistet intoLocalStorage ? !! its bad
@@ -60,18 +66,19 @@ function App() {
       console.log("ZMIANA W CURRENT USER ?");
       if (user) {
         dispatch(authActions.signUp(user));
+        persistor.pause();
         console.log("ZALAGOWANY");
       } else {
         dispatch(authActions.logout());
+        persistor.persist();
         console.log("WYLOGOWANY");
       }
     });
     return unsubscribe;
-  }, [dispatch]);
+  }, [auth, dispatch]);
 
   useEffect(() => {
     if (currentUser) {
-      console.log("pobierz Fetch user Data");
       const userId = currentUser.uid;
       dispatch(fetchFirebaseUserData(userId)); // redux thunk
     }
@@ -80,12 +87,12 @@ function App() {
   // TO DZIAŁA OK PRZY INITIAL !! ! !!
   useEffect(() => {
     if (isInitialTask && currentUser) {
-      console.log("tasks ale nie wysylaj bo initial");
       isInitialTask = false;
+      console.log("initial taskList");
       return;
     }
-    if (isTaskChanged && currentUser) {
-      console.log("tasks  WYSLIJ ! ");
+    if (currentUser && isTaskChanged) {
+      console.log("send taskList bo loged i changed");
       const userId = currentUser.uid;
       dispatch(sendFirebaseTaskList(taskList, userId)); // array
     }
@@ -94,24 +101,26 @@ function App() {
   //////////////////////////////
   useEffect(() => {
     if (isInitialSettings && currentUser) {
-      console.log("settings ale nie wysylaj bo initial");
       isInitialSettings = false;
+      console.log("INITIAL SETTINGS !!!!");
       return;
     }
-    if (isConfigChanged && currentUser) {
-      console.log("settings wyslij dane ");
+    if (currentUser && isConfigChanged) {
       const userId = currentUser.uid;
+      console.log("send settings into firebase !!! ");
+      // send settings slice but without configChanged
       dispatch(sendFirebaseSettings(configSettings, userId)); // obj
     }
   }, [configSettings, dispatch]);
 
   useEffect(() => {
     if (isInitialProfile && currentUser) {
-      console.log("wyslij dane - ale nie wysylaj bo initial");
+      console.log("INITIAL PROFILE !!!!");
+
       isInitialProfile = false;
       return;
     }
-    if (isProfileChanged && currentUser) {
+    if (currentUser && isProfileChanged) {
       console.log(
         "wyslij dane POST user Data -- profile changed // i zalgoowany"
       );
@@ -119,10 +128,6 @@ function App() {
       dispatch(sendFireBaseUserProfile(userProfile, userId));
     }
   }, [userProfile, dispatch]);
-
-  // use Login / Logout // pobierz taskList i settings
-
-  // WHEN USER LOG IN OR LOG OUT !!!!GIT G
 
   const currentTheme = themeClasses[activeStage];
 
@@ -133,7 +138,15 @@ function App() {
         <Outlet />
       </main>
       <Routes>
-        <Route path="/" element={<AppInfo />} />
+        <Route
+          path="/"
+          element={
+            <>
+              <AppInfoSection />
+              <Footer />{" "}
+            </>
+          }
+        />
       </Routes>
       <ToastContainer
         autoClose={2000}

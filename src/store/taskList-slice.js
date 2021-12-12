@@ -10,10 +10,6 @@ const taskListSlice = createSlice({
     activeTask: null,
   },
   reducers: {
-    setTasksListInitialChange(state, action) {
-      state.taskListChanged = false;
-    },
-
     replaceTaskList(state, action) {
       const newTaskList = action.payload;
       state.tasksList = newTaskList;
@@ -129,7 +125,6 @@ const taskListSlice = createSlice({
 
 // actions
 export const {
-  setTasksListInitialChange,
   replaceTaskList,
   addTask,
   deleteTask,

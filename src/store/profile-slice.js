@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 
 export const defaultProfileState = {
@@ -46,7 +46,15 @@ export const {
 } = profileSlice.actions;
 
 //selectors
-export const selectUserProfile = (state) => state.profile;
+export const selectUserProfile = createSelector(
+  (state) => state.profile,
+  (profile) => {
+    const { profileChanged, ...rest } = profile;
+    return rest;
+  }
+);
+
+// export const selectUserProfile = (state) => state.profile;
 export const selectUserAvatar = (state) => state.profile.avatarUrl;
 export const selectUserName = (state) => state.profile.userName;
 export const selectProfieChanged = (state) => state.profile.profileChanged;

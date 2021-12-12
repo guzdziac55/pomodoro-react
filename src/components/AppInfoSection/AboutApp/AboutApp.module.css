@@ -1,0 +1,35 @@
+.container {
+  max-width: 620px;
+  margin: 50px auto;
+}
+
+.container h2 {
+  font-size: 24px;
+  color: #330c0a;
+}
+
+.container h2::after {
+  content: "";
+  display: block;
+  border-bottom: 3px solid #f05b56;
+  width: 50%;
+  padding-top: 10px;
+}
+
+.container p {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.5;
+  letter-spacing: 1.5px;
+  word-spacing: 5.5px;
+  color: #330c0a;
+  /* font-style: italic; */
+}
+.container p::first-letter {
+  font-size: 24px;
+  margin: 0;
+  padding: 0;
+  color: #f05b56;
+  /* font-style: italic; */
+  /* word-spacing: px; */
+}

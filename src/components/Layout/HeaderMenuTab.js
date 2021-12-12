@@ -85,7 +85,6 @@ const HeaderMenuTab = ({ onSetOpen }) => {
               <MdOutlineLogout className={classes.icon} />
               <span>Logout</span>
             </button>
-
             <UserAvatarHeader onClick={() => setOpenProfileModal(true)} />
           </>
         )}

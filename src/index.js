@@ -14,9 +14,13 @@ import Profile from "./pages/Profile";
 import ResetPassword from "./components/auth/resetPassword";
 import SignUp from "./components/auth/signUp";
 import { ToastContainer } from "react-toastify";
+import Loader from "react-loader-spinner";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
-let persistor = persistStore(store);
+// let
+export const persistor = persistStore(store);
 
+// persistor.pause();
 const Routing = () => {
   const currentUser = useSelector((state) => state.auth.currentUser);
   return (

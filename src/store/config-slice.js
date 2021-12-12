@@ -45,10 +45,18 @@ export const { setConfig, setConfigChanged, setConfigInitialChange } =
   configSlice.actions;
 
 //selectors
-export const selectConfig = (state) => state.config;
+
+export const selectConfig = createSelector(
+  (state) => state.config,
+  (config) => {
+    const { configChanged, ...rest } = config;
+    return rest;
+  }
+);
 export const selectLongBrakInterval = (state) => state.config.longBreakInterval;
 export const selectStageOptions = (state) => state.config.stageOptions;
 export const selectConfigChanges = (state) => state.config.configChanged;
+
 export const selectAlarmSound = (state) => state.config.alarmSound;
 
 export const selectPomodoroOptionTime = createSelector(
@@ -57,4 +65,13 @@ export const selectPomodoroOptionTime = createSelector(
 );
 
 export const configActions = configSlice.actions;
+
 export default configSlice;
+
+// createSelector(
+//   (state) => state.config,
+//   (config) => {
+//     const { configChanged, ...rest } = config;
+//     return rest;
+//   }
+// );
