@@ -23,6 +23,7 @@ const HeaderMenuTab = ({ onSetOpen }) => {
   const { authLogout } = useAuthLogout();
   const [openSettingsModal, setOpenSettingsModal] = useState(false);
   const [openProfileModal, setOpenProfileModal] = useState(false);
+
   const profileFormRef = useRef();
   const settingsFormRef = useRef();
 
