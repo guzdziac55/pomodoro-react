@@ -143,7 +143,7 @@ function App() {
           element={
             <>
               <AppInfoSection />
-              <Footer />{" "}
+              <Footer />
             </>
           }
         />

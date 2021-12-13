@@ -6,10 +6,36 @@ const taskListSlice = createSlice({
   name: "tasksList",
   initialState: {
     tasksList: [],
+    // many arrays of objects [ [ id: 1 { tasks }], id: 2 { tasks }], ]
+    tasksTemplates: [],
     taskListChanged: false,
     activeTask: null,
   },
   reducers: {
+    // Templates
+    addTaskTemplate(state, action) {
+      const currentTasks = state.tasksList;
+      const templateName = action.payload;
+      const id = Math.floor(new Date().valueOf() * Math.random());
+      state.tasksTemplates.push({
+        id: id,
+        templateName: templateName,
+        templateTasks: currentTasks,
+      });
+      toast.info("Template added");
+    },
+
+    removeTaskTemplate(state, action) {
+      console.log("remove template");
+      console.log(action.payload);
+      const toDeleteId = action.payload;
+      state.tasksTemplates = state.tasksTemplates.filter(
+        (template) => template.id !== toDeleteId
+      );
+
+      toast.info("Tempalte deleted");
+    },
+
     replaceTaskList(state, action) {
       const newTaskList = action.payload;
       state.tasksList = newTaskList;
@@ -125,6 +151,12 @@ const taskListSlice = createSlice({
 
 // actions
 export const {
+  // template
+  addTaskTemplate,
+  removeTaskTemplate,
+
+  //tasks
+
   replaceTaskList,
   addTask,
   deleteTask,
@@ -137,7 +169,11 @@ export const {
   updateTask,
 } = taskListSlice.actions;
 
-// selectors
+// Template selectors
+
+export const selectTemplateList = (state) => state.tasksList.tasksTemplates;
+
+//Tasks selectors
 export const selectTaskList = (state) => state.tasksList.tasksList;
 export const selectTaskListChanged = (state) => state.tasksList.taskListChanged;
 export const selectActiveTask = (state) => state.tasksList.activeTask;

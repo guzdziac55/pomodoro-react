@@ -1,0 +1,6 @@
+.appContainer {
+  /* think about 3 grid system ?  */
+  display: flex;
+  flex-direction: column;
+  /*  3 collumns */
+}
