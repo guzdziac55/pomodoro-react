@@ -10,7 +10,7 @@
   margin-top: 0.2rem;
   width: 100%;
   /* min-width: 400px; */
-  color: #ffffffbb;
+  color: #ffffff;
   overflow-wrap: break-word;
   background-color: #ffffff27;
   border-left: 5px solid rgba(0, 0, 0, 0);
@@ -37,7 +37,7 @@
 .name {
   overflow: hidden;
   font-size: 14px;
-  color: var(--font-black);
+  color: #ffffff70;
   font-weight: 700;
   margin-left: 0.5rem;
   flex: 1;

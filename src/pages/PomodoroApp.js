@@ -27,9 +27,7 @@ const PomodoroApp = () => {
           {!isEmptyTasks && <FinishCalculate />}
         </div>
 
-        <div className={classes.keyBindApp}>
-          <TemplateList />
-        </div>
+        <div className={classes.keyBindApp}>{/* <TemplateList /> */}</div>
       </div>
     </>
   );

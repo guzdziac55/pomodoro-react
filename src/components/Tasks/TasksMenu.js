@@ -14,9 +14,11 @@ import {
   deleteAllTasks,
   deleteFinishedTasks,
   deleteDoneTasks,
+  newTaskTemplate,
 } from "../../store/taskList-slice";
+import { toast } from "react-toastify";
 
-const TasksMenu = () => {
+const TasksMenu = ({ tasks }) => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [openTemplateModal, setOpenTemplateModal] = useState(false);
@@ -30,7 +32,19 @@ const TasksMenu = () => {
   useClickOutside(menuRef, () => {
     if (open) setOpen(false);
   });
-  // context menu actions
+
+  const handleOpenTemplateModal = () => {
+    if (tasks.length === 0) {
+      toast.info("First add task to list");
+      return;
+    }
+    setOpenTemplateModal(true);
+  };
+
+  const onClicknewTaskTemplate = (name) => {
+    dispatch(newTaskTemplate(name));
+  };
+
   const onClickDeleteAllTasks = () => {
     dispatch(deleteAllTasks());
     setOpen(false);
@@ -50,6 +64,7 @@ const TasksMenu = () => {
     <>
       {openTemplateModal && (
         <SaveTemplateModal
+          newTemplate={onClicknewTaskTemplate}
           onClose={() => {
             setOpenTemplateModal(false);
           }}
@@ -79,9 +94,7 @@ const TasksMenu = () => {
               {/* check that project name exist !  */}
               <li
                 className={classes.listItem}
-                onClick={() => {
-                  setOpenTemplateModal(true);
-                }}
+                onClick={handleOpenTemplateModal}
               >
                 <MdSave className={classes.iconSmall} />
                 save as template

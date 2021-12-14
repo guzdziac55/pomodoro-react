@@ -7,16 +7,10 @@ import {
 } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { removeTaskTemplate } from "../../store/taskList-slice";
-// maybe add later : numberOfTasksInside
-// we need an id,name,
-//  dispatch  => addToTasksList
-// dispatch => deleteTemplate    => modal are u sure ?
 
-// Add special modal with outsideclick are u sure to deleteTemplate
-// number of tempaltes inside etc
-// Form onClose etc
+// save tempalte items without id !
 
-// think about useCallBack funtion here !
+// when add into taskList add them id ! => they are part of new taskList
 
 const TemplateItem = ({ id, name }) => {
   const dispatch = useDispatch();
@@ -35,7 +29,6 @@ const TemplateItem = ({ id, name }) => {
       <span
         onClick={() => {
           console.log("add to list");
-          //   dispatch(removeTaskTemplate(id));
         }}
       >
         <MdOutlineArrowForward className={classes.icon}></MdOutlineArrowForward>

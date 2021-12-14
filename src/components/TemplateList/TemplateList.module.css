@@ -1,6 +1,29 @@
 .templateList {
+  width: 100%;
   margin: 0;
   padding: 0;
+  margin-top: 20px;
   list-style: none;
-  /* text-align: center; */
+  text-align: center;
+}
+
+.showButton {
+  align-self: center;
+  cursor: pointer;
+  border: none;
+  /* margin: 20px 0px 0px; */
+  padding: 10px 5px;
+  border-radius: 4px;
+  box-shadow: rgb(230 200 200) 0px 3px 3px;
+  font-size: 14 px;
+  color: var(--main-color);
+  font-weight: 600;
+  width: 200px;
+  background-color: white;
+}
+
+.info {
+  font-size: 14px;
+  font-style: italic;
+  color: #ffffff;
 }

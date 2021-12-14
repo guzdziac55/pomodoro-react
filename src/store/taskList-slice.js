@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
 import { toast } from "react-toastify";
 
@@ -13,12 +13,17 @@ const taskListSlice = createSlice({
   },
   reducers: {
     // Templates
-    addTaskTemplate(state, action) {
+    newTaskTemplate(state, action) {
       const currentTasks = state.tasksList;
       const templateName = action.payload;
-      const id = Math.floor(new Date().valueOf() * Math.random());
+      // const id = Math.floor(new Date().valueOf() * Math.random());
+      if (currentTasks.length === 0) {
+        toast.info("First add some tasks");
+        return;
+      }
+
       state.tasksTemplates.push({
-        id: id,
+        // id: id,
         templateName: templateName,
         templateTasks: currentTasks,
       });
@@ -152,7 +157,7 @@ const taskListSlice = createSlice({
 // actions
 export const {
   // template
-  addTaskTemplate,
+  newTaskTemplate,
   removeTaskTemplate,
 
   //tasks

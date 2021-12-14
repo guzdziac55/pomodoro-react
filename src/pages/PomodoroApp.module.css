@@ -1,34 +1,34 @@
 .appContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  padding: 0 50px;
+  display: grid;
+  grid-template-columns: 0.7fr 1fr 0.7fr;
+  gap: 20px 20px;
+  grid-template-areas: "template app keybind";
+  justify-items: center;
 }
 
 /* left flex */
 
 .pomodoroApp {
   flex: 1;
-  /* text-align: center; */
-  /* align-self: center; */
-  padding: 0px 12px;
+  width: 100%;
   max-width: 620px;
   margin: auto 0;
+  grid-area: app;
 }
 
 .templateApp {
-  margin-top: 100px;
-  /* padding: ; */
-  /* min-width: 700px; */
-  /* justify-self: flex-end; */
+  display: flex;
+  flex-direction: column;
+  grid-area: template;
+  /* align-items: center; */
   /* justify-content: center; */
-  /* flex-shrink: 0; */
-  /* min-width: 620px; */
-
-  /* max-width: 950px; */
-
-  /* padding: 0px 12px; */
-  /* margin: auto; */
+  /* justify-items: center; */
+  margin-top: 100px;
+  max-width: 300px;
 }
 
 /* center flex */
+
+.keyBindsApp {
+  grid-area: keybind;
+}

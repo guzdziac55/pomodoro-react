@@ -1,12 +1,8 @@
 import React from "react";
 import classes from "./TasksList.module.css";
 import TaskItem from "./TaskItem/TaskItem";
-import { useSelector } from "react-redux";
-import { selectTaskList } from "../../store/taskList-slice";
 
-const TasksList = () => {
-  const tasks = useSelector(selectTaskList);
-
+const TasksList = ({ tasks }) => {
   const tasksList = tasks.map((task) => (
     <TaskItem
       key={task.id}
@@ -25,11 +21,3 @@ const TasksList = () => {
 };
 
 export default React.memo(TasksList);
-
-// {
-//   // const notification = useSelector((state) => state.ui.notification);
-//   /* {notification && notification.isLoading && <Spinner />} */
-// }
-// {
-//   /* <Spinner /> */
-// }

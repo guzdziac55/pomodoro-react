@@ -1,18 +1,17 @@
 import React, { useRef } from "react";
-import { addTaskTemplate } from "../../store/taskList-slice";
+// import { addTaskTemplate } from "../../store/taskList-slice";
 import Modal from "../UI/Modal";
 import classes from "./SaveTemplateModal.module.css";
 import { useDispatch } from "react-redux";
 
-const SaveTemplateModal = ({ onClose, formRef }) => {
+const SaveTemplateModal = ({ newTemplate, onClose, formRef }) => {
   const nameRef = useRef();
-  const dispatch = useDispatch();
 
   const submitForm = (e) => {
     e.preventDefault();
     const templateName = nameRef.current.value;
-    dispatch(addTaskTemplate(templateName));
-    // onClose();
+    newTemplate(templateName);
+    onClose();
   };
 
   return (
