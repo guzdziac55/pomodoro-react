@@ -1,5 +1,5 @@
 import { showNotification } from "../ui-slice";
-import { replaceTaskList } from "../taskList-slice";
+import { replaceTaskList, replaceTemplatesList } from "../taskList-slice";
 import { defaultConfigState } from "../config-slice";
 import { defaultProfileState } from "../profile-slice";
 import { setConfig } from "../config-slice";
@@ -8,10 +8,49 @@ import { ref, update } from "firebase/database";
 import { setProfile } from "../profile-slice";
 
 export {
+  sendFirebaseTemplates,
   sendFirebaseTaskList,
   sendFirebaseSettings,
   sendFireBaseUserProfile,
   fetchFirebaseUserData,
+};
+
+const sendFirebaseTemplates = (templates, uid) => {
+  return async (dispatch) => {
+    dispatch(
+      showNotification({
+        status: "pending",
+        title: "sending...",
+        message: "sending taskList Data",
+      })
+    );
+
+    const sendRequest = async () => {
+      update(ref(database, "users/" + uid), {
+        TasksTemplates: templates,
+      });
+    };
+
+    try {
+      console.log("TRY SEND TEMPLATES ! ");
+      await sendRequest();
+      dispatch(
+        showNotification({
+          status: "success",
+          title: "success...",
+          message: "send taskList data success",
+        })
+      );
+    } catch (err) {
+      dispatch(
+        showNotification({
+          status: "error",
+          title: "some error !",
+          message: "sending Tasklist data failed",
+        })
+      );
+    }
+  };
 };
 
 const sendFirebaseTaskList = (taskList, uid) => {
@@ -50,6 +89,7 @@ const sendFirebaseTaskList = (taskList, uid) => {
     }
   };
 };
+
 const sendFirebaseSettings = (settings, uid) => {
   return async (dispatch) => {
     dispatch(
@@ -138,23 +178,30 @@ const fetchFirebaseUserData = (uid) => {
     );
 
     const fetchRequest = async () => {
+      //  think about better functionality => without boilerPlate
+
+      const templatesRef = database.ref("users/" + uid + "/TasksTemplates");
       const tasksRef = database.ref("users/" + uid + "/TasksList");
       const settingsRef = database.ref("users/" + uid + "/Settings");
       const userProfileRef = database.ref("users/" + uid + "/UserProfile");
-      return [tasksRef, settingsRef, userProfileRef];
+      return [templatesRef, tasksRef, settingsRef, userProfileRef];
     };
 
     try {
-      const [tasksRef, settingsRef, userProfileRef] = await fetchRequest();
+      const [templatesRef, tasksRef, settingsRef, userProfileRef] =
+        await fetchRequest();
 
+      const snapshotTemplates = await templatesRef.once("value");
       const snapshotTasks = await tasksRef.once("value");
       const snapshotSettings = await settingsRef.once("value");
       const snapshotUserProfile = await userProfileRef.once("value");
 
+      const templatesListData = snapshotTemplates.val();
       const taskListData = snapshotTasks.val();
       const settingsData = snapshotSettings.val();
       const userProfileData = snapshotUserProfile.val();
 
+      dispatch(replaceTemplatesList(templatesListData || []));
       dispatch(replaceTaskList(taskListData || []));
       dispatch(setConfig(settingsData || { ...defaultConfigState }));
       dispatch(setProfile(userProfileData || { ...defaultProfileState }));

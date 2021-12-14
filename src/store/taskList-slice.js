@@ -9,6 +9,7 @@ const taskListSlice = createSlice({
     tasksList: [],
     tasksTemplates: [],
     taskListChanged: false,
+    templateChanged: false,
     activeTask: null,
   },
   reducers: {
@@ -45,6 +46,8 @@ const taskListSlice = createSlice({
         templateName: templateName,
         templateTasks: currentTasks,
       });
+
+      state.templateChanged = true;
       toast.info("Template added");
     },
 
@@ -60,6 +63,10 @@ const taskListSlice = createSlice({
 
     // TASKS
 
+    replaceTemplatesList(state, action) {
+      const newTemplatesList = action.payload;
+      state.tasksTemplates = newTemplatesList;
+    },
     replaceTaskList(state, action) {
       const newTaskList = action.payload;
       state.tasksList = newTaskList;
@@ -176,6 +183,7 @@ const taskListSlice = createSlice({
 // actions
 export const {
   // template
+  replaceTemplatesList,
   addTemplateToList,
   newTaskTemplate,
   removeTaskTemplate,
@@ -197,7 +205,7 @@ export const {
 // Template selectors
 
 export const selectTemplateList = (state) => state.tasksList.tasksTemplates;
-
+export const selectTemplateChanged = (state) => state.tasksList.templateChanged;
 //Tasks selectors
 export const selectTaskList = (state) => state.tasksList.tasksList;
 export const selectTaskListChanged = (state) => state.tasksList.taskListChanged;
