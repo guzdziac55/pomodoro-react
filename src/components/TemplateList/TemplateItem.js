@@ -5,12 +5,12 @@ import {
   MdDoubleArrow,
   MdOutlineArrowForward,
 } from "react-icons/md";
+
 import { useDispatch } from "react-redux";
-import { removeTaskTemplate } from "../../store/taskList-slice";
-
-// save tempalte items without id !
-
-// when add into taskList add them id ! => they are part of new taskList
+import {
+  removeTaskTemplate,
+  addTemplateToList,
+} from "../../store/taskList-slice";
 
 const TemplateItem = ({ id, name }) => {
   const dispatch = useDispatch();
@@ -28,7 +28,7 @@ const TemplateItem = ({ id, name }) => {
 
       <span
         onClick={() => {
-          console.log("add to list");
+          dispatch(addTemplateToList(id));
         }}
       >
         <MdOutlineArrowForward className={classes.icon}></MdOutlineArrowForward>

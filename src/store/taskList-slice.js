@@ -1,29 +1,47 @@
 import { createSlice, current } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
 import { toast } from "react-toastify";
+import { generateRandomId } from "./constants/app.constants";
 
 const taskListSlice = createSlice({
   name: "tasksList",
   initialState: {
     tasksList: [],
-    // many arrays of objects [ [ id: 1 { tasks }], id: 2 { tasks }], ]
     tasksTemplates: [],
     taskListChanged: false,
     activeTask: null,
   },
   reducers: {
+    addTemplateToList(state, action) {
+      const templateId = action.payload;
+      const selectedTemplate = state.tasksTemplates.find(
+        (temp) => temp.id === templateId
+      );
+
+      const { templateTasks } = selectedTemplate;
+
+      // tasksFromTemplate with new ID
+      const taskArrayToAdd = templateTasks.map((task) => {
+        const obj = Object.assign({}, task, { id: generateRandomId() });
+        return obj;
+      });
+
+      state.tasksList = [...state.tasksList, ...taskArrayToAdd];
+      toast.info("Template tasks added");
+    },
+
     // Templates
     newTaskTemplate(state, action) {
       const currentTasks = state.tasksList;
       const templateName = action.payload;
-      // const id = Math.floor(new Date().valueOf() * Math.random());
+      const id = Math.floor(new Date().valueOf() * Math.random());
       if (currentTasks.length === 0) {
         toast.info("First add some tasks");
         return;
       }
 
       state.tasksTemplates.push({
-        // id: id,
+        id: id,
         templateName: templateName,
         templateTasks: currentTasks,
       });
@@ -37,9 +55,10 @@ const taskListSlice = createSlice({
       state.tasksTemplates = state.tasksTemplates.filter(
         (template) => template.id !== toDeleteId
       );
-
-      toast.info("Tempalte deleted");
+      toast.info("Template deleted");
     },
+
+    // TASKS
 
     replaceTaskList(state, action) {
       const newTaskList = action.payload;
@@ -157,6 +176,7 @@ const taskListSlice = createSlice({
 // actions
 export const {
   // template
+  addTemplateToList,
   newTaskTemplate,
   removeTaskTemplate,
 
