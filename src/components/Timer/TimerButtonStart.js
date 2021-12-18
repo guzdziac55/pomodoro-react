@@ -4,6 +4,7 @@ import { MdSkipNext } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { updateTask } from "../../store/taskList-slice";
+import { nextStageWithConfig } from "../../store/thunks/calculateNextStage-actions";
 import {
   toggleTicking,
   calculateNewStage,
@@ -30,13 +31,7 @@ const TimerButtonStart = () => {
         return;
       }
     }
-
-    // PUT UPDATE TASK AND CALCULATE NEW STAGE IN THUNK !
-    dispatch(updateTask(activeStage));
-    // use thunk here !
-
-    // NEXT STAGE WITH CONFIG ! ! !
-    dispatch(calculateNewStage(longBreakInterval)); // calculate next stage
+    dispatch(nextStageWithConfig());
   });
 
   const showSkipButton = isTicking ? classes.show : "";

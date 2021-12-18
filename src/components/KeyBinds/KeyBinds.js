@@ -4,6 +4,7 @@ import classes from "./KeyBinds.module.css";
 import { useHotkeys } from "react-hotkeys-hook";
 import { useDispatch } from "react-redux";
 import { toggleTicking, changeActiveStage } from "./../../store/timer-slice";
+import { nextStageWithConfig } from "../../store/thunks/calculateNextStage-actions";
 // keys need to be listen in option
 // like in game:
 // Click => pomodoro listen key => modal with listener option
@@ -17,19 +18,38 @@ const KeyBinds = () => {
   useHotkeys("b", () => dispatch(changeActiveStage(1)));
   useHotkeys("l", () => dispatch(changeActiveStage(2)));
 
-  // thunk next stage
-  useHotkeys("alt+a", () => dispatch(toggleTicking()));
-  // stop / start timer
   useHotkeys("alt+s", () => dispatch(toggleTicking()));
+  // thunk next stage
+  useHotkeys("alt+a", () => dispatch(nextStageWithConfig()));
+  // stop / start timer
 
   return (
     <div className={classes.bindsContainer}>
-      <button className={classes.button}>P</button>
-      <button className={classes.button}>B</button>
-      <button className={classes.button}>L</button>
-      <button className={`${classes.button} ${classes.longButton}`}>
-        SPACE
-      </button>
+      <h1>KEY BINDS</h1>
+      <div className={classes.buttonContainer}>
+        <button className={classes.button}>P</button>
+        <span>- set pomodoro stage</span>
+      </div>
+      <div className={classes.buttonContainer}>
+        <button className={classes.button}>B</button>
+        <span>- set short break stage</span>
+      </div>
+      <div className={classes.buttonContainer}>
+        <button className={classes.button}>L</button>
+        <span>- set long break stage</span>
+      </div>
+      <div className={classes.buttonContainer}>
+        <button className={`${classes.button} ${classes.longButton}`}>
+          ALT + S
+        </button>
+        <span>- set start/stop timer</span>
+      </div>
+      <div className={classes.buttonContainer}>
+        <button className={`${classes.button} ${classes.longButton}`}>
+          ALT + A
+        </button>
+        <span>- go to next stage</span>
+      </div>
     </div>
   );
 };

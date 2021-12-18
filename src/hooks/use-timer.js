@@ -23,15 +23,12 @@ export const useTimer = () => {
   const isTicking = useSelector(selectIsTicking);
   const consumedSeconds = useSelector(selectConsumedTime);
 
-  const activeStage = useSelector(selectActiveStage);
-  const longBreakInterval = useSelector(selectLongBrakInterval);
   const currentTimeOption = useSelector(selectCurrentSeconds);
   const alarmSound = useSelector(selectAlarmSound);
 
   const [play] = useSound(findNotification(alarmSound));
 
   const timeIsEndAction = () => {
-    dispatch(updateTask(activeStage));
     dispatch(nextStageWithConfig());
   };
 
