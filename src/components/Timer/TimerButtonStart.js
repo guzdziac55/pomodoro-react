@@ -30,7 +30,12 @@ const TimerButtonStart = () => {
         return;
       }
     }
+
+    // PUT UPDATE TASK AND CALCULATE NEW STAGE IN THUNK !
     dispatch(updateTask(activeStage));
+    // use thunk here !
+
+    // NEXT STAGE WITH CONFIG ! ! !
     dispatch(calculateNewStage(longBreakInterval)); // calculate next stage
   });
 

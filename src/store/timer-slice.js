@@ -28,6 +28,14 @@ const timerSlice = createSlice({
     },
 
     changeActiveStage(state, action) {
+      if (state.isTicking) {
+        const alert = window.confirm(
+          "Are you sure you want to finish the round early? (The remaining time will not be counted in the report.)"
+        );
+        if (!alert) {
+          return;
+        }
+      }
       state.isTicking = false;
       state.consumedSeconds = 0;
       state.stage = action.payload;

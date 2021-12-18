@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import classes from "./PomodoroApp.module.css";
 import ProgressBar from "./../components/ProgressBar/ProgressBar";
 import TemplateList from "../components/TemplateList/TemplateList";
-
+import KeyBinds from "../components/KeyBinds/KeyBinds";
 const PomodoroApp = () => {
   const taskList = useSelector((state) => state.tasksList.tasksList);
   const isEmptyTasks =
@@ -27,7 +27,9 @@ const PomodoroApp = () => {
           {!isEmptyTasks && <FinishCalculate />}
         </div>
 
-        <div className={classes.keyBindApp}>{/* <TemplateList /> */}</div>
+        <div className={classes.keyBindApp}>
+          <KeyBinds />
+        </div>
       </div>
     </>
   );

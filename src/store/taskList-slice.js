@@ -28,6 +28,7 @@ const taskListSlice = createSlice({
       });
 
       state.tasksList = [...state.tasksList, ...taskArrayToAdd];
+      state.taskListChanged = true;
       toast.info("Template tasks added");
     },
 
@@ -61,12 +62,13 @@ const taskListSlice = createSlice({
       toast.info("Template deleted");
     },
 
-    // TASKS
-
     replaceTemplatesList(state, action) {
       const newTemplatesList = action.payload;
       state.tasksTemplates = newTemplatesList;
     },
+
+    // TASKS
+
     replaceTaskList(state, action) {
       const newTaskList = action.payload;
       state.tasksList = newTaskList;
