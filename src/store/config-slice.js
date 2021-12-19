@@ -4,10 +4,12 @@ import { createSelector } from "reselect";
 export const defaultConfigState = {
   configChanged: false,
   stageOptions: [25, 5, 20],
+  alarmSound: "notification1",
   autoBreak: false,
   autoPomodoros: true,
   longBreakInterval: 4,
-  alarmSound: "notification1",
+  keyBindsShow: true,
+  keyBindsEnable: false,
   viewModal: true,
 };
 
@@ -16,10 +18,12 @@ const configSlice = createSlice({
   initialState: {
     configChanged: false,
     stageOptions: [25, 5, 20],
+    alarmSound: "notification1",
     autoBreak: false,
     autoPomodoros: true,
     longBreakInterval: 4,
-    alarmSound: "notification1",
+    keyBindsShow: true,
+    keyBindsEnable: false,
     viewModal: true,
   },
   reducers: {
@@ -56,8 +60,10 @@ export const selectConfig = createSelector(
 export const selectLongBrakInterval = (state) => state.config.longBreakInterval;
 export const selectStageOptions = (state) => state.config.stageOptions;
 export const selectConfigChanges = (state) => state.config.configChanged;
-
 export const selectAlarmSound = (state) => state.config.alarmSound;
+
+export const selectBindsShow = (state) => state.config.keyBindsShow;
+export const selectBindsEnable = (state) => state.config.keyBindsEnable;
 
 export const selectPomodoroOptionTime = createSelector(
   (state) => state.config.stageOptions,

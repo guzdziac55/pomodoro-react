@@ -1,30 +1,28 @@
 import React from "react";
 import classes from "./KeyBinds.module.css";
-// import toogleTicking from "./../../store/timer-slice";
 import { useHotkeys } from "react-hotkeys-hook";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleTicking, changeActiveStage } from "./../../store/timer-slice";
 import { nextStageWithConfig } from "../../store/thunks/calculateNextStage-actions";
-// keys need to be listen in option
-// like in game:
-// Click => pomodoro listen key => modal with listener option
-//  - user types key
-//  - save key + hotkey ASCI into array => set what event it can be
+import { selectBindsShow } from "../../store/config-slice";
 
 const KeyBinds = () => {
   const dispatch = useDispatch();
+  const showKeyBinds = useSelector(selectBindsShow);
 
   useHotkeys("p", () => dispatch(changeActiveStage(0)));
   useHotkeys("b", () => dispatch(changeActiveStage(1)));
   useHotkeys("l", () => dispatch(changeActiveStage(2)));
-
+  // start stop timer
   useHotkeys("alt+s", () => dispatch(toggleTicking()));
   // thunk next stage
   useHotkeys("alt+a", () => dispatch(nextStageWithConfig()));
-  // stop / start timer
+
+  const showBindsClass = showKeyBinds ? "" : classes.hide;
 
   return (
-    <div className={classes.bindsContainer}>
+    <div className={`${classes.bindsContainer} ${showBindsClass}`}>
+      {/* <div className={classes.bindsContainer}> */}
       <h1>KEY BINDS</h1>
       <div className={classes.buttonContainer}>
         <button className={classes.button}>P</button>

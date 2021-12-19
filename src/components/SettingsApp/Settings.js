@@ -141,6 +141,26 @@ const Settings = (props) => {
             defaultValue={defaultConfigState.longBreakInterval}
           />
 
+          <Switch
+            register={register}
+            name="keyBindsShow"
+            title="Show KeyBinds tips"
+            type="checkbox"
+            defaultChecked={
+              defaultConfigState.keyBindsTips === true ? true : false
+            }
+          />
+
+          <Switch
+            register={register}
+            name="keyBindsEnable"
+            title="Enable / Disable KeyBinds"
+            type="checkbox"
+            defaultChecked={
+              defaultConfigState.keyBindsTips === true ? true : false
+            }
+          />
+
           {/*  bottom menu */}
         </div>
         <div className={classes.formMenu}>

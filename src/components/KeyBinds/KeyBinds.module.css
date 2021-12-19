@@ -40,3 +40,9 @@
 .longButton {
   width: fit-content;
 }
+
+/*  or visability hidden ?  */
+/*  jak hidden to mają nie działać ?  */
+.hide {
+  visibility: hidden;
+}
