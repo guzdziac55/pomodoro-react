@@ -1,40 +1,44 @@
 import "./index.css";
-import React from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import App from "./App";
 import store from "./store";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import Login from "./components/auth/login";
-import PomodoroApp from "./pages/PomodoroApp";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
-import Profile from "./pages/Profile";
-import ResetPassword from "./components/auth/resetPassword";
-import SignUp from "./components/auth/signUp";
 import { ToastContainer } from "react-toastify";
-import Loader from "react-loader-spinner";
+
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
-// let
 export const persistor = persistStore(store);
+//  app page move it into better folder structure Pages !
+const App = React.lazy(() => import("./App"));
+const PomodoroApp = React.lazy(() => import("./pages/PomodoroApp"));
+const Login = React.lazy(() => import("./components/auth/login"));
+const SignUp = React.lazy(() => import("./components/auth/signUp"));
+const ResetPassword = React.lazy(() =>
+  import("./components/auth/resetPassword")
+);
 
 // persistor.pause();
 const Routing = () => {
   const currentUser = useSelector((state) => state.auth.currentUser);
   return (
-    <Routes>
-      <Route path="/" element={<App />}>
-        <Route path="/" element={<PomodoroApp />} />
-        <Route path="app" element={<PomodoroApp />} />
-        {/* {currentUser && <Route path="profile" element={<Profile />} />} */}
-        {!currentUser && <Route path="login" element={<Login />} />}
-        <Route path="signup" element={<SignUp />} />
-        <Route path="reset-password" element={<ResetPassword />} />
-      </Route>
-      <Route path="*" element={<Navigate replace to="/" />} />
-    </Routes>
+    <Suspense fallback={<p>LOADING...</p>}>
+      <Routes>
+        {/* OR spinner here !  */}
+        <Route path="/" element={<App />}>
+          <Route path="/" element={<PomodoroApp />} />
+          <Route path="app" element={<PomodoroApp />} />
+          {/* {currentUser && <Route path="profile" element={<Profile />} />} */}
+          {!currentUser && <Route path="login" element={<Login />} />}
+          <Route path="signup" element={<SignUp />} />
+          <Route path="reset-password" element={<ResetPassword />} />
+        </Route>
+        <Route path="*" element={<Navigate replace to="/" />} />
+      </Routes>
+    </Suspense>
   );
 };
 
