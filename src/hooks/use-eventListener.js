@@ -15,10 +15,3 @@ export const useEventListener = (eventType, callback, element = window) => {
     };
   }, [eventType, element]);
 };
-
-// mamy dwie funkcje == > outside click
-// oraz hideBTN => setOpen(false)
-
-// btnNote.addEventListener("click",(e)=>{
-
-// })

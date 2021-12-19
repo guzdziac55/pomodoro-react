@@ -10,7 +10,7 @@ import {
   setAvatarUrl,
   setUserName,
 } from "../../store/profile-slice";
-import { generateAvatarURL } from "../../store/constants/app.constants";
+import { generateAvatarURL } from "../../utils/helperFunctions";
 import { randomString } from "../../utils/helperFunctions";
 
 const ProfileForm = ({ formRef, onClose }) => {

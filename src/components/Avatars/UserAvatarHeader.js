@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./UserAvatarHeader.module.css";
 import { useSelector } from "react-redux";
 import { selectUserAvatar } from "../../store/profile-slice";
-import { generateAvatarURL } from "../../store/constants/app.constants";
+import { generateAvatarURL } from "../../utils/helperFunctions";
 
 const UserAvatarHeader = ({ onClick }) => {
   const userAvatar = useSelector(selectUserAvatar);

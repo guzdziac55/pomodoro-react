@@ -1,18 +1,14 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { updateTask } from "../store/taskList-slice";
 import {
   // actions
   consumeTime,
-  calculateNewStage,
   // selectors
-  selectActiveStage,
   selectIsTicking,
   selectConsumedTime,
 } from "../store/timer-slice";
 
 import { nextStageWithConfig } from "../store/thunks/calculateNextStage-actions";
-import { selectLongBrakInterval } from "../store/config-slice";
 import { selectCurrentSeconds } from "../store/timer-slice";
 import { selectAlarmSound } from "../store/config-slice";
 import useSound from "use-sound";
