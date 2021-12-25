@@ -13,7 +13,6 @@ import {
 } from "react-icons/md";
 
 import { taskListActions } from "../../../store/taskList-slice";
-// IMPORT => ACTIONS !
 
 const TaskForm = React.forwardRef((props) => {
   const dispatch = useDispatch();
@@ -76,7 +75,7 @@ const TaskForm = React.forwardRef((props) => {
     if (!formIsValid) {
       return;
     }
-    const enteredTaskTitle = taskTitle; // dane z inputa po edycji
+    const enteredTaskTitle = taskTitle;
     const enteredEstPomodoro = currentEstPomodoro;
     const estPomodoroNumber = +enteredEstPomodoro;
     const enteredTaskNote = taskNote;

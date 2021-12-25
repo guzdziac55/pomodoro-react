@@ -42,7 +42,6 @@ const HeaderMenuTab = ({ onSetOpen }) => {
 
   return (
     <>
-      {/* MODAL ! */}
       {openProfileModal && (
         <ProfileForm
           onClose={() => {

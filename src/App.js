@@ -25,6 +25,7 @@ import {
   selectTemplateChanged,
   selectTaskListChanged,
 } from "./store/taskList-slice";
+
 import { selectConfig, selectConfigChanges } from "./store/config-slice";
 import { selectUserProfile, selectProfieChanged } from "./store/profile-slice";
 

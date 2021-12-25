@@ -22,7 +22,6 @@ const KeyBinds = () => {
 
   return (
     <div className={`${classes.bindsContainer} ${showBindsClass}`}>
-      {/* <div className={classes.bindsContainer}> */}
       <h1>KEY BINDS</h1>
       <div className={classes.buttonContainer}>
         <button className={classes.button}>P</button>

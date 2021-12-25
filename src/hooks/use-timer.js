@@ -28,7 +28,6 @@ export const useTimer = () => {
     dispatch(nextStageWithConfig());
   };
 
-  // consumedTimeCalculations
   useEffect(() => {
     let intervalId;
     if (isTicking && consumedSeconds <= currentTimeOption) {
@@ -39,7 +38,7 @@ export const useTimer = () => {
       timeIsEndAction();
       play();
     }
-    return () => clearInterval(intervalId); // to też się wywoła po setInterval
+    return () => clearInterval(intervalId);
   }, [isTicking, consumedSeconds, currentTimeOption]);
 
   //

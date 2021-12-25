@@ -90,8 +90,7 @@ const TasksMenu = ({ tasks }) => {
                 <MdDoneAll className={classes.iconSmall} />
                 delete done
               </li>
-              {/* save as template ! open modal with save button !  */}
-              {/* check that project name exist !  */}
+
               <li
                 className={classes.listItem}
                 onClick={handleOpenTemplateModal}

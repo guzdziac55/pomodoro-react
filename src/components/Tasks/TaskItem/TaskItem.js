@@ -18,12 +18,10 @@ const TaskItem = ({
   const [openEdit, setOpenEdit] = useState(false);
   const editRef = useRef();
 
-  // close when open // when not click on ref !
   useClickOutside(editRef, () => {
     if (openEdit) setOpenEdit(false);
   });
 
-  // when cancel and when submit
   const toggleEditFormHandler = useCallback(() => {
     setOpenEdit((prevState) => setOpenEdit(!prevState));
   });
@@ -44,17 +42,15 @@ const TaskItem = ({
 
   return (
     <>
-      {/* Edit Task */}
       {openEdit && (
         <TaskForm
-          // ref={formScrollRef}
           onRef={editRef}
           onToggleForm={toggleEditFormHandler}
           taskData={taskData}
           editMode={true}
         ></TaskForm>
       )}
-      {/* Show Task */}
+
       {!openEdit && (
         <li
           className={`${classes.task} ${itemIsActiveClass}`}

@@ -3,8 +3,6 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { Spinner } from "../../components/UI/Spinner";
 import { useSelector } from "react-redux";
 
-// Pages
-
 // const Layout = React.lazy(() => import("./../../Layout"));
 const App = React.lazy(() => import("./../../App")); // Layout
 
@@ -25,7 +23,6 @@ const RouterConfig = () => {
       }
     >
       <Routes>
-        {/* APP = > layout !  HEADER ONLY     FOOTER TYLKO W PRZYPADKU  / HOME PAGE !  */}
         <Route path="/" element={<App />}>
           <Route path="/" element={<AppPage />} />
           <Route path="app" element={<AppPage />} />

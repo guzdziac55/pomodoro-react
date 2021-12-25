@@ -16,16 +16,18 @@ export const persistor = persistStore(store);
 const RenderApp = () => {
   ReactDOM.render(
     <BrowserRouter>
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <RouterConfig />
-          <ToastContainer
-            autoClose={2000}
-            position="bottom-center"
-            hideProgressBar
-          />
-        </PersistGate>
-      </Provider>
+      <React.StrictMode>
+        <Provider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+            <RouterConfig />
+            <ToastContainer
+              autoClose={2000}
+              position="bottom-center"
+              hideProgressBar
+            />
+          </PersistGate>
+        </Provider>
+      </React.StrictMode>
     </BrowserRouter>,
 
     document.getElementById("root")

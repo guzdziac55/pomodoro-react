@@ -10,7 +10,6 @@ const TimerButtonOption = ({
   onChangeTabOption,
   children,
 }) => {
-  // check for better solution ?
   const isActiveOption = useMemo(getIsActiveOption, []);
   const activeOption = useSelector((state) =>
     isActiveOption(state, timeOption)

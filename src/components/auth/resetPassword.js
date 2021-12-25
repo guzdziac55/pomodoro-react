@@ -57,20 +57,4 @@ const ResetPassword = () => {
   );
 };
 
-// forgot password ==> link to ==> Route wwww./reset-password
-// create new Account ==> link to ==> Route wwww./signup
-
 export default ResetPassword;
-
-// create 2 thunk functions or more with
-//  createAcc
-//  login / Logout   // add Thunk with dispatches function inside
-//  When Logout call logoutDispatch Action and, make LocalStorageRemove etc
-//  When Login // setLocalStorageState // calculateTime + make dispatch Login
-
-/////
-// if (isLogin) {
-//   dispatch(authLogin(enteredEmail, enteredPassword)); // uruchomienie głównej funkcji
-// } else {
-//   dispatch(authCreateAcc(enteredEmail, enteredPassword));
-// }

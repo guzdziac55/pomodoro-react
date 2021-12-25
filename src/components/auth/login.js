@@ -29,7 +29,6 @@ const Login = () => {
       </Link>
 
       <h1 className={classes.header}>Login</h1>
-      {/*  spinner here = >  */}
       {error && <p className={classes.error}>{error}</p>}
       <Card class={classes.auth}>
         <form onSubmit={submitForm} className={classes.form}>

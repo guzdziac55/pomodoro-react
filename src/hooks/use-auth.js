@@ -7,8 +7,8 @@ import { toast } from "react-toastify";
 export { useAuthLogin, useAuthCreateAcc, useAuthLogout, useAuthResetPassword };
 
 const useAuthLogin = () => {
-  const [isLoading, setLoading] = useState(false); // to zostanie przypisane do komponentu ktory używa hooka
-  const [error, setError] = useState(null); // to zostanie przypisane do komponentu ktory yuzywa hooka
+  const [isLoading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const authLogin = useCallback(async (email, password) => {
@@ -62,32 +62,20 @@ const useAuthCreateAcc = () => {
 };
 
 const useAuthLogout = () => {
-  const [isLoading, setLoading] = useState(false); // to zostanie przypisane do komponentu ktory używa hooka
-  const [error, setError] = useState(null); // to zostanie przypisane do komponentu ktory yuzywa hooka
   const navigate = useNavigate();
   const authLogout = useCallback(async () => {
-    try {
-      setError("");
-      setLoading(true);
-      const response = await auth.signOut();
-      if (!response.ok) {
-        throw new Error("Request LOGOUT failed");
-      }
-      toast.success("User Logout success");
-      navigate("/", { replace: true });
-      // persistor.persist();
-    } catch (error) {
-      setError("Failed to Logout User");
-    }
-    setLoading(false);
+    await auth.signOut();
+
+    toast.success("User Logout success");
+    navigate("/", { replace: true });
   }, []);
 
-  return { isLoading, error, authLogout };
+  return { authLogout };
 };
 
 const useAuthResetPassword = () => {
-  const [isLoading, setLoading] = useState(false); // to zostanie przypisane do komponentu ktory używa hooka
-  const [error, setError] = useState(null); // to zostanie przypisane do komponentu ktory yuzywa hooka
+  const [isLoading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
   const authResetPassword = useCallback(async (email) => {
     try {

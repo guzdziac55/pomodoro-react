@@ -9,16 +9,11 @@ import {
 import { useFinishTime } from "../../hooks/use-finishTime";
 import { createSelector } from "reselect";
 
-//in Minutes
 const selectPomTimeToAdd = createSelector(
   selectPomodoroOptionTime,
   selectNumberToDoTasks,
   (pomodoroOption, tasksNumber) => pomodoroOption * tasksNumber
 );
-
-// TO DO HERE:
-// check later with normal function => sprawdzić czy spowoduje ponowne wyrenderowanie
-//  komponentu z nornamlną funkcją
 
 const FinishCalculate = () => {
   const toDoTasks = useSelector(selectNumberToDoTasks);

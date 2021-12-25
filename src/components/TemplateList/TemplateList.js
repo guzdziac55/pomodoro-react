@@ -21,17 +21,13 @@ const TemplateList = () => {
     />
   ));
 
-  // problem wrzucanie tego na liste! = problem z id ? jeśli są 2x te same
-
   return (
     <>
       <button className={classes.showButton} onClick={toogleList}>
-        {/* oraz jeśli tablica nie jest empty */}
         {showList ? "Hide Templates " : "Show Templates"}
       </button>
       {showList && (
         <ul className={classes.templateList}>
-          {/* {templateList} */}
           {templates.length === 0 ? (
             <p className={classes.info}>There is no templates </p>
           ) : (

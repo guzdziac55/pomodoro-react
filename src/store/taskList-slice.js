@@ -169,14 +169,14 @@ const taskListSlice = createSlice({
       toast.info(toastInfo);
     },
 
-    updateTask(state, action) {
-      console.log("inside update taks");
+    updateTask(state) {
       state.taskListChanged = true;
-      if (action.payload !== 0 || !state.activeTask) return;
-      const activeTask = state.tasksList.find(
+      const activeTaskObj = state.tasksList.find(
         (task) => task.id === state.activeTask
       );
-      activeTask.actPomodoro++;
+
+      if (state.activeTask == null || !activeTaskObj) return;
+      activeTaskObj.actPomodoro++;
       toast.info("Active task updated");
     },
   },

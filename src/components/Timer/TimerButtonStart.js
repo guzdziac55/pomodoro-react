@@ -3,20 +3,13 @@ import classes from "./TimerButtonStart.module.css";
 import { MdSkipNext } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { updateTask } from "../../store/taskList-slice";
+
 import { nextStageWithConfig } from "../../store/thunks/calculateNextStage-actions";
-import {
-  toggleTicking,
-  calculateNewStage,
-  selectActiveStage,
-} from "../../store/timer-slice";
-import { selectLongBrakInterval } from "../../store/config-slice";
+import { toggleTicking, selectActiveStage } from "../../store/timer-slice";
 
 const TimerButtonStart = () => {
   const dispatch = useDispatch();
   const isTicking = useSelector((state) => state.timer.isTicking);
-  const activeStage = useSelector(selectActiveStage);
-  const longBreakInterval = useSelector(selectLongBrakInterval);
 
   const onClickToggleTicking = useCallback(() => {
     dispatch(toggleTicking());

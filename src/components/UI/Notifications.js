@@ -4,7 +4,6 @@ import { Spinner } from "./Spinner";
 const Notifications = (props) => {
   let specialClasses = "";
 
-  // dynamic add classes of success / errors
   if (props.status === "error") {
     specialClasses = classes.error;
   }

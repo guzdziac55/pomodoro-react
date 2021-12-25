@@ -5,13 +5,11 @@ import TimerTab from "./TimerTab";
 import TimerCountdown from "./TimerCountdown";
 import TimerButtonStart from "./TimerButtonStart";
 
-// we can use selector here and put intoProps
-
 const Timer = () => {
   return (
     <Card class={classes.timer}>
       <TimerTab></TimerTab>
-      {/* here we need play sound */}
+
       <TimerCountdown />
       <TimerButtonStart />
     </Card>
