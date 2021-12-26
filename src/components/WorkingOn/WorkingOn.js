@@ -11,7 +11,6 @@ const WorkingOn = () => {
   return (
     <div className={classes.activeTask}>
       <span className={classes.pomodoroCount}>#{pomodoroCnt}</span>
-
       {activeTask && <span>{activeTask.title}</span>}
       {!activeTask && <span>Time to Focus!</span>}
     </div>

@@ -5,17 +5,17 @@
 }
 
 .button {
-  background-color: var(--main-dark);
-  border-style: none;
   display: flex;
-  flex-direction: row;
+  width: 100%;
+  padding: 10px 15px;
   align-items: center;
   justify-content: center;
-  padding: 10px 15px;
+  flex-direction: row;
+  background-color: var(--main-dark);
   color: var(--font-main);
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 1.4rem;
   border-radius: 5px;
+  border-style: none;
 }
 
 .button:hover {
@@ -24,7 +24,45 @@
 }
 
 .icon {
-  width: 1.3rem;
-  height: 1.3rem;
+  width: 25px;
+  height: 25px;
   margin-right: 0.5rem;
+}
+
+@media (max-width: 1500px) {
+  /* like desktop */
+}
+
+/* ///// TABLET */
+@media (max-width: 1100px) {
+  .button {
+    width: 100%;
+    padding: 10px 15px;
+  }
+
+  .button > span {
+    display: none;
+    visibility: hidden;
+  }
+
+  .icon {
+    margin: 0;
+  }
+}
+
+/* ///// MOBILE */
+@media (max-width: 550px) {
+  .button {
+    width: 100%;
+    padding: 5px 10px;
+  }
+
+  .button > span {
+    display: none;
+    visibility: hidden;
+  }
+
+  .icon {
+    margin: 0;
+  }
 }

@@ -4,7 +4,9 @@
   justify-items: flex-start;
   align-items: flex-start;
   gap: 10px;
-  /* margin-top: 100px; */
+}
+.bindsContainer h1 {
+  color: #ffffff;
 }
 
 .buttonContainer {
@@ -45,4 +47,21 @@
 /*  jak hidden to mają nie działać ?  */
 .hide {
   visibility: hidden;
+}
+
+@media (max-width: 1500px) {
+}
+
+/* ///// TABLET */
+@media (max-width: 1100px) {
+  .bindsContainer {
+    display: none;
+  }
+}
+
+/* ///// MOBILE */
+@media (max-width: 550px) {
+  .bindsContainer {
+    display: none;
+  }
 }

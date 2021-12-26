@@ -2,6 +2,10 @@
 html {
   font-size: 62.5%;
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  overflow-x: hidden;
 }
 
 *,
@@ -38,8 +42,8 @@ li {
 }
 
 ul > li {
-  margin: 0;
-  margin-top: 0.5rem;
+  /* margin: 0; */
+  /* margin-top: 0.5rem; */
 }
 
 /* ///// LAPTOP / DESKTOP */
@@ -63,7 +67,7 @@ ul > li {
   }
 
   ul > li {
-    margin: 0.5rem;
+    /* margin: 0.5rem; */
   }
 }
 
@@ -88,7 +92,7 @@ ul > li {
   }
 
   ul > li {
-    margin: 0.4rem;
+    /* margin: 0.4rem; */
   }
 }
 
@@ -114,7 +118,7 @@ ul > li {
   }
 
   ul > li {
-    margin: 0.3rem;
+    /* margin: 0.3rem; */
   }
 }
 

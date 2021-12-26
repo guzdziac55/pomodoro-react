@@ -11,8 +11,8 @@
 .modal {
   position: fixed;
   top: 20vh;
-  left: 5%;
-  width: 90%;
+  left: 10%;
+  width: 80%;
   background-color: white;
   border-radius: 14px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
@@ -24,10 +24,10 @@
   width: 100%;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1100px) {
   .modal {
-    width: 40rem;
-    left: calc(50% - 20rem);
+    width: 700px;
+    left: calc(50% - 350px);
   }
 }
 

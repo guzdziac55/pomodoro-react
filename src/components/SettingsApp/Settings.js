@@ -50,12 +50,7 @@ const Settings = (props) => {
       ...dataRest,
       stageOptions: [+pomodoroTime, +shortBreak, +longBreak],
     };
-    // console.log(dataRest);
-    // console.log("settings data");
-    // console.log(newConfigState);
-    // console.log(configChanged);
-    // to powinien być thunk ? = > bo po zrobieniu setConfig będzie widział zmiane
-    // ale jej nie wyśle bo nie będzie config changed
+
     dispatch(setConfig(newConfigState));
     dispatch(setConfigChanged());
     toast.success("Settings saved");

@@ -1,26 +1,25 @@
 .templateItem {
-  transition: 0.5s;
-  flex-direction: row;
+  width: 100%;
   display: flex;
+  margin-top: 5px;
+  flex-direction: row;
   align-items: center;
-  padding: 0.2rem;
+  padding: 10px;
   border: none;
   flex-wrap: wrap;
-  border-radius: 0.4rem;
-  margin-top: 0.2rem;
-  width: 100%;
-  /* min-width: 400px; */
-  color: #ffffff;
-  overflow-wrap: break-word;
-  background-color: #ffffff27;
+  border-radius: 4px;
   border-left: 5px solid rgba(0, 0, 0, 0);
+  overflow-wrap: break-word;
+  color: #ffffff;
+  background-color: #ffffff27;
+  transition: 0.5s;
 }
 
 .icon {
   display: block;
   cursor: pointer;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 35px;
+  height: 35px;
   color: #ffffff;
   margin-right: 0.5rem;
 }
@@ -28,18 +27,30 @@
 .icon:hover {
   display: block;
   cursor: pointer;
-  width: 1.5rem;
-  height: 1.5rem;
-  color: #ffffff80;
   margin-right: 0.5rem;
+  color: #ffffff80;
 }
 
 .name {
   overflow: hidden;
-  font-size: 14px;
   color: #ffffff70;
-  font-weight: 700;
-  margin-left: 0.5rem;
+  padding-left: 5px;
+  padding-right: 5px;
   flex: 1;
-  margin-right: 10px;
+}
+
+/* ///// TABLET */
+@media (max-width: 1100px) {
+  .templateItem {
+    padding: 5px;
+    margin-top: 4px;
+  }
+}
+
+/* ///// MOBILE */
+@media (max-width: 550px) {
+  .templateItem {
+    padding: 5px;
+    margin-top: 2px;
+  }
 }

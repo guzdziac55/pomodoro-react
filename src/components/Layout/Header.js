@@ -2,7 +2,6 @@ import React from "react";
 import classes from "./Header.module.css";
 import HeaderMenuTab from "./HeaderMenuTab";
 import { Link } from "react-router-dom";
-import { Outlet } from "react-router-dom";
 
 const Header = ({ onOpen }) => {
   return (

@@ -1,11 +1,11 @@
 .mainApp {
   width: 100%;
   min-height: 100vh;
+
   background-color: var(--main-color);
 }
 
 /*  themes */
-
 .pomodoroTheme {
   --color-grey-light-1: #f9f5f3;
   --color-grey-light-2: #f2efee;

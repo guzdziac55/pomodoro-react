@@ -94,7 +94,7 @@ const HeaderMenuTab = ({ onSetOpen }) => {
             <Link to="/signup">
               <button className={classes.button}>
                 <MdPermIdentity className={classes.icon} />
-                <span>Sign up</span>
+                <span>SignUp</span>
               </button>
             </Link>
 
