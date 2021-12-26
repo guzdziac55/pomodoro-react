@@ -4,7 +4,6 @@
 }
 
 .container h2 {
-  font-size: 24px;
   color: #330c0a;
 }
 
@@ -17,11 +16,6 @@
 }
 
 .container p {
-  font-size: 16px;
-  font-weight: 300;
-  line-height: 1.5;
-  letter-spacing: 1.5px;
-  word-spacing: 5.5px;
   color: #330c0a;
 }
 .container p::first-letter {
@@ -29,27 +23,18 @@
   margin: 0;
   padding: 0;
   color: #f05b56;
-  /* font-style: italic; */
-  /* word-spacing: px; */
 }
 
 .container ul {
   list-style-type: decimal;
-
   padding-left: 25px;
 }
 
 .container ul > li {
-  font-size: 16px;
-  font-weight: 300;
-  letter-spacing: 1.2px;
   color: #330c0a;
-  margin: 10px 0;
-  word-spacing: 4px;
 }
 
 .container strong {
-  font-size: 18px;
   letter-spacing: 1px;
   word-spacing: 4px;
 }

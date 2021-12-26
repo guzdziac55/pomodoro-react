@@ -3,7 +3,6 @@ import classes from "./Features.module.css";
 
 const Features = () => {
   return (
-    // header app
     <section id="" className={classes.container}>
       <h2>Features</h2>
       <ul>

@@ -3,7 +3,6 @@ import classes from "./AboutApp.module.css";
 
 const AboutApp = () => {
   return (
-    // header app
     <section id="" className={classes.container}>
       <h2>What is Pomofocus?</h2>
       <p>

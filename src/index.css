@@ -1,19 +1,133 @@
-body {
-  margin: 0;
-  font-family: "Nunito Sans", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-size: 18px;
-  /* font-size: 50% */
-}
-/* --font-pomodoro: "Nunito Sans", sans-serif; */
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+/*  MORE DEFAULT  */
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
 }
 
 *,
-*::after,
-*::before {
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* 
+ /* MEDIA QUERIES*/
+/*  */
+
+h1 {
+  font-size: 3.2rem;
+}
+h2 {
+  font-size: 2.7rem;
+}
+h3 {
+  font-size: 2.5rem;
+}
+p {
+  font-size: 1.7rem;
+}
+li {
+  font-size: 1.6rem;
+  letter-spacing: 1.2px;
+  word-spacing: 4px;
+  margin: 0;
+}
+
+ul > li {
+  margin: 0;
+  margin-top: 0.5rem;
+}
+
+/* ///// LAPTOP / DESKTOP */
+@media (max-width: 1500px) {
+  h1 {
+    font-size: 2.7rem;
+  }
+  h2 {
+    font-size: 2.4rem;
+  }
+  h3 {
+    font-size: 2rem;
+  }
+  p {
+    font-size: 1.6rem;
+  }
+  li {
+    font-size: 1.4rem;
+    letter-spacing: 1.2px;
+    word-spacing: 4px;
+  }
+
+  ul > li {
+    margin: 0.5rem;
+  }
+}
+
+/* ///// TABLET */
+@media (max-width: 1100px) {
+  h1 {
+    font-size: 2.2rem;
+  }
+  h2 {
+    font-size: 1.7rem;
+  }
+  h3 {
+    font-size: 1.5rem;
+  }
+  p {
+    font-size: 1.6rem;
+  }
+  li {
+    font-size: 1.4rem;
+    letter-spacing: 1.2px;
+    word-spacing: 4px;
+  }
+
+  ul > li {
+    margin: 0.4rem;
+  }
+}
+
+/* ///// MOBILE */
+@media (max-width: 550px) {
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.6rem;
+    margin: 0;
+  }
+  h3 {
+    font-size: 1.4rem;
+  }
+  p {
+    font-size: 1.4rem;
+  }
+  li {
+    font-size: 1.2rem;
+    letter-spacing: 1.2px;
+    word-spacing: 4px;
+  }
+
+  ul > li {
+    margin: 0.3rem;
+  }
+}
+
+body {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Nunito Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }

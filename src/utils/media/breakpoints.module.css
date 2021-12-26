@@ -1,0 +1,63 @@
+@value larry: (max-width: 599px);
+@value moe: (min-width: 600px) and (max-width: 959px);
+@value curly: (min-width: 960px);
+
+/* @default bigger monitor uper more than 1501px */
+
+@media (max-width: 1500px) {
+  /* laptop */
+}
+
+@media (max-width: 1100px) {
+  /* tablets */
+}
+
+@media (max-width: 550px) {
+  /* phones */
+}
+
+/* @value small: (max-width: 599px);
+@value medium: (min-width: 600px) and (max-width: 959px);
+@value large: (min-width: 960px); */
+
+/* @value medium: min-width: 400px;
+@value blue: #0c77f8;
+@value red: #ff0000;
+@value green: #aaf200; */
+
+/* https://css-tricks.com/viewport-sized-typography/   <=============== */
+
+/* 
+
+320px — 480px: Mobile devices
+481px — 768px: iPads, Tablets
+769px — 1024px: Small screens, laptops
+1025px — 1200px: Desktops, large screens
+1201px and more —  Extra large screens, TV */
+
+/*  font size in root body with media
+
+body
+{
+    font-size: 22px;
+}
+
+h1
+{
+    font-size: 44px;
+}
+
+@media (min-width: 768)
+{
+    body
+    {
+        font-size: 17px;
+    }
+    h1
+    {
+        font-size: 24px;
+    }
+}
+
+
+*/

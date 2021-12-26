@@ -2,8 +2,31 @@
   text-align: center;
   background-color: var(--main-light);
   margin: auto;
-  margin-top: 3rem;
   max-width: 480px;
   padding: 20px 0px 30px;
-  height: 100%;
+  margin-top: 0px;
 }
+
+@media (max-width: 780px) {
+  .timer {
+    max-width: 400px;
+    margin-top: 30px;
+  }
+}
+
+/*  max width 
+default desktop
+
+/* --- media mobile
+
+*/
+
+/* */
+
+/*  slider navigation for  mobile */
+
+/*  or different component for mobile ?  */
+/*  kide keybinds when using mobiles  */
+/*  DETECT DEVICES : 
+https://www.npmjs.com/package/react-device-detect
+*/

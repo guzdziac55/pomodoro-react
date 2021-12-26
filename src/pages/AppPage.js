@@ -31,6 +31,8 @@ const AppPage = () => {
           <Tasks />
           {!isEmptyTasks && <FinishCalculate />}
         </div>
+        {/* detect device here  */}
+        {/* keybind not aviable in mobile !  */}
         <div className={classes.keyBindApp}>{bindsEnable && <KeyBinds />}</div>
       </div>
     </>

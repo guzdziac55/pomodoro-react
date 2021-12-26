@@ -1,9 +1,8 @@
 .container {
   max-width: 620px;
-  margin: 30px auto 60px;
+  margin: 20px auto;
 }
 
 .container h1 {
-  font-size: 36px;
   color: #330c0a;
 }
