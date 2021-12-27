@@ -16,10 +16,6 @@
 }
 
 .container p {
-  /* font-weight: 300;
-  line-height: 1.5;
-  letter-spacing: 1.5px;
-  word-spacing: 5.5px; */
   color: #330c0a;
 }
 .container p::first-letter {

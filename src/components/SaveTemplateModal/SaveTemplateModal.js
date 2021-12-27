@@ -20,7 +20,6 @@ const SaveTemplateModal = ({ newTemplate, onClose, formRef }) => {
         <div className={classes.formMain}>
           <h1>Save your project template</h1>
           <div className={classes.nameController}>
-            {/* <label id="name">Project Name</label> */}
             <input
               required="true"
               autoFocus="true"

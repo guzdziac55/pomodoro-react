@@ -1,6 +1,5 @@
 // import { calculateRemainingTime } from "./auth-actions";
 import { createSlice } from "@reduxjs/toolkit";
-import configSlice from "./config-slice";
 
 const authSlice = createSlice({
   name: "auth",
@@ -20,7 +19,7 @@ const authSlice = createSlice({
 });
 
 //actions
-export const { logout, signUp } = configSlice.actions;
+export const { logout, signUp } = authSlice.actions;
 
 //selectors
 export const selectCurrentUser = (state) => state.auth.currentUser;

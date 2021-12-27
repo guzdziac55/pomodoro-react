@@ -1,6 +1,5 @@
 .formMain {
   padding: 20px 10px;
-  /* height: 400px; */
 }
 
 .formMenu {
@@ -26,7 +25,6 @@
 .btnCancel {
   color: #525252;
   font-weight: 600;
-  /* margin-right: 40px; */
 }
 
 .btnCancel:hover {

@@ -29,15 +29,13 @@ const Settings = (props) => {
   const onClose = props.onClose;
   const ref = props.formRef;
 
-  // hook chyba nie działający
-
   const defaultConfigState = useSelector((state) => state.config);
   const initialSelectNotification = useSelector(selectAlarmSound);
   const [notification, setNotification] = useState(initialSelectNotification);
   const [play] = useSound(findNotification(notification));
 
   const { register, handleSubmit } = useForm({
-    defaultValues: { ...defaultConfigState }, // default values from settings redux
+    defaultValues: { ...defaultConfigState },
   });
   const notificationsOption = notifications.map(
     (notification) => notification.name
@@ -65,7 +63,7 @@ const Settings = (props) => {
             <InputColumn
               register={register}
               name="pomodoroTime"
-              title="Pomodoro time"
+              title="Pomodoro"
               type="number"
               min="0"
               max="360"
@@ -75,7 +73,7 @@ const Settings = (props) => {
             <InputColumn
               register={register}
               name="shortBreak"
-              title="Short break time"
+              title="Short break"
               type="number"
               min="0"
               max="360"
@@ -85,7 +83,7 @@ const Settings = (props) => {
             <InputColumn
               register={register}
               name="longBreak"
-              title="Long break time"
+              title="Long break"
               type="number"
               min="0"
               max="360"

@@ -30,7 +30,7 @@ const Login = () => {
 
       <h1 className={classes.header}>Login</h1>
       {error && <p className={classes.error}>{error}</p>}
-      <Card class={classes.auth}>
+      <Card className={classes.auth}>
         <form onSubmit={submitForm} className={classes.form}>
           <button
             type="button"
@@ -40,7 +40,7 @@ const Login = () => {
             class={classes.btnGoogleLogin}
           >
             <FcGoogle />
-            Login with Google
+            <span>Login with Google</span>
           </button>
           <span class={classes.break}>or</span>
           <Input
@@ -64,10 +64,12 @@ const Login = () => {
             }}
           />
 
-          <button>LOGIN</button>
+          <button type="submit">
+            <span>LOGIN</span>
+          </button>
 
-          <Link to="/reset-password">
-            <span className={classes.forgotPass}>Forgot Password</span>
+          <Link className={classes.forgotPass} to="/reset-password">
+            <span>Forgot Password</span>
           </Link>
         </form>
       </Card>

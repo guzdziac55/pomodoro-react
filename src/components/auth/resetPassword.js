@@ -29,7 +29,7 @@ const ResetPassword = () => {
       <h1 className={classes.header}> Reset Password</h1>
       {error && <p className={classes.error}>{error}</p>}
 
-      <Card class={classes.auth}>
+      <Card className={classes.auth}>
         <form onSubmit={submitForm} className={classes.form}>
           <Input
             useRef={emailRef}

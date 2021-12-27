@@ -36,7 +36,7 @@ const TimerButtonStart = () => {
         onClick={onClickToggleTicking}
         className={`${classes.buttonStart} ${startButtonClass}`}
       >
-        START
+        {isTicking ? "STOP" : "START"}
       </button>
 
       <button

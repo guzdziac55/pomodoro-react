@@ -9,6 +9,22 @@
   height: 100px;
   padding: 10px;
   border-radius: 50%;
-  /* get color from var main */
   border: 5px solid #2196f3;
+}
+
+/* ///// MOBILE */
+@media (max-width: 550px) {
+  .avatarItem {
+    width: 400px;
+    height: 400px;
+    padding: 10px;
+  }
+
+  .avatarItem:hover {
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+    border-radius: 50%;
+    border: 5px solid #2196f3;
+  }
 }

@@ -1,9 +1,5 @@
 .container {
-  position: absolute;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -11,8 +7,8 @@
 
 .header {
   text-align: center;
-  margin-top: 4rem;
-  font-size: 24px;
+  margin-top: 40px;
+  font-size: 2.4rem;
   text-decoration: none;
   color: #ffffff;
 }
@@ -29,12 +25,29 @@
 .headerButton {
   display: flex;
   text-align: center;
-  font-size: 32px;
+  font-size: 3.2rem;
   font-weight: 800;
   align-items: center;
   justify-content: center;
   text-decoration: none;
   color: #ffffff;
+}
+
+/* ///// MOBILE */
+@media (max-width: 550px) {
+  .container {
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  .header {
+    margin-top: 20px;
+    font-size: 2rem;
+  }
+
+  .headerButton {
+    display: none;
+  }
 }
 
 .headerIcon {
@@ -48,11 +61,19 @@
   text-align: center;
   margin: auto;
   margin-top: 1rem;
-  min-width: 380px;
-  max-width: 380px;
+  min-width: 550px;
+  width: 100%;
   padding: 10px 10px;
   background-color: var(--main-light);
   height: 100%;
+}
+
+/* ///// MOBILE */
+@media (max-width: 550px) {
+  .auth {
+    min-width: 0px;
+    padding: 5px 5px;
+  }
 }
 
 .btnGoogleLogin {
@@ -74,8 +95,17 @@
   border-top: 1px solid #ffffff;
   width: 5rem;
   margin: 5px 10px;
-  /* margin: -1rem 5px; */
-  /* transform: translateY(-1rem); */
+}
+
+/* ///// MOBILE */
+@media (max-width: 550px) {
+  .btnGoogleLogin {
+    gap: 5px;
+  }
+
+  .break {
+    font-size: 1.5rem;
+  }
 }
 
 .inputWrapper button {
@@ -101,10 +131,14 @@
   color: #ffffff;
   background-color: var(--btn-color-confirm);
   box-shadow: rgb(0 0 0 / 20%) 0px 2px 2px;
-  font-size: 1rem;
+  font-size: 2rem;
   font-weight: 500;
   border-radius: 5px;
   margin: 1rem 0 0.5rem;
+}
+
+.form button > span {
+  font-size: 1.5rem;
 }
 
 .form button:hover {
@@ -133,11 +167,6 @@
   background-color: rgb(131, 131, 131);
 }
 
-/* .form button[type="button"] {
-  background-color: none;
-  background: none;
-} */
-
 .form-main {
   padding: 10px 20px 0px;
 }
@@ -146,7 +175,6 @@
   display: flex;
   background-color: #a54844;
   justify-content: flex-end;
-  /* align-items: center; */
 }
 
 .forgotPass {

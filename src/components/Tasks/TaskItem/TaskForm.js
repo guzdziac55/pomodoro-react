@@ -115,7 +115,7 @@ const TaskForm = React.forwardRef((props) => {
   };
 
   return (
-    <Card class={classes.form}>
+    <Card className={classes.form}>
       <form ref={props.onRef} onSubmit={handleAddEditTask}>
         <div className={classes.formMain}>
           <input

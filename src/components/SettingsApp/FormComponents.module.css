@@ -139,7 +139,6 @@
   height: 0;
 }
 
-/*  selects first slider after checbox checked */
 .checkbox:checked + .slider {
   background-color: #2196f3;
 }

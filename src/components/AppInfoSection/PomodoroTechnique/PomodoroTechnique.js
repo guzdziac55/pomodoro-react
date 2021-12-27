@@ -3,7 +3,6 @@ import classes from "./PomodoroTechnique.module.css";
 
 const PomodoroTechnique = () => {
   return (
-    // header app
     <section id="" className={classes.container}>
       <h2>What is Pomodoro Technique?</h2>
       <p>

@@ -3,7 +3,6 @@ import classes from "./HowToUse.module.css";
 
 const HowToUse = () => {
   return (
-    // header app
     <section id="" className={classes.container}>
       <h2>How to use the Pomodoro Timer?</h2>
       <ul>

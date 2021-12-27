@@ -7,7 +7,7 @@ import TimerButtonStart from "./TimerButtonStart";
 
 const Timer = () => {
   return (
-    <Card class={classes.timer}>
+    <Card className={classes.timer}>
       <TimerTab></TimerTab>
 
       <TimerCountdown />

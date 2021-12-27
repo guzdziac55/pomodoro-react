@@ -77,7 +77,7 @@ const ProfileForm = ({ formRef, onClose }) => {
                 }}
                 type="button"
               >
-                getAvatar
+                <span> getAvatar</span>
               </button>
             </div>
 

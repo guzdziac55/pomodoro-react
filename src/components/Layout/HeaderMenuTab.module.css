@@ -29,10 +29,6 @@
   margin-right: 0.5rem;
 }
 
-@media (max-width: 1500px) {
-  /* like desktop */
-}
-
 /* ///// TABLET */
 @media (max-width: 1100px) {
   .button {

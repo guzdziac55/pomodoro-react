@@ -32,7 +32,7 @@ const SignUp = () => {
       <h1 className={classes.header}>Create Account</h1>
       {error && <p className={classes.error}>{error}</p>}
 
-      <Card class={classes.auth}>
+      <Card className={classes.auth}>
         <form onSubmit={submitForm} className={classes.form}>
           <button
             type="button"
@@ -42,7 +42,7 @@ const SignUp = () => {
             class={classes.btnGoogleLogin}
           >
             <FcGoogle />
-            Sign up with Google
+            <span>Sign up with Google</span>
           </button>
           <span class={classes.break}>or</span>
           <Input
@@ -66,7 +66,9 @@ const SignUp = () => {
               placeholder: "",
             }}
           />
-          <button>Sign up with email</button>
+          <button>
+            <span>Sign up with email</span>
+          </button>
         </form>
       </Card>
       <div className={classes.createWrapper}>
