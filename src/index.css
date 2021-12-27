@@ -41,11 +41,6 @@ li {
   margin: 0;
 }
 
-ul > li {
-  /* margin: 0; */
-  /* margin-top: 0.5rem; */
-}
-
 /* ///// LAPTOP / DESKTOP */
 @media (max-width: 1500px) {
   h1 {
@@ -64,10 +59,6 @@ ul > li {
     font-size: 1.4rem;
     letter-spacing: 1.2px;
     word-spacing: 4px;
-  }
-
-  ul > li {
-    /* margin: 0.5rem; */
   }
 }
 
@@ -90,10 +81,6 @@ ul > li {
     letter-spacing: 1.2px;
     word-spacing: 4px;
   }
-
-  ul > li {
-    /* margin: 0.4rem; */
-  }
 }
 
 /* ///// MOBILE */
@@ -115,10 +102,6 @@ ul > li {
     font-size: 1.2rem;
     letter-spacing: 1.2px;
     word-spacing: 4px;
-  }
-
-  ul > li {
-    /* margin: 0.3rem; */
   }
 }
 
