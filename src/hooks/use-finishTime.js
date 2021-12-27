@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useEffect } from "react";
 
-// timeAdd => time to add in minutes ?
 export const useFinishTime = (timeAdd) => {
   const [finishTime, setFinishTime] = useState(null);
 
@@ -18,7 +17,7 @@ export const useFinishTime = (timeAdd) => {
       calculatedTime.getMinutes() < 10
         ? "0" + calculatedTime.getMinutes()
         : calculatedTime.getMinutes();
-    // return `${hours}:${minutes}`;
+
     setFinishTime(`${hours}:${minutes}`);
   }, [timeAdd]);
 
