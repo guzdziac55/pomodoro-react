@@ -2,6 +2,7 @@
   position: fixed;
   top: 50%;
   left: 50%;
+  max-width: 550px;
   transform: translate(-50%, -50%);
 }
 
@@ -153,10 +154,10 @@
   font: inherit;
   text-align: center;
 }
-
+/* 
 .form button[type="submit"] {
-  margin-bottom: 20px;
-}
+  /* margin-bottom: 20px; */
+/* } */
 
 .form button[type="submit"]:disabled {
   background-color: #838383;
@@ -173,11 +174,12 @@
 }
 
 .forgotPass > span {
+  display: inline-block;
   color: var(--color-grey-light-2);
   font-size: 1.5rem;
   font-weight: 400;
   text-decoration: underline;
-  margin-top: 100px;
+  margin-top: 10px;
 }
 
 .createWrapper {

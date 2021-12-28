@@ -21,6 +21,8 @@ const SignUp = () => {
     authCreateAcc(enteredEmail, enteredPassword);
   };
 
+  // const loadingClass = isLoading ? classes.hidden : "";
+
   return (
     <div className={classes.container}>
       <Link to="/">
@@ -66,9 +68,11 @@ const SignUp = () => {
               placeholder: "",
             }}
           />
-          <button>
-            <span>Sign up with email</span>
-          </button>
+          {!isLoading && (
+            <button type="submit">
+              <span>Sign up with email</span>
+            </button>
+          )}
         </form>
       </Card>
       <div className={classes.createWrapper}>

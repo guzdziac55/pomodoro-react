@@ -46,9 +46,6 @@ const useAuthCreateAcc = () => {
         email,
         password
       );
-      if (!response.ok) {
-        throw new Error("Request failed");
-      }
       toast.success("automatically logged in to the new account");
       navigate("/", { replace: true });
       persistor.pause();

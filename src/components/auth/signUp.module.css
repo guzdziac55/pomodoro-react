@@ -2,6 +2,7 @@
   position: fixed;
   top: 50%;
   left: 50%;
+  max-width: 550px;
   transform: translate(-50%, -50%);
 }
 
@@ -16,6 +17,7 @@
 .error {
   color: #ffffff;
   font-size: 14px;
+  max-width: fit-content;
   font-style: italic;
   font-weight: 400;
   text-align: center;
@@ -155,14 +157,6 @@
   text-align: center;
 }
 
-.form button[type="submit"] {
-  background-color: blue;
-}
-
-.form button[type="submit"]:hover {
-  background-color: red;
-}
-
 .form button[type="submit"]:disabled {
   background-color: rgb(131, 131, 131);
 }
@@ -175,14 +169,6 @@
   display: flex;
   background-color: #a54844;
   justify-content: flex-end;
-}
-
-.forgotPass {
-  color: var(--color-grey-light-2);
-  opacity: 0.7;
-  font-size: 14px;
-  font-weight: 400;
-  text-decoration: underline;
 }
 
 .createWrapper {
@@ -206,3 +192,12 @@
   cursor: pointer;
   color: var(--font-main);
 }
+
+/* 
+.form button[type="submit"] {
+  background-color: blue;
+}
+
+.form button[type="submit"]:hover {
+  background-color: red;
+} */

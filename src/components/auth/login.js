@@ -64,9 +64,11 @@ const Login = () => {
             }}
           />
 
-          <button type="submit">
-            <span>LOGIN</span>
-          </button>
+          {!isLoading && (
+            <button type="submit">
+              <span>Login</span>
+            </button>
+          )}
 
           <Link className={classes.forgotPass} to="/reset-password">
             <span>Forgot Password</span>
