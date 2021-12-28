@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import classes from "./TaskForm.module.css";
 import Card from "../../UI/Card";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import useEstPomodoro from "../../../hooks/use-estPomodoro";
-import { selectTaskList } from "../../../store/taskList-slice";
 
 import {
   MdExposurePlus1,
@@ -12,27 +11,29 @@ import {
   MdNoteAdd,
 } from "react-icons/md";
 
-import { taskListActions } from "../../../store/taskList-slice";
+import {
+  editTaskItem,
+  addTask,
+  deleteTask,
+} from "../../../store/taskList-slice";
 
 const TaskForm = React.forwardRef((props) => {
   const dispatch = useDispatch();
-  const taskList = useSelector(selectTaskList);
 
   const { editMode } = props;
   const { id, title, estPomodoro, note } = { ...props.taskData };
 
-  // set initial edit form inputs
+  // initial inputs in NEWTASK MODE & EDIT MODE
   const initialNote = editMode && note ? note : "";
   const initialTitle = editMode ? title : "";
   const initialAmount = editMode ? estPomodoro : 1;
 
-  // inputs controlled form
   const [taskTitle, setTaskTitle] = useState(initialTitle);
   const [taskNote, setTaskNote] = useState(initialNote);
 
   const [openNote, setOpenNote] = useState(note ? true : false);
   const [formIsValid, setFormIsValid] = useState(null);
-  // test + / -
+
   const [
     currentEstPomodoro,
     addEstPomodoro,
@@ -56,7 +57,6 @@ const TaskForm = React.forwardRef((props) => {
     }
   };
 
-  // form validation
   useEffect(() => {
     if (
       taskTitle.trim().length === 0 ||
@@ -86,7 +86,7 @@ const TaskForm = React.forwardRef((props) => {
 
     if (editMode) {
       dispatch(
-        taskListActions.editTaskItem({
+        editTaskItem({
           id: id,
           title: enteredTaskTitle,
           note: enteredTaskNote.trim().length > 0 ? enteredTaskNote : "",
@@ -96,7 +96,7 @@ const TaskForm = React.forwardRef((props) => {
       props.onToggleForm();
     } else {
       dispatch(
-        taskListActions.addTask({
+        addTask({
           title: enteredTaskTitle,
           note: enteredTaskNote.trim().length > 0 ? enteredTaskNote : "",
           estPomodoro: estPomodoroNumber,
@@ -111,7 +111,7 @@ const TaskForm = React.forwardRef((props) => {
   };
 
   const handleDelateTask = () => {
-    dispatch(taskListActions.deleteTask(id));
+    dispatch(deleteTask(id));
   };
 
   return (
@@ -119,6 +119,7 @@ const TaskForm = React.forwardRef((props) => {
       <form ref={props.onRef} onSubmit={handleAddEditTask}>
         <div className={classes.formMain}>
           <input
+            autoFocus
             id="title"
             value={taskTitle}
             name="title"

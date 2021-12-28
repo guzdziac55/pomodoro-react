@@ -19,6 +19,7 @@ const RenderApp = () => {
       <React.StrictMode>
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
+            {/* put routerconfig inside aPP .js */}
             <RouterConfig />
             <ToastContainer
               autoClose={2000}

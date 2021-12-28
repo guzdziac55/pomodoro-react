@@ -7,8 +7,7 @@ export const useFinishTime = (timeAdd) => {
   useEffect(() => {
     const currentTime = new Date();
     const calculatedTime = new Date(currentTime.getTime() + timeAdd * 60000);
-    console.log("calculate time inside hook");
-    console.log(calculatedTime);
+
     const hours =
       calculatedTime.getHours() < 10
         ? "0" + calculatedTime.getHours()
