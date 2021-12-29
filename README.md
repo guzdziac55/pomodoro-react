@@ -3,9 +3,9 @@
 Hi ! I am David. I wrote a copy of the well-known and liked application pomodoroFocus. The pomodoro app allows you to focus more on productive work. You can personalize your settings and monitor your most frequent activities.
 Find out more below.
 
-## Demo link:
+# Demo link:
 
-link here
+[PomodoroApp](https://react-http-b5eef.web.app/)
 
 ## Overview
 
@@ -13,16 +13,18 @@ The application was written for educational purposes. I am a novice programmer w
 
 ## Features
 
-- Creating a to-do list
-- Creating notes for to-do tasks
-- Stopwatch for work control
-- Three work modes that automatically calculate when you should take a break
+- Creating a to-do list.
+- Creating notes for to-do tasks.
+- Stopwatch for work control.
+- Three work modes that automatically calculate when you should take a break.
 - More settings such as (notification sounds, mode times, automation)
-  dynamic theme
-- Creating user accounts
-- Login system
-- Storing data locally with the possibility of creating an account and storing data on the server,
-- Responsive design
+  dynamic theme.
+- Creating user accounts.
+- Create TaskList Templates.
+- Login system.
+- Storing data locally with the possibility of creating an account and storing data on the server.
+- Responsive design.
+- User Avatar picker using external API.
 
 ## Technologies
 
@@ -42,20 +44,17 @@ The application was written for educational purposes. I am a novice programmer w
 
 - Install Node JS
   Refer to https://nodejs.org/en/ to install nodejs
-- Install create-react-app
-  Install create-react-app npm package globally. This will help to easily run the project and also build the source files easily. Use the following command to install create-react-app
+- Install create-react-app npm package globally. This will help to easily run the project and also build the source files easily. Use the following command to install create-react-app
 
 ```
 npm install -g create-react-app
 ```
 
 - FIREBASE INSTRUCTIONS
-
-// FIREBASE INSTRUCTIONS
-
-```
-npm install -g create-react-app
-```
+- If you want to use your own database. You need to generate an API key using firebase.
+  [Firebase basisc](https://www.youtube.com/watch?v=rQvOAnNvcNQ)
+  [Firebase Website](https://firebase.google.com/)
+- edit config inside firebase.js
 
 ## Cloning and Running the Application in local
 
