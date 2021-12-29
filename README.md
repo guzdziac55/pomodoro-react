@@ -46,7 +46,7 @@ The application was written for educational purposes. I am a novice programmer w
   Refer to https://nodejs.org/en/ to install nodejs
 - Install create-react-app npm package globally. This will help to easily run the project and also build the source files easily. Use the following command to install create-react-app
 
-```
+```sh
 npm install -g create-react-app
 ```
 
@@ -56,57 +56,47 @@ npm install -g create-react-app
   [Firebase Website](https://firebase.google.com/)
 - edit config inside firebase.js
 
-## Cloning and Running the Application in local
+## Cloning and Running the Application
 
-- Clone the project into local // INSTRUCTION FOR CLONNING FROM GITHUB
+To get a local copy up and running follow these simple steps.
 
-Install all the npm packages. Go into the project folder and type the following command to install all npm packages
+### Installation
 
-```
-npm install
-```
+1. Clone the repo
+   ```sh
+   git clone https://github.com/guzdziac55/pomodoro-react.git
+   ```
+2. Go to the App folder
+   ```sh
+   cd pomodoro-react
+   ```
+3. Install NPM packages
+   ```sh
+   npm install
+   ```
+4. Run the dev server
 
-In order to run the application Type the following command
+   ```sh
+   npm start
+   ```
 
-```
-npm start
-```
+   ```sh
+    ### The Application Runs on localhost:3000
+   ```
 
-The Application Runs on localhost:3000
+## Contact
 
-## Help
+Dawid Guzik - [/myGit](https://github.com/guzdziac55/) - daw.guzik@gmail.com
 
-Any advise for common problems or issues.
-
-```
-command to run if program contains helper info
-```
-
-## Authors
-
-ORGINALNY AUTOR APLIKACJI Z LINKIEM // INSPIRATION
-
-ex. Dominique Pizzie  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
-
-## Version History -- RACZEJ NIE POTRZEBNE
-
-- 0.2
-  - Various bug fixes and optimizations
-  - See [commit change]() or See [release history]()
-- 0.1
-  - Initial Release
+Project Link: [github.com/guzdziac55/pomodoro-react](https://github.com/guzdziac55/pomodoro-react)
 
 ## License
 
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
+This project is not created for commercial purposes - the original application can be found at the link:
+[/originalPomodoro](https://pomofocus.io/)
 
 ## Inspiration
 
 Inspiration, and more about pomodoro APP.
 
-- [awesome-readme](https://github.com/matiassingers/awesome-readme)
-- [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
-- [dbader](https://github.com/dbader/readme-template)
-- [zenorocha](https://gist.github.com/zenorocha/4526327)
-- [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)
+- [original-pomodoro](https://pomofocus.io/)
