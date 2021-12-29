@@ -15,7 +15,8 @@ const RouterConfig = () => {
   const currentUser = useSelector((state) => state.auth.currentUser);
 
   return (
-    <Suspense fallback={<p>loading</p>}>
+    <Suspense fallback={<Spinner />}>
+      {/* loading page full of background color and centered spinner  */}
       <Routes>
         <Route path="/" element={<App />}>
           <Route path="/" element={<AppPage />} />

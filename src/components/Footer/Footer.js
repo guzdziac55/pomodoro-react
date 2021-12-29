@@ -8,7 +8,7 @@ const Footer = () => {
     <footer className={classes.footer}>
       <div className={`${classes.container} ${classes.siteMap}`}>
         <a href="/app">Go to APP</a>
-        <a href="/outsidelink">Original App</a>
+        {/* <a href="/outsidelink">Original App</a> */}
       </div>
       <div className={`${classes.container} ${classes.mediaLinks}`}>
         <div className={classes.iconContainer}>

@@ -9,7 +9,6 @@ const Timer = () => {
   return (
     <Card className={classes.timer}>
       <TimerTab></TimerTab>
-
       <TimerCountdown />
       <TimerButtonStart />
     </Card>

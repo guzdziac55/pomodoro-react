@@ -79,9 +79,9 @@ export const selectCurrentTime = createSelector(
   (stage, options) => options[stage]
 );
 export const selectCurrentSeconds = createSelector(
-  (state) => state.timer.stage,
-  (state) => state.config.stageOptions,
-  (stage, options) => options[stage] // * 60
+  (state) => state.timer.stage, // stage number
+  (state) => state.config.stageOptions, // array
+  (stage, options) => options[stage] * 60
 );
 
 // logic with props from component

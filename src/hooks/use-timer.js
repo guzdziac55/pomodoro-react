@@ -31,11 +31,11 @@ export const useTimer = () => {
 
   useEffect(() => {
     let intervalId;
-    if (isTicking && consumedSeconds <= currentTimeOption * 60) {
+    if (isTicking && consumedSeconds <= currentTimeOption) {
       intervalId = setInterval(() => {
         dispatch(consumeTime());
       }, 1000);
-    } else if (consumedSeconds > currentTimeOption * 60) {
+    } else if (consumedSeconds > currentTimeOption) {
       timeIsEndAction();
       play();
     }
@@ -44,7 +44,7 @@ export const useTimer = () => {
 
   //
   const calculateCounter = () => {
-    return currentTimeOption * 60 - consumedSeconds;
+    return currentTimeOption - consumedSeconds;
   };
 
   const counter = calculateCounter();

@@ -7,6 +7,7 @@ import { useRef } from "react";
 import { MdDone } from "react-icons/md";
 import { FcGoogle } from "react-icons/fc";
 import { useAuthCreateAcc } from "../../hooks/use-auth";
+import { Spinner } from "../UI/Spinner";
 
 const SignUp = () => {
   const { isLoading, error, authCreateAcc } = useAuthCreateAcc();
@@ -30,7 +31,6 @@ const SignUp = () => {
           <MdDone className={classes.headerIcon} /> Pomodoro
         </span>
       </Link>
-
       <h1 className={classes.header}>Create Account</h1>
       {error && <p className={classes.error}>{error}</p>}
 
