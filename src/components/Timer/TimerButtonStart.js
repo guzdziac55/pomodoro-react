@@ -5,17 +5,17 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
 import { nextStageWithConfig } from "../../store/thunks/calculateNextStage-actions";
-import { toggleTicking, selectActiveStage } from "../../store/timer-slice";
+import { toggleTicking } from "../../store/timer-slice";
 
 const TimerButtonStart = () => {
   const dispatch = useDispatch();
   const isTicking = useSelector((state) => state.timer.isTicking);
 
-  const onClickToggleTicking = useCallback(() => {
+  const onClickToggleTicking = () => {
     dispatch(toggleTicking());
-  });
+  };
 
-  const onClickSkipTimer = useCallback(() => {
+  const onClickSkipTimer = () => {
     if (isTicking) {
       const alert = window.confirm(
         "Are you sure you want to finish the round early? (The remaining time will not be counted in the report.)"
@@ -25,7 +25,7 @@ const TimerButtonStart = () => {
       }
     }
     dispatch(nextStageWithConfig());
-  });
+  };
 
   const showSkipButton = isTicking ? classes.show : "";
   const startButtonClass = isTicking ? classes.active : "";

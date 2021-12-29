@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./Settings.module.css";
 import Modal from "../UI/Modal";
 import { useForm } from "react-hook-form";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { connect } from "react-redux"; // example to save form into Store ? ?
 import { useDispatch, useSelector } from "react-redux";
 import { notifications } from "../../assets/notifications/notifications";

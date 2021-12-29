@@ -9,7 +9,11 @@ const UserAvatarHeader = ({ onClick }) => {
 
   return (
     <div onClick={onClick} className={classes.avatarContainer}>
-      <img className={classes.avatar} src={generateAvatarURL(userAvatar)}></img>
+      <img
+        alt="avatar"
+        className={classes.avatar}
+        src={generateAvatarURL(userAvatar)}
+      ></img>
     </div>
   );
 };

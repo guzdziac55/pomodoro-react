@@ -3,7 +3,9 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { Spinner } from "../../components/UI/Spinner";
 import { useSelector } from "react-redux";
 
-const App = React.lazy(() => import("./../../App"));
+// const Layout = React.lazy(() => import("./../../Layout"));
+const App = React.lazy(() => import("./../../App")); // Layout
+
 const AppPage = React.lazy(() => import("./../AppPage"));
 const LoginPage = React.lazy(() => import("./../LoginPage"));
 const SignUpPage = React.lazy(() => import("./../SignUpPage"));
@@ -13,13 +15,7 @@ const RouterConfig = () => {
   const currentUser = useSelector((state) => state.auth.currentUser);
 
   return (
-    <Suspense
-      fallback={
-        <div>
-          <Spinner />
-        </div>
-      }
-    >
+    <Suspense fallback={<p>loading</p>}>
       <Routes>
         <Route path="/" element={<App />}>
           <Route path="/" element={<AppPage />} />

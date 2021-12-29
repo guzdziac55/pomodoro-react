@@ -20,8 +20,9 @@ export const useTimer = () => {
   const consumedSeconds = useSelector(selectConsumedTime);
 
   const currentTimeOption = useSelector(selectCurrentSeconds);
-  const alarmSound = useSelector(selectAlarmSound);
+  const alarmSound = useSelector(selectAlarmSound); // alarm name
 
+  // maybe memo / callback
   const [play] = useSound(findNotification(alarmSound));
 
   const timeIsEndAction = () => {
@@ -30,11 +31,11 @@ export const useTimer = () => {
 
   useEffect(() => {
     let intervalId;
-    if (isTicking && consumedSeconds <= currentTimeOption) {
+    if (isTicking && consumedSeconds <= currentTimeOption * 60) {
       intervalId = setInterval(() => {
         dispatch(consumeTime());
       }, 1000);
-    } else if (consumedSeconds > currentTimeOption) {
+    } else if (consumedSeconds > currentTimeOption * 60) {
       timeIsEndAction();
       play();
     }
@@ -43,7 +44,7 @@ export const useTimer = () => {
 
   //
   const calculateCounter = () => {
-    return currentTimeOption - consumedSeconds;
+    return currentTimeOption * 60 - consumedSeconds;
   };
 
   const counter = calculateCounter();

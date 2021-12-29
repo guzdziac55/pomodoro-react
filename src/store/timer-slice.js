@@ -19,7 +19,7 @@ const timerSlice = createSlice({
       state.consumedSeconds = 0;
       if (state.stage === 0) {
         state.pomodoroCnt++;
-        state.stage = state.pomodoroCnt % longBreakInterval == 0 ? 2 : 1;
+        state.stage = state.pomodoroCnt % longBreakInterval === 0 ? 2 : 1;
         state.isTicking = autoBreak ? true : false;
       } else {
         state.stage = 0;

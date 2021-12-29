@@ -10,12 +10,12 @@ const useActiveTask = () => {
     return task;
   };
 
-  const getIsEmptyTasks = () => {
-    const isempty = tasksList.length === 0 ? true : false;
-    return isempty;
-  };
+  // const getIsEmptyTasks = () => {
+  //   const isempty = tasksList.length === 0 ? true : false;
+  //   return isempty;
+  // };
 
-  const isEmptyTasks = getIsEmptyTasks();
+  // const isEmptyTasks = getIsEmptyTasks();
   const activeTask = getActiveTask();
 
   return { activeTask };

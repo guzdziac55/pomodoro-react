@@ -1,10 +1,6 @@
 import React from "react";
 import classes from "./TemplateItem.module.css";
-import {
-  MdDisabledByDefault,
-  MdDoubleArrow,
-  MdOutlineArrowForward,
-} from "react-icons/md";
+import { MdDisabledByDefault, MdOutlineArrowForward } from "react-icons/md";
 
 import { useDispatch } from "react-redux";
 import {

@@ -1,8 +1,6 @@
 import React, { useRef } from "react";
-// import { addTaskTemplate } from "../../store/taskList-slice";
 import Modal from "../UI/Modal";
 import classes from "./SaveTemplateModal.module.css";
-import { useDispatch } from "react-redux";
 
 const SaveTemplateModal = ({ newTemplate, onClose, formRef }) => {
   const nameRef = useRef();

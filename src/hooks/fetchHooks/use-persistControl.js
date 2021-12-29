@@ -17,7 +17,7 @@ const usePersistControl = () => {
         persistor.persist();
       }
     });
-  }, [auth, dispatch]);
+  }, [dispatch]);
 };
 
 export default usePersistControl;

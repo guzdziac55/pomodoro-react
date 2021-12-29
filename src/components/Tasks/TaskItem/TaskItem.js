@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import TaskForm from "./TaskForm";
 import classes from "../TaskItem/TaskItem.module.css";
 import { MdDoneOutline, MdEditNote } from "react-icons/md";
@@ -22,18 +22,18 @@ const TaskItem = ({
     if (openEdit) setOpenEdit(false);
   });
 
-  const toggleEditFormHandler = useCallback(() => {
+  const toggleEditFormHandler = () => {
     setOpenEdit((prevState) => setOpenEdit(!prevState));
-  });
+  };
 
-  const onClickSetActiveTask = useCallback((e) => {
+  const onClickSetActiveTask = (e) => {
     if (e.target === e.currentTarget || e.target.parentNode === e.currentTarget)
       dispatch(setActiveTask(id));
-  });
+  };
 
-  const onClickToggleDoneTask = useCallback(() => {
+  const onClickToggleDoneTask = () => {
     dispatch(toggleDoneTask(id));
-  });
+  };
 
   // styles done / active
   const itemIsActiveClass = id === activeId ? classes.active : "";

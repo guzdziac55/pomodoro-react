@@ -15,8 +15,7 @@ export const useCheckImage = () => {
     request.open("GET", url, true);
     request.send();
     request.onload = function () {
-      let status = request.status;
-      if (request.status == 200) {
+      if (request.status === 200) {
         setImageExist(true);
         setAvatarId(imageCode);
       } else {

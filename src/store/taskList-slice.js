@@ -1,4 +1,4 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
 import { toast } from "react-toastify";
 import { generateRandomId } from "../utils/helperFunctions";
@@ -75,7 +75,7 @@ const taskListSlice = createSlice({
     },
 
     addTask(state, action) {
-      const newTask = action.payload; // gotowy obiekt
+      const newTask = action.payload;
       const id = Math.floor(new Date().valueOf() * Math.random());
       state.taskListChanged = true;
       state.tasksList.push({
@@ -112,7 +112,7 @@ const taskListSlice = createSlice({
 
     editTaskItem(state, action) {
       state.taskListChanged = true;
-      const editData = action.payload; // gotowy obiekt
+      const editData = action.payload;
       const editedItem = state.tasksList.find(
         (task) => task.id === editData.id
       );
@@ -182,7 +182,6 @@ const taskListSlice = createSlice({
   },
 });
 
-// actions
 export const {
   // template
   replaceTemplatesList,

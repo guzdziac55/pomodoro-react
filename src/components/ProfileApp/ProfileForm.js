@@ -24,7 +24,7 @@ const ProfileForm = ({ formRef, onClose }) => {
 
   useEffect(() => {
     checkImage("default");
-  }, []);
+  }, [checkImage]);
 
   const getRandomAvatar = () => {
     const random = randomString();
@@ -51,6 +51,7 @@ const ProfileForm = ({ formRef, onClose }) => {
           <div className={classes.formControlColumn}>
             <div className={classes.avatarContainer}>
               <img
+                alt="initial-avatar"
                 src={generateAvatarURL(initialAvatar)}
                 className={classes.avatarImg}
               ></img>
@@ -86,6 +87,7 @@ const ProfileForm = ({ formRef, onClose }) => {
               <div className={classes.avatarPicker}>
                 <div className={classes.rollAvatarContainer}>
                   <img
+                    alt="avatar"
                     src={generateAvatarURL(avatarId)}
                     className={classes.avatarImg}
                   ></img>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Card from "../UI/Card";
 import Input from "../UI/Input";
 import classes from "./login.module.css";

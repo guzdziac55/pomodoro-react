@@ -14,6 +14,7 @@ const Footer = () => {
         <div className={classes.iconContainer}>
           <a
             target="_blank"
+            rel="noopener noreferrer"
             href="https://github.com/guzdziac55/pomodoro-react"
           >
             <GoMarkGithub className={classes.icon} />
@@ -24,7 +25,11 @@ const Footer = () => {
       <div className={`${classes.container} ${classes.author}`}>
         <p>
           Made by:
-          <a href="https://github.com/guzdziac55" target="_blank">
+          <a
+            href="https://github.com/guzdziac55"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <span className={classes.authorTitle}> Dawid Guzik</span>
           </a>
         </p>

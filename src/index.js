@@ -10,8 +10,6 @@ import { ToastContainer } from "react-toastify";
 import RouterConfig from "./pages/routers/RouterConfig";
 
 export const persistor = persistStore(store);
-// persistor (persist)
-// persistor (pause)   control persist !
 
 const RenderApp = () => {
   ReactDOM.render(
