@@ -28,6 +28,9 @@
   font-style: italic;
   color: #ffffff;
 }
+h1 {
+  color: #ffffff;
+}
 
 /* ///// LAPTOP / DESKTOP */
 @media (max-width: 1500px) {

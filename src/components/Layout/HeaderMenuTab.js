@@ -32,7 +32,6 @@ const HeaderMenuTab = ({ onSetOpen }) => {
   };
 
   useClickOutside(profileFormRef, () => {
-    console.log("outside click Formref");
     if (openProfileModal) setOpenProfileModal(false);
   });
 

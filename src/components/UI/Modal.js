@@ -1,7 +1,7 @@
-import React from "react";
 import classes from "./Modal.module.css";
+
 import ReactDOM from "react-dom";
-import { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 
 const Backdrop = (props) => {
   return <div className={classes.backdrop} onClick={props.onClose}></div>;
@@ -16,7 +16,15 @@ const ModalOverlay = (props) => {
 
 const portalElement = document.getElementById("overlays");
 
+///////// main modal
+
 const Modal = (props) => {
+  // when mount // unmount
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => (document.body.style.overflow = "unset");
+  }, []);
+
   return (
     <Fragment>
       {ReactDOM.createPortal(<Backdrop />, portalElement)}

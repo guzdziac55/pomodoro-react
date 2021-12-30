@@ -23,8 +23,9 @@ const TemplateList = () => {
 
   return (
     <>
+      <h1>Templates</h1>
       <button className={classes.showButton} onClick={toogleList}>
-        {showList ? "Hide Templates " : "Show Templates"}
+        {showList ? "Hide" : "Show"}
       </button>
       {showList && (
         <ul className={classes.templateList}>
