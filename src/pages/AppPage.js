@@ -10,6 +10,39 @@ import KeyBinds from "../components/KeyBinds/KeyBinds";
 
 import { useSelector } from "react-redux";
 import { selectBindsEnable } from "../store/config-slice";
+import { motion } from "framer-motion";
+
+const templateVariants = {
+  hidden: {
+    x: "-100vw",
+    opacity: 0,
+  },
+  visable: {
+    x: 0,
+    opacity: [0.2, 1],
+    transition: {
+      type: "spring",
+      mass: "0.4",
+      duration: 2,
+    },
+  },
+};
+
+const bindsVariants = {
+  hidden: {
+    x: "100vw",
+    opacity: 0,
+  },
+  visable: {
+    x: 0,
+    opacity: [0.2, 1],
+    transition: {
+      type: "spring",
+      mass: "0.4",
+      duration: 2,
+    },
+  },
+};
 
 const AppPage = () => {
   const taskList = useSelector((state) => state.tasksList.tasksList);
@@ -17,12 +50,18 @@ const AppPage = () => {
 
   const isEmptyTasks =
     taskList.length === 0 || taskList === false ? true : false;
+
   return (
     <>
       <div className={classes.appContainer}>
-        <div className={classes.templateApp}>
+        <motion.div
+          className={classes.templateApp}
+          variants={templateVariants}
+          initial="hidden"
+          animate="visable"
+        >
           <TemplateList />
-        </div>
+        </motion.div>
 
         <div className={classes.pomodoroApp}>
           <ProgressBar></ProgressBar>
@@ -32,7 +71,14 @@ const AppPage = () => {
           {!isEmptyTasks && <FinishCalculate />}
         </div>
 
-        <div className={classes.keyBindApp}>{bindsEnable && <KeyBinds />}</div>
+        <motion.div
+          className={classes.keyBindApp}
+          variants={bindsVariants}
+          initial="hidden"
+          animate="visable"
+        >
+          {bindsEnable && <KeyBinds />}
+        </motion.div>
       </div>
     </>
   );

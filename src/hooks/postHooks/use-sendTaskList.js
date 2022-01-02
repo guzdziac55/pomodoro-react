@@ -8,7 +8,6 @@ import {
 import { sendFirebaseTaskList } from "../../store/thunks/taskList-actions";
 
 const useSendTaskList = () => {
-  console.log("aaa");
   const [isInitial, setIsInitial] = useState(true);
   const taskList = useSelector(selectTaskList);
   const currentUser = useSelector(selectCurrentUser);
@@ -22,7 +21,6 @@ const useSendTaskList = () => {
     }
 
     if (currentUser && isTaskChanged) {
-      console.log("wysłał ? ");
       // we can pickup taskList inside thunk !
       // we can pickup userUID inside thunk !
       dispatch(sendFirebaseTaskList(taskList, currentUser.uid));

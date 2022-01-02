@@ -9,7 +9,7 @@ import {
   MdPermIdentity,
   MdOutlineLogout,
 } from "react-icons/md";
-
+import { motion } from "framer-motion";
 import { useAuthLogout } from "../../hooks/use-auth";
 import { selectCurrentUser } from "../../store/auth-slice";
 import SettingsForm from "../SettingsApp/Settings";
@@ -17,6 +17,13 @@ import { useClickOutside } from "../../hooks/use-clickOutside";
 import ProfileForm from "../ProfileApp/ProfileForm";
 import UserAvatarHeader from "../Avatars/UserAvatarHeader";
 import { toast } from "react-toastify";
+
+const hoverVariant = {
+  hover: {
+    scale: 1.1,
+    y: -3,
+  },
+};
 
 const HeaderMenuTab = ({ onSetOpen }) => {
   const isLogged = useSelector(selectCurrentUser);
@@ -60,30 +67,39 @@ const HeaderMenuTab = ({ onSetOpen }) => {
 
       {/* navigation !  */}
       <div className={classes.tabMenu}>
-        <button
+        <motion.button
+          variants={hoverVariant}
+          whileHover="hover"
           onClick={() => setOpenSettingsModal(true)}
           className={classes.button}
         >
           <MdSettings className={classes.icon} />
           <span>Settings</span>
-        </button>
+        </motion.button>
 
         {isLogged && (
           <>
-            <button
+            <motion.button
               onClick={() => {
                 toast.info("This functionality comming soon");
               }}
               className={classes.button}
+              variants={hoverVariant}
+              whileHover="hover"
             >
               <MdQueryStats className={classes.icon} />
               <span>Report</span>
-            </button>
+            </motion.button>
 
-            <button onClick={handleLogout} className={classes.button}>
+            <motion.button
+              onClick={handleLogout}
+              className={classes.button}
+              variants={hoverVariant}
+              whileHover="hover"
+            >
               <MdOutlineLogout className={classes.icon} />
               <span>Logout</span>
-            </button>
+            </motion.button>
             <UserAvatarHeader onClick={() => setOpenProfileModal(true)} />
           </>
         )}
@@ -91,17 +107,25 @@ const HeaderMenuTab = ({ onSetOpen }) => {
         {!isLogged && (
           <>
             <Link to="/signup">
-              <button className={classes.button}>
+              <motion.button
+                variants={hoverVariant}
+                whileHover="hover"
+                className={classes.button}
+              >
                 <MdPermIdentity className={classes.icon} />
                 <span>SignUp</span>
-              </button>
+              </motion.button>
             </Link>
 
             <Link to="/login">
-              <button className={classes.button}>
+              <motion.button
+                variants={hoverVariant}
+                whileHover="hover"
+                className={classes.button}
+              >
                 <MdLogin className={classes.icon} />
                 <span>Login</span>
-              </button>
+              </motion.button>
             </Link>
           </>
         )}
