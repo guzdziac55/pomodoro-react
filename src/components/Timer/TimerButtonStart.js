@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./TimerButtonStart.module.css";
 import { MdSkipNext } from "react-icons/md";
 import { useDispatch } from "react-redux";
@@ -7,24 +7,59 @@ import { motion } from "framer-motion";
 import { nextStageWithConfig } from "../../store/thunks/calculateNextStage-actions";
 import { toggleTicking } from "../../store/timer-slice";
 
-const buttonVariant = {
-  // infinity animation // keyframe
+const buttonVariant1 = {
+  hidden: {
+    opacity: 0,
+    y: "100vh",
+  },
   visable: {
     opacity: 1,
-    scale: [1, 1.05, 1, 1.05],
-    transition: { yoyo: Infinity, delay: 0.2 },
+    y: 0,
+    transition: { type: "spring", mass: 0.4, ease: "easeOut", duration: 3 },
   },
-
-  //  two variants when start is true, and start is false
-  animate1: {},
-  animate2: {},
 };
 
-//  add state Variant here or get state fron useSelect
+const buttonVariant2 = {
+  hidden: {
+    opacity: 1,
+    y: 0,
+  },
+  visable: {
+    y: 0,
+    opacity: 1,
+    scale: [1, 1.05, 1, 1.05, 1],
+    transition: { repeat: Infinity, type: "yoyo", duration: 3 },
+  },
+};
+
+const textVariant = {
+  hidden: {
+    opacity: 0,
+  },
+  visable: {
+    opacity: 1,
+    transition: {
+      delay: 0.3,
+    },
+  },
+};
+
+//  many variants: = > >  > > > > >
+//  more then 2
+//  we can use Switch statement on useState with conditionals
+//  change actual Variant in switch or conditional statement
 
 const TimerButtonStart = () => {
   const dispatch = useDispatch();
   const isTicking = useSelector((state) => state.timer.isTicking);
+  const [initial, setInitial] = useState(true);
+
+  useEffect(() => {
+    setInitial(false);
+  }, []);
+
+  console.log("initial status:");
+  console.log(initial);
 
   const onClickToggleTicking = () => {
     dispatch(toggleTicking());
@@ -48,13 +83,17 @@ const TimerButtonStart = () => {
   return (
     <div>
       <motion.button
-        variants={buttonVariant}
+        variants={initial ? buttonVariant1 : buttonVariant2}
         initial="hidden"
         animate="visable"
+        s
         onClick={onClickToggleTicking}
         className={`${classes.buttonStart} ${startButtonClass}`}
       >
-        {isTicking ? "STOP" : "START"}
+        <motion.span variants={textVariant}>
+          {isTicking ? "STOP" : "START"}
+        </motion.span>
+        {/* {isTicking ? "STOP" : "START"} */}
       </motion.button>
 
       <button

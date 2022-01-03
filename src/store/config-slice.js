@@ -26,6 +26,7 @@ const configSlice = createSlice({
     keyBindsEnable: false,
     viewModal: true,
   },
+  // changes check 
   reducers: {
     // used when userLogin => we cant use changed here becouse useEffect
     // with update function profile will not work

@@ -4,18 +4,55 @@ import classes from "../TaskItem/TaskItem.module.css";
 import { MdDoneOutline, MdEditNote } from "react-icons/md";
 import { useSelector, useDispatch } from "react-redux";
 import { useClickOutside } from "../../../hooks/use-clickOutside";
+import { motion } from "framer-motion";
 import {
   selectActiveTask,
   setActiveTask,
   toggleDoneTask,
 } from "../../../store/taskList-slice";
+
+//  add on exit effect
+const variants2 = {
+  visable: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      y: { stiffness: 1000, velocity: -100 },
+    },
+  },
+  hidden: {
+    y: 50,
+    opacity: 0,
+    transition: {
+      y: { stiffness: 1000 },
+    },
+  },
+};
+
+const variants = {
+  open: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      y: { stiffness: 1000, velocity: -100 },
+    },
+  },
+  closed: {
+    y: 50,
+    opacity: 0,
+    transition: {
+      y: { stiffness: 1000 },
+    },
+  },
+};
+
 const TaskItem = ({
   taskData,
   taskData: { id, title, note, actPomodoro, estPomodoro, isDone },
 }) => {
   const dispatch = useDispatch();
   const activeId = useSelector(selectActiveTask);
-  const [openEdit, setOpenEdit] = useState(false);
+  const [openEdit, setOpenEdit] = useState(false); // our isOpden framer !
   const editRef = useRef();
 
   useClickOutside(editRef, () => {
@@ -52,9 +89,12 @@ const TaskItem = ({
       )}
 
       {!openEdit && (
-        <li
+        <motion.li
           className={`${classes.task} ${itemIsActiveClass}`}
           onClick={onClickSetActiveTask}
+          variants={variants2}
+          initial="hidden"
+          animate="visable"
         >
           <span onClick={onClickToggleDoneTask}>
             <MdDoneOutline className={`${classes.icon} ${iconDoneClass}`} />
@@ -73,7 +113,7 @@ const TaskItem = ({
           </span>
           <div className={classes.lineBreak}></div>
           {note && <p className={classes.noteItem}>{note}</p>}
-        </li>
+        </motion.li>
       )}
     </>
   );
