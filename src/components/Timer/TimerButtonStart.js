@@ -32,6 +32,18 @@ const buttonVariant2 = {
   },
 };
 
+const skipVariant = {
+  hidden: {
+    display: "show",
+    opacity: 0,
+    x: -40,
+  },
+  visable: {
+    x: 0,
+    opacity: 1,
+  },
+};
+
 const textVariant = {
   hidden: {
     opacity: 0,
@@ -58,9 +70,6 @@ const TimerButtonStart = () => {
     setInitial(false);
   }, []);
 
-  console.log("initial status:");
-  console.log(initial);
-
   const onClickToggleTicking = () => {
     dispatch(toggleTicking());
   };
@@ -77,7 +86,8 @@ const TimerButtonStart = () => {
     dispatch(nextStageWithConfig());
   };
 
-  const showSkipButton = isTicking ? classes.show : "";
+  // const showSkipButton = isTicking ? classes.show : "";
+  // const skipVariant = isTicking ? skipVariant : "";
   const startButtonClass = isTicking ? classes.active : "";
 
   return (
@@ -86,22 +96,23 @@ const TimerButtonStart = () => {
         variants={initial ? buttonVariant1 : buttonVariant2}
         initial="hidden"
         animate="visable"
-        s
         onClick={onClickToggleTicking}
         className={`${classes.buttonStart} ${startButtonClass}`}
       >
         <motion.span variants={textVariant}>
           {isTicking ? "STOP" : "START"}
         </motion.span>
-        {/* {isTicking ? "STOP" : "START"} */}
       </motion.button>
 
-      <button
+      <motion.button
         onClick={onClickSkipTimer}
-        className={`${classes.button} ${showSkipButton}`}
+        className={`${classes.button}`}
+        variants={isTicking ? skipVariant : "false"}
+        initial="hidden"
+        animate="visable"
       >
         <MdSkipNext className={classes.icon}></MdSkipNext>
-      </button>
+      </motion.button>
     </div>
   );
 };

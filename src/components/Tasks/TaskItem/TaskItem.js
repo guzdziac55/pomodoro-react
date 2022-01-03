@@ -1,10 +1,10 @@
 import React, { useState, useRef } from "react";
 import TaskForm from "./TaskForm";
 import classes from "../TaskItem/TaskItem.module.css";
-import { MdDoneOutline, MdEditNote } from "react-icons/md";
+import { MdDoneOutline, MdEditNote, MdNoEncryption } from "react-icons/md";
 import { useSelector, useDispatch } from "react-redux";
 import { useClickOutside } from "../../../hooks/use-clickOutside";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   selectActiveTask,
   setActiveTask,
@@ -12,37 +12,30 @@ import {
 } from "../../../store/taskList-slice";
 
 //  add on exit effect
-const variants2 = {
-  visable: {
+const variants = {
+  hidden: {
+    opacity: 0,
+  },
+  hover: {
+    y: -1,
+    scale: 1.05,
+    transistion: { duration: 0.2 },
+  },
+  show: {
     y: 0,
     opacity: 1,
-    transition: {
-      y: { stiffness: 1000, velocity: -100 },
-    },
-  },
-  hidden: {
-    y: 50,
-    opacity: 0,
-    transition: {
-      y: { stiffness: 1000 },
-    },
+    transistion: { ease: "easeOut", duration: 2 },
   },
 };
 
-const variants = {
-  open: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      y: { stiffness: 1000, velocity: -100 },
-    },
+const doneVariants = {
+  unDone: {
+    opacity: 0.5,
+    scale: 0.9,
   },
-  closed: {
-    y: 50,
-    opacity: 0,
-    transition: {
-      y: { stiffness: 1000 },
-    },
+  done: {
+    opacity: 1,
+    scale: 1.1,
   },
 };
 
@@ -85,20 +78,27 @@ const TaskItem = ({
           onToggleForm={toggleEditFormHandler}
           taskData={taskData}
           editMode={true}
-        ></TaskForm>
+        />
       )}
 
       {!openEdit && (
         <motion.li
           className={`${classes.task} ${itemIsActiveClass}`}
           onClick={onClickSetActiveTask}
-          variants={variants2}
+          variants={variants}
           initial="hidden"
-          animate="visable"
+          animate="show"
+          whileHover="hover"
         >
-          <span onClick={onClickToggleDoneTask}>
+          <motion.span
+            variants={isDone ? doneVariants : ""}
+            initial="unDone"
+            animate="done"
+            onClick={onClickToggleDoneTask}
+          >
+            {/* animate clicked done */}
             <MdDoneOutline className={`${classes.icon} ${iconDoneClass}`} />
-          </span>
+          </motion.span>
 
           <span className={`${classes.title} ${titleDoneClass}`}>{title}</span>
 

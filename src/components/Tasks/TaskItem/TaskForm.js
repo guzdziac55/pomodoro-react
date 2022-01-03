@@ -16,6 +16,26 @@ import {
   addTask,
   deleteTask,
 } from "../../../store/taskList-slice";
+import { motion, AnimatePresence } from "framer-motion";
+
+const variants = {
+  hidden: {
+    y: 30,
+    opacity: 0,
+  },
+
+  show: {
+    y: 0,
+    opacity: 1,
+    transistion: { ease: "easeOut", duration: 5 },
+  },
+
+  exit: {
+    opacity: 0,
+    x: -40,
+    delay: 0.2,
+  },
+};
 
 const TaskForm = React.forwardRef((props) => {
   const dispatch = useDispatch();
@@ -116,99 +136,107 @@ const TaskForm = React.forwardRef((props) => {
 
   return (
     <Card className={classes.form}>
-      <form ref={props.onRef} onSubmit={handleAddEditTask}>
-        <div className={classes.formMain}>
-          <input
-            autoFocus
-            id="title"
-            value={taskTitle}
-            name="title"
-            type="text"
-            onChange={handleInputChange}
-            placeholder="What are u working on?"
-            className={classes.large}
-          />
-          <label className={classes.number}>Est pomodoros</label>
-          <div className={classes.inputWrapper}>
+      <AnimatePresence>
+        <motion.form
+          variants={variants}
+          initial="hidden"
+          animate="show"
+          exit="exit"
+          ref={props.onRef}
+          onSubmit={handleAddEditTask}
+        >
+          <div className={classes.formMain}>
             <input
-              value={currentEstPomodoro}
-              name="numbers"
-              type="number"
-              onChange={handleInputChange}
-              className={classes.number}
-              min="1"
-              max="5"
-              step="1"
-            />
-
-            <button onClick={addEstPomodoro} type="button">
-              <MdExposurePlus1 className={classes.icon} />
-            </button>
-            <button onClick={removeEstPomodoro} type="button">
-              <MdExposureNeg1 className={classes.icon} />
-            </button>
-          </div>
-
-          {openNote && (
-            <textarea
-              id="note"
-              // value={taskNote}
-              cols="30"
-              rows="5"
+              autoFocus
+              id="title"
+              value={taskTitle}
+              name="title"
               type="text"
-              name="note"
-              maxLength="700"
               onChange={handleInputChange}
-              placeholder="add note here"
-              className={classes.noteArea}
-            >
-              {taskNote}
-            </textarea>
-          )}
-          <div className={classes.formNote}>
-            {!openNote && (
-              <button type="button" onClick={handleToogleNote}>
-                <MdEditNote className={classes.icon} />
-                <span> {openNote ? "hide note" : "add note"}</span>
+              placeholder="What are u working on?"
+              className={classes.large}
+            />
+            <label className={classes.number}>Est pomodoros</label>
+            <div className={classes.inputWrapper}>
+              <input
+                value={currentEstPomodoro}
+                name="numbers"
+                type="number"
+                onChange={handleInputChange}
+                className={classes.number}
+                min="1"
+                max="5"
+                step="1"
+              />
+
+              <button onClick={addEstPomodoro} type="button">
+                <MdExposurePlus1 className={classes.icon} />
               </button>
-            )}
+              <button onClick={removeEstPomodoro} type="button">
+                <MdExposureNeg1 className={classes.icon} />
+              </button>
+            </div>
 
-            <button type="button">
-              <MdNoteAdd className={classes.icon} />
-              <span>add project</span>
-            </button>
-          </div>
-        </div>
-
-        <div className={classes.formMenu}>
-          {/* menu left */}
-          <div className={classes.menuLeft}>
-            {editMode && (
-              <button
-                className={classes.btnDelete}
-                type="button"
-                onClick={handleDelateTask}
+            {openNote && (
+              <textarea
+                id="note"
+                cols="30"
+                rows="5"
+                type="text"
+                name="note"
+                maxLength="700"
+                onChange={handleInputChange}
+                placeholder="add note here"
+                className={classes.noteArea}
               >
-                Delete
-              </button>
+                {taskNote}
+              </textarea>
             )}
-          </div>
-          {/* menu right */}
-          <div className={classes.menuRight}>
-            <button
-              className={classes.btnCancel}
-              onClick={props.onToggleForm}
-              type="button"
-            >
-              Cancel
-            </button>
+            <div className={classes.formNote}>
+              {!openNote && (
+                <button type="button" onClick={handleToogleNote}>
+                  <MdEditNote className={classes.icon} />
+                  <span> {openNote ? "hide note" : "add note"}</span>
+                </button>
+              )}
 
-            <button type="submit" disabled={formIsValid ? false : true}>
-              {editMode ? "Edit" : "Save"}
-            </button>
+              <button type="button">
+                <MdNoteAdd className={classes.icon} />
+                <span>add project</span>
+              </button>
+            </div>
           </div>
-        </div>
-      </form>
+
+          <div className={classes.formMenu}>
+            {/* menu left */}
+            <div className={classes.menuLeft}>
+              {editMode && (
+                <button
+                  className={classes.btnDelete}
+                  type="button"
+                  onClick={handleDelateTask}
+                >
+                  Delete
+                </button>
+              )}
+            </div>
+            {/* menu right */}
+            <div className={classes.menuRight}>
+              <button
+                className={classes.btnCancel}
+                onClick={props.onToggleForm}
+                type="button"
+              >
+                Cancel
+              </button>
+
+              <button type="submit" disabled={formIsValid ? false : true}>
+                {editMode ? "Edit" : "Save"}
+              </button>
+            </div>
+          </div>
+        </motion.form>
+      </AnimatePresence>
     </Card>
   );
 });
