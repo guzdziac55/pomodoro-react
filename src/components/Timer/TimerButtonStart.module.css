@@ -19,7 +19,6 @@
 
 .button {
   position: absolute;
-  display: none;
   cursor: pointer;
   border: none;
   margin: 35px 15px;

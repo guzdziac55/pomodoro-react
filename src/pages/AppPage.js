@@ -10,7 +10,7 @@ import KeyBinds from "../components/KeyBinds/KeyBinds";
 
 import { useSelector } from "react-redux";
 import { selectBindsEnable } from "../store/config-slice";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const templateVariants = {
   hidden: {
@@ -68,7 +68,10 @@ const AppPage = () => {
           <Timer></Timer>
           <WorkingOn />
           <Tasks />
-          {!isEmptyTasks && <FinishCalculate />}
+          <AnimatePresence exitBeforeEnter>
+            {/* our animation presence conditional */}
+            {!isEmptyTasks && <FinishCalculate />}
+          </AnimatePresence>
         </div>
 
         <motion.div

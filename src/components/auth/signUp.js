@@ -3,11 +3,31 @@ import Card from "../UI/Card";
 import Input from "../UI/Input";
 import classes from "./signUp.module.css";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { useRef } from "react";
 import { MdDone } from "react-icons/md";
 import { FcGoogle } from "react-icons/fc";
 import { useAuthCreateAcc } from "../../hooks/use-auth";
-import { Spinner } from "../UI/Spinner";
+
+const titeVariant = {
+  hidden: {
+    opacity: 0,
+    y: 40,
+  },
+  visable: {
+    opacity: 1,
+    y: 0,
+  },
+};
+
+const buttonVariant = {
+  hidden: {
+    opacity: 0,
+  },
+  visable: {
+    opacity: 1,
+  },
+};
 
 const SignUp = () => {
   const { isLoading, error, authCreateAcc } = useAuthCreateAcc();
@@ -31,7 +51,15 @@ const SignUp = () => {
           <MdDone className={classes.headerIcon} /> Pomodoro
         </span>
       </Link>
-      <h1 className={classes.header}>Create Account</h1>
+      <motion.h1
+        className={classes.header}
+        variants={titeVariant}
+        initial="hidden"
+        animate="visable"
+      >
+        Create Account
+      </motion.h1>
+
       {error && <p className={classes.error}>{error}</p>}
 
       <Card className={classes.auth}>
@@ -69,9 +97,14 @@ const SignUp = () => {
             }}
           />
           {!isLoading && (
-            <button type="submit">
+            <motion.button
+              type="submit"
+              variants={buttonVariant}
+              initial="hidden"
+              animate="visable"
+            >
               <span>Sign up with email</span>
-            </button>
+            </motion.button>
           )}
         </form>
       </Card>

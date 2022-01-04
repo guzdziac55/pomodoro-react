@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { nextStageWithConfig } from "../../store/thunks/calculateNextStage-actions";
 import { toggleTicking } from "../../store/timer-slice";
 
-const buttonVariant1 = {
+const variantInitial = {
   hidden: {
     opacity: 0,
     y: "100vh",
@@ -19,7 +19,7 @@ const buttonVariant1 = {
   },
 };
 
-const buttonVariant2 = {
+const variantStart = {
   hidden: {
     opacity: 1,
     y: 0,
@@ -32,15 +32,38 @@ const buttonVariant2 = {
   },
 };
 
-const skipVariant = {
+const variantStop = {
   hidden: {
-    display: "show",
+    opacity: 1,
+    y: 0,
+  },
+  visable: {
+    y: 0,
+    opacity: 1,
+    scale: 1,
+  },
+};
+
+const skipVariantHide = {
+  hidden: {
+    opacity: 0,
+  },
+  visable: {
     opacity: 0,
     x: -40,
   },
-  visable: {
+  transition: { duration: 0.2 },
+};
+
+const skipVariantShow = {
+  hidden: {
+    opacity: 0,
     x: 0,
+  },
+  visable: {
     opacity: 1,
+    x: 10,
+    transition: { duration: 5, type: "spring", mass: 0.2 },
   },
 };
 
@@ -55,11 +78,6 @@ const textVariant = {
     },
   },
 };
-
-//  many variants: = > >  > > > > >
-//  more then 2
-//  we can use Switch statement on useState with conditionals
-//  change actual Variant in switch or conditional statement
 
 const TimerButtonStart = () => {
   const dispatch = useDispatch();
@@ -86,14 +104,19 @@ const TimerButtonStart = () => {
     dispatch(nextStageWithConfig());
   };
 
-  // const showSkipButton = isTicking ? classes.show : "";
-  // const skipVariant = isTicking ? skipVariant : "";
   const startButtonClass = isTicking ? classes.active : "";
+  let startVariant;
+
+  const checkVariant = () => {
+    if (initial) return variantInitial;
+    if (!initial && !isTicking) return variantStart;
+    if (!initial && isTicking) return variantStop;
+  };
 
   return (
     <div>
       <motion.button
-        variants={initial ? buttonVariant1 : buttonVariant2}
+        variants={checkVariant()}
         initial="hidden"
         animate="visable"
         onClick={onClickToggleTicking}
@@ -107,7 +130,7 @@ const TimerButtonStart = () => {
       <motion.button
         onClick={onClickSkipTimer}
         className={`${classes.button}`}
-        variants={isTicking ? skipVariant : "false"}
+        variants={isTicking ? skipVariantShow : skipVariantHide}
         initial="hidden"
         animate="visable"
       >

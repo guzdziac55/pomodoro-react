@@ -20,10 +20,10 @@ import { toast } from "react-toastify";
 
 const TasksMenu = ({ tasks }) => {
   const dispatch = useDispatch();
-  const [open, setOpen] = useState(false);
-  const [openTemplateModal, setOpenTemplateModal] = useState(false);
   const menuRef = useRef();
   const templateFormRef = useRef();
+  const [open, setOpen] = useState(false);
+  const [openTemplateModal, setOpenTemplateModal] = useState(false);
 
   useClickOutside(templateFormRef, () => {
     if (openTemplateModal) setOpenTemplateModal(false);

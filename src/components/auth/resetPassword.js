@@ -1,11 +1,32 @@
 import React from "react";
 import Card from "../UI/Card";
+import { motion } from "framer-motion";
 import Input from "../UI/Input";
 import classes from "./login.module.css";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
 import { MdDone } from "react-icons/md";
 import { useAuthResetPassword } from "../../hooks/use-auth";
+
+const titeVariant = {
+  hidden: {
+    opacity: 0,
+    y: 40,
+  },
+  visable: {
+    opacity: 1,
+    y: 0,
+  },
+};
+
+const buttonVariant = {
+  hidden: {
+    opacity: 0,
+  },
+  visable: {
+    opacity: 1,
+  },
+};
 
 const ResetPassword = () => {
   const { isLoading, error, authResetPassword } = useAuthResetPassword();
@@ -25,8 +46,15 @@ const ResetPassword = () => {
           <MdDone className={classes.headerIcon} /> Pomodoro
         </span>
       </Link>
-
-      <h1 className={classes.header}> Reset Password</h1>
+      <motion.h1
+        className={classes.header}
+        variants={titeVariant}
+        initial="hidden"
+        animate="visable"
+      >
+        Reset Password
+      </motion.h1>
+      {/* <h1 className={classes.header}>Reset Password</h1> */}
       {error && <p className={classes.error}>{error}</p>}
 
       <Card className={classes.auth}>
@@ -43,7 +71,16 @@ const ResetPassword = () => {
           />
 
           {!isLoading && (
-            <button className={classes.login}>Reset Password</button>
+            // <button className={classes.login}>Reset Password</button>
+            <motion.button
+              className={classes.login}
+              type="submit"
+              variants={buttonVariant}
+              initial="hidden"
+              animate="visable"
+            >
+              <span>Sign up with email</span>
+            </motion.button>
           )}
         </form>
       </Card>
