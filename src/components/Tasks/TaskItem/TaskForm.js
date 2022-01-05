@@ -3,6 +3,7 @@ import classes from "./TaskForm.module.css";
 import Card from "../../UI/Card";
 import { useDispatch } from "react-redux";
 import useEstPomodoro from "../../../hooks/use-estPomodoro";
+import { motion, AnimatePresence } from "framer-motion";
 
 import {
   MdExposurePlus1,
@@ -16,7 +17,6 @@ import {
   addTask,
   deleteTask,
 } from "../../../store/taskList-slice";
-import { motion, AnimatePresence } from "framer-motion";
 
 const variants = {
   hidden: {
@@ -24,15 +24,14 @@ const variants = {
     opacity: 0,
   },
 
-  show: {
+  visable: {
     y: 0,
     opacity: 1,
-    transistion: { ease: "easeOut", duration: 5 },
   },
 
   exit: {
     opacity: 0,
-    x: -40,
+    x: -450,
     delay: 0.2,
   },
 };
@@ -140,7 +139,7 @@ const TaskForm = React.forwardRef((props) => {
         <motion.form
           variants={variants}
           initial="hidden"
-          animate="show"
+          animate="visable"
           exit="exit"
           ref={props.onRef}
           onSubmit={handleAddEditTask}
@@ -176,22 +175,28 @@ const TaskForm = React.forwardRef((props) => {
                 <MdExposureNeg1 className={classes.icon} />
               </button>
             </div>
-
-            {openNote && (
-              <textarea
-                id="note"
-                cols="30"
-                rows="5"
-                type="text"
-                name="note"
-                maxLength="700"
-                onChange={handleInputChange}
-                placeholder="add note here"
-                className={classes.noteArea}
-              >
-                {taskNote}
-              </textarea>
-            )}
+            {/*  show hide note */}
+            <AnimatePresence>
+              {openNote && (
+                <motion.textarea
+                  id="note"
+                  cols="30"
+                  rows="5"
+                  type="text"
+                  name="note"
+                  maxLength="700"
+                  onChange={handleInputChange}
+                  placeholder="add note here"
+                  className={classes.noteArea}
+                  variants={variants}
+                  initial="hidden"
+                  animate="visable"
+                  exit="exit"
+                >
+                  {taskNote}
+                </motion.textarea>
+              )}
+            </AnimatePresence>
             <div className={classes.formNote}>
               {!openNote && (
                 <button type="button" onClick={handleToogleNote}>
