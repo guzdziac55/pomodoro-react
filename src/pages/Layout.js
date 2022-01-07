@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Header from "./components/Layout/Header";
 import AppInfoSection from "./components/AppInfoSection/AppInfoSection";
 import Footer from "./components/Footer/Footer";
+import InfoSection from "../components/InfoSection/InfoSection";
 
 const Layout = () => {
   return (
@@ -21,7 +22,8 @@ const Layout = () => {
           path="/"
           element={
             <>
-              <AppInfoSection />
+              <InfoSection />
+              {/* <AppInfoSection /> */}
               <Footer />
             </>
           }

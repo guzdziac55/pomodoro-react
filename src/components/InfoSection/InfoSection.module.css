@@ -1,0 +1,14 @@
+.infoMain {
+  padding-top: 0;
+  padding-bottom: 6.25rem;
+  margin-top: 125px;
+}
+
+.infoContainer {
+  max-width: 1260px;
+  margin-right: auto;
+  margin-left: auto;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}

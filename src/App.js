@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import classes from "./App.module.css";
 import { Fragment } from "react";
 import { Outlet } from "react-router-dom";
@@ -8,7 +8,7 @@ import { Routes, Route } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { useSelector } from "react-redux";
 
-import AppInfoSection from "./components/AppInfoSection/AppInfoSection";
+// import AppInfoSection from "./components/AppInfoSection/AppInfoSection";
 import Footer from "./components/Footer/Footer";
 
 import { selectActiveStage } from "./store/timer-slice";
@@ -21,6 +21,7 @@ import useSendTaskList from "./hooks/postHooks/use-sendTaskList";
 import useSendSettings from "./hooks/postHooks/use-sendSettings";
 import useSendUserProfile from "./hooks/postHooks/use-sendUserProfile";
 import useSendTemplates from "./hooks/postHooks/use-sendTemplates";
+import InfoSection from "./components/InfoSection/InfoSection";
 
 function App() {
   const activeStage = useSelector(selectActiveStage);
@@ -36,6 +37,10 @@ function App() {
 
   const currentTheme = themeClasses[activeStage];
 
+  const infoRef = useRef();
+
+  const scrollToInfo = (ref) => {};
+
   return (
     <Fragment>
       <main className={`${classes.mainApp} ${classes[`${currentTheme}`]}`}>
@@ -47,7 +52,9 @@ function App() {
           path="/"
           element={
             <>
-              <AppInfoSection />
+              {/* <AppInfoSection /> */}
+              {/* our info section */}
+              <InfoSection ref={infoRef} />
               <Footer />
             </>
           }
