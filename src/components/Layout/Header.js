@@ -6,17 +6,19 @@ import { motion } from "framer-motion";
 
 const headerVariants = {
   hidden: {
-    opacity: 0,
+    y: -100,
+    opacity: 1,
   },
   visable: {
     opacity: 1,
+    y: 0,
   },
 };
 
 const Header = ({ onOpen }) => {
   return (
     <>
-      <motion.header
+      <header
         variants={headerVariants}
         initial="hidden"
         animate="visable"
@@ -27,7 +29,7 @@ const Header = ({ onOpen }) => {
         </Link>
 
         <HeaderMenuTab onOpen={onOpen} />
-      </motion.header>
+      </header>
     </>
   );
 };

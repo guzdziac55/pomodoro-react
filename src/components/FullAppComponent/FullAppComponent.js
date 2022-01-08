@@ -58,7 +58,7 @@ const scrollVariants = {
   },
 };
 
-const FullAppComponent = (infoRef) => {
+const FullAppComponent = () => {
   const taskList = useSelector((state) => state.tasksList.tasksList);
   const bindsEnable = useSelector(selectBindsEnable);
   const isEmptyTasks =

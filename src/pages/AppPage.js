@@ -6,16 +6,13 @@ import LayoutComponent from "./LayoutComponent";
 const AppPage = () => {
   const infoRef = useRef(null);
 
-  console.log("info ref ");
-  console.log(infoRef);
-
   return (
     <LayoutComponent>
       <div className={classes.containerFull}>
-        <FullAppComponent />
+        <div>
+          <FullAppComponent />
+        </div>
       </div>
-      {/* <InfoSection infoRef={infoRef} /> */}
-      {/* <Footer /> */}
     </LayoutComponent>
   );
 };

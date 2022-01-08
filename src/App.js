@@ -1,6 +1,5 @@
 import React from "react";
 
-// CUSTOM HOOKS PERSIST AND FETCH - PUT
 import usePersistControl from "./hooks/fetchHooks/use-persistControl";
 import useFetchUserData from "./hooks/fetchHooks/use-fetchUserData";
 import useSendTaskList from "./hooks/postHooks/use-sendTaskList";
@@ -8,8 +7,9 @@ import useSendSettings from "./hooks/postHooks/use-sendSettings";
 import useSendUserProfile from "./hooks/postHooks/use-sendUserProfile";
 import useSendTemplates from "./hooks/postHooks/use-sendTemplates";
 
+import RouterConfig from "./pages/routers/RouterConfig";
+
 function App() {
-  //  CONTROl initial data
   usePersistControl();
   useFetchUserData();
   useSendTaskList();
@@ -17,70 +17,7 @@ function App() {
   useSendUserProfile();
   useSendTemplates();
 
-  return <></>;
+  return <RouterConfig />;
 }
 
 export default App;
-
-// useEffect(() => {
-//   if (currentUser) {
-//     const userId = currentUser.uid;
-//     dispatch(fetchFirebaseUserData(userId));
-//   }
-// }, [currentUser, dispatch]);
-
-// useEffect(() => {
-//   if (isInitialTask && currentUser) {
-//     isInitialTask = false;
-//     return;
-//   }
-//   if (currentUser && isTaskChanged) {
-//     const userId = currentUser.uid;
-//     dispatch(sendFirebaseTaskList(taskList, userId)); // array
-//   }
-// }, [taskList, dispatch]);
-
-// useEffect(() => {
-//   if (isInitialSettings && currentUser) {
-//     isInitialSettings = false;
-//     console.log("INITIAL SETTINGS !!!!");
-//     return;
-//   }
-//   if (currentUser && isConfigChanged) {
-//     const userId = currentUser.uid;
-//     console.log("send settings into firebase !!! ");
-//     // send settings slice but without configChanged
-//     dispatch(sendFirebaseSettings(configSettings, userId)); // obj
-//   }
-// }, [configSettings, dispatch]);
-
-// useEffect(() => {
-//   if (isInitialProfile && currentUser) {
-//     console.log("INITIAL PROFILE !!!!");
-
-//     isInitialProfile = false;
-//     return;
-//   }
-//   if (currentUser && isProfileChanged) {
-//     console.log(
-//       "wyslij dane POST user Data -- profile changed // i zalgoowany"
-//     );
-//     const userId = currentUser.uid;
-//     dispatch(sendFireBaseUserProfile(userProfile, userId));
-//   }
-// }, [userProfile, dispatch]);
-
-// useEffect(() => {
-//   if (isInitialTemplates && currentUser) {
-//     isInitialTemplates = false;
-//     return;
-//   }
-//   //  do poprawy na is TemplateChange !
-//   if (currentUser && isTemplateChanged) {
-//     console.log(
-//       "wyslij dane POST user Data -- profile changed // i zalgoowany"
-//     );
-//     const userId = currentUser.uid;
-//     dispatch(sendFirebaseTemplates(tasksTemplates, userId));
-//   }
-// }, [tasksTemplates, dispatch]);
