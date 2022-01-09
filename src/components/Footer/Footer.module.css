@@ -1,6 +1,8 @@
 .footer {
   border-top: 2px rgb(0 0 0 / 10%) solid;
   text-align: center;
+  z-index: 10;
+  margin-top: 300px;
 }
 
 .footer a {

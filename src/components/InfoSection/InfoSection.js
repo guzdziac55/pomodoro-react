@@ -1,15 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./InfoSection.module.css";
 import InfoOne from "./InfoOne/InfoOne";
 import InfoTwo from "./InfoTwo/InfoTwo";
 import InfoThree from "./InfoThree/InfoThree";
-import { useRef } from "react";
-// return all sections here !  Big component
-const InfoSection = (infoRef) => {
+
+const InfoSection = ({ infoRef }) => {
+  const [offsetY, setOffsetY] = useState(0);
+  const handleScroll = () => {
+    setOffsetY(window.pageYOffset);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [offsetY]);
+
   return (
     <div className={classes.infoMain}>
       <section className={classes.infoContainer}>
-        <InfoOne ref={infoRef}></InfoOne>
+        <InfoOne infoRef={infoRef}></InfoOne>
         <InfoTwo></InfoTwo>
         <InfoThree></InfoThree>
       </section>
@@ -18,3 +30,9 @@ const InfoSection = (infoRef) => {
 };
 
 export default InfoSection;
+
+// math for parallax
+
+// style={{
+//   transform: `translateY(${offsetY * 0.5}px)`,
+// }}

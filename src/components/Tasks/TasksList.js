@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./TasksList.module.css";
 import TaskItem from "./TaskItem/TaskItem";
+
 import { motion } from "framer-motion";
 
 const variants = {
@@ -11,6 +12,8 @@ const variants = {
 };
 
 const TasksList = ({ tasks }) => {
+  const [taskItems, setTaskItem] = useState(tasks);
+
   const tasksList = tasks.map((task) => (
     <TaskItem
       key={task.id}

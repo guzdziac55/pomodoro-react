@@ -3,8 +3,6 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { Spinner } from "../../components/UI/Spinner";
 import { useSelector } from "react-redux";
 
-const App = React.lazy(() => import("./../../App")); // Layout
-
 const AppPage = React.lazy(() => import("../AppPage"));
 const MainPage = React.lazy(() => import("../MainPage"));
 const LoginPage = React.lazy(() => import("./../LoginPage"));

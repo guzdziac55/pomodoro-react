@@ -6,6 +6,7 @@
   padding: 0;
   margin: 0;
   width: 100%;
+  z-index: -10;
   padding-right: 0.875rem;
   padding-left: 0.875rem;
   margin-bottom: 123px;
@@ -35,6 +36,8 @@
   text-align: right;
   width: 100%;
   max-width: 460px;
+  position: relative;
+  z-index: -10;
 }
 
 .infoThumnail::after {
@@ -60,6 +63,7 @@
 .infoSection img {
   width: 100%;
   max-width: 460px;
+  position: absolute;
 }
 
 .infoSection h1 {

@@ -1,5 +1,6 @@
 import React from "react";
 import classes from "./InfoTwo.module.css";
+import useYoffSet from "../../../hooks/use-YoffSet";
 import { photos } from "../../../assets/images/images";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
@@ -38,6 +39,7 @@ const variantInfo = {
 const InfoOne = () => {
   const controls = useAnimation();
   const [ref, inView] = useInView();
+  const { offSetY } = useYoffSet();
 
   useEffect(() => {
     if (inView) controls.start("visable");
@@ -56,6 +58,9 @@ const InfoOne = () => {
           src={photos[1].image}
           className={classes.infoImg}
           alt="What is Pomofocus"
+          style={{
+            transform: `translateY(-${offSetY * 0.3 - 300}px)`,
+          }}
         ></img>
       </motion.figure>
       {/* right */}

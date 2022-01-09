@@ -35,7 +35,14 @@
   text-align: right;
   width: 50%;
   max-width: 460px;
+  position: absolute;
 }
+
+/* .infoImg {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto 100vh;
+} */
 
 .infoThumnail::after {
   content: "";

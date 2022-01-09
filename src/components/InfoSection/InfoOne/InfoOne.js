@@ -1,9 +1,11 @@
 import React from "react";
+import { useState } from "react";
 import classes from "./InfoOne.module.css";
 import { photos } from "../../../assets/images/images";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
+import useYoffSet from "../../../hooks/use-YoffSet";
 
 const variantImage = {
   hidden: {
@@ -35,17 +37,19 @@ const variantInfo = {
   },
 };
 
-const InfoOne = () => {
+const InfoOne = ({ infoRef }) => {
   const controls = useAnimation(); // controll animation for start stop
-  const [ref, inView] = useInView();
+  const [inView] = useInView();
+  const { offSetY } = useYoffSet();
 
   useEffect(() => {
     if (inView) controls.start("visable");
   }, [inView, controls]);
 
   return (
-    <div ref={ref} className={classes.infoSection}>
+    <div className={classes.infoSection}>
       {/* left */}
+      {/* PARALAX IMAGE !  */}
       <motion.figure
         variants={variantImage}
         initial="hidden"
@@ -53,7 +57,11 @@ const InfoOne = () => {
         className={classes.infoThumnail}
       >
         <img
+          ref={infoRef}
           src={photos[0].image}
+          style={{
+            transform: `translateY(-${offSetY * 0.3}px)`,
+          }}
           className={classes.infoImg}
           alt="What is Pomofocus"
         ></img>
@@ -65,6 +73,7 @@ const InfoOne = () => {
         initial="hidden"
         animate={controls}
       >
+        {/* PARALLAX HEADER */}
         <div className={classes.headerContainer}>
           <h3>More info about pomodoro</h3>
           <h1 className={classes.infoHeader}>
@@ -72,6 +81,7 @@ const InfoOne = () => {
           </h1>
         </div>
 
+        {/* PARALLAX INFO CONTENT */}
         <div className={classes.infoContent}>
           <p className={classes.contentInitial}>
             Pomofocus is a customizable pomodoro timer that works on desktop &

@@ -8,7 +8,6 @@ import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
 import { ToastContainer } from "react-toastify";
 import App from "./App";
-import RouterConfig from "./pages/routers/RouterConfig";
 
 export const persistor = persistStore(store);
 
@@ -18,8 +17,6 @@ const RenderApp = () => {
       <React.StrictMode>
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
-            {/* put routerconfig inside aPP .js */}
-            {/* <RouterConfig /> */}
             <App />
             <ToastContainer
               autoClose={2000}

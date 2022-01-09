@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./FullAppComponent.module.css";
-
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 
@@ -58,13 +58,19 @@ const scrollVariants = {
   },
 };
 
-const FullAppComponent = () => {
+const scrollTo = (myRef) => {
+  myRef.current.scrollIntoView();
+};
+
+const FullAppComponent = ({ infoRef }) => {
   const taskList = useSelector((state) => state.tasksList.tasksList);
   const bindsEnable = useSelector(selectBindsEnable);
   const isEmptyTasks =
     taskList.length === 0 || taskList === false ? true : false;
 
-  const scrollToInfo = () => {};
+  const executeScroll = () => {
+    scrollTo(infoRef);
+  };
 
   return (
     <div className={classes.container}>
@@ -91,7 +97,7 @@ const FullAppComponent = () => {
             className={classes.scrollTo}
           >
             <MdArrowCircleDown
-              onClick={scrollToInfo}
+              onClick={executeScroll}
               className={classes.scrollToIcon}
             />
           </motion.div>

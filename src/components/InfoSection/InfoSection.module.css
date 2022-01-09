@@ -12,3 +12,7 @@
   z-index: 1;
   width: 100%;
 }
+
+.infoContainer > :nth-child(1n) {
+  margin-top: 400px;
+}
