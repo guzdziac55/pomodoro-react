@@ -84,8 +84,8 @@ const InfoOne = ({ infoRef }) => {
         {/* PARALLAX INFO CONTENT */}
         <div className={classes.infoContent}>
           <p className={classes.contentInitial}>
-            Pomofocus is a customizable pomodoro timer that works on desktop &
-            mobile browser.
+            <strong>Pomofocus</strong> is a customizable pomodoro timer that
+            works on desktop & mobile browser.
           </p>
           <div className={classes.contentFull}>
             <p>
@@ -93,7 +93,12 @@ const InfoOne = ({ infoRef }) => {
               management method developed by Francesco Cirillo.
             </p>
           </div>
-          <button className={classes.infoButton}>More Info</button>
+          <a
+            href="https://www.google.com/search?q=pomodoro+technique"
+            className={classes.buttonLink}
+          >
+            More Info
+          </a>
         </div>
       </motion.div>
     </div>

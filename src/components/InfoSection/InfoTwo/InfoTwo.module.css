@@ -78,7 +78,7 @@
   font-weight: 800;
 }
 .infoSection h3 {
-  font-size: 1.8rem;
+  font-size: 1.3rem;
   color: crimson;
 }
 .infoSection p {
@@ -124,4 +124,13 @@
   justify-items: right;
   max-width: 300px;
   text-align: right;
+}
+
+.infoContent p {
+  font-size: 1.7rem;
+  font-weight: 500;
+}
+.infoContent strong {
+  color: crimson;
+  font-weight: 800;
 }

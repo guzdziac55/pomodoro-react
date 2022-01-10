@@ -73,7 +73,7 @@
   font-weight: 800;
 }
 .infoSection h3 {
-  font-size: 1.8rem;
+  font-size: 1.3rem;
   color: crimson;
 }
 .infoSection p {
@@ -98,7 +98,7 @@
   top: 25px;
 }
 
-.infoSection button {
+.buttonLink {
   margin-top: 30px;
   padding: 10px 30px;
   background-color: crimson;
@@ -109,8 +109,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: fit-content;
+}
+.buttonLink:hover {
+  background-color: rgb(187, 20, 54);
 }
 
 .infoContent {
   max-width: 300px;
+}
+.infoContent p {
+  font-size: 1.7rem;
+  font-weight: 500;
+}
+.infoContent strong {
+  color: crimson;
+  font-weight: 800;
 }

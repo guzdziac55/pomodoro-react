@@ -71,24 +71,22 @@ const InfoOne = () => {
         animate={controls}
       >
         <div className={classes.headerContainer}>
-          <h3>More info about pomodoro</h3>
-          <h1 className={classes.infoHeader}>
-            What is <br /> Pomofocus?
-          </h1>
+          <h3>Is this app right for you?</h3>
+          <h1 className={classes.infoHeader}>For whom ?</h1>
         </div>
 
         <div className={classes.infoContent}>
           <p className={classes.contentInitial}>
-            Pomofocus is a customizable pomodoro timer that works on desktop &
-            mobile browser.
+            If you are a person who has a problem with
+            <strong> concentration</strong> or you want to control your time
+            spent on performing a given activity.
           </p>
           <div className={classes.contentFull}>
             <p>
-              This app is inspired by Pomodoro Technique which is a time
-              management method developed by Francesco Cirillo.
+              This application is for you. Control the time and make the time
+              spent in concentration a pleasure.
             </p>
           </div>
-          <button className={classes.infoButton}>More Info</button>
         </div>
       </motion.div>
     </div>

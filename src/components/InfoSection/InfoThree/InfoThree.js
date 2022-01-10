@@ -71,25 +71,23 @@ const InfoThree = () => {
         animate={controls}
       >
         <div className={classes.headerContainer}>
-          <h3>More info about pomodoro</h3>
-          <h1 className={classes.infoHeader}>
-            What is <br /> Pomofocus?
-          </h1>
+          <h3>It really works!</h3>
+          <h1 className={classes.infoHeader}>What will you gain?</h1>
         </div>
         {/* before tag line with content ' '  */}
 
         <div className={classes.infoContent}>
           <p className={classes.contentInitial}>
-            Pomofocus is a customizable pomodoro timer that works on desktop &
-            mobile browser.
+            Your <strong> body</strong> will be able to work at high speed for
+            longer thanks to controlled breaks.
           </p>
           <div className={classes.contentFull}>
             <p>
-              This app is inspired by Pomodoro Technique which is a time
-              management method developed by Francesco Cirillo.
+              When you get to know your abilities, you can determine the length
+              of the working time in focus yourself. Start with
+              <strong> 25 minutes</strong> - that's enough at the beginning.
             </p>
           </div>
-          <button className={classes.infoButton}>More Info</button>
         </div>
       </motion.div>
     </div>
