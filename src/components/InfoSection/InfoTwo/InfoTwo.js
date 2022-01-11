@@ -36,7 +36,7 @@ const variantInfo = {
   },
 };
 
-const InfoOne = () => {
+const InfoTwo = () => {
   const controls = useAnimation();
   const [ref, inView] = useInView();
   const { offSetY } = useYoffSet();
@@ -61,7 +61,7 @@ const InfoOne = () => {
           style={{
             transform: `translateY(-${offSetY * 0.3 - 300}px)`,
           }}
-        ></img>
+        ></img>{" "}
       </motion.figure>
       {/* right */}
       <motion.div
@@ -93,4 +93,4 @@ const InfoOne = () => {
   );
 };
 
-export default InfoOne;
+export default InfoTwo;

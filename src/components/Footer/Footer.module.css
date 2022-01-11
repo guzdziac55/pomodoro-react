@@ -5,6 +5,12 @@
   margin-top: 300px;
 }
 
+@media (max-width: 550px) {
+  .footer {
+    margin-top: 30px;
+  }
+}
+
 .footer a {
   text-decoration: none;
   outline: none;

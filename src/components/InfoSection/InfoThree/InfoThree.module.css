@@ -6,7 +6,6 @@
   padding: 0;
   margin: 0;
   width: 100%;
-  z-index: -10;
   padding-right: 0.875rem;
   padding-left: 0.875rem;
   margin-bottom: 123px;
@@ -17,6 +16,21 @@
   margin-block-end: 10px;
   margin-inline-start: 15px;
   margin-inline-end: 15px;
+}
+
+@media (max-width: 550px) {
+  .infoSection {
+    display: block;
+    width: 100%;
+    margin-bottom: 50px;
+  }
+
+  .infoSection figure {
+    margin-block-start: 10px;
+    margin-block-end: 10px;
+    margin-inline-start: 15px;
+    margin-inline-end: 15px;
+  }
 }
 
 /* left content */
@@ -32,18 +46,34 @@
   transform-origin: center center 0;
   text-align: center;
 }
+
 .infoThumnail img {
   text-align: right;
   width: 100%;
   max-width: 460px;
-  position: relative;
-  z-index: -10;
+  position: fixed;
 }
 
 .infoThumnail::after {
   content: "";
   display: table;
   clear: both;
+}
+
+@media (max-width: 550px) {
+  .infoThumnail {
+    width: 100%;
+    display: none;
+    text-align: center;
+  }
+
+  .infoThumnail img {
+    text-align: right;
+    width: 100%;
+    max-width: 460px;
+    display: none;
+    position: fixed;
+  }
 }
 
 /* right content */
@@ -60,10 +90,20 @@
   z-index: 2;
 }
 
-.infoSection img {
-  width: 100%;
-  max-width: 460px;
-  position: absolute;
+@media (max-width: 550px) {
+  .headerContainer {
+    transform: translateX(0);
+  }
+
+  .infoDetails {
+    display: block;
+    padding-right: 20px;
+    padding-left: 20px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
 }
 
 .infoSection h1 {
@@ -78,6 +118,7 @@
   font-size: 1.3rem;
   color: crimson;
 }
+
 .infoSection p {
   font-size: 1.6rem;
   font-weight: 500;
@@ -100,7 +141,13 @@
   top: 25px;
 }
 
-.infoSection button {
+@media (max-width: 550px) {
+  .infoHeader:before {
+    display: none;
+  }
+}
+
+.buttonLink {
   margin-top: 30px;
   padding: 10px 30px;
   background-color: crimson;
@@ -111,12 +158,30 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: fit-content;
+}
+.buttonLink:hover {
+  background-color: rgb(187, 20, 54);
+}
+
+.infoContent {
+  max-width: 300px;
+}
+
+@media (max-width: 550px) {
+  .infoContent {
+    width: 100%;
+    text-align: center;
+    max-width: 550px;
+  }
+  .infoContent a {
+    width: 100%;
+  }
 }
 
 .infoContent p {
   font-size: 1.7rem;
   font-weight: 500;
-  max-width: 300px;
 }
 .infoContent strong {
   color: crimson;

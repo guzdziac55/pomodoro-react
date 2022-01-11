@@ -18,6 +18,21 @@
   margin-inline-end: 15px;
 }
 
+@media (max-width: 550px) {
+  .infoSection {
+    display: block;
+    width: 100%;
+    margin-bottom: 100px;
+  }
+
+  .infoSection figure {
+    margin-block-start: 10px;
+    margin-block-end: 10px;
+    margin-inline-start: 15px;
+    margin-inline-end: 15px;
+  }
+}
+
 /* left content */
 .infoThumnail {
   width: 55.16667%;
@@ -45,6 +60,22 @@
   clear: both;
 }
 
+@media (max-width: 550px) {
+  .infoThumnail {
+    width: 100%;
+    display: none;
+    text-align: center;
+  }
+
+  .infoThumnail img {
+    text-align: right;
+    width: 100%;
+    max-width: 460px;
+    display: none;
+    position: fixed;
+  }
+}
+
 /* right content */
 .headerContainer {
   transform: translateX(-50px);
@@ -59,9 +90,20 @@
   z-index: 2;
 }
 
-.infoSection img {
-  width: 100%;
-  max-width: 460px;
+@media (max-width: 550px) {
+  .headerContainer {
+    transform: translateX(0);
+  }
+
+  .infoDetails {
+    display: block;
+    padding-right: 20px;
+    padding-left: 20px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
 }
 
 .infoSection h1 {
@@ -76,6 +118,7 @@
   font-size: 1.3rem;
   color: crimson;
 }
+
 .infoSection p {
   font-size: 1.6rem;
   font-weight: 500;
@@ -98,6 +141,12 @@
   top: 25px;
 }
 
+@media (max-width: 550px) {
+  .infoHeader:before {
+    display: none;
+  }
+}
+
 .buttonLink {
   margin-top: 30px;
   padding: 10px 30px;
@@ -118,6 +167,18 @@
 .infoContent {
   max-width: 300px;
 }
+
+@media (max-width: 550px) {
+  .infoContent {
+    width: 100%;
+    text-align: center;
+    max-width: 550px;
+  }
+  .infoContent a {
+    width: 100%;
+  }
+}
+
 .infoContent p {
   font-size: 1.7rem;
   font-weight: 500;

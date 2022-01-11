@@ -5,8 +5,8 @@
   align-items: center;
   padding: 0;
   margin: 0;
-  flex-direction: row-reverse;
   width: 100%;
+  flex-direction: row-reverse;
   padding-right: 0.875rem;
   padding-left: 0.875rem;
   margin-bottom: 123px;
@@ -19,10 +19,25 @@
   margin-inline-end: 15px;
 }
 
+@media (max-width: 550px) {
+  .infoSection {
+    display: block;
+    width: 100%;
+    margin-bottom: 100px;
+  }
+
+  .infoSection figure {
+    margin-block-start: 10px;
+    margin-block-end: 10px;
+    margin-inline-start: 15px;
+    margin-inline-end: 15px;
+  }
+}
+
 /* left content */
 .infoThumnail {
   width: 55.16667%;
-  float: left;
+  float: right;
   display: flex;
   justify-content: left;
   max-width: 75rem;
@@ -31,6 +46,7 @@
   margin-bottom: 20px;
   transform-origin: center center 0;
 }
+
 .infoThumnail img {
   text-align: right;
   width: 50%;
@@ -38,16 +54,20 @@
   position: absolute;
 }
 
-/* .infoImg {
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: auto 100vh;
-} */
+@media (max-width: 550px) {
+  .infoThumnail {
+    width: 100%;
+    display: none;
+    text-align: center;
+  }
 
-.infoThumnail::after {
-  content: "";
-  display: table;
-  clear: both;
+  .infoThumnail img {
+    text-align: right;
+    width: 100%;
+    max-width: 460px;
+    display: none;
+    position: fixed;
+  }
 }
 
 /* right content */
@@ -64,6 +84,22 @@
   z-index: 2;
 }
 
+@media (max-width: 550px) {
+  .headerContainer {
+    transform: translateX(0);
+  }
+
+  .infoDetails {
+    display: block;
+    padding-right: 20px;
+    padding-left: 20px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+}
+
 .infoSection img {
   width: 100%;
   max-width: 460px;
@@ -77,10 +113,12 @@
   color: #000000;
   font-weight: 800;
 }
+
 .infoSection h3 {
   font-size: 1.3rem;
   color: crimson;
 }
+
 .infoSection p {
   font-size: 1.6rem;
   font-weight: 500;
@@ -103,7 +141,13 @@
   top: 25px;
 }
 
-.infoSection button {
+@media (max-width: 550px) {
+  .infoHeader:before {
+    display: none;
+  }
+}
+
+.buttonLink {
   margin-top: 30px;
   padding: 10px 30px;
   background-color: crimson;
@@ -114,6 +158,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: fit-content;
+}
+.buttonLink:hover {
+  background-color: rgb(187, 20, 54);
 }
 
 .infoContent {
@@ -124,6 +172,20 @@
   justify-items: right;
   max-width: 300px;
   text-align: right;
+}
+
+@media (max-width: 550px) {
+  .infoContent {
+    width: 100%;
+    text-align: center;
+    display: block;
+    float: none;
+    max-width: 550px;
+  }
+
+  .infoContent a {
+    width: 100%;
+  }
 }
 
 .infoContent p {

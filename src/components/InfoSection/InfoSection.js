@@ -22,17 +22,11 @@ const InfoSection = ({ infoRef }) => {
     <div className={classes.infoMain}>
       <section className={classes.infoContainer}>
         <InfoOne infoRef={infoRef}></InfoOne>
-        <InfoTwo></InfoTwo>
-        <InfoThree></InfoThree>
+        <InfoTwo />
+        <InfoThree />
       </section>
     </div>
   );
 };
 
 export default InfoSection;
-
-// math for parallax
-
-// style={{
-//   transform: `translateY(${offsetY * 0.5}px)`,
-// }}
