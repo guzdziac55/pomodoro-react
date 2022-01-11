@@ -11,8 +11,6 @@ const ResetPasswordPage = () => {
       </div>
     </LayoutComponent>
   );
-
-  return;
 };
 
 export default ResetPasswordPage;

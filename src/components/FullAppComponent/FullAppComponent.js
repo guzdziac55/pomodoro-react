@@ -3,7 +3,7 @@ import classes from "./FullAppComponent.module.css";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
-
+import { Location } from "react-router-dom";
 import { selectBindsEnable } from "../../store/config-slice";
 import { MdArrowCircleDown } from "react-icons/md";
 
@@ -72,6 +72,8 @@ const FullAppComponent = ({ infoRef }) => {
     scrollTo(infoRef);
   };
 
+  const isMainLocation = window.location.pathname === "/" ? true : false;
+
   return (
     <div className={classes.container}>
       <motion.div
@@ -89,7 +91,7 @@ const FullAppComponent = ({ infoRef }) => {
         <WorkingOn />
         <Tasks />
         {!isEmptyTasks && <FinishCalculate />}
-        {isEmptyTasks && (
+        {isEmptyTasks && isMainLocation && (
           <motion.div
             variants={scrollVariants}
             initial="hidden"
