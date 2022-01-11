@@ -1,0 +1,128 @@
+/* main container */
+.infoSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  padding-right: 0.875rem;
+  padding-left: 0.875rem;
+  margin-bottom: 123px;
+}
+
+.infoSection figure {
+  margin-block-start: 10px;
+  margin-block-end: 10px;
+  margin-inline-start: 15px;
+  margin-inline-end: 15px;
+}
+
+/* left content */
+.infoThumnail {
+  width: 55.16667%;
+  float: right;
+  display: flex;
+  justify-content: right;
+  max-width: 75rem;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 20px;
+  transform-origin: center center 0;
+  text-align: center;
+}
+
+.infoThumnail img {
+  text-align: right;
+  width: 100%;
+  max-width: 460px;
+  position: fixed;
+}
+
+.infoThumnail::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* right content */
+.headerContainer {
+  transform: translateX(-50px);
+}
+
+.infoDetails {
+  padding-right: 0.625rem;
+  padding-left: 0.625rem;
+  width: 55%;
+  text-align: left;
+  position: relative;
+  z-index: 2;
+}
+
+.infoSection img {
+  width: 100%;
+  max-width: 460px;
+}
+
+.infoSection h1 {
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+  font-size: 4rem;
+  color: #000000;
+  font-weight: 800;
+}
+.infoSection h3 {
+  font-size: 1.3rem;
+  color: crimson;
+}
+.infoSection p {
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #000000;
+}
+
+.infoHeader {
+  position: relative;
+}
+
+.infoHeader:before {
+  position: absolute;
+  display: block;
+  content: "";
+  background-color: crimson;
+  height: 6px;
+  width: 70px;
+  left: -90px;
+  top: 25px;
+}
+
+.buttonLink {
+  margin-top: 30px;
+  padding: 10px 30px;
+  background-color: crimson;
+  font-size: 1.8rem;
+  font-weight: 500;
+  border-style: none;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+}
+.buttonLink:hover {
+  background-color: rgb(187, 20, 54);
+}
+
+.infoContent {
+  max-width: 300px;
+}
+.infoContent p {
+  font-size: 1.7rem;
+  font-weight: 500;
+}
+.infoContent strong {
+  color: crimson;
+  font-weight: 800;
+}
