@@ -34,6 +34,7 @@ The application was written for educational purposes. I am a novice programmer w
 - Redux ( with toolkit ) .
 - React Router v6.
 - LocalStorage with persist library.
+- Framer Motion - animations.
 - Firebase (data manage) - realtimeDatabase & auth.
 - React-Toastify - for notifications.
 - Css modules for styling.
