@@ -36,7 +36,7 @@ const variants = {
   },
 };
 
-const TaskForm = React.forwardRef((props) => {
+const TaskForm = (props) => {
   const dispatch = useDispatch();
 
   const { editMode } = props;
@@ -244,6 +244,6 @@ const TaskForm = React.forwardRef((props) => {
       </AnimatePresence>
     </Card>
   );
-});
+};
 
 export default TaskForm;

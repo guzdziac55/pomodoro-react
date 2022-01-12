@@ -8,8 +8,6 @@ import { changeActiveStage } from "../../store/timer-slice";
 import { changeTheme } from "../../store/ui-slice";
 
 const TimerTab = () => {
-  console.log("main timer Tab");
-
   const isTicking = useSelector(selectIsTicking);
   const dispatch = useDispatch();
 

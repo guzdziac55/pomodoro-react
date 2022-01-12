@@ -14,6 +14,7 @@ import {
   setConfigChanged,
   selectAlarmSound,
 } from "../../store/config-slice";
+import { findNotification } from "../../hooks/findNotification";
 import {
   SelectNotification,
   InputColumn,
@@ -21,8 +22,6 @@ import {
   Switch,
   InputWrapper,
 } from "./FormComponents";
-
-import { findNotification } from "../../hooks/findNotification";
 
 const Settings = (props) => {
   const dispatch = useDispatch();

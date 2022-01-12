@@ -46,7 +46,6 @@ const timerSlice = createSlice({
     },
 
     consumeTime(state) {
-      console.log("wywolane ? ");
       state.consumedSeconds = state.consumedSeconds + 1;
     },
 

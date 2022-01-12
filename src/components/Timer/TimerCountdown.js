@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import classes from "./TimerCountdown.module.css";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -20,7 +20,6 @@ const variants = {
 };
 
 const TimerCountdown = () => {
-  //  callback !
   const convertedTimeout = useTimer();
 
   return (

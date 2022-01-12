@@ -142,7 +142,7 @@
 }
 
 @media (max-width: 550px) {
-  .infoHeader:before {
+  .infoHeader::after {
     display: none;
   }
 }

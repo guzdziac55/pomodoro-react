@@ -65,12 +65,12 @@ const Login = () => {
             onClick={() => {
               window.alert("this function currently not working yet ! ");
             }}
-            class={classes.btnGoogleLogin}
+            className={classes.btnGoogleLogin}
           >
             <FcGoogle />
             <span>Login with Google</span>
           </button>
-          <span class={classes.break}>or</span>
+          <span className={classes.break}>or</span>
           <Input
             useRef={emailRef}
             label="EMAIL"
