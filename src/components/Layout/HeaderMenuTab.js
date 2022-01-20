@@ -79,6 +79,19 @@ const HeaderMenuTab = ({ onSetOpen }) => {
 
         {isLogged && (
           <>
+            {/* //  WEEK BOARD DND */}
+            <Link to="/board">
+              <motion.button
+                className={classes.button}
+                variants={hoverVariant}
+                whileHover="hover"
+              >
+                {/* icon here */}
+                {/* <MdQueryStats className={classes.icon} /> */}
+                <span>Week Board</span>
+              </motion.button>
+            </Link>
+
             <motion.button
               onClick={() => {
                 toast.info("This functionality comming soon");

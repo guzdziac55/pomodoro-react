@@ -1,0 +1,53 @@
+.title {
+  text-align: center;
+  color: #ffffff;
+}
+
+.boardPattern {
+  border-radius: 10px;
+  margin-right: 100px;
+  transition: all 0.3s ease-out;
+}
+
+.columnPattern {
+  min-width: 300px;
+  max-height: 500px;
+  overflow-y: auto;
+  padding: 10px 10px;
+}
+
+.boardItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 15px 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  border: none;
+  width: 100%;
+  font-size: 1.6rem;
+  color: var(--font-black);
+  overflow-wrap: break-word;
+  background-color: #ffffff;
+}
+
+.buttons {
+  display: flex;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.buttonAdd {
+  padding: 10px;
+  color: #000000;
+  border-radius: 5px;
+  border-style: none;
+  background-color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.buttonAdd:hover {
+  background-color: #cfcfcf;
+}

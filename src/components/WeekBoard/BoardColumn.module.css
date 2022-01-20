@@ -1,0 +1,15 @@
+.title {
+  text-align: center;
+  color: #ffffff;
+}
+
+.boardColumn {
+  padding: 10px 10px;
+  /* width: 100%; */
+  min-width: 200px;
+  min-height: 400px;
+  border-radius: 10px;
+  margin-right: 20px;
+  background-color: var(--main-light);
+  transition: all 0.3s ease-out;
+}

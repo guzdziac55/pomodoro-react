@@ -1,0 +1,21 @@
+/* // it need to be scrollable board  */
+
+.boardContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  height: 100vh;
+  background-color: var(--main);
+}
+
+.boardColumn {
+  padding: 10px 10px;
+  /*  dać mniej na mniejszym screenie zeby nie wychodziło po obraz  */
+  min-width: 200px;
+  min-height: 400px;
+  border-radius: 10px;
+  margin-right: 20px;
+  background-color: var(--main-light);
+  transition: all 0.3s ease-out;
+}

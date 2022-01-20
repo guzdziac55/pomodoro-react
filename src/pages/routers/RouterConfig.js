@@ -8,6 +8,7 @@ const MainPage = React.lazy(() => import("../MainPage"));
 const LoginPage = React.lazy(() => import("./../LoginPage"));
 const SignUpPage = React.lazy(() => import("./../SignUpPage"));
 const ResetPasswordPage = React.lazy(() => import("./../ResetPasswordPage"));
+const WeekBoardPage = React.lazy(() => import("./../WeekBoardPage"));
 
 const RouterConfig = () => {
   const currentUser = useSelector((state) => state.auth.currentUser);
@@ -18,6 +19,10 @@ const RouterConfig = () => {
         <Route path="/" element={<MainPage />} />
         <Route path="app" element={<AppPage />} />
         {!currentUser && <Route path="login" element={<LoginPage />} />}
+
+        {/* board component */}
+        <Route path="board" element={<WeekBoardPage />} />
+
         <Route path="signup" element={<SignUpPage />} />
         <Route path="reset-password" element={<ResetPasswordPage />} />
 
