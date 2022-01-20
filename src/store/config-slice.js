@@ -9,7 +9,7 @@ export const defaultConfigState = {
   autoPomodoros: true,
   longBreakInterval: 4,
   keyBindsShow: true,
-  keyBindsEnable: false,
+  keyBindsEnable: true,
   viewModal: true,
 };
 
@@ -23,10 +23,10 @@ const configSlice = createSlice({
     autoPomodoros: true,
     longBreakInterval: 4,
     keyBindsShow: true,
-    keyBindsEnable: false,
+    keyBindsEnable: true,
     viewModal: true,
   },
-  // changes check 
+  // changes check
   reducers: {
     // used when userLogin => we cant use changed here becouse useEffect
     // with update function profile will not work

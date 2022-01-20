@@ -43,7 +43,7 @@ export const SelectNotification = ({
       <div className={classes.select}>
         <select {...register(name)} {...rest}>
           {options.map((value) => (
-            <option className={classes.option} value={value}>
+            <option className={classes.option} value={value} key={value}>
               {value}
             </option>
           ))}

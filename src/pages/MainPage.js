@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import InfoSection from "../components/InfoSection/InfoSection";
 import FullAppComponent from "../components/FullAppComponent/FullAppComponent";
 import classes from "./MainPage.module.css";
@@ -7,7 +7,6 @@ import Footer from "../components/Footer/Footer";
 
 const MainPage = () => {
   const infoRef = useRef();
-  console.log(infoRef);
   return (
     <LayoutComponent>
       <div className={classes.containerFull}>

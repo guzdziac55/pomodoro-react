@@ -1,12 +1,9 @@
 import React from "react";
 import classes from "./FullAppComponent.module.css";
-import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
-import { Location } from "react-router-dom";
 import { selectBindsEnable } from "../../store/config-slice";
 import { MdArrowCircleDown } from "react-icons/md";
-
 import Timer from "../Timer/Timer";
 import WorkingOn from "../WorkingOn/WorkingOn";
 import Tasks from "../Tasks/Tasks";

@@ -13,6 +13,7 @@ const Input = React.forwardRef((props) => {
         ref={props.useRef}
         value={props.input.value}
         className={`${invalid}`}
+        autoComplete="off"
         {...props.input}
       ></input>
     </div>
