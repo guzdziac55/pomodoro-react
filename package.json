@@ -9,12 +9,8 @@
     "@testing-library/user-event": "^12.8.3",
     "firebase": "^9.1.3",
     "framer-motion": "^4.1.11-beta.3",
-<<<<<<< HEAD
     "nanoid": "^3.2.0",
     "postcss-modules-values": "^3.0.0",
-=======
-    "postcss-modules-values": "^4.0.0",
->>>>>>> 39fe7143c75c2e6dec54596faf7f04e4a383da7e
     "react": "^17.0.2",
     "react-beautiful-dnd": "^13.1.0",
     "react-dom": "^17.0.2",
