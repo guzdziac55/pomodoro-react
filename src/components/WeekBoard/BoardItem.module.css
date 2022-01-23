@@ -33,3 +33,19 @@
   display: flex;
   flex-direction: row;
 }
+
+.textEditor {
+  width: 100%;
+}
+
+.pomodoroButton {
+  text-align: center;
+
+  width: 15px;
+  height: 15px;
+}
+
+.pomodoroContainer {
+  display: flex;
+  flex-direction: column;
+}

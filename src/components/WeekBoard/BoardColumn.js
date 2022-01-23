@@ -2,15 +2,21 @@ import React from "react";
 import classes from "./BoardColumn.module.css";
 import { Droppable } from "react-beautiful-dnd";
 import BoardItem from "./BoardItem";
-import Card from "../UI/Card";
 
-// id => id from object column
-// [id]:{
-//     name: ' nazwa kolumny',
-//     tasks: {objects full of tasks }
-// }
+const BoardColumn = ({
+  id,
+  // state
+  tempTitle,
+  column,
 
-const BoardColumn = ({ id, column }) => {
+  // function handlers
+  handleDeleteTask,
+  handleOpenEditor,
+  handleCardEdit,
+  cardInEdit,
+  handleTaskNameChange,
+  handleChangeEstPom,
+}) => {
   return (
     <div>
       <h1 className={classes.title}>{column.name}</h1>
@@ -20,10 +26,25 @@ const BoardColumn = ({ id, column }) => {
             className={classes.boardColumn}
             {...provided.droppableProps}
             ref={provided.innerRef}
-            //   style={ } // optional
           >
             {column.items.map((item, index) => {
-              return <BoardItem item={item} index={index} />;
+              return (
+                //  our draggable
+                <BoardItem
+                  item={item}
+                  index={index}
+                  columnId={id}
+                  //state
+                  tempTitle={tempTitle}
+                  cardInEdit={cardInEdit}
+                  //function handles
+                  deleteTask={handleDeleteTask}
+                  openEditor={handleOpenEditor}
+                  cardEdit={handleCardEdit}
+                  changeEstPom={handleChangeEstPom}
+                  taskNameChange={handleTaskNameChange}
+                />
+              );
             })}
             {provided.placeholder}
           </div>

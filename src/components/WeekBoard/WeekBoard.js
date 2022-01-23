@@ -5,6 +5,9 @@ import classes from "./WeekBoard.module.css";
 import { DragDropContext } from "react-beautiful-dnd";
 import BoardPatterns from "./BoardPatterns";
 import BoardColumn from "./BoardColumn";
+import { useCallback } from "react";
+import { set } from "react-hook-form";
+import { deleteTask } from "../../store/taskList-slice";
 
 const allTasks = [
   { id: nanoid(), content: "adadad" },
@@ -131,6 +134,9 @@ const move = (source, destination, droppableSource, droppableDestination) => {
   result[droppableSource.droppableId] = sourceClone; // only items
   result[droppableDestination.droppableId] = destClone;
 
+  console.log("result");
+  console.log(result);
+
   return result;
 };
 
@@ -175,27 +181,124 @@ const createSample = (columns, setColumns) => {
   });
 };
 
+// createSampleColumn => for specyfic column
+// columnId current => function inside droppableColumn component
+//
+
+// CO MOŻNA ODDAĆ ADD TASK NA DOLE DODAJE WTEDY ZA TABLICA
+// ADD TASK NA GÓRZE DODAJE WTEDY NA GÓRZE
+// EDIT TASK NAME OPEN TEXTeDITOR <===
+
+// <div> text area with button when click on title open when click outside close / accept
+
+//  ADD INPUT CLOSE TO THE ADDtASK BUTTON    !
+// ADD ONLY  TASK COUNT BUTTON NOT MORE !
+
 const WeekBoard = () => {
   const [columns, setColumns] = useState(columnsBackend);
+
+  const [cardInEdit, setCardInEdit] = useState(null); // task id
+  const [tempTitle, setTempTitle] = useState(""); // task detail => title
+  // const [tempEstPomodoro, setEstPomodoro] = useState("");
+
+  const handleDeleteTask = useCallback(
+    (itemInd, colInd) => {
+      const newColumn = { ...columns };
+      newColumn[colInd].items.splice(itemInd, 1);
+      setColumns(newColumn);
+    },
+    [columns]
+  );
+
+  const closeEdit = () => {
+    setTempTitle("");
+    setCardInEdit(null);
+  };
+
+  const handleCardTitleEdit = (e, colInd) => {
+    e.preventDefault();
+    const editItemIdx = columns[colInd].items.findIndex(
+      (item) => item.id === cardInEdit
+    );
+    if (tempTitle.length < 1) {
+      handleDeleteTask(editItemIdx, colInd);
+      closeEdit();
+    } else {
+      const toEdit = Object.assign(
+        {},
+        { ...columns[colInd].items[editItemIdx] }
+      );
+      toEdit.content = tempTitle.trim();
+      const newColumn = { ...columns };
+      newColumn[colInd].items[editItemIdx] = toEdit;
+      setColumns({ ...newColumn });
+      closeEdit();
+    }
+  };
+
+  const handleChangeEstPom = (colInd, itemInd, estPom) => {
+    // edit Obj and put into new state
+    console.log("wew funkcji ? ? ");
+    const toEdit = Object.assign({}, { ...columns[colInd].items[itemInd] });
+    toEdit.estPomodoro = estPom;
+
+    //  boilerPlate we can create newFunction // name: SetNewObject
+    const newColumn = { ...columns };
+    newColumn[colInd].items[itemInd] = toEdit;
+    setColumns({ ...newColumn });
+  };
+
+  // const
+  const handleOpenEditor = (item, columnId) => {
+    console.log(item);
+    setCardInEdit(item.id);
+    setTempTitle(item.content);
+  };
+
+  const handleTaskNameChange = (e) => {
+    setTempTitle(e.target.value);
+    console.log(tempTitle);
+  };
+
   return (
     <div className={classes.boardContainer}>
       <DragDropContext
         onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
       >
-        {/* {Object.entries()} */}
-
         {Object.entries(columns).map(([id, column]) => {
-          if (id == 0) return <BoardPatterns id={id} column={column} />;
-          return <BoardColumn id={id} column={column} />;
+          if (id == 0)
+            return (
+              <BoardPatterns
+                id={id}
+                column={column}
+                handleDeleteTask={handleDeleteTask}
+              />
+            );
+          return (
+            // <BoardColumn id={id} column={column} deleteTask={deleteTask} />
+            <BoardColumn
+              id={id}
+              column={column}
+              // useStateProps
+              cardInEdit={cardInEdit}
+              tempTitle={tempTitle}
+              // functions
+              handleDeleteTask={handleDeleteTask}
+              handleOpenEditor={handleOpenEditor}
+              handleCardEdit={handleCardTitleEdit}
+              handleChangeEstPom={handleChangeEstPom}
+              handleTaskNameChange={handleTaskNameChange}
+            ></BoardColumn>
+          );
         })}
       </DragDropContext>
-      <button
+      {/* <button
         onClick={() => {
           createSample(columns, setColumns);
         }}
       >
         add
-      </button>
+      </button> */}
     </div>
   );
 };

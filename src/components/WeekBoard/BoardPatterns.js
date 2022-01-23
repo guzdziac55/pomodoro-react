@@ -3,7 +3,7 @@ import classes from "./BoardPatterns.module.css";
 import { Droppable } from "react-beautiful-dnd";
 import BoardItem from "./BoardItem";
 
-const BoardPatterns = ({ id, column }) => {
+const BoardPatterns = ({ id, column, handleDeleteTask }) => {
   return (
     <>
       <div className={classes.boardPattern}>
@@ -13,7 +13,14 @@ const BoardPatterns = ({ id, column }) => {
             {(provided, snapshot) => (
               <div {...provided.droppableProps} ref={provided.innerRef}>
                 {column.items.map((item, index) => {
-                  return <BoardItem item={item} index={index} />;
+                  return (
+                    <BoardItem
+                      item={item}
+                      index={index}
+                      columnId={id}
+                      deleteTask={handleDeleteTask}
+                    />
+                  );
                 })}
                 {provided.placeholder}
               </div>

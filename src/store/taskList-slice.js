@@ -53,8 +53,6 @@ const taskListSlice = createSlice({
     },
 
     removeTaskTemplate(state, action) {
-      console.log("remove template");
-      console.log(action.payload);
       const toDeleteId = action.payload;
       state.tasksTemplates = state.tasksTemplates.filter(
         (template) => template.id !== toDeleteId
