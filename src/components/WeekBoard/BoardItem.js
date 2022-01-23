@@ -70,32 +70,18 @@ const BoardItem = ({
               ref={provided.innerRef}
             >
               <div className={classes.editNumber}>
-                {/* <button
-                  onClick={() => {
-                    changeEstPom(columnId, index, item.estPomodoro);
-                  }}
-                  type="button"
-                >
-                  <AiOutlinePlus className={classes.icon} />
-                </button> */}
-
-                {/* ---------------------- */}
-                {/* <span className={classes.estPomodoro}>
-                  {currentEstPomodoro}
-                </span> */}
-
                 <button
                   onClick={addEstPomodoro}
                   className={classes.pomodoroButton}
                 >
-                  +
+                  <AiOutlinePlus className={classes.icon} />
                 </button>
-                <span className={classes.title}>{item.estPomodoro}</span>
+                <span className={classes.estPomodoro}>{item.estPomodoro}</span>
                 <button
                   onClick={removeEstPomodoro}
                   className={classes.pomodoroButton}
                 >
-                  -
+                  <AiOutlineMinus className={classes.icon} />
                 </button>
               </div>
 

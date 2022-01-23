@@ -88,31 +88,81 @@ const WednesdayTasks = [
     content: "sadasd",
   },
 ];
-// const ThursdayTasks = [
-//   { id: 2, content: "first task" },
-//   { id: 3, content: "secound task" },
-// ];
-// const FridayTasks = [
-//   { id: 2, content: "first task" },
-//   { id: 3, content: "secound task" },
-// ];
-// const SaturdayTasks = [
-//   { id: 2, content: "first task" },
-//   { id: 3, content: "secound task" },
-// ];
-// const SundayTasks = [
-//   { id: 2, content: "first task" },
-//   { id: 3, content: "secound task" },
-// ];
+
+const ThursdayTasks = [
+  {
+    id: nanoid(),
+    actPomodoro: 0,
+    done: false,
+    estPomodoro: 1,
+    content: "sadasd",
+  },
+  {
+    id: nanoid(),
+    actPomodoro: 0,
+    done: false,
+    estPomodoro: 1,
+    content: "sadasd",
+  },
+];
+const FridayTasks = [
+  {
+    id: nanoid(),
+    actPomodoro: 0,
+    done: false,
+    estPomodoro: 1,
+    content: "sadasd",
+  },
+  {
+    id: nanoid(),
+    actPomodoro: 0,
+    done: false,
+    estPomodoro: 1,
+    content: "sadasd",
+  },
+];
+const SaturdayTasks = [
+  {
+    id: nanoid(),
+    actPomodoro: 0,
+    done: false,
+    estPomodoro: 1,
+    content: "sadasd",
+  },
+  {
+    id: nanoid(),
+    actPomodoro: 0,
+    done: false,
+    estPomodoro: 1,
+    content: "sadasd",
+  },
+];
+const SundayTasks = [
+  {
+    id: nanoid(),
+    actPomodoro: 0,
+    done: false,
+    estPomodoro: 1,
+    content: "sadasd",
+  },
+
+  {
+    id: nanoid(),
+    actPomodoro: 0,
+    done: false,
+    estPomodoro: 1,
+    content: "sadasd",
+  },
+];
 
 // /////////////////////
 
-const patterTasks = {
-  [0]: {
-    name: "Tasks",
-    items: allTasks,
-  },
-};
+// const patterTasks = {
+//   [0]: {
+//     name: "Tasks",
+//     items: allTasks,
+//   },
+// };
 
 const columnsBackend = {
   [0]: {
@@ -132,22 +182,22 @@ const columnsBackend = {
     items: WednesdayTasks,
     // items: {},
   },
-  // [4]: {
-  //   name: "Thursday",
-  //   items: ThursdayTasks,
-  // },
-  // [5]: {
-  //   name: "Friday",
-  //   items: FridayTasks,
-  // },
-  // [6]: {
-  //   name: "Saturday",
-  //   items: SaturdayTasks,
-  // },
-  // [7]: {
-  //   name: "Sunday",
-  //   items: SundayTasks,
-  // },
+  [4]: {
+    name: "Thursday",
+    items: ThursdayTasks,
+  },
+  [5]: {
+    name: "Friday",
+    items: FridayTasks,
+  },
+  [6]: {
+    name: "Saturday",
+    items: SaturdayTasks,
+  },
+  [7]: {
+    name: "Sunday",
+    items: SundayTasks,
+  },
 };
 
 const reorder = (list, startIndex, endIndex) => {
@@ -180,9 +230,6 @@ const move = (source, destination, droppableSource, droppableDestination) => {
   const result = {};
   result[droppableSource.droppableId] = sourceClone; // only items
   result[droppableDestination.droppableId] = destClone;
-
-  console.log("result");
-  console.log(result);
 
   return result;
 };
@@ -283,14 +330,12 @@ const WeekBoard = () => {
 
   // const
   const handleOpenEditor = (item, columnId) => {
-    console.log(item);
     setCardInEdit(item.id);
     setTempTitle(item.content);
   };
 
   const handleTaskNameChange = (e) => {
     setTempTitle(e.target.value);
-    console.log(tempTitle);
   };
 
   return (

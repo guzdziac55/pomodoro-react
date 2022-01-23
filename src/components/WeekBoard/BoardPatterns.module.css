@@ -1,6 +1,9 @@
 .title {
+  margin: 0;
+  padding: 0;
   text-align: center;
   color: #ffffff;
+  font-size: 2.5rem;
 }
 
 .boardPattern {
@@ -10,10 +13,12 @@
 }
 
 .columnPattern {
-  min-width: 300px;
-  max-height: 500px;
-  overflow-y: auto;
+  flex: 0 0 auto;
   padding: 10px 10px;
+  border-radius: 10px;
+  min-width: 150px;
+  min-height: 60px;
+  margin-right: 20px;
 }
 
 .boardItem {
