@@ -6,39 +6,87 @@ import { DragDropContext } from "react-beautiful-dnd";
 import BoardPatterns from "./BoardPatterns";
 import BoardColumn from "./BoardColumn";
 import { useCallback } from "react";
-import { set } from "react-hook-form";
-import { deleteTask } from "../../store/taskList-slice";
 
 const allTasks = [
-  { id: nanoid(), content: "adadad" },
-  { id: nanoid(), content: "2" },
-  { id: nanoid(), content: "3" },
-  { id: nanoid(), content: "3" },
-  { id: nanoid(), content: "3" },
-  { id: nanoid(), content: "3" },
-  { id: nanoid(), content: "3" },
-  { id: nanoid(), content: "3" },
-  { id: nanoid(), content: "3" },
-];
-const MondayTasks = [
   {
-    id: 1522273026653,
+    id: nanoid(),
     actPomodoro: 0,
     done: false,
     estPomodoro: 1,
     content: "sadasd",
   },
-  { id: nanoid(), content: "first task" },
-  { id: nanoid(), content: "first task" },
-  { id: nanoid(), content: "secound task" },
+  {
+    id: nanoid(),
+    actPomodoro: 0,
+    done: false,
+    estPomodoro: 1,
+    content: "sadasd",
+  },
+  {
+    id: nanoid(),
+    actPomodoro: 0,
+    done: false,
+    estPomodoro: 1,
+    content: "sadasd",
+  },
+];
+const MondayTasks = [
+  {
+    id: nanoid(),
+    actPomodoro: 0,
+    done: false,
+    estPomodoro: 1,
+    content: "sadasd",
+  },
+  {
+    id: nanoid(),
+    actPomodoro: 0,
+    done: false,
+    estPomodoro: 1,
+    content: "sadasd",
+  },
+  {
+    id: nanoid(),
+    actPomodoro: 0,
+    done: false,
+    estPomodoro: 1,
+    content: "sadasd",
+  },
+  {
+    id: nanoid(),
+    actPomodoro: 0,
+    done: false,
+    estPomodoro: 1,
+    content: "sadasd",
+  },
+  // { id: nanoid(), content: "first task" },
+  // { id: nanoid(), content: "first task" },
+  // { id: nanoid(), content: "secound task" },
 ];
 const TuesdayTasks = [
-  { id: nanoid(), content: "first task" },
-  { id: nanoid(), content: "secound task" },
+  {
+    id: nanoid(),
+    actPomodoro: 0,
+    done: false,
+    estPomodoro: 1,
+    content: "sadasd",
+  },
+  {
+    id: nanoid(),
+    actPomodoro: 0,
+    done: false,
+    estPomodoro: 1,
+    content: "sadasd",
+  },
 ];
 const WednesdayTasks = [
-  { id: nanoid(), content: "first task" },
-  { id: nanoid(), content: "secound task" },
+  {
+    id: nanoid(),
+    actPomodoro: 0,
+    done: false,
+    estPomodoro: 1,
+    content: "sadasd",
+  },
 ];
 // const ThursdayTasks = [
 //   { id: 2, content: "first task" },
@@ -117,7 +165,6 @@ const copy = (source, destination, droppableSource, droppableDestination) => {
   toCopy.id = nanoid();
 
   destClone.splice(droppableDestination.index, 0, toCopy);
-
   const result = {};
   result[droppableDestination.droppableId] = destClone;
   return result;
@@ -171,29 +218,6 @@ const onDragEnd = (result, columns, setColumns) => {
   }
 };
 
-const createSample = (columns, setColumns) => {
-  const sampleColumn = columns[0];
-  const sampleColumnItems = columns[0].items;
-  const newObj = Object.assign({}, { id: nanoid() });
-  setColumns({
-    ...columns,
-    0: { ...sampleColumn, items: [newObj, ...sampleColumnItems] },
-  });
-};
-
-// createSampleColumn => for specyfic column
-// columnId current => function inside droppableColumn component
-//
-
-// CO MOŻNA ODDAĆ ADD TASK NA DOLE DODAJE WTEDY ZA TABLICA
-// ADD TASK NA GÓRZE DODAJE WTEDY NA GÓRZE
-// EDIT TASK NAME OPEN TEXTeDITOR <===
-
-// <div> text area with button when click on title open when click outside close / accept
-
-//  ADD INPUT CLOSE TO THE ADDtASK BUTTON    !
-// ADD ONLY  TASK COUNT BUTTON NOT MORE !
-
 const WeekBoard = () => {
   const [columns, setColumns] = useState(columnsBackend);
 
@@ -209,6 +233,18 @@ const WeekBoard = () => {
     },
     [columns]
   );
+
+  const createSample = () => {
+    const sampleColumn = columns[0];
+    const sampleColumnItems = columns[0].items;
+    const newObj = Object.assign({}, { id: nanoid() });
+    newObj.estPomodoro = 1;
+    newObj.content = "sample task";
+    setColumns({
+      ...columns,
+      0: { ...sampleColumn, items: [newObj, ...sampleColumnItems] },
+    });
+  };
 
   const closeEdit = () => {
     setTempTitle("");
@@ -237,12 +273,9 @@ const WeekBoard = () => {
   };
 
   const handleChangeEstPom = (colInd, itemInd, estPom) => {
-    // edit Obj and put into new state
-    console.log("wew funkcji ? ? ");
     const toEdit = Object.assign({}, { ...columns[colInd].items[itemInd] });
     toEdit.estPomodoro = estPom;
 
-    //  boilerPlate we can create newFunction // name: SetNewObject
     const newColumn = { ...columns };
     newColumn[colInd].items[itemInd] = toEdit;
     setColumns({ ...newColumn });
@@ -271,11 +304,20 @@ const WeekBoard = () => {
               <BoardPatterns
                 id={id}
                 column={column}
+                // useStateProps
+                cardInEdit={cardInEdit}
+                tempTitle={tempTitle}
+                // functions
                 handleDeleteTask={handleDeleteTask}
+                handleOpenEditor={handleOpenEditor}
+                handleCardEdit={handleCardTitleEdit}
+                handleChangeEstPom={handleChangeEstPom}
+                handleTaskNameChange={handleTaskNameChange}
+                //  sample
+                createSample={createSample}
               />
             );
           return (
-            // <BoardColumn id={id} column={column} deleteTask={deleteTask} />
             <BoardColumn
               id={id}
               column={column}

@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-const useEstPomodoro = (initial = 1, min = 1, max = 10) => {
-  const [currentEstPomodoro, setEstPomodoro] = useState(initial);
+const useEstPomodoro = (init, min = 1, max = 9) => {
+  const [currentEstPomodoro, setEstPomodoro] = useState(init);
 
   const addEstPomodoro = () => {
     if (currentEstPomodoro >= max) return;

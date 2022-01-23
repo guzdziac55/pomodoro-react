@@ -3,7 +3,9 @@ import { Draggable } from "react-beautiful-dnd";
 import { useEffect, useState } from "react";
 import classes from "./BoardItem.module.css";
 import useEstPomodoro from "../../hooks/use-estPomodoro";
-
+import { MdOutlineDelete, MdEditNote } from "react-icons/md";
+import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+// MdOutlineDelete
 // items => columns.items
 const BoardItem = ({
   item,
@@ -17,21 +19,24 @@ const BoardItem = ({
   taskNameChange,
   changeEstPom,
 }) => {
-  // controll addRemovePom Hook
-
   const [isInitial, setIsInitial] = useState(true);
-  const [currentEstPomodoro, addEstPomodoro, removeEstPomodoro] =
-    useEstPomodoro(item.estPomodoro);
+  const [
+    currentEstPomodoro,
+    addEstPomodoro,
+    removeEstPomodoro,
+    setEstPomodoro,
+  ] = useEstPomodoro(item.estPomodoro);
 
-  console.log("initi");
+  useEffect(() => {
+    setEstPomodoro(item.estPomodoro);
+  }, [item.estPomodoro]);
+
   useEffect(() => {
     if (isInitial) {
       setIsInitial(false);
       return;
     }
 
-    console.log("call function ? ");
-    console.log(currentEstPomodoro);
     changeEstPom(columnId, index, currentEstPomodoro);
   }, [currentEstPomodoro]);
 
@@ -45,6 +50,9 @@ const BoardItem = ({
     e.target.value = "";
     e.target.value = val;
   };
+
+  // kolejna próba = > try to pyt setFunction out, and put it on component
+  // ()=> { setEstPomodoro ( prevValiue => prev + 1 )}
 
   return (
     <Draggable
@@ -61,9 +69,21 @@ const BoardItem = ({
               {...provided.dragHandleProps}
               ref={provided.innerRef}
             >
-              <div className={classes.pomodoroContainer}>
-                {/* change pomodoro EstPomodoros of current item clicked
-                  // get colIDX TaskIDX taskPom */}
+              <div className={classes.editNumber}>
+                {/* <button
+                  onClick={() => {
+                    changeEstPom(columnId, index, item.estPomodoro);
+                  }}
+                  type="button"
+                >
+                  <AiOutlinePlus className={classes.icon} />
+                </button> */}
+
+                {/* ---------------------- */}
+                {/* <span className={classes.estPomodoro}>
+                  {currentEstPomodoro}
+                </span> */}
+
                 <button
                   onClick={addEstPomodoro}
                   className={classes.pomodoroButton}
@@ -85,11 +105,13 @@ const BoardItem = ({
               >
                 {item.content}
               </span>
-              <div className={classes.editNumber}>
-                <button onClick={() => openEditor(item, columnId)}>edit</button>
-                <button onClick={() => deleteTask(index, columnId)}>
-                  delete
-                </button>
+              <div className={classes.editTask}>
+                <span onClick={() => openEditor(item, columnId)}>
+                  <MdEditNote className={classes.icon} />
+                </span>
+                <span onClick={() => deleteTask(index, columnId)}>
+                  <MdOutlineDelete className={classes.icon} />
+                </span>
               </div>
             </div>
           ) : (
@@ -109,9 +131,7 @@ const BoardItem = ({
                   onFocus={handleOnFocus}
                   autoFocus={true}
                 ></textarea>
-                <button type="button">dupa</button>
               </div>
-              {/*  pomodoroEst  */}
             </div>
           )}
         </div>

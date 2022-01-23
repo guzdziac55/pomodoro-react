@@ -3,7 +3,21 @@ import classes from "./BoardPatterns.module.css";
 import { Droppable } from "react-beautiful-dnd";
 import BoardItem from "./BoardItem";
 
-const BoardPatterns = ({ id, column, handleDeleteTask }) => {
+const BoardPatterns = ({
+  id,
+  // state
+  tempTitle,
+  column,
+
+  // function handlers
+  handleDeleteTask,
+  handleOpenEditor,
+  handleCardEdit,
+  cardInEdit,
+  handleTaskNameChange,
+  handleChangeEstPom,
+  createSample,
+}) => {
   return (
     <>
       <div className={classes.boardPattern}>
@@ -18,7 +32,15 @@ const BoardPatterns = ({ id, column, handleDeleteTask }) => {
                       item={item}
                       index={index}
                       columnId={id}
+                      //state
+                      tempTitle={tempTitle}
+                      cardInEdit={cardInEdit}
+                      //function handles
                       deleteTask={handleDeleteTask}
+                      openEditor={handleOpenEditor}
+                      cardEdit={handleCardEdit}
+                      changeEstPom={handleChangeEstPom}
+                      taskNameChange={handleTaskNameChange}
                     />
                   );
                 })}
@@ -30,7 +52,7 @@ const BoardPatterns = ({ id, column, handleDeleteTask }) => {
         <div className={classes.buttons}>
           <button
             onClick={() => {
-              console.log("add task");
+              createSample();
             }}
             className={classes.buttonAdd}
           >

@@ -2,25 +2,28 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 15px 10px;
+  padding: 10px 5px;
   border-radius: 5px;
   margin-bottom: 10px;
-  border: none;
-  width: 100%;
-  font-size: 1.6rem;
+  border: 3px #00000036 solid;
+  width: 220px;
+  /* max-width: 200px; */
   color: var(--font-black);
   overflow-wrap: break-word;
   background-color: #ffffff;
 }
-
 .title {
   overflow: hidden;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: var(--font-black);
   font-weight: 700;
   margin-left: 0.5rem;
   flex: 1;
   margin-right: 10px;
+}
+
+.boardItem:hover {
+  border: 3px #0000008f solid;
 }
 
 .pomodoroEst {
@@ -29,7 +32,7 @@
   font-size: 18px;
 }
 
-.editNumber {
+.editTask {
   display: flex;
   flex-direction: row;
 }
@@ -45,7 +48,56 @@
   height: 15px;
 }
 
-.pomodoroContainer {
+/* left edit number  */
+
+.editNumber {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  gap: 5px;
+}
+
+.editNumber button {
+  margin: 0;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  border: none;
+  color: #0000002c;
+}
+
+.editNumber .icon {
+  display: block;
+  cursor: pointer;
+  width: 45px;
+  height: 45px;
+  color: #000000f6;
+}
+
+.estPomodoro {
+  overflow: hidden;
+  font-size: 1.5rem;
+  color: var(--font-black);
+  font-weight: 700;
+  margin-left: 0.5rem;
+  flex: 1;
+  margin-right: 10px;
+}
+
+.icon {
+  display: block;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  color: #0000002c;
+}
+
+.icon:hover {
+  display: block;
+  cursor: pointer;
+  color: var(--main-color);
 }
