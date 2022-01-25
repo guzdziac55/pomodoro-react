@@ -12,7 +12,13 @@ import timerSlice from "./timer-slice";
 import configSlice from "./config-slice";
 import authSlice from "./auth-slice";
 import profileSlice from "./profile-slice";
+import weekPlanSlice from "./weekPlan-slice";
 
+const weekPlanPersist = {
+  key: "weelPlan",
+  storage,
+  blacklist: ["weekPlanChanged"],
+};
 const taskListPersist = {
   key: "tasksList",
   storage,
@@ -38,6 +44,7 @@ const userLoginReducer = combineReducers({
   profile: profileSlice.reducer,
   tasksList: taskListSlice.reducer,
   config: configSlice.reducer,
+  weekPlan: weekPlanSlice.reducer,
 });
 
 const userLogoutReducer = combineReducers({
@@ -47,6 +54,7 @@ const userLogoutReducer = combineReducers({
   profile: profileSlice.reducer,
   tasksList: persistReducer(taskListPersist, taskListSlice.reducer),
   config: persistReducer(configPersists, configSlice.reducer),
+  weekPlan: persistReducer(weekPlanPersist, weekPlanSlice.reducer),
 });
 
 const rootReducer = (state, action) => {

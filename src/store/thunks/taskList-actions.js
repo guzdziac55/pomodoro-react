@@ -3,7 +3,7 @@ import { replaceTaskList, replaceTemplatesList } from "../taskList-slice";
 import { defaultConfigState } from "../config-slice";
 import { defaultProfileState } from "../profile-slice";
 import { defaultWeekPlan } from "../weekPlan-slice";
-import { setWeekPlan } from "../weekPlan-slice";
+import { replaceWeekPlan } from "../weekPlan-slice";
 import { setConfig } from "../config-slice";
 import { database } from "../../firebase";
 import { ref, update } from "firebase/database";
@@ -14,30 +14,12 @@ export {
   sendFirebaseTaskList,
   sendFirebaseSettings,
   sendFireBaseUserProfile,
-  // added Fetch
-  fetchFirebaseWeekPlan,
-  fetchFirebaseData,
-  fetchFirebaseUserData,
-  //  new one
+  // fetchFirebaseWeekPlan, // <========== to delete !
   sendFirebaseWeekPlan,
-};
-
-// FIREBASE FETCH ASYNC WITHOUT DISPATCH
-
-const fetchFirebaseWeekPlan = async (uid) => {
-  const fetchRequest = async () => {
-    const dataRef = database.ref("users/" + uid + "/WeekPlan");
-    return dataRef;
-  };
-
-  try {
-    const dataRef = await fetchRequest();
-    const snapDataRef = await dataRef.once("value");
-    const data = snapDataRef.val();
-    return data;
-  } catch (err) {
-    console.log(err);
-  }
+  fetchFirebaseUserData,
+  // added Fetch
+  fetchFirebaseData,
+  //  new one
 };
 
 const sendFirebaseWeekPlan = (weekPlan, uid) => {
@@ -292,8 +274,8 @@ const fetchFirebaseUserData = (uid) => {
       const tasksRef = database.ref("users/" + uid + "/TasksList");
       const settingsRef = database.ref("users/" + uid + "/Settings");
       const userProfileRef = database.ref("users/" + uid + "/UserProfile");
-      //  weekPlan
       const weekPlanRef = database.ref("users/" + uid + "/WeekPlan");
+      //  weekPlan
 
       return [templatesRef, tasksRef, settingsRef, userProfileRef, weekPlanRef];
     };
@@ -313,12 +295,13 @@ const fetchFirebaseUserData = (uid) => {
       const settingsData = snapshotSettings.val();
       const userProfileData = snapshotUserProfile.val();
       const weekPlanData = snapshotWeekPlan.val();
+      // console.log(weekPlanData);
       // SET DATA TO REDUX STATES
       dispatch(replaceTemplatesList(templatesListData || []));
       dispatch(replaceTaskList(taskListData || []));
       dispatch(setConfig(settingsData || { ...defaultConfigState }));
       dispatch(setProfile(userProfileData || { ...defaultProfileState }));
-      dispatch(setWeekPlan(weekPlanData || { ...defaultWeekPlan }));
+      dispatch(replaceWeekPlan(weekPlanData || { ...defaultWeekPlan }));
 
       dispatch(
         showNotification({
@@ -376,4 +359,22 @@ const fetchFirebaseUserData = (uid) => {
 //       );
 //     }
 //   };
+// };
+
+// FIREBASE FETCH ASYNC WITHOUT DISPATCH
+
+// const fetchFirebaseWeekPlan = async (uid) => {
+//   const fetchRequest = async () => {
+//     const dataRef = database.ref("users/" + uid + "/WeekPlan");
+//     return dataRef;
+//   };
+
+//   try {
+//     const dataRef = await fetchRequest();
+//     const snapDataRef = await dataRef.once("value");
+//     const data = snapDataRef.val();
+//     return data;
+//   } catch (err) {
+//     console.log(err);
+//   }
 // };

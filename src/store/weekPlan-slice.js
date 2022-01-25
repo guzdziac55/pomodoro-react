@@ -33,42 +33,42 @@ export const defaultWeekPlan = {
     name: "Sunday",
   },
 };
+//    here our reducer functions
+// actions to implement:
+
+// onDragEnd
+//  move // copy // reorder <== same column
+// destId // sourceID // sInd // dInd
+// or put all full object into action => result obj
 
 const weekPlanSlice = createSlice({
   name: "weekPlan",
   initialState: {
-    weekPlan: [], // or { }   // setWeekPlan with dispatch from firebase
+    weekPlan: [],
     weekPlanChanged: false,
   },
   reducers: {
-    //    here our reducer functions
-    // actions to implement:
-
-    // onDragEnd
-    //  move // copy // reorder <== same column
-    // destId // sourceID // sInd // dInd
-    // or put all full object into action => result obj
-
     replaceWeekPlan(state, action) {
       state.weekPlan = action.payload;
     },
 
     setWeekPlan(state, action) {
+      console.log("set week plan ");
       return action.payload;
     },
 
     addSampleTask(state, action) {
-      //  desturct {column} = action.payload
-
-      // payload nameTask
       state.weekPlan[0].items.push({ id: nanoid(), content: "dupa content" });
       state.weekPlanChanged = true;
       toast.info("Task item add to samples");
     },
-
-    //  edit title =>  findTaskWeek with ID. and find his index
   },
 });
+
+// selectors
+
+export const selectWeekPlan = (state) => state.weekPlan.weekPlan; // short state.weekPlan
+export const selectWeekPlanChanged = (state) => state.weekPlan.weekPlanChanged;
 
 export const { replaceWeekPlan, setWeekPlan, addSampleTask } =
   weekPlanSlice.actions;

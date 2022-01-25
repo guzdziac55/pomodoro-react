@@ -4,14 +4,13 @@ import { useState, useCallback } from "react";
 import classes from "./WeekBoard.module.css";
 import { DragDropContext } from "react-beautiful-dnd";
 import BoardPatterns from "./BoardPatterns";
-import BoardColumn from "./BoardColumn";
-import {
-  fetchFirebaseData,
-  sendFirebaseWeekPlan,
-  fetchFirebaseWeekPlan,
-} from "../../store/thunks/taskList-actions";
 import { useDispatch, useSelector } from "react-redux"; // for save rrors
-import { selectCurrentUser } from "../../store/auth-slice";
+import BoardColumn from "./BoardColumn";
+import // fetchFirebaseData,
+
+"../../store/thunks/taskList-actions";
+
+import { selectWeekPlan } from "../../store/weekPlan-slice";
 
 const reorder = (list, startIndex, endIndex) => {
   const result = [...list.items];
@@ -80,34 +79,11 @@ const onDragEnd = (result, columns, setColumns) => {
   }
 };
 
+// const [columns, setColumns] = useState("");
 const WeekBoard = () => {
-  // const [columns, setColumns] = useState("");
-  const [columns, setColumns] = useState("");
-  const [cardInEdit, setCardInEdit] = useState(null); // task id
-  const [tempTitle, setTempTitle] = useState(""); // task detail => title
-
-  const currentUser = useSelector(selectCurrentUser);
-  const dispatch = useDispatch();
-
-  const handleSendFirebaseWeekPlan = () => {
-    dispatch(sendFirebaseWeekPlan(columns, currentUser.uid));
-  };
-
-  //  when component start
-  useEffect(() => {
-    async function fetchMyAPI() {
-      const data = await fetchFirebaseWeekPlan(currentUser.uid);
-      // const dupa = await data.json();
-      console.log(data);
-
-      setColumns(data);
-    }
-    fetchMyAPI();
-    // const data = dispatch(fetchFirebaseData(currentUser.uid, "WeekPlan"));
-    // }
-
-    // setColumns();
-  }, []);
+  const columns = useSelector(selectWeekPlan);
+  const [cardInEdit, setCardInEdit] = useState(null);
+  const [tempTitle, setTempTitle] = useState("");
 
   const handleDeleteTask = useCallback(
     (itemInd, colInd) => {
