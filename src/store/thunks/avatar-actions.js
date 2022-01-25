@@ -11,8 +11,6 @@ export const getRandomAvatar = (name) => {
       })
     );
 
-    console.log("wewnątrz getrandomavatar");
-
     const sendRequest = async () => {
       const response = fetch(`https://api.multiavatar.com/${name}`);
       return response;

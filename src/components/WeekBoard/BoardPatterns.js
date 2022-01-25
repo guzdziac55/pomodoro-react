@@ -8,7 +8,8 @@ const BoardPatterns = ({
   // state
   tempTitle,
   column,
-
+  ///////
+  sendFirebase,
   // function handlers
   handleDeleteTask,
   handleOpenEditor,
@@ -57,6 +58,9 @@ const BoardPatterns = ({
             className={classes.buttonAdd}
           >
             Add Task
+          </button>
+          <button className={classes.buttonSave} onClick={sendFirebase}>
+            SAVE PLAN
           </button>
         </div>
       </div>

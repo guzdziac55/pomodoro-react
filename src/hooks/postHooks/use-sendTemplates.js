@@ -8,6 +8,11 @@ import {
   selectTemplateList,
 } from "../../store/taskList-slice";
 
+// detecting changes on taskTemplate
+// after detec calls function send template
+
+//  we need to sendFirebase after click
+
 const useSendTemplates = () => {
   const dispatch = useDispatch();
   const [isInitial, setIsInitial] = useState(true);

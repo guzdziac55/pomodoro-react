@@ -30,6 +30,8 @@ const taskListSlice = createSlice({
       state.tasksList = [...state.tasksList, ...taskArrayToAdd];
       state.taskListChanged = true;
       toast.info("Template tasks added");
+      // template change detected and send to
+      // firebase after change deteced
     },
 
     // Templates

@@ -1,9 +1,5 @@
-.title {
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  color: #ffffff;
-  font-size: 1.5rem;
+.columnContainer {
+  margin-right: 20px;
 }
 
 .boardColumn {
@@ -13,7 +9,15 @@
   border-radius: 10px;
   min-width: 150px;
   min-height: 60px;
-  margin-right: 20px;
+  /* margin-right: 20px; */
   /* transition: all 2.3s ease-out; */
   background-color: var(--main-light);
+}
+
+.title {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  color: #ffffff;
+  font-size: 1.5rem;
 }

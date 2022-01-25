@@ -9,6 +9,10 @@ import { sendFirebaseTaskList } from "../../store/thunks/taskList-actions";
 
 const useSendTaskList = () => {
   const [isInitial, setIsInitial] = useState(true);
+  // we can pickup taskList inside thunk !
+  // we can pickup userUID inside thunk !
+
+  // MIALEM NA MYSLI TUTUAJ CHYBA ŻE W DISPATCH MOZEMY UŻYC SELEKTORA
   const taskList = useSelector(selectTaskList);
   const currentUser = useSelector(selectCurrentUser);
   const isTaskChanged = useSelector(selectTaskListChanged);

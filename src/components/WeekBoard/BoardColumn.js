@@ -18,7 +18,7 @@ const BoardColumn = ({
   handleChangeEstPom,
 }) => {
   return (
-    <div>
+    <div className={classes.columnContainer}>
       <h1 className={classes.title}>{column.name}</h1>
       <Droppable droppableId={id} key={id}>
         {(provided, snapshot) => (
@@ -27,7 +27,8 @@ const BoardColumn = ({
             {...provided.droppableProps}
             ref={provided.innerRef}
           >
-            {column.items.map((item, index) => {
+            {column.items?.map((item, index) => {
+              // console.log(item);
               return (
                 //  our draggable
                 <BoardItem
