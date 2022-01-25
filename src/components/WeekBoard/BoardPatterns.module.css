@@ -56,3 +56,18 @@
 .buttonAdd:hover {
   background-color: #cfcfcf;
 }
+
+.buttonSave {
+  padding: 10px;
+  color: #ffffff;
+  border-radius: 5px;
+  border-style: none;
+  background-color: #173f0d;
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.buttonSave:hover {
+  background-color: #49b82d;
+}
