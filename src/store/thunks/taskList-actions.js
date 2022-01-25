@@ -301,7 +301,7 @@ const fetchFirebaseUserData = (uid) => {
     try {
       const [templatesRef, tasksRef, settingsRef, userProfileRef, weekPlanRef] =
         await fetchRequest();
-
+      console.log("zmiana");
       const snapshotTemplates = await templatesRef.once("value");
       const snapshotTasks = await tasksRef.once("value");
       const snapshotSettings = await settingsRef.once("value");
