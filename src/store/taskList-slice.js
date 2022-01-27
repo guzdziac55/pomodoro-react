@@ -113,6 +113,7 @@ const taskListSlice = createSlice({
     editTaskItem(state, action) {
       state.taskListChanged = true;
       const editData = action.payload;
+      // destruct here => {id.title,note,estPomodoro}
       const editedItem = state.tasksList.find(
         (task) => task.id === editData.id
       );

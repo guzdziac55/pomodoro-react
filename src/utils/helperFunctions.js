@@ -6,3 +6,9 @@ export const generateAvatarURL = (avatarId) =>
 //  put into uttils  // helper functions
 export const generateRandomId = () =>
   Math.floor(new Date().valueOf() * Math.random());
+
+export const handleOnFocus = (e) => {
+  const val = e.target.value;
+  e.target.value = "";
+  e.target.value = val;
+};

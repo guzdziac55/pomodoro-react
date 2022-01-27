@@ -5,27 +5,32 @@ import classes from "./BoardItem.module.css";
 import useEstPomodoro from "../../hooks/use-estPomodoro";
 import { MdOutlineDelete, MdEditNote } from "react-icons/md";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import { useDispatch } from "react-redux";
+// ACTION
+import { deleteTask, editTaskContent } from "../../store/weekPlan-slice";
+import { handleOnFocus } from "../../utils/helperFunctions";
+
 // MdOutlineDelete
 // items => columns.items
 const BoardItem = ({
   item,
   index,
   columnId,
-  deleteTask,
-  openEditor,
-  cardEdit,
-  tempTitle,
-  cardInEdit,
-  taskNameChange,
+
   changeEstPom,
 }) => {
   const [isInitial, setIsInitial] = useState(true);
+  const [cardInEdit, setCardInEdit] = useState(null);
+  const [taskContent, setTaskContent] = useState("");
+  // HOOK FOR TASK CONTENT TEMPLATE WITH HOOK
   const [
     currentEstPomodoro,
     addEstPomodoro,
     removeEstPomodoro,
     setEstPomodoro,
   ] = useEstPomodoro(item.estPomodoro);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setEstPomodoro(item.estPomodoro);
@@ -36,23 +41,35 @@ const BoardItem = ({
       setIsInitial(false);
       return;
     }
-
     changeEstPom(columnId, index, currentEstPomodoro);
   }, [currentEstPomodoro]);
 
   const handleKeyDown = (e, callback) => {
-    if (e.keyCode === 13) callback(e, columnId); // call edit with e.target.value ?
-    console.log("key down");
+    if (e.keyCode === 13) callback();
   };
 
-  const handleOnFocus = (e) => {
-    const val = e.target.value;
-    e.target.value = "";
-    e.target.value = val;
+  const handleDeleteTask = () => {
+    dispatch(deleteTask({ index, columnId })); // deleteDispatch action
   };
 
-  // kolejna próba = > try to pyt setFunction out, and put it on component
-  // ()=> { setEstPomodoro ( prevValiue => prev + 1 )}
+  const handleEditTaskContent = () => {
+    if (taskContent.length < 1) {
+      dispatch(deleteTask({ index, columnId }));
+    } else {
+      dispatch(editTaskContent({ item, taskContent, columnId, index }));
+    }
+    setCardInEdit(null);
+    setTaskContent("");
+  };
+
+  const openEditor = (item) => {
+    setCardInEdit(item.id);
+    setTaskContent(item.content);
+  };
+
+  const taskContentOnChange = (e) => {
+    setTaskContent(e.target.value);
+  };
 
   return (
     <Draggable
@@ -95,7 +112,7 @@ const BoardItem = ({
                 <span onClick={() => openEditor(item, columnId)}>
                   <MdEditNote className={classes.icon} />
                 </span>
-                <span onClick={() => deleteTask(index, columnId)}>
+                <span onClick={() => handleDeleteTask()}>
                   <MdOutlineDelete className={classes.icon} />
                 </span>
               </div>
@@ -110,10 +127,10 @@ const BoardItem = ({
               <div>
                 <textarea
                   className={classes.textEditor}
-                  value={tempTitle}
-                  onChange={taskNameChange}
-                  onBlur={(e) => cardEdit(e, columnId)}
-                  onKeyDown={(e) => handleKeyDown(e, cardEdit)}
+                  value={taskContent}
+                  onChange={taskContentOnChange}
+                  onBlur={(e) => handleEditTaskContent()} // dispatch with action.payload
+                  onKeyDown={(e) => handleKeyDown(e, handleEditTaskContent)} // dispatch witch action payload
                   onFocus={handleOnFocus}
                   autoFocus={true}
                 ></textarea>

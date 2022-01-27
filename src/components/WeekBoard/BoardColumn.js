@@ -5,17 +5,10 @@ import BoardItem from "./BoardItem";
 
 const BoardColumn = ({
   id,
-  // state
   tempTitle,
-  column,
-
-  // function handlers
-  handleDeleteTask,
-  handleOpenEditor,
-  handleCardEdit,
   cardInEdit,
-  handleTaskNameChange,
-  handleChangeEstPom,
+  column,
+  // state
 }) => {
   return (
     <div className={classes.columnContainer}>
@@ -38,12 +31,6 @@ const BoardColumn = ({
                   //state
                   tempTitle={tempTitle}
                   cardInEdit={cardInEdit}
-                  //function handles
-                  deleteTask={handleDeleteTask}
-                  openEditor={handleOpenEditor}
-                  cardEdit={handleCardEdit}
-                  changeEstPom={handleChangeEstPom}
-                  taskNameChange={handleTaskNameChange}
                 />
               );
             })}
