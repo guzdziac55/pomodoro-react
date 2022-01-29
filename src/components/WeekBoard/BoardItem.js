@@ -6,47 +6,41 @@ import useEstPomodoro from "../../hooks/use-estPomodoro";
 import { MdOutlineDelete, MdEditNote } from "react-icons/md";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { useDispatch } from "react-redux";
-// ACTION
-import { deleteTask, editTaskContent } from "../../store/weekPlan-slice";
-import { handleOnFocus } from "../../utils/helperFunctions";
 
-// MdOutlineDelete
-// items => columns.items
-const BoardItem = ({
-  item,
-  index,
-  columnId,
+import {
+  deleteTask,
+  editTaskContent,
+  changeEstPomodoro,
+} from "../../store/weekPlan-slice";
 
-  changeEstPom,
-}) => {
+import TextArea from "./TextArea";
+
+const BoardItem = ({ item, index, columnId }) => {
+  const dispatch = useDispatch();
+
+  const { estPomodoro } = { ...item };
   const [isInitial, setIsInitial] = useState(true);
   const [cardInEdit, setCardInEdit] = useState(null);
   const [taskContent, setTaskContent] = useState("");
-  // HOOK FOR TASK CONTENT TEMPLATE WITH HOOK
+
   const [
     currentEstPomodoro,
     addEstPomodoro,
     removeEstPomodoro,
     setEstPomodoro,
-  ] = useEstPomodoro(item.estPomodoro);
-
-  const dispatch = useDispatch();
+  ] = useEstPomodoro(estPomodoro);
 
   useEffect(() => {
-    setEstPomodoro(item.estPomodoro);
-  }, [item.estPomodoro]);
+    setEstPomodoro((prevState) => setEstPomodoro(prevState));
+  }, [estPomodoro]);
 
   useEffect(() => {
     if (isInitial) {
       setIsInitial(false);
       return;
     }
-    changeEstPom(columnId, index, currentEstPomodoro);
-  }, [currentEstPomodoro]);
-
-  const handleKeyDown = (e, callback) => {
-    if (e.keyCode === 13) callback();
-  };
+    dispatch(changeEstPomodoro({ item, index, columnId, currentEstPomodoro }));
+  }, [currentEstPomodoro, dispatch]);
 
   const handleDeleteTask = () => {
     dispatch(deleteTask({ index, columnId })); // deleteDispatch action
@@ -80,7 +74,7 @@ const BoardItem = ({
       {(provided, snapshot) => (
         <div>
           {cardInEdit !== item.id ? ( // when edit mode or normalTaskView
-            <div // BOARD ITEM
+            <div
               className={classes.boardItem}
               {...provided.draggableProps}
               {...provided.dragHandleProps}
@@ -93,7 +87,7 @@ const BoardItem = ({
                 >
                   <AiOutlinePlus className={classes.icon} />
                 </button>
-                <span className={classes.estPomodoro}>{item.estPomodoro}</span>
+                <span className={classes.estPomodoro}>{estPomodoro}</span>
                 <button
                   onClick={removeEstPomodoro}
                   className={classes.pomodoroButton}
@@ -106,7 +100,7 @@ const BoardItem = ({
                 className={classes.title} // add hover To active Edit Mode
                 onClick={() => openEditor(item, columnId)}
               >
-                {item.content}
+                {item.title}
               </span>
               <div className={classes.editTask}>
                 <span onClick={() => openEditor(item, columnId)}>
@@ -118,22 +112,19 @@ const BoardItem = ({
               </div>
             </div>
           ) : (
-            <div // BOARD ITEM EDIT MODE
+            // EDIT MODE
+            <div
               {...provided.draggableProps}
               {...provided.dragHandleProps}
               ref={provided.innerRef}
               className={classes.boardItem}
             >
               <div>
-                <textarea
-                  className={classes.textEditor}
+                <TextArea
                   value={taskContent}
                   onChange={taskContentOnChange}
-                  onBlur={(e) => handleEditTaskContent()} // dispatch with action.payload
-                  onKeyDown={(e) => handleKeyDown(e, handleEditTaskContent)} // dispatch witch action payload
-                  onFocus={handleOnFocus}
-                  autoFocus={true}
-                ></textarea>
+                  onAction={handleEditTaskContent}
+                ></TextArea>
               </div>
             </div>
           )}

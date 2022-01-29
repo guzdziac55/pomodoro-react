@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
 import { toast } from "react-toastify";
 import { generateRandomId } from "../utils/helperFunctions";
+import { ObjTask } from "../utils/helperFunctions";
 
 const taskListSlice = createSlice({
   name: "tasksList",
@@ -67,26 +68,16 @@ const taskListSlice = createSlice({
       state.tasksTemplates = newTemplatesList;
     },
 
-    // TASKS
-
     replaceTaskList(state, action) {
       const newTaskList = action.payload;
       state.tasksList = newTaskList;
     },
 
     addTask(state, action) {
-      const newTask = action.payload;
-      const id = Math.floor(new Date().valueOf() * Math.random());
+      const { estPomodoro, note, title } = action.payload;
+      const newObj = new ObjTask(title, note, estPomodoro);
+      state.tasksList.push(newObj);
       state.taskListChanged = true;
-      state.tasksList.push({
-        id: id,
-        title: newTask.title,
-        note: newTask.note,
-        actPomodoro: 0,
-        estPomodoro: newTask.estPomodoro,
-        done: false,
-      });
-
       toast.info("Task added");
     },
 
@@ -111,18 +102,19 @@ const taskListSlice = createSlice({
     },
 
     editTaskItem(state, action) {
-      state.taskListChanged = true;
-      const editData = action.payload;
-      // destruct here => {id.title,note,estPomodoro}
-      const editedItem = state.tasksList.find(
-        (task) => task.id === editData.id
-      );
+      const { id, estPomodoro, note, title } = action.payload;
+      const editingTask = state.tasksList.find((task) => task.id === id);
 
-      editedItem.id = editData.id;
-      editedItem.title = editData.title;
-      editedItem.note = editData.note;
-      editedItem.estPomodoro = editData.estPomodoro;
+      editingTask.id = id;
+      editingTask.title = title;
+      editingTask.note = note;
+      editingTask.estPomodoro = estPomodoro;
+
+      state.taskListChanged = true;
       toast.info("Task edited");
+      // const editedTask = Object.assign({}, id, estPomodoro, note, title);
+      // const newObj = new ObjTask(id, title, note, estPomodoro);
+      // editingTask = newObj;
     },
 
     deleteAllTasks(state) {

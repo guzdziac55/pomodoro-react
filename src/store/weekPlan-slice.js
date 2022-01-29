@@ -2,15 +2,11 @@ import { createSelector } from "reselect";
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import { nanoid } from "nanoid";
-import { MdToday } from "react-icons/md";
-import { act } from "react-dom/cjs/react-dom-test-utils.production.min";
-
+import { ObjTask } from "../utils/helperFunctions";
 // generate random id ?     id: nanoid()
-
 export const defaultWeekPlan = {
   [0]: {
     name: "Tasks",
-    // items:  put default taskItems
   },
   [1]: {
     name: "Monday",
@@ -34,13 +30,6 @@ export const defaultWeekPlan = {
     name: "Sunday",
   },
 };
-//    here our reducer functions
-// actions to implement:
-
-// onDragEnd
-//  move // copy // reorder <== same column
-// destId // sourceID // sInd // dInd
-// or put all full object into action => result obj
 
 const weekPlanSlice = createSlice({
   name: "weekPlan",
@@ -54,50 +43,94 @@ const weekPlanSlice = createSlice({
     },
 
     setWeekPlan(state, action) {
-      console.log("set week plan ");
       return action.payload;
     },
 
     deleteTask(state, action) {
       const { index, columnId } = { ...action.payload };
       state.weekPlan[columnId].items.splice(index, 1);
+      state.weekPlanChanged = true;
       // we can use filter here also !
     },
+
+    // actPomodoro:
+    // 0
+    // done:
+    // false
+    // estPomodoro:
+    // 2
+    // id:
+    // 1170582183564
+    // note:
+    // ""
+    // title:
+    // "sadasd"
 
     editTaskContent(state, action) {
       console.log(action.taskContent);
       const { item, taskContent, columnId, index } = { ...action.payload };
-      state.weekPlan[columnId].items[index].content = taskContent;
+      state.weekPlan[columnId].items[index].title = taskContent;
+      state.weekPlanChanged = true;
     },
-
-    //  wrzucanie do pustej move i copy = > https://redux-toolkit.js.org/usage/immer-reducers
 
     addSampleTask(state, action) {
-      state.weekPlan[0].items.push({ id: nanoid(), content: "dupa content" });
+      const taskContent = action.payload;
+      const objSample = new ObjTask(undefined, taskContent);
+
+      if (state.weekPlan[0].hasOwnProperty("items")) {
+        state.weekPlan[0].items.push(objSample);
+      } else {
+        const emptyArray = [];
+        emptyArray.push(objSample);
+        state.weekPlan[0].items = emptyArray;
+      }
       state.weekPlanChanged = true;
-      toast.info("Task item add to samples");
     },
 
-    //  MOVE ACTIONS:
+    changeEstPomodoro(state, action) {
+      const { columnId, index, currentEstPomodoro } = action.payload;
+      console.log("payload action est pomodoro");
+      console.log(currentEstPomodoro);
+
+      state.weekPlan[columnId].items[index].estPomodoro = currentEstPomodoro;
+      state.weekPlanChanged = true;
+    },
 
     copySampleTask(state, action) {
       const { srcItem, destItem, srcColumn, destColumn } = action.payload;
 
-      if (state.weekPlan[destColumn].items.length >= 10) return;
-
       const taskToCopy = state.weekPlan[srcColumn].items[srcItem];
       const taskToAdd = Object.assign({}, taskToCopy);
       taskToAdd.id = nanoid();
-      state.weekPlan[destColumn].items.splice(destItem, 0, taskToAdd);
+
+      if (state.weekPlan[destColumn].items?.length >= 10) return;
+      if (state.weekPlan[destColumn].items) {
+        state.weekPlan[destColumn].items.splice(destItem, 0, taskToAdd);
+      } else {
+        // FIREBASE PROBLEM WITH STORING EMPTY ARRAYS
+        //  CHANGE IT LATER FOR OBJECT STORING
+        const emptyArray = [];
+        emptyArray.push(taskToAdd);
+        state.weekPlan[destColumn].items = emptyArray;
+      }
+      state.weekPlanChanged = true;
     },
 
     moveTask(state, action) {
       const { srcItem, destItem, srcColumn, destColumn } = action.payload;
+      const [taskToMove] = state.weekPlan[srcColumn].items?.splice(srcItem, 1);
 
-      if (state.weekPlan[destColumn].items.length >= 10) return;
-
-      const [taskToMove] = state.weekPlan[srcColumn].items.splice(srcItem, 1);
-      state.weekPlan[destColumn].items.splice(destItem, 0, taskToMove);
+      if (state.weekPlan[destColumn].items?.length >= 10) return;
+      if (state.weekPlan[destColumn].items) {
+        state.weekPlan[destColumn].items.splice(destItem, 0, taskToMove);
+      } else {
+        // FIREBASE PROBLEM WITH STORING EMPTY ARRAYS
+        //  CHANGE IT LATER FOR OBJECT STORING
+        const emptyArray = [];
+        emptyArray.push(taskToMove);
+        state.weekPlan[destColumn].items = emptyArray;
+        state.weekPlanChanged = true;
+      }
     },
   },
 });
@@ -116,6 +149,7 @@ export const {
   copySampleTask,
   reorderTask,
   moveTask,
+  changeEstPomodoro,
 } = weekPlanSlice.actions;
 
 export const weekPlanAction = weekPlanSlice.actions;

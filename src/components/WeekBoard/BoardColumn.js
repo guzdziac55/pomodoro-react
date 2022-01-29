@@ -21,7 +21,6 @@ const BoardColumn = ({
             ref={provided.innerRef}
           >
             {column.items?.map((item, index) => {
-              // console.log(item);
               return (
                 //  our draggable
                 <BoardItem

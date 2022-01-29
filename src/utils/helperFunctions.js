@@ -1,3 +1,5 @@
+import { nanoid } from "@reduxjs/toolkit";
+
 export const randomString = () => Math.random().toString(36).substr(2, 5);
 
 export const generateAvatarURL = (avatarId) =>
@@ -12,3 +14,18 @@ export const handleOnFocus = (e) => {
   e.target.value = "";
   e.target.value = val;
 };
+
+// with constructor function
+export function ObjTask(
+  id = nanoid(),
+  title = "sample title",
+  note = "",
+  estPomodoro = 1
+) {
+  this.id = id;
+  this.title = title;
+  this.note = note;
+  this.actPomodoro = 0;
+  this.estPomodoro = estPomodoro;
+  this.done = false;
+}

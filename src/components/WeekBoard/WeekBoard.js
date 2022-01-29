@@ -6,11 +6,7 @@ import { DragDropContext } from "react-beautiful-dnd";
 import BoardPatterns from "./BoardPatterns";
 import { useDispatch, useSelector } from "react-redux"; // for save rrors
 import BoardColumn from "./BoardColumn";
-import {
-  copySampleTask,
-  reorderTask,
-  moveTask,
-} from "../../store/weekPlan-slice";
+import { copySampleTask, moveTask } from "../../store/weekPlan-slice";
 import "../../store/thunks/taskList-actions";
 
 import { selectWeekPlan } from "../../store/weekPlan-slice";
@@ -24,7 +20,7 @@ const onDragEnd = (dispatch, { source, destination }) => {
   const srcColumn = Number(srcSColumn);
   const destColumn = Number(destSColumn);
 
-  if (srcColumn === 0)
+  if (srcColumn === 0 && destColumn !== 0)
     dispatch(
       copySampleTask({
         srcItem,
@@ -34,7 +30,7 @@ const onDragEnd = (dispatch, { source, destination }) => {
       })
     );
 
-  if (srcColumn !== 0)
+  if ((srcColumn === 0 && destColumn === 0) || srcColumn !== 0)
     dispatch(moveTask({ srcItem, destItem, srcColumn, destColumn }));
 };
 
