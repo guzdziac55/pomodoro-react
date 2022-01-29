@@ -39,6 +39,16 @@ The application was written for educational purposes. I am a novice programmer w
 - React-Toastify - for notifications.
 - Css modules for styling.
 
+## What could be done better
+
+#### A list of things that the current one I could be able to improve:
+
+- better props passing to child components.
+- firebase main state should be done with objects => firebase convert empty arrays for falsy values.
+- many smaller components, greater reusability.
+- not implementing scss from the very beginning.
+- more later ...
+
 # Getting Started
 
 ## Prerequisites
