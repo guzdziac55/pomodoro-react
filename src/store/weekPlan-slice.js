@@ -76,7 +76,7 @@ const weekPlanSlice = createSlice({
 
     addSampleTask(state, action) {
       const taskContent = action.payload;
-      const objSample = new ObjTask(undefined, taskContent);
+      const objSample = new ObjTask(taskContent);
 
       if (state.weekPlan[0].hasOwnProperty("items")) {
         state.weekPlan[0].items.push(objSample);

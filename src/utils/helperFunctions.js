@@ -16,13 +16,8 @@ export const handleOnFocus = (e) => {
 };
 
 // with constructor function
-export function ObjTask(
-  id = nanoid(),
-  title = "sample title",
-  note = "",
-  estPomodoro = 1
-) {
-  this.id = id;
+export function ObjTask(title = "sample title", note = "", estPomodoro = 1) {
+  this.id = nanoid();
   this.title = title;
   this.note = note;
   this.actPomodoro = 0;

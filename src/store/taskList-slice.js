@@ -77,6 +77,7 @@ const taskListSlice = createSlice({
     addTask(state, action) {
       const { estPomodoro, note, title } = action.payload;
       const newObj = new ObjTask(title, note, estPomodoro);
+
       state.tasksList.push(newObj);
       state.taskListChanged = true;
       toast.info("Task added");
