@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, setState, useEffect } from "react";
 import classes from "./HeaderMenuTab.module.css";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -27,18 +27,54 @@ const hoverVariant = {
   },
 };
 
+const variantInitial = {
+  hidden: {
+    opacity: 0,
+    y: "-100vw",
+  },
+  visable: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", mass: 0.4, ease: "easeOut", duration: 3 },
+  },
+};
+
+const variantStart = {
+  hidden: {
+    opacity: 1,
+    y: 0,
+  },
+  visable: {
+    y: 0,
+    opacity: 1,
+    scale: [1, 1.1, 1, 1.1, 1],
+    transition: { repeat: Infinity, type: "yoyo", duration: 7 },
+  },
+};
+
 const HeaderMenuTab = ({ onSetOpen }) => {
   const isLogged = useSelector(selectCurrentUser);
   const { authLogout } = useAuthLogout();
   const [openSettingsModal, setOpenSettingsModal] = useState(false);
   const [openProfileModal, setOpenProfileModal] = useState(false);
+
+  const [initMotion, setInitMotion] = useState(true);
+
   const profileFormRef = useRef();
   const settingsFormRef = useRef();
 
   const { authLogin } = useAuthLogin();
-
   const handleLogout = () => {
     authLogout();
+  };
+
+  useEffect(() => {
+    setInitMotion(false);
+  }, []);
+
+  const checkVariant = () => {
+    if (initMotion) return variantInitial;
+    if (!initMotion) return variantStart;
   };
 
   const handleLogin = () => {
@@ -152,8 +188,10 @@ const HeaderMenuTab = ({ onSetOpen }) => {
             </Link>
             {/* <Link to="/login"> */}
             <motion.button
+              variants={checkVariant()}
+              initial="hidden"
+              animate="visable"
               onClick={handleLogin}
-              variants={hoverVariant}
               whileHover="hover"
               className={classes.buttonAcc}
             >

@@ -21,7 +21,7 @@
 .buttonAcc {
   display: flex;
   width: 100%;
-  padding: 10px 10px;
+  padding: 10px 15px;
   align-items: center;
   justify-content: center;
   flex-direction: row;
@@ -29,6 +29,7 @@
   color: var(--font-main);
   font-size: 1.4rem;
   border-radius: 5px;
+  cursor: pointer;
   border-style: none;
 }
 
@@ -50,6 +51,11 @@
     padding: 10px 15px;
   }
 
+  .buttonAcc {
+    width: 100%;
+    padding: 10px 15px;
+  }
+
   .button > span {
     display: none;
     visibility: hidden;
@@ -63,6 +69,11 @@
 /* ///// MOBILE */
 @media (max-width: 550px) {
   .button {
+    width: 100%;
+    padding: 5px 10px;
+  }
+
+  .buttonAcc {
     width: 100%;
     padding: 5px 10px;
   }
