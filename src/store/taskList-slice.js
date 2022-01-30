@@ -71,6 +71,7 @@ const taskListSlice = createSlice({
     replaceTaskList(state, action) {
       const newTaskList = action.payload;
       state.tasksList = newTaskList;
+      toast.info("New tasklist loaded");
     },
 
     addTask(state, action) {
@@ -176,13 +177,10 @@ const taskListSlice = createSlice({
 });
 
 export const {
-  // template
   replaceTemplatesList,
   addTemplateToList,
   newTaskTemplate,
   removeTaskTemplate,
-
-  //tasks
 
   replaceTaskList,
   addTask,
@@ -196,12 +194,12 @@ export const {
   updateTask,
 } = taskListSlice.actions;
 
-// Template selectors
-
 export const selectTemplateList = (state) => state.tasksList.tasksTemplates;
 export const selectTemplateChanged = (state) => state.tasksList.templateChanged;
-//Tasks selectors
 export const selectTaskList = (state) => state.tasksList.tasksList;
+
+export const taskListSpecyficTest = (state) => state.taskList;
+
 export const selectTaskListChanged = (state) => state.tasksList.taskListChanged;
 export const selectActiveTask = (state) => state.tasksList.activeTask;
 

@@ -7,30 +7,33 @@ import {
   MdDoneAll,
   MdDeleteSweep,
   MdSave,
+  MdEditCalendar,
 } from "react-icons/md";
 import SaveTemplateModal from "../SaveTemplateModal/SaveTemplateModal";
 import { useClickOutside } from "../../hooks/use-clickOutside";
+import GetCalendarButton from "./TaskItem/GetCalendarButton";
 import {
   deleteAllTasks,
   deleteFinishedTasks,
   deleteDoneTasks,
   newTaskTemplate,
 } from "../../store/taskList-slice";
+
 import { toast } from "react-toastify";
 
 const TasksMenu = ({ tasks }) => {
   const dispatch = useDispatch();
-  const menuRef = useRef();
+  const taskEditRef = useRef();
   const templateFormRef = useRef();
-  const [open, setOpen] = useState(false);
+  const [openTaskEdit, setOpenTaskEdit] = useState(false);
   const [openTemplateModal, setOpenTemplateModal] = useState(false);
 
   useClickOutside(templateFormRef, () => {
     if (openTemplateModal) setOpenTemplateModal(false);
   });
 
-  useClickOutside(menuRef, () => {
-    if (open) setOpen(false);
+  useClickOutside(taskEditRef, () => {
+    if (openTaskEdit) setOpenTaskEdit(false);
   });
 
   const handleOpenTemplateModal = () => {
@@ -47,17 +50,17 @@ const TasksMenu = ({ tasks }) => {
 
   const onClickDeleteAllTasks = () => {
     dispatch(deleteAllTasks());
-    setOpen(false);
+    setOpenTaskEdit(false);
   };
 
   const onClickDeleteFinishedTasks = () => {
     dispatch(deleteFinishedTasks());
-    setOpen(false);
+    setOpenTaskEdit(false);
   };
 
   const onClickDeleteDoneTasks = () => {
     dispatch(deleteDoneTasks());
-    setOpen(false);
+    setOpenTaskEdit(false);
   };
 
   return (
@@ -74,12 +77,23 @@ const TasksMenu = ({ tasks }) => {
       <section className={classes.tasksMenu}>
         <span>Tasks</span>
         <div className={classes.options}>
-          <button className={classes.button} onClick={() => setOpen(true)}>
-            <MdOutlineAutoDelete className={classes.icon} />
-          </button>
-
-          {open && (
-            <ul ref={menuRef} className={classes.optionsList}>
+          <div className={classes.optionsButtons}>
+            {/* get TaskList */}
+            {/* unlimed animation here !  */}
+            <GetCalendarButton />
+            {/* <button className={classes.button}>
+              <MdEditCalendar className={classes.icon} />
+            </button> */}
+            {/*  open menu */}
+            <button
+              className={classes.button}
+              onClick={() => setOpenTaskEdit(true)}
+            >
+              <MdOutlineAutoDelete className={classes.icon} />
+            </button>
+          </div>
+          {openTaskEdit && (
+            <ul ref={taskEditRef} className={classes.optionsList}>
               <li
                 className={classes.listItem}
                 onClick={onClickDeleteFinishedTasks}

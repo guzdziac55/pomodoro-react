@@ -14,13 +14,3 @@ const useFetchUserData = () => {
 };
 
 export default useFetchUserData;
-
-// clcik send
-// call dispatch send ?  or normall call sendFirebase async function
-// send object stateWeekplan to firebase
-
-// reaload
-// fetch data from weekplan
-// call useFetch userData in useEffect in weekPlan Page
-// put state down from props to useState initial ?
-// sprawdzićczy zadziała

@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import { nanoid } from "nanoid";
 import { ObjTask } from "../utils/helperFunctions";
+import { useParams } from "react-router-dom";
 // generate random id ?     id: nanoid()
 export const defaultWeekPlan = {
   [0]: {
@@ -139,6 +140,23 @@ const weekPlanSlice = createSlice({
 
 export const selectWeekPlan = (state) => state.weekPlan.weekPlan; // short state.weekPlan
 export const selectWeekPlanChanged = (state) => state.weekPlan.weekPlanChanged;
+// export const selectWeekDay = (state) => state.weekPlan.weekPlan;
+// export const selectWeekDay = createSelector(
+//   (state) => state.weekPlan.weekPlan,
+//   (day) => {}
+// );
+
+// Q: How do I create a selector that takes an argument?
+// As shown in the API reference section above, provide input selectors that extract the arguments and forward them to the output selector for calculation:
+
+export const selectWeekDay = createSelector(
+  (state) => state.weekPlan.weekPlan,
+  (_, day) => day, //arg
+  (weekPlan, day) => {
+    return weekPlan[day]?.items;
+    // .hasOwnProperty("items") ? weekPlan[day].items : "";
+  }
+);
 
 export const {
   replaceWeekPlan,

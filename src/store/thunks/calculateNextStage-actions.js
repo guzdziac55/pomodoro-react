@@ -8,7 +8,6 @@ import { selectActiveStage } from "../timer-slice";
 export const nextStageWithConfig = () => {
   return (dispatch, getState) => {
     const state = getState();
-
     const configState = selectConfig(state);
     const activeStage = selectActiveStage(state);
 

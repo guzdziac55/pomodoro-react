@@ -1,0 +1,28 @@
+.button {
+  background-color: var(--main-dark);
+  border-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 10px;
+  color: var(--font-main);
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 5px;
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: var(--main-light);
+}
+
+.icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.iconSmall {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-right: 10px;
+}

@@ -47,6 +47,12 @@
   position: relative;
 }
 
+.optionsButtons {
+  display: flex;
+  gap: 20px;
+  flex-direction: row;
+}
+
 .active {
   opacity: 1;
   display: block;

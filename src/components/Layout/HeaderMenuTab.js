@@ -8,6 +8,7 @@ import {
   MdQueryStats,
   MdPermIdentity,
   MdOutlineLogout,
+  MdOutlineCalendarToday,
 } from "react-icons/md";
 import { motion } from "framer-motion";
 import { useAuthLogout } from "../../hooks/use-auth";
@@ -87,7 +88,7 @@ const HeaderMenuTab = ({ onSetOpen }) => {
                 whileHover="hover"
               >
                 {/* icon here */}
-                {/* <MdQueryStats className={classes.icon} /> */}
+                <MdOutlineCalendarToday className={classes.icon} />
                 <span>Week Board</span>
               </motion.button>
             </Link>
