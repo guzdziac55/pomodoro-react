@@ -155,10 +155,6 @@
   font: inherit;
   text-align: center;
 }
-/* 
-.form button[type="submit"] {
-  /* margin-bottom: 20px; */
-/* } */
 
 .form button[type="submit"]:disabled {
   background-color: #838383;

@@ -71,7 +71,6 @@ const ResetPassword = () => {
           />
 
           {!isLoading && (
-            // <button className={classes.login}>Reset Password</button>
             <motion.button
               className={classes.login}
               type="submit"

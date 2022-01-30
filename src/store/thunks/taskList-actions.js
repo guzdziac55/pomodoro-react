@@ -14,12 +14,9 @@ export {
   sendFirebaseTaskList,
   sendFirebaseSettings,
   sendFireBaseUserProfile,
-  // fetchFirebaseWeekPlan, // <========== to delete !
   sendFirebaseWeekPlan,
   fetchFirebaseUserData,
-  // added Fetch
   fetchFirebaseData,
-  //  new one
 };
 
 const sendFirebaseWeekPlan = (weekPlan, uid) => {
@@ -267,9 +264,6 @@ const fetchFirebaseUserData = (uid) => {
     );
 
     const fetchRequest = async () => {
-      //  think about better functionality => without boilerPlate
-      //  maybeFirebase HOOK for fetch ?
-
       const templatesRef = database.ref("users/" + uid + "/TasksTemplates");
       const tasksRef = database.ref("users/" + uid + "/TasksList");
       const settingsRef = database.ref("users/" + uid + "/Settings");
@@ -295,8 +289,7 @@ const fetchFirebaseUserData = (uid) => {
       const settingsData = snapshotSettings.val();
       const userProfileData = snapshotUserProfile.val();
       const weekPlanData = snapshotWeekPlan.val();
-      // console.log(weekPlanData);
-      // SET DATA TO REDUX STATES
+
       dispatch(replaceTemplatesList(templatesListData || []));
       dispatch(replaceTaskList(taskListData || []));
       dispatch(setConfig(settingsData || { ...defaultConfigState }));
@@ -321,60 +314,3 @@ const fetchFirebaseUserData = (uid) => {
     }
   };
 };
-
-//  create Universall Creator for POST / SEND DATA
-// const universalSendAction = (dataToSend, uid, destination) => {
-//   return async (dispatch) => {
-//     dispatch(
-//       showNotification({
-//         status: "pending",
-//         title: "sending...",
-//         message: "sending taskList Data",
-//       })
-//     );
-
-//     const sendRequest = async () => {
-//       update(ref(database, "users/" + uid), {
-//         destination: dataToSend,
-//       });
-//     };
-
-//     try {
-//       console.log("TRY SEND TEMPLATES ! ");
-//       await sendRequest();
-//       dispatch(
-//         showNotification({
-//           status: "success",
-//           title: "success...",
-//           message: "send taskList data success",
-//         })
-//       );
-//     } catch (err) {
-//       dispatch(
-//         showNotification({
-//           status: "error",
-//           title: "some error !",
-//           message: "sending Tasklist data failed",
-//         })
-//       );
-//     }
-//   };
-// };
-
-// FIREBASE FETCH ASYNC WITHOUT DISPATCH
-
-// const fetchFirebaseWeekPlan = async (uid) => {
-//   const fetchRequest = async () => {
-//     const dataRef = database.ref("users/" + uid + "/WeekPlan");
-//     return dataRef;
-//   };
-
-//   try {
-//     const dataRef = await fetchRequest();
-//     const snapDataRef = await dataRef.once("value");
-//     const data = snapDataRef.val();
-//     return data;
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };

@@ -51,21 +51,7 @@ const weekPlanSlice = createSlice({
       const { index, columnId } = { ...action.payload };
       state.weekPlan[columnId].items.splice(index, 1);
       state.weekPlanChanged = true;
-      // we can use filter here also !
     },
-
-    // actPomodoro:
-    // 0
-    // done:
-    // false
-    // estPomodoro:
-    // 2
-    // id:
-    // 1170582183564
-    // note:
-    // ""
-    // title:
-    // "sadasd"
 
     editTaskContent(state, action) {
       console.log(action.taskContent);
@@ -108,8 +94,6 @@ const weekPlanSlice = createSlice({
       if (state.weekPlan[destColumn].items) {
         state.weekPlan[destColumn].items.splice(destItem, 0, taskToAdd);
       } else {
-        // FIREBASE PROBLEM WITH STORING EMPTY ARRAYS
-        //  CHANGE IT LATER FOR OBJECT STORING
         const emptyArray = [];
         emptyArray.push(taskToAdd);
         state.weekPlan[destColumn].items = emptyArray;
@@ -125,8 +109,6 @@ const weekPlanSlice = createSlice({
       if (state.weekPlan[destColumn].items) {
         state.weekPlan[destColumn].items.splice(destItem, 0, taskToMove);
       } else {
-        // FIREBASE PROBLEM WITH STORING EMPTY ARRAYS
-        //  CHANGE IT LATER FOR OBJECT STORING
         const emptyArray = [];
         emptyArray.push(taskToMove);
         state.weekPlan[destColumn].items = emptyArray;
@@ -137,24 +119,14 @@ const weekPlanSlice = createSlice({
 });
 
 // selectors
-
 export const selectWeekPlan = (state) => state.weekPlan.weekPlan; // short state.weekPlan
 export const selectWeekPlanChanged = (state) => state.weekPlan.weekPlanChanged;
-// export const selectWeekDay = (state) => state.weekPlan.weekPlan;
-// export const selectWeekDay = createSelector(
-//   (state) => state.weekPlan.weekPlan,
-//   (day) => {}
-// );
-
-// Q: How do I create a selector that takes an argument?
-// As shown in the API reference section above, provide input selectors that extract the arguments and forward them to the output selector for calculation:
 
 export const selectWeekDay = createSelector(
   (state) => state.weekPlan.weekPlan,
   (_, day) => day, //arg
   (weekPlan, day) => {
     return weekPlan[day]?.items;
-    // .hasOwnProperty("items") ? weekPlan[day].items : "";
   }
 );
 

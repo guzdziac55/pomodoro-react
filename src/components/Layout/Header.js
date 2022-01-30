@@ -15,32 +15,32 @@ const headerVariants = {
   },
 };
 
-// framer motion not support path animations now
-const svgVariants = {
-  hidden: {
-    rotate: -180,
-  },
-  visable: {
-    rotate: 0,
+// // framer motion not support path animations now
+// const svgVariants = {
+//   hidden: {
+//     rotate: -180,
+//   },
+//   visable: {
+//     rotate: 0,
 
-    transition: { duration: 2 },
-  },
-};
+//     transition: { duration: 2 },
+//   },
+// };
 
-const pathVariants = {
-  hidden: {
-    pathLength: 0,
-    opacity: 0,
-  },
-  visable: {
-    pathLength: 1,
-    opacity: 1,
-    transition: {
-      duration: 2,
-      ease: "easeInOut",
-    },
-  },
-};
+// const pathVariants = {
+//   hidden: {
+//     pathLength: 0,
+//     opacity: 0,
+//   },
+//   visable: {
+//     pathLength: 1,
+//     opacity: 1,
+//     transition: {
+//       duration: 2,
+//       ease: "easeInOut",
+//     },
+//   },
+// };
 
 const Header = ({ onOpen }) => {
   return (

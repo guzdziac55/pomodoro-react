@@ -192,12 +192,3 @@
   cursor: pointer;
   color: var(--font-main);
 }
-
-/* 
-.form button[type="submit"] {
-  background-color: blue;
-}
-
-.form button[type="submit"]:hover {
-  background-color: red;
-} */

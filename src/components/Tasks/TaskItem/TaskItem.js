@@ -11,7 +11,6 @@ import {
   toggleDoneTask,
 } from "../../../store/taskList-slice";
 
-//  add on exit effect
 const variants = {
   hidden: {
     opacity: 0,

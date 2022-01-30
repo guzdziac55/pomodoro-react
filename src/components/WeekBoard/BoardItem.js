@@ -66,14 +66,10 @@ const BoardItem = ({ item, index, columnId }) => {
   };
 
   return (
-    <Draggable
-      key={item.id}
-      draggableId={item.id.toString()} // need to be string check uuid or nanoid
-      index={index}
-    >
+    <Draggable key={item.id} draggableId={item.id.toString()} index={index}>
       {(provided, snapshot) => (
         <div>
-          {cardInEdit !== item.id ? ( // when edit mode or normalTaskView
+          {cardInEdit !== item.id ? (
             <div
               className={classes.boardItem}
               {...provided.draggableProps}

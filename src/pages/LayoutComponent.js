@@ -6,7 +6,6 @@ import Header from "../components/Layout/Header";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// css for toastify
 import { selectActiveStage } from "../store/timer-slice";
 
 const LayoutComponent = (props) => {

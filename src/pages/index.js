@@ -4,4 +4,3 @@ import ResetPasswordPage from "./ResetPasswordPage";
 import SignUpPage from "./SignUpPage";
 
 export { AppPage, LoginPage, ResetPasswordPage, SignUpPage };
-// export * from "./index.js";

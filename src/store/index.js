@@ -4,8 +4,7 @@ import {
   getDefaultMiddleware,
 } from "@reduxjs/toolkit";
 import { persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage"; // localStorage !
-
+import storage from "redux-persist/lib/storage";
 import taskListSlice from "./taskList-slice";
 import uiSlice from "./ui-slice";
 import timerSlice from "./timer-slice";

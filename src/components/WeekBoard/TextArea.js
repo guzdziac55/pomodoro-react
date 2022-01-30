@@ -13,8 +13,8 @@ const TextArea = ({ onAction, onChange, value, className }) => {
       className={classes.textArea}
       value={value}
       onChange={(e) => onChange(e)}
-      onBlur={onAction} // dispatch with action.payload
-      onKeyDown={(e) => handleKeyDown(e, onAction)} // dispatch witch action payload
+      onBlur={onAction}
+      onKeyDown={(e) => handleKeyDown(e, onAction)}
       onFocus={handleOnFocus}
       autoFocus={true}
       rows="5"

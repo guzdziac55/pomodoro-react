@@ -19,23 +19,16 @@ const taskListSlice = createSlice({
       const selectedTemplate = state.tasksTemplates.find(
         (temp) => temp.id === templateId
       );
-
       const { templateTasks } = selectedTemplate;
-
-      // tasksFromTemplate with new ID
       const taskArrayToAdd = templateTasks.map((task) => {
         const obj = Object.assign({}, task, { id: generateRandomId() });
         return obj;
       });
-
       state.tasksList = [...state.tasksList, ...taskArrayToAdd];
       state.taskListChanged = true;
       toast.info("Template tasks added");
-      // template change detected and send to
-      // firebase after change deteced
     },
 
-    // Templates
     newTaskTemplate(state, action) {
       const currentTasks = state.tasksList;
       const templateName = action.payload;
@@ -114,9 +107,6 @@ const taskListSlice = createSlice({
 
       state.taskListChanged = true;
       toast.info("Task edited");
-      // const editedTask = Object.assign({}, id, estPomodoro, note, title);
-      // const newObj = new ObjTask(id, title, note, estPomodoro);
-      // editingTask = newObj;
     },
 
     deleteAllTasks(state) {

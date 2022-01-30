@@ -78,13 +78,8 @@ const TasksMenu = ({ tasks }) => {
         <span>Tasks</span>
         <div className={classes.options}>
           <div className={classes.optionsButtons}>
-            {/* get TaskList */}
-            {/* unlimed animation here !  */}
+            {/* button with logic inside */}
             <GetCalendarButton />
-            {/* <button className={classes.button}>
-              <MdEditCalendar className={classes.icon} />
-            </button> */}
-            {/*  open menu */}
             <button
               className={classes.button}
               onClick={() => setOpenTaskEdit(true)}

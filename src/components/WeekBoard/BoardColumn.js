@@ -3,13 +3,7 @@ import classes from "./BoardColumn.module.css";
 import { Droppable } from "react-beautiful-dnd";
 import BoardItem from "./BoardItem";
 
-const BoardColumn = ({
-  id,
-  tempTitle,
-  cardInEdit,
-  column,
-  // state
-}) => {
+const BoardColumn = ({ id, tempTitle, cardInEdit, column }) => {
   return (
     <div className={classes.columnContainer}>
       <h1 className={classes.title}>{column.name}</h1>

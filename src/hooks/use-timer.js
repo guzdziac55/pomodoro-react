@@ -2,9 +2,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import {
-  // actions
   consumeTime,
-  // selectors
   selectIsTicking,
   selectConsumedTime,
 } from "../store/timer-slice";
@@ -23,7 +21,6 @@ export const useTimer = () => {
   const currentTimeOption = useSelector(selectCurrentSeconds);
   const alarmSound = useSelector(selectAlarmSound); // alarm name
 
-  // maybe memo / callback
   const [play] = useSound(findNotification(alarmSound));
 
   const timeIsEndAction = () => {

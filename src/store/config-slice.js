@@ -26,12 +26,9 @@ const configSlice = createSlice({
     keyBindsEnable: true,
     viewModal: true,
   },
-  // changes check
+
   reducers: {
-    // used when userLogin => we cant use changed here becouse useEffect
-    // with update function profile will not work
     setConfig: (state, action) => {
-      // state.configChanged = true;
       return action.payload;
     },
 
@@ -50,7 +47,6 @@ export const { setConfig, setConfigChanged, setConfigInitialChange } =
   configSlice.actions;
 
 //selectors
-
 export const selectConfig = createSelector(
   (state) => state.config,
   (config) => {
@@ -74,11 +70,3 @@ export const selectPomodoroOptionTime = createSelector(
 export const configActions = configSlice.actions;
 
 export default configSlice;
-
-// createSelector(
-//   (state) => state.config,
-//   (config) => {
-//     const { configChanged, ...rest } = config;
-//     return rest;
-//   }
-// );

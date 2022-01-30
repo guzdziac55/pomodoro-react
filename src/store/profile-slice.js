@@ -16,7 +16,7 @@ const profileSlice = createSlice({
   },
   reducers: {
     setProfile: (state, action) => {
-      return action.payload; //Zamiast tego, aby zastąpić istniejący stan, należy bezpośrednio zwrócić nową wartość:
+      return action.payload;
     },
 
     setUserName(state, action) {
