@@ -54,6 +54,7 @@ const taskListSlice = createSlice({
         (template) => template.id !== toDeleteId
       );
       toast.info("Template deleted");
+      state.templateChanged = true;
     },
 
     replaceTemplatesList(state, action) {

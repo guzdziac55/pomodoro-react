@@ -7,6 +7,8 @@ import { toast } from "react-toastify";
 export { useAuthLogin, useAuthCreateAcc, useAuthLogout, useAuthResetPassword };
 
 const useAuthLogin = () => {
+  // console.log("logowanie ? ");
+  //  to many logins
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();

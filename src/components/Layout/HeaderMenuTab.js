@@ -18,6 +18,7 @@ import { useClickOutside } from "../../hooks/use-clickOutside";
 import ProfileForm from "../ProfileApp/ProfileForm";
 import UserAvatarHeader from "../Avatars/UserAvatarHeader";
 import { toast } from "react-toastify";
+import { useAuthLogin } from "../../hooks/use-auth";
 
 const hoverVariant = {
   hover: {
@@ -31,12 +32,20 @@ const HeaderMenuTab = ({ onSetOpen }) => {
   const { authLogout } = useAuthLogout();
   const [openSettingsModal, setOpenSettingsModal] = useState(false);
   const [openProfileModal, setOpenProfileModal] = useState(false);
-
   const profileFormRef = useRef();
   const settingsFormRef = useRef();
 
+  const { authLogin } = useAuthLogin();
+
   const handleLogout = () => {
     authLogout();
+  };
+
+  const handleLogin = () => {
+    console.log(" how many times call login ? ");
+    const testLogin = "test12@test12.com";
+    const testPassword = "test1234";
+    authLogin(testLogin, testPassword);
   };
 
   useClickOutside(profileFormRef, () => {
@@ -141,6 +150,17 @@ const HeaderMenuTab = ({ onSetOpen }) => {
                 <span>Login</span>
               </motion.button>
             </Link>
+            {/* <Link to="/login"> */}
+            <motion.button
+              onClick={handleLogin}
+              variants={hoverVariant}
+              whileHover="hover"
+              className={classes.buttonAcc}
+            >
+              <MdLogin className={classes.icon} />
+              <span>TestACC</span>
+            </motion.button>
+            {/* </Link> */}
           </>
         )}
       </div>

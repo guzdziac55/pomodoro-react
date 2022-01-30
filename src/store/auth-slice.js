@@ -6,7 +6,6 @@ const authSlice = createSlice({
   initialState: {
     currentUser: null,
   },
-
   reducers: {
     logout(state) {
       state.currentUser = null;
@@ -19,7 +18,6 @@ const authSlice = createSlice({
 });
 
 export const { logout, signUp } = authSlice.actions;
-
 export const selectCurrentUser = (state) => state.auth.currentUser;
 export const authActions = authSlice.actions;
 export default authSlice;

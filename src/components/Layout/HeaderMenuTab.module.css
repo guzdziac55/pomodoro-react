@@ -18,6 +18,20 @@
   border-style: none;
 }
 
+.buttonAcc {
+  display: flex;
+  width: 100%;
+  padding: 10px 10px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  background-color: var(--main-light);
+  color: var(--font-main);
+  font-size: 1.4rem;
+  border-radius: 5px;
+  border-style: none;
+}
+
 .button:hover {
   cursor: pointer;
   background-color: var(--main-light);
