@@ -98,7 +98,7 @@ const HeaderMenuTab = ({ onSetOpen }) => {
               >
                 {/* icon here */}
                 <MdOutlineCalendarToday className={classes.icon} />
-                <span>Week Board</span>
+                <span>Plan</span>
               </motion.button>
             </Link>
 
