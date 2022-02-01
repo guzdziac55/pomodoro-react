@@ -9,15 +9,15 @@ import { selectTaskList } from "../../store/taskList-slice";
 
 const Tasks = () => {
   const tasks = useSelector(selectTaskList);
-  const [openNewTask, setNewTask] = useState(false);
+  const [openNewTask, setOpenNewTask] = useState(false);
   const newTaskRef = useRef();
 
   const toogleNewTaskForm = () => {
-    setNewTask((prevState) => setNewTask(!prevState));
+    setOpenNewTask((prevState) => setOpenNewTask(!prevState));
   };
 
   useClickOutside(newTaskRef, () => {
-    if (openNewTask) setNewTask(false);
+    if (openNewTask) setOpenNewTask(false);
   });
 
   return (
