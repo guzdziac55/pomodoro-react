@@ -52,7 +52,7 @@ const variantStart = {
   },
 };
 
-const HeaderMenuTab = ({ onSetOpen }) => {
+const HeaderMenuTab = () => {
   const isLogged = useSelector(selectCurrentUser);
   const { authLogout } = useAuthLogout();
   const [openSettingsModal, setOpenSettingsModal] = useState(false);

@@ -4,6 +4,9 @@ import { Provider } from "react-redux";
 import store from "./../../store/index";
 import Tasks from "./Tasks";
 
+// put provider into external function
+// DRY
+
 describe("TASK component testing", () => {
   test("shows initial button to add Task / show form", () => {
     render(
@@ -27,7 +30,7 @@ describe("TASK component testing", () => {
     expect(textBox).toBeInTheDocument();
   });
 
-  test("hides addTask  name: /add task/i after click it", () => {
+  test("hides button addTask after click on it ", () => {
     render(
       <Provider store={store}>
         <Tasks />
@@ -38,4 +41,19 @@ describe("TASK component testing", () => {
 
     expect(buttonAdd).not.toBeInTheDocument();
   });
+
+  // v2
+
+  // test("hides button addTask after click on it ", () => {
+  //   render(
+  //     <Provider store={store}>
+  //       <Tasks />
+  //     </Provider>
+  //   );
+  //   const buttonAdd = screen.getByRole("button", { name: /add task/i });
+  //   expect(buttonAdd).toBeInTheDocument();
+  //   userEvent.click(buttonAdd);
+  //   const buttonAdd2 = screen.queryByRole("button", { name: /add task/i });
+  //   expect(buttonAdd2).toBeFalsy();
+  // });
 });

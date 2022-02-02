@@ -2,7 +2,6 @@ import React from "react";
 import classes from "./Header.module.css";
 import HeaderMenuTab from "./HeaderMenuTab";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 
 const headerVariants = {
   hidden: {
@@ -42,7 +41,7 @@ const headerVariants = {
 //   },
 // };
 
-const Header = ({ onOpen }) => {
+const Header = () => {
   return (
     <>
       <header
@@ -55,7 +54,7 @@ const Header = ({ onOpen }) => {
           <h1>Pomodoro</h1>
         </Link>
 
-        <HeaderMenuTab onOpen={onOpen} />
+        <HeaderMenuTab />
       </header>
     </>
   );
