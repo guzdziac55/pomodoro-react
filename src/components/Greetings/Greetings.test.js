@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { Output } from "./Output";
+import React from "react";
+// import { Output } from "./Output";
 import { Greetings } from "./greetings";
 
 describe("Greeting component", () => {

@@ -139,6 +139,7 @@ const TaskForm = (props) => {
         <motion.form
           variants={variants}
           initial="hidden"
+          id="TaskForm"
           animate="visable"
           exit="exit"
           ref={props.onRef}

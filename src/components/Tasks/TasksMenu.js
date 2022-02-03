@@ -88,7 +88,11 @@ const TasksMenu = ({ tasks }) => {
             </button>
           </div>
           {openTaskEdit && (
-            <ul ref={taskEditRef} className={classes.optionsList}>
+            <ul
+              ref={taskEditRef}
+              data="test-id"
+              className={classes.optionsList}
+            >
               <li
                 className={classes.listItem}
                 onClick={onClickDeleteFinishedTasks}

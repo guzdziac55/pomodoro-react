@@ -80,19 +80,26 @@ describe("testing Template component", () => {
     ).toBeInTheDocument();
   });
 
-  test("mock useState test", () => {
-    render(
-      <Provider store={store}>
-        <TemplateList />
-      </Provider>
-    );
-    const setState = jest.fn();
-    const useStateSpy = jest.spyOn(React, "useState");
-    useStateSpy.mockImplementation((init) => [init, setState]);
+  // test("mock useState test", () => {
+  //   render(
+  //     <Provider store={store}>
+  //       <TemplateList />
+  //     </Provider>
+  //   );
+  //   const setState = jest.fn();
+  //   const useStateSpy = jest.spyOn(React, "useState");
+  //   useStateSpy.mockImplementation((init) => [init, setState]);
 
-    const buttonHide = screen.getByText(/hide/i);
-    userEvent.click(buttonHide);
+  //   const buttonHide = screen.getByText(/hide/i);
+  //   userEvent.click(buttonHide);
 
-    expect(setState).toHaveBeenCalledWith(false);
-  });
+  //   // expect(setState).
+  // });
 });
+
+// dodatkowy test
+// np mock state for redux
+// templates [ { object  }]
+// pass object into store
+// check that no Task Template querry  = = = null
+// check that render ul with li element template

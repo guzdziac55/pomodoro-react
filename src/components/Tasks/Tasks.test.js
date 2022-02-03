@@ -1,7 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
+// import { Provider } from "react-redux";
 import store from "./../../store/index";
+import React from "react";
 import Tasks from "./Tasks";
 
 // put provider into external function
