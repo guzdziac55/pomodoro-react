@@ -99,7 +99,7 @@ const Login = () => {
               initial="hidden"
               animate="visable"
             >
-              <span>Login</span>
+              <span>Login User</span>
             </motion.button>
           )}
 
