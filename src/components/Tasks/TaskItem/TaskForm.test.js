@@ -6,17 +6,45 @@ import store from "../../../store";
 import TaskForm from "./TaskForm";
 
 test("check that taskForm renders ", () => {
-  render(
+  const TaskFormComponent = render(
     <Provider store={store}>
       <TaskForm />
     </Provider>
   );
 
-  screen.debug();
-  //   expect(TaskForm);
+  expect(TaskForm);
 });
 
-test("clicking noteButton should hide noteButton ", () => {
+test("check that taskForm include cancel button ", () => {
+  render(
+    <Provider store={store}>
+      <TaskForm />
+    </Provider>
+  );
+  const cancelButton = screen.getByRole("button", {
+    name: /cancel/i,
+  });
+
+  expect(cancelButton).toBeInTheDocument();
+});
+
+// is should be snapshot test !
+// test("check that taskForm hide after click cancel button ", () => {
+//   render(
+//     <Provider store={store}>
+//       <TaskForm />
+//     </Provider>
+//   );
+//   const cancelButton = screen.queryByRole("button", {
+//     name: /cancel/i,
+//   });
+
+//   fireEvent.click(cancelButton);
+//   screen.debug();
+//   // expect(cancelButton).toBeNull();
+// });
+
+test("clicking noteButton should hide noteButton & shows textArea-note ", () => {
   render(
     <Provider store={store}>
       <TaskForm />
@@ -25,40 +53,88 @@ test("clicking noteButton should hide noteButton ", () => {
 
   const noteButton = screen.getByText(/add note/i);
   userEvent.click(noteButton);
-
+  const noteArea = screen.getByTestId("textarea-note");
   expect(noteButton).not.toBeInTheDocument();
+  expect(noteArea).toBeInTheDocument();
 });
 
-// test("clicking noteButton should display textarea ", () => {
-//   render(
-//     <Provider store={store}>
-//       <TaskForm />
-//     </Provider>
-//   );
-
-//   const noteButton = screen.getByText(/add note/i);
-//   userEvent.click(noteButton);
-
-//   const textArea = screen.getByPlaceholderText("");
-
-//   expect(noteButton).not.toBeInTheDocument();
-// });
-
-test("TaskForm given credentials return enabled saveButton", () => {
+test("TaskForm given corrected credentials return enabled saveButton", () => {
   const fakeData = {
     taskName: "test task name",
+    estPomodoro: 4,
   };
-  //   const taskName = screen.getByDisplayValue(/test task name/i);
 
-  const saveButton = screen.getByRole("button", {
-    name: /save/i,
+  render(
+    <Provider store={store}>
+      <TaskForm />
+    </Provider>
+  );
+
+  const taskName = screen.getByRole("textbox");
+  const inputEstPomodoro = screen.getByRole("spinbutton");
+
+  fireEvent.change(taskName, { target: { value: fakeData.taskName } });
+  fireEvent.change(inputEstPomodoro, {
+    target: { value: fakeData.estPomodoro },
   });
 
-  //   fireEvent.change(taskName, { target: { value: fakeData.taskName } });
-
-  expect(saveButton).toBeDisabled();
-  // mock data to put inside
+  const button = screen.getByTestId("confirm-button");
+  expect(button).toBeEnabled();
 });
 
-// zapytanie czy jak taskForm jest closed to mogę go testować.
-// raczej tak bo to jest obosny komponent samodzielnie wyrenderowany
+test("TaskForm given Not corrected credentials return enabled saveButton", () => {
+  const fakeData = {
+    taskName: "",
+    estPomodoro: 10,
+  };
+
+  render(
+    <Provider store={store}>
+      <TaskForm />
+    </Provider>
+  );
+
+  const taskName = screen.getByRole("textbox");
+  const inputEstPomodoro = screen.getByRole("spinbutton");
+
+  fireEvent.change(taskName, { target: { value: fakeData.taskName } });
+  fireEvent.change(inputEstPomodoro, {
+    target: { value: fakeData.estPomodoro },
+  });
+  const button = screen.getByTestId("confirm-button");
+
+  expect(button).toBeDisabled();
+});
+
+// more:
+// - pass props into form and check that It is in the taskNote
+
+test("Increases estPomodoro by one", () => {
+  const mockEditMode = true;
+  const mockTaskData = {
+    //
+    id: "p5wSu-2VHsOEGqb5Wh5we",
+    title: "adaddasdasd",
+    note: "",
+    actPomodoro: 0,
+    estPomodoro: 4,
+    done: false,
+  };
+  render(
+    <Provider store={store}>
+      <TaskForm editMode={mockEditMode} taskData={mockTaskData} />
+    </Provider>
+  );
+
+  // const taskName = screen.getByRole("textbox");
+  // const inputEstPomodoro = screen.getByRole("spinbutton");
+
+  // fireEvent.change(taskName, { target: { value: fakeData.taskName } });
+  // fireEvent.change(inputEstPomodoro, {
+  //   target: { value: fakeData.estPomodoro },
+  // });
+  // const button = screen.getByTestId("confirm-button");
+
+  screen.debug();
+  // expect(button).toBeDisabled();
+});

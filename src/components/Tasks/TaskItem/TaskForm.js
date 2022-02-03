@@ -36,11 +36,16 @@ const variants = {
   },
 };
 
-const TaskForm = (props) => {
+// onRef={editRef}
+// onToggleForm={toggleEditFormHandler}
+// taskData={taskData}
+// editMode={true}
+
+const TaskForm = ({ editMode, taskData, onRef, onToggleForm }) => {
+  // const TaskForm = (props) => {
   const dispatch = useDispatch();
 
-  const { editMode } = props;
-  const { id, title, estPomodoro, note } = { ...props.taskData };
+  const { id, title, estPomodoro, note } = { ...taskData };
 
   // initial inputs in NEWTASK MODE & EDIT MODE
   const initialNote = editMode && note ? note : "";
@@ -112,7 +117,7 @@ const TaskForm = (props) => {
           estPomodoro: estPomodoroNumber,
         })
       );
-      props.onToggleForm();
+      onToggleForm();
     } else {
       dispatch(
         addTask({
@@ -142,7 +147,7 @@ const TaskForm = (props) => {
           id="TaskForm"
           animate="visable"
           exit="exit"
-          ref={props.onRef}
+          ref={onRef}
           onSubmit={handleAddEditTask}
         >
           <div className={classes.formMain}>
@@ -193,6 +198,7 @@ const TaskForm = (props) => {
                   initial="hidden"
                   animate="visable"
                   exit="exit"
+                  data-testid="textarea-note"
                 >
                   {taskNote}
                 </motion.textarea>
@@ -230,13 +236,17 @@ const TaskForm = (props) => {
             <div className={classes.menuRight}>
               <button
                 className={classes.btnCancel}
-                onClick={props.onToggleForm}
+                onClick={onToggleForm}
                 type="button"
               >
                 Cancel
               </button>
 
-              <button type="submit" disabled={formIsValid ? false : true}>
+              <button
+                type="submit"
+                data-testid="confirm-button"
+                disabled={formIsValid ? false : true}
+              >
                 {editMode ? "Edit" : "Save"}
               </button>
             </div>
