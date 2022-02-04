@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import classes from "./TasksList.module.css";
 import TaskItem from "./TaskItem/TaskItem";
-
+import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
+import { selectTaskList } from "../../store/taskList-slice";
 
 const variants = {
   hidden: false,
@@ -11,8 +12,8 @@ const variants = {
   },
 };
 
-const TasksList = ({ tasks }) => {
-  const [taskItems, setTaskItem] = useState(tasks);
+const TasksList = () => {
+  const tasks = useSelector(selectTaskList);
 
   const tasksList = tasks.map((task) => (
     <TaskItem

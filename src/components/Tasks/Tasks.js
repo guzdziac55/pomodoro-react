@@ -23,7 +23,7 @@ const Tasks = () => {
   return (
     <>
       <TasksMenu tasks={tasks} />
-      <TasksList tasks={tasks} />
+      <TasksList />
       {!openNewTask && (
         <TasksButtonAdd onToggleForm={toogleNewTaskForm}>
           Add Task

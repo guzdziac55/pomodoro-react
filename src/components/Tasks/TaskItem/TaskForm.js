@@ -206,10 +206,9 @@ const TaskForm = ({ editMode, taskData, onRef, onToggleForm }) => {
                   initial="hidden"
                   animate="visable"
                   exit="exit"
+                  defaultValue={taskNote}
                   data-testid="textarea-note"
-                >
-                  {taskNote}
-                </motion.textarea>
+                ></motion.textarea>
               )}
             </AnimatePresence>
             <div className={classes.formNote}>

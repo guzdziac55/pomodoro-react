@@ -55,30 +55,6 @@ describe("testing Template component", () => {
       })
     ).toBeInTheDocument();
   });
-
-  test("changes button text from show to hide ", () => {
-    render(
-      <Provider store={store}>
-        <TemplateList />
-      </Provider>
-    );
-    const buttonHide = screen.getByText(/hide/i);
-    userEvent.click(buttonHide);
-
-    expect(
-      screen.getByRole("button", {
-        name: /show/i,
-      })
-    ).toBeInTheDocument();
-
-    const buttonShow = screen.getByText(/show/i);
-    userEvent.click(buttonShow);
-    expect(
-      screen.getByRole("button", {
-        name: /hide/i,
-      })
-    ).toBeInTheDocument();
-  });
 });
 
 // dodatkowy test

@@ -88,6 +88,7 @@ const TaskItem = ({
           initial="hidden"
           animate="show"
           whileHover="hover"
+          data-testid="task-item"
         >
           <motion.span
             variants={isDone ? doneVariants : ""}

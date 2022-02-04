@@ -83,6 +83,7 @@ const TasksMenu = ({ tasks }) => {
             <button
               className={classes.button}
               onClick={() => setOpenTaskEdit(true)}
+              data-testid="tasks-menuButton"
             >
               <MdOutlineAutoDelete className={classes.icon} />
             </button>
@@ -90,7 +91,7 @@ const TasksMenu = ({ tasks }) => {
           {openTaskEdit && (
             <ul
               ref={taskEditRef}
-              data="test-id"
+              data-testid="tasks-menuList"
               className={classes.optionsList}
             >
               <li

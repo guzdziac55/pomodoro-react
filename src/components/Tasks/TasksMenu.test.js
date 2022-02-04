@@ -4,24 +4,18 @@ import React from "react";
 import store from "../../store";
 import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
-// import userEvent from "@testing-library/user-event";
 
-// test("Shows tasks context menu after click on Button open task edit", () => {
-//   render(
-//     <Provider store={store}>
-//       <TasksMenu />
-//     </Provider>
-//   );
+describe("Contex menu tasks tests", () => {
+  test("Opens menu tasks after click on icon ", () => {
+    render(
+      <Provider store={store}>
+        <TasksMenu />
+      </Provider>
+    );
 
-//   const buttonOpen = querySelector(
-//     "#root > main > div:nth-child(2) > div > div:nth-child(2) > section > div"
-//   );
-
-//   userEvent.click(buttonOpen);
-
-//   //   const taskMenu = screen.
-//   screen.debug();
-//   //   expect();
-// });
-
-// problem with selector taskMenu button / ul list !
+    const buttonOpen = screen.getByTestId("tasks-menuButton");
+    userEvent.click(buttonOpen);
+    expect(screen.getByTestId("tasks-menuList")).toBeInTheDocument();
+    screen.debug();
+  });
+});
