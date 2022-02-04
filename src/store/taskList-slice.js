@@ -65,6 +65,10 @@ const taskListSlice = createSlice({
     replaceTaskList(state, action) {
       const newTaskList = action.payload;
       state.tasksList = newTaskList;
+
+      // check that weekBoard exist if no tastinfo with that info
+      // alert when exist about replace tasklist itemlist
+
       toast.info("New tasklist loaded");
     },
 

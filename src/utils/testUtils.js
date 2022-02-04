@@ -6,15 +6,7 @@ import timerSlice from "../store/timer-slice";
 
 const timerReducer = timerSlice.reducer;
 
-const fakeTimerTickingTrue = {
-  timer: {
-    stage: 0,
-    isTicking: true,
-    pomodoroCnt: 0,
-    consumedSeconds: 0,
-  },
-};
-const fakeTimerTickingFalse = {
+const fakeTimerTicking = {
   timer: {
     stage: 0,
     isTicking: false,
@@ -41,4 +33,4 @@ function render(
 }
 
 export * from "@testing-library/react";
-export { render, fakeTimerTickingTrue, fakeTimerTickingFalse };
+export { render, fakeTimerTicking };

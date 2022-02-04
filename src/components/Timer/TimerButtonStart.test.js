@@ -1,23 +1,32 @@
 import TimerButtonStart from "./TimerButtonStart";
 import React from "react";
-import {
-  fakeTimerTickingTrue,
-  fakeTimerTickingFalse,
-  render,
-  screen,
-} from "../../utils/testUtils";
+import { fakeTimerTicking, render, screen } from "../../utils/testUtils";
+import userEvent from "@testing-library/user-event";
 
 describe("Testing TimerButton Start/Stop", () => {
-  test("Shows button stop while ticking is true", () => {
-    render(<TimerButtonStart />, { initialState: fakeTimerTickingTrue });
-    const stopButton = screen.getByText(/stop/i);
-    expect(stopButton).toBeInTheDocument();
-    // screen.debug();
+  test("toogle button name text after click from 'start' to 'stop'", () => {
+    render(<TimerButtonStart />, { initialState: fakeTimerTicking });
+    expect(screen.getByText(/start/i)).toBeInTheDocument();
+    userEvent.click(screen.getByText(/start/i));
+    expect(screen.getByText(/stop/i)).toBeInTheDocument();
+    userEvent.click(screen.getByText(/stop/i));
+    expect(screen.getByText(/start/i)).toBeInTheDocument();
+    userEvent.click(screen.getByText(/start/i));
   });
-  test("Shows button start while ticking is false'", () => {
-    render(<TimerButtonStart />, { initialState: fakeTimerTickingFalse });
-    const startButton = screen.getByText(/start/i);
-    expect(startButton).toBeInTheDocument();
-    // screen.debug();
-  });
+  //   problem with skip button change opacity // not hiding
+  //   test("show skip button while time is Ticking", () => {
+  //     render(<TimerButtonStart />, { initialState: fakeTimerTicking });
+  //     expect(screen.getByText(/start/i)).toBeInTheDocument();
+  //     userEvent.click(screen.getByText(/start/i));
+  //     expect(screen.getByTestId("skip-button")).toBeInTheDocument();
+  //   });
+  //   test("hide skip button while ticking is False", () => {
+  //     render(<TimerButtonStart />, { initialState: fakeTimerTicking });
+  //     expect(screen.getByText(/start/i)).toBeInTheDocument();
+  //     expect(screen.getByTestId("skip-button")).toBeInTheDocument();
+  //     userEvent.click(screen.getByText(/start/i));
+  //     expect(screen.getByTestId("skip-button")).toBeInTheDocument();
+  //     userEvent.click(screen.getByText(/stop/i));
+  //     expect(screen.getByTestId("skip-button")).toBeInTheDocument();
+  //   });
 });

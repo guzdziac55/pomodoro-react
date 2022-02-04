@@ -133,6 +133,7 @@ const TimerButtonStart = () => {
         variants={isTicking ? skipVariantShow : skipVariantHide}
         initial="hidden"
         animate="visable"
+        data-testid="skip-button"
       >
         <MdSkipNext className={classes.icon}></MdSkipNext>
       </motion.button>
