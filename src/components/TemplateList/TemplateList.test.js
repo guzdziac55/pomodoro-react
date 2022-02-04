@@ -79,22 +79,6 @@ describe("testing Template component", () => {
       })
     ).toBeInTheDocument();
   });
-
-  // test("mock useState test", () => {
-  //   render(
-  //     <Provider store={store}>
-  //       <TemplateList />
-  //     </Provider>
-  //   );
-  //   const setState = jest.fn();
-  //   const useStateSpy = jest.spyOn(React, "useState");
-  //   useStateSpy.mockImplementation((init) => [init, setState]);
-
-  //   const buttonHide = screen.getByText(/hide/i);
-  //   userEvent.click(buttonHide);
-
-  //   // expect(setState).
-  // });
 });
 
 // dodatkowy test

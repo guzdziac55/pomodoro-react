@@ -85,7 +85,7 @@ const TaskForm = ({ editMode, taskData, onRef, onToggleForm }) => {
     if (
       taskTitle.trim().length === 0 ||
       currentEstPomodoro < 1 ||
-      currentEstPomodoro > 5
+      currentEstPomodoro > 9
     ) {
       setFormIsValid(false);
     } else {
@@ -170,14 +170,22 @@ const TaskForm = ({ editMode, taskData, onRef, onToggleForm }) => {
                 onChange={handleInputChange}
                 className={classes.number}
                 min="1"
-                max="5"
+                max="9"
                 step="1"
               />
 
-              <button onClick={addEstPomodoro} type="button">
+              <button
+                data-testid="increase-button"
+                onClick={addEstPomodoro}
+                type="button"
+              >
                 <MdExposurePlus1 className={classes.icon} />
               </button>
-              <button onClick={removeEstPomodoro} type="button">
+              <button
+                data-testid="decrease-button"
+                onClick={removeEstPomodoro}
+                type="button"
+              >
                 <MdExposureNeg1 className={classes.icon} />
               </button>
             </div>
