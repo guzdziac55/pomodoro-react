@@ -1,25 +1,24 @@
-import React from "react";
-import classes from "./Notifications.module.css";
-import { Spinner } from "./Spinner";
-const Notifications = (props) => {
-  let specialClasses = "";
+import React from 'react'
+import classes from './Notifications.module.css'
+import { Spinner } from './Spinner'
 
-  if (props.status === "error") {
-    specialClasses = classes.error;
-  }
-  if (props.status === "succes") {
-    specialClasses = classes.succes;
-  }
+const getSpecialClass = (status) => {
+    if (status === 'error') return classes.error
+    if (status === 'succes') return classes.succes
+    return ''
+}
 
-  const cssClasses = `${classes.notifications} ${specialClasses}`;
+function Notifications({ status, isLoading, title, message }) {
+    const specialClass = getSpecialClass(status)
+    const cssClasses = `${classes.notifications} ${specialClass}`
 
-  return (
-    <section className={cssClasses}>
-      {props.isLoading && <Spinner />}
-      <h2>{props.title}</h2>
-      <p>{props.message}</p>
-    </section>
-  );
-};
+    return (
+        <section className={cssClasses}>
+            {isLoading && <Spinner />}
+            <h2>{title}</h2>
+            <p>{message}</p>
+        </section>
+    )
+}
 
-export default React.memo(Notifications);
+export default React.memo(Notifications)

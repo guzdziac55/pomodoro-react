@@ -1,30 +1,30 @@
 .infoMain {
-  width: 100%;
-  padding-top: 0;
-  padding-bottom: 6.25rem;
-  margin-top: 125px;
+    width: 100%;
+    padding-top: 0;
+    padding-bottom: 6.25rem;
+    margin-top: 125px;
 }
 
 /* ///// MOBILE */
 @media (max-width: 550px) {
-  .infoMain {
-    padding-top: 0;
-    margin-top: 50px;
-    padding-bottom: 50px;
-  }
+    .infoMain {
+        padding-top: 0;
+        margin-top: 50px;
+        padding-bottom: 50px;
+    }
 }
 
 .infoContainer {
-  max-width: 1260px;
-  margin-right: auto;
-  margin-left: auto;
-  position: relative;
-  z-index: 1;
-  width: 100%;
+    max-width: 1260px;
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
+    z-index: 1;
+    width: 100%;
 }
 
 .infoContainer > :nth-child(1n) {
-  margin-top: 300px;
+    margin-top: 300px;
 }
 
 @media (max-width: 1500px) {
@@ -35,16 +35,16 @@
 
 /* ///// MOBILE */
 @media (max-width: 550px) {
-  .infoContainer {
-    width: 100%;
-    max-width: 550px;
-    margin-right: auto;
-    margin-left: auto;
-    position: relative;
-    z-index: 1;
-  }
+    .infoContainer {
+        width: 100%;
+        max-width: 550px;
+        margin-right: auto;
+        margin-left: auto;
+        position: relative;
+        z-index: 1;
+    }
 
-  .infoContainer > :nth-child(1n) {
-    margin-top: 100px;
-  }
+    .infoContainer > :nth-child(1n) {
+        margin-top: 100px;
+    }
 }

@@ -1,40 +1,41 @@
-import React from "react";
-import classes from "./GetCalendarButton.module.css";
-import moment from "moment";
-import { selectWeekDay } from "../../../store/weekPlan-slice";
-import { useDispatch, useSelector } from "react-redux";
-import { MdEditCalendar } from "react-icons/md";
-import { replaceTaskList } from "../../../store/taskList-slice";
+import moment from 'moment'
+import React from 'react'
+import { MdEditCalendar } from 'react-icons/md'
+import { useDispatch, useSelector } from 'react-redux'
+import classes from './GetCalendarButton.module.css'
+import { replaceTaskList } from '../../../store/taskList-slice'
+import { selectWeekDay } from '../../../store/weekPlan-slice'
 
-const GetCalendarButton = () => {
-  const currentWeekDay = moment().isoWeekday();
-  const dispatch = useDispatch();
-  const weekday = useSelector((state) => selectWeekDay(state, currentWeekDay));
+function GetCalendarButton() {
+    const currentWeekDay = moment().isoWeekday()
+    const dispatch = useDispatch()
+    const weekday = useSelector((state) => selectWeekDay(state, currentWeekDay))
 
-  const handleLoadWeekDayPlan = () => {
-    const alert = window.confirm(
-      "Do u want to load WeekDay / currentDay tasks ? Remember that u lost your progress on current TaskList "
-    );
-    if (!alert) {
-      return;
+    const handleLoadWeekDayPlan = () => {
+        // eslint-disable-next-line no-alert
+        const alert = window.confirm(
+            'Do u want to load WeekDay / currentDay tasks ? Remember that u lost your progress on current TaskList '
+        )
+        if (!alert) {
+            return
+        }
+        dispatch(replaceTaskList(weekday))
     }
-    dispatch(replaceTaskList(weekday));
-  };
 
-  return (
-    <>
-      {weekday && (
-        <button className={classes.button}>
-          <MdEditCalendar
-            className={classes.icon}
-            onClick={() => {
-              dispatch(handleLoadWeekDayPlan);
-            }}
-          />
-        </button>
-      )}
-    </>
-  );
-};
+    return (
+        <div>
+            {weekday && (
+                <button type="button" className={classes.button}>
+                    <MdEditCalendar
+                        className={classes.icon}
+                        onClick={() => {
+                            dispatch(handleLoadWeekDayPlan)
+                        }}
+                    />
+                </button>
+            )}
+        </div>
+    )
+}
 
-export default GetCalendarButton;
+export default GetCalendarButton

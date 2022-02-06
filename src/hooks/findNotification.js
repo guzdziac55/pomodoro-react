@@ -1,9 +1,9 @@
-import { notifications } from "../assets/notifications/notifications";
+import { notifications } from '../assets/notifications/notifications'
 
 export const findNotification = (name) => {
-  const selectedNotification = notifications.find(
-    (notification) => notification.name === name
-  );
+    const selectedNotification = notifications.find(
+        (notification) => notification.name === name
+    )
 
-  return selectedNotification.alert;
-};
+    return selectedNotification.alert
+}

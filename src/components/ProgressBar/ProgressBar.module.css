@@ -1,51 +1,51 @@
 .progressBar {
-  background-color: white;
-  height: 3px;
+    background-color: white;
+    height: 3px;
 }
 
 .progressContainer {
-  margin-top: 40px;
-  background-color: rgba(0, 0, 0, 0.1);
-  height: 4px;
+    margin-top: 40px;
+    background-color: rgba(0, 0, 0, 0.1);
+    height: 4px;
 }
 
 @media (max-width: 1500px) {
-  .progressBar {
-    background-color: white;
-    height: 3px;
-  }
+    .progressBar {
+        background-color: white;
+        height: 3px;
+    }
 
-  .progressContainer {
-    margin-top: 30px;
-    background-color: rgba(0, 0, 0, 0.1);
-    height: 4px;
-  }
+    .progressContainer {
+        margin-top: 30px;
+        background-color: rgba(0, 0, 0, 0.1);
+        height: 4px;
+    }
 }
 
 /* ///// TABLET */
 @media (max-width: 1100px) {
-  .progressBar {
-    background-color: white;
-    height: 3px;
-  }
+    .progressBar {
+        background-color: white;
+        height: 3px;
+    }
 
-  .progressContainer {
-    margin-top: 20px;
-    background-color: rgba(0, 0, 0, 0.1);
-    height: 4px;
-  }
+    .progressContainer {
+        margin-top: 20px;
+        background-color: rgba(0, 0, 0, 0.1);
+        height: 4px;
+    }
 }
 
 /* ///// MOBILE */
 @media (max-width: 550px) {
-  .progressBar {
-    background-color: white;
-    height: 3px;
-  }
+    .progressBar {
+        background-color: white;
+        height: 3px;
+    }
 
-  .progressContainer {
-    margin-top: 5px;
-    background-color: rgba(0, 0, 0, 0.1);
-    height: 4px;
-  }
+    .progressContainer {
+        margin-top: 5px;
+        background-color: rgba(0, 0, 0, 0.1);
+        height: 4px;
+    }
 }

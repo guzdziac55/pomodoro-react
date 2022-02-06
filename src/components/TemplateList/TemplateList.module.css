@@ -1,35 +1,35 @@
 .templateList {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  margin-top: 20px;
-  min-width: 350px;
-  max-width: 450px;
-  list-style: none;
-  text-align: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    margin-top: 20px;
+    min-width: 350px;
+    max-width: 450px;
+    list-style: none;
+    text-align: center;
 }
 
 .showButton {
-  align-self: center;
-  cursor: pointer;
-  border: none;
-  padding: 10px 5px;
-  border-radius: 4px;
-  box-shadow: rgb(230 200 200) 0px 3px 3px;
-  font-size: 1.4rem;
-  color: var(--main-color);
-  font-weight: 600;
-  width: 200px;
-  background-color: white;
+    align-self: center;
+    cursor: pointer;
+    border: none;
+    padding: 10px 5px;
+    border-radius: 4px;
+    box-shadow: rgb(230 200 200) 0px 3px 3px;
+    font-size: 1.4rem;
+    color: var(--main-color);
+    font-weight: 600;
+    width: 200px;
+    background-color: white;
 }
 
 .info {
-  font-size: 1.4rem;
-  font-style: italic;
-  color: #ffffff;
+    font-size: 1.4rem;
+    font-style: italic;
+    color: #ffffff;
 }
 h1 {
-  color: #ffffff;
+    color: #ffffff;
 }
 
 /* ///// LAPTOP / DESKTOP */
@@ -42,13 +42,13 @@ h1 {
 
 /* ///// MOBILE */
 @media (max-width: 550px) {
-  .showButton {
-    padding: 5px 2px;
-    font-size: 1.2rem;
-  }
-  .info {
-    font-size: 1.2rem;
-    font-style: italic;
-    color: #ffffff;
-  }
+    .showButton {
+        padding: 5px 2px;
+        font-size: 1.2rem;
+    }
+    .info {
+        font-size: 1.2rem;
+        font-style: italic;
+        color: #ffffff;
+    }
 }

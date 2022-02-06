@@ -1,32 +1,35 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { Fragment } from "react";
-import classes from "./LayoutComponent.module.css";
-import Header from "../components/Layout/Header";
+/* eslint-disable import/no-cycle */
+import React from 'react'
 
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { selectActiveStage } from "../store/timer-slice";
+import { useSelector } from 'react-redux'
+import { ToastContainer } from 'react-toastify'
+import classes from './LayoutComponent.module.css'
+import Header from '../components/Layout/Header'
 
-const LayoutComponent = (props) => {
-  const activeStage = useSelector(selectActiveStage);
-  const themeClasses = ["pomodoroTheme", "shortBreakTheme", "longBreakTheme"];
-  const currentTheme = themeClasses[activeStage];
+import 'react-toastify/dist/ReactToastify.css'
+import { selectActiveStage } from '../store/timer-slice'
 
-  return (
-    <Fragment>
-      <main className={`${classes.mainApp} ${classes[`${currentTheme}`]}`}>
-        <Header />
-        {props.children}
-      </main>
+function LayoutComponent({ children }) {
+    const activeStage = useSelector(selectActiveStage)
+    const themeClasses = ['pomodoroTheme', 'shortBreakTheme', 'longBreakTheme']
+    const currentTheme = themeClasses[activeStage]
 
-      <ToastContainer
-        autoClose={2000}
-        position="bottom-center"
-        hideProgressBar
-      />
-    </Fragment>
-  );
-};
+    return (
+        <>
+            <main
+                className={`${classes.mainApp} ${classes[`${currentTheme}`]}`}
+            >
+                <Header />
+                {children}
+            </main>
 
-export default LayoutComponent;
+            <ToastContainer
+                autoClose={2000}
+                position="bottom-center"
+                hideProgressBar
+            />
+        </>
+    )
+}
+
+export default LayoutComponent

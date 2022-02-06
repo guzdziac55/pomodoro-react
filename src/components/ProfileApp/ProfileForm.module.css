@@ -1,201 +1,201 @@
 .formMain {
-  padding: 20px 10px;
-  width: 100%;
-  height: 100%;
+    padding: 20px 10px;
+    width: 100%;
+    height: 100%;
 }
 .formMenu {
-  padding: 14px 20px;
-  display: flex;
-  color: #ffffff;
-  background-color: gainsboro;
-  justify-content: space-between;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-  justify-content: flex-end;
+    padding: 14px 20px;
+    display: flex;
+    color: #ffffff;
+    background-color: gainsboro;
+    justify-content: space-between;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    justify-content: flex-end;
 }
 .formMenu button {
-  border-style: none;
-  cursor: pointer;
-  border-radius: 5px;
-  padding: 0.5rem 1rem;
-  font-size: 14px;
+    border-style: none;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    font-size: 14px;
 }
 
 .btnCancel {
-  color: #525252;
-  font-weight: 600;
-  margin-right: 40px;
+    color: #525252;
+    font-weight: 600;
+    margin-right: 40px;
 }
 
 .btnCancel:hover {
-  color: #000000;
-  font-weight: 600;
+    color: #000000;
+    font-weight: 600;
 }
 
-.formMenu button[type="submit"] {
-  background-color: #111111;
-  color: var(--font-main);
+.formMenu button[type='submit'] {
+    background-color: #111111;
+    color: var(--font-main);
 }
 
-.formMenu button[type="submit"]:hover {
-  background-color: #000000;
-  color: var(--font-main);
+.formMenu button[type='submit']:hover {
+    background-color: #000000;
+    color: var(--font-main);
 }
 
 /*  avatar row form  */
 
 .formControlColumn {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 20px;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem 0;
-  border-bottom: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0;
+    border-bottom: 1px solid black;
 }
 
 .labelLarge {
-  font-size: 20px;
-  display: inline-block;
-  text-align: center;
-  color: rgb(85, 85, 85);
-  width: 100%;
-  box-sizing: border-box;
-  font-weight: bold;
+    font-size: 20px;
+    display: inline-block;
+    text-align: center;
+    color: rgb(85, 85, 85);
+    width: 100%;
+    box-sizing: border-box;
+    font-weight: bold;
 }
 
 .avatarPicker {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  flex-direction: row;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-direction: row;
 }
 
 .avatarPicker:hover .icon {
-  opacity: 0.8;
+    opacity: 0.8;
 }
 
 .avatarPicker:hover .circleButton {
-  background-color: rgba(46, 46, 46, 0.5);
-  border-radius: 50%;
-  overflow: hidden;
+    background-color: rgba(46, 46, 46, 0.5);
+    border-radius: 50%;
+    overflow: hidden;
 }
 
 .avatarContainer {
-  width: 150px;
-  height: 150px;
+    width: 150px;
+    height: 150px;
 }
 
 .rollAvatarContainer {
-  width: 100px;
-  height: 100px;
+    width: 100px;
+    height: 100px;
 }
 
 @media (max-width: 550px) {
-  .avatarContainer {
-    width: 70px;
-    height: 70px;
-  }
+    .avatarContainer {
+        width: 70px;
+        height: 70px;
+    }
 
-  .rollAvatarContainer {
-    width: 50px;
-    height: 50px;
-  }
+    .rollAvatarContainer {
+        width: 50px;
+        height: 50px;
+    }
 }
 
 .avatarImg {
-  max-width: 100%;
-  max-height: 100%;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .nameContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
 .nameSubmit {
-  padding: 5px 10px;
-  font-size: 12px;
+    padding: 5px 10px;
+    font-size: 12px;
 }
 
 @media (max-width: 550px) {
-  .nameContainer {
-    gap: 5px;
-  }
-  .nameInput {
-    width: 100%;
-    padding: 5px 5px;
-  }
+    .nameContainer {
+        gap: 5px;
+    }
+    .nameInput {
+        width: 100%;
+        padding: 5px 5px;
+    }
 }
 
 .circleButton {
-  position: absolute;
-  background: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100px;
-  height: 100px;
-  border: none;
-  overflow: hidden;
+    position: absolute;
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    border: none;
+    overflow: hidden;
 }
 
 @media (max-width: 550px) {
-  .circleButton {
-    width: 25px;
-    height: 25px;
-  }
+    .circleButton {
+        width: 25px;
+        height: 25px;
+    }
 }
 
 .getAvatarButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  overflow: hidden;
-  background-color: #2195f39f;
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    overflow: hidden;
+    background-color: #2195f39f;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
 }
 .getAvatarButton:hover {
-  cursor: pointer;
-  background-color: #2196f3;
+    cursor: pointer;
+    background-color: #2196f3;
 }
 
 @media (max-width: 550px) {
-  .getAvatarButton {
-    height: 30px;
-    width: 30px;
-  }
+    .getAvatarButton {
+        height: 30px;
+        width: 30px;
+    }
 }
 
 .iconBig {
-  height: 80px;
-  width: 80px;
-  color: #ffffff;
-  opacity: 0.3;
+    height: 80px;
+    width: 80px;
+    color: #ffffff;
+    opacity: 0.3;
 }
 .iconSmall {
-  height: 20px;
-  width: 20px;
-  color: #ffffff;
+    height: 20px;
+    width: 20px;
+    color: #ffffff;
 }
 
 .show {
-  visibility: visible;
+    visibility: visible;
 }
 
 .hidden {
-  visibility: hidden;
+    visibility: hidden;
 }
 
 .formMain h1 {
-  color: #000000;
-  text-align: center;
+    color: #000000;
+    text-align: center;
 }

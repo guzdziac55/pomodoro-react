@@ -1,72 +1,70 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { createSelector } from "reselect";
+import { createSlice } from '@reduxjs/toolkit'
+import { createSelector } from 'reselect'
 
 export const defaultConfigState = {
-  configChanged: false,
-  stageOptions: [25, 5, 20],
-  alarmSound: "notification1",
-  autoBreak: false,
-  autoPomodoros: true,
-  longBreakInterval: 4,
-  keyBindsShow: true,
-  keyBindsEnable: true,
-  viewModal: true,
-};
-
-const configSlice = createSlice({
-  name: "config",
-  initialState: {
     configChanged: false,
     stageOptions: [25, 5, 20],
-    alarmSound: "notification1",
+    alarmSound: 'notification1',
     autoBreak: false,
     autoPomodoros: true,
     longBreakInterval: 4,
     keyBindsShow: true,
     keyBindsEnable: true,
     viewModal: true,
-  },
+}
 
-  reducers: {
-    setConfig: (state, action) => {
-      return action.payload;
+const configSlice = createSlice({
+    name: 'config',
+    initialState: {
+        configChanged: false,
+        stageOptions: [25, 5, 20],
+        alarmSound: 'notification1',
+        autoBreak: false,
+        autoPomodoros: true,
+        longBreakInterval: 4,
+        keyBindsShow: true,
+        keyBindsEnable: true,
+        viewModal: true,
     },
 
-    setConfigChanged(state) {
-      state.configChanged = true;
-    },
+    reducers: {
+        setConfig: (state, action) => action.payload,
 
-    setConfigInitialChange(state, action) {
-      state.configChanged = false;
-    },
-  },
-});
+        setConfigChanged(state) {
+            state.configChanged = true
+        },
 
-//actions
+        setConfigInitialChange(state) {
+            state.configChanged = false
+        },
+    },
+})
+
+// actions
 export const { setConfig, setConfigChanged, setConfigInitialChange } =
-  configSlice.actions;
+    configSlice.actions
 
-//selectors
+// selectors
 export const selectConfig = createSelector(
-  (state) => state.config,
-  (config) => {
-    const { configChanged, ...rest } = config;
-    return rest;
-  }
-);
-export const selectLongBrakInterval = (state) => state.config.longBreakInterval;
-export const selectStageOptions = (state) => state.config.stageOptions;
-export const selectConfigChanges = (state) => state.config.configChanged;
-export const selectAlarmSound = (state) => state.config.alarmSound;
+    (state) => state.config,
+    (config) => {
+        const { configChanged, ...rest } = config
+        return rest
+    }
+)
+export const selectLongBrakInterval = (state) => state.config.longBreakInterval
+export const selectStageOptions = (state) => state.config.stageOptions
+export const selectConfigChanges = (state) => state.config.configChanged
+export const selectAlarmSound = (state) => state.config.alarmSound
 
-export const selectBindsShow = (state) => state.config.keyBindsShow;
-export const selectBindsEnable = (state) => state.config.keyBindsEnable;
+export const selectBindsShow = (state) => state.config.keyBindsShow
+export const selectBindsEnable = (state) => state.config.keyBindsEnable
 
 export const selectPomodoroOptionTime = createSelector(
-  (state) => state.config.stageOptions,
-  (options) => options[0]
-);
+    (state) => state.config.stageOptions,
+    (options) => options[0]
+)
 
-export const configActions = configSlice.actions;
+export const configActions = configSlice.actions
 
-export default configSlice;
+export default configSlice

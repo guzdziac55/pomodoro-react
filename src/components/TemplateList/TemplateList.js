@@ -1,43 +1,47 @@
-import React from "react";
-import classes from "./TemplateList.module.css";
-import { selectTemplateList } from "../../store/taskList-slice";
-import TemplateItem from "./TemplateItem";
-import { useSelector } from "react-redux";
-import { useState } from "react";
+import React, { useState } from 'react'
 
-const TemplateList = () => {
-  const templates = useSelector(selectTemplateList);
-  const [showList, setShowList] = useState(true);
+import { useSelector } from 'react-redux'
+import TemplateItem from './TemplateItem'
+import classes from './TemplateList.module.css'
+import { selectTemplateList } from '../../store/taskList-slice'
 
-  const toogleList = () => {
-    setShowList((current) => setShowList(!current));
-  };
+function TemplateList() {
+    const templates = useSelector(selectTemplateList)
+    const [showList, setShowList] = useState(true)
 
-  const templateList = templates.map((template) => (
-    <TemplateItem
-      key={template.id}
-      id={template.id}
-      name={template.templateName}
-    />
-  ));
+    const toogleList = () => {
+        setShowList((current) => setShowList(!current))
+    }
 
-  return (
-    <>
-      <h1>Templates</h1>
-      <button className={classes.showButton} onClick={toogleList}>
-        {showList ? "Hide" : "Show"}
-      </button>
-      {showList && (
-        <ul className={classes.templateList}>
-          {templates.length === 0 ? (
-            <p className={classes.info}>There is no templates </p>
-          ) : (
-            templateList
-          )}
-        </ul>
-      )}
-    </>
-  );
-};
+    const templateList = templates.map((template) => (
+        <TemplateItem
+            key={template.id}
+            id={template.id}
+            name={template.templateName}
+        />
+    ))
 
-export default TemplateList;
+    return (
+        <>
+            <h1>Templates</h1>
+            <button
+                type="button"
+                className={classes.showButton}
+                onClick={toogleList}
+            >
+                {showList ? 'Hide' : 'Show'}
+            </button>
+            {showList && (
+                <ul className={classes.templateList}>
+                    {templates.length === 0 ? (
+                        <p className={classes.info}>There is no templates </p>
+                    ) : (
+                        templateList
+                    )}
+                </ul>
+            )}
+        </>
+    )
+}
+
+export default TemplateList

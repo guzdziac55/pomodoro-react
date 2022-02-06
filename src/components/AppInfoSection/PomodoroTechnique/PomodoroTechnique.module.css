@@ -1,26 +1,26 @@
 .container {
-  max-width: 620px;
-  margin: 50px auto;
+    max-width: 620px;
+    margin: 50px auto;
 }
 
 .container h2 {
-  color: #330c0a;
+    color: #330c0a;
 }
 
 .container h2::after {
-  content: "";
-  display: block;
-  border-bottom: 3px solid #f05b56;
-  width: 50%;
-  padding-top: 10px;
+    content: '';
+    display: block;
+    border-bottom: 3px solid #f05b56;
+    width: 50%;
+    padding-top: 10px;
 }
 
 .container p {
-  color: #330c0a;
+    color: #330c0a;
 }
 .container p::first-letter {
-  font-size: 24px;
-  margin: 0;
-  padding: 0;
-  color: #f05b56;
+    font-size: 24px;
+    margin: 0;
+    padding: 0;
+    color: #f05b56;
 }

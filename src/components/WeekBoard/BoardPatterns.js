@@ -1,69 +1,74 @@
-import React, { useEffect, useState } from "react";
-import classes from "./BoardPatterns.module.css";
-import { Droppable } from "react-beautiful-dnd";
-import BoardItem from "./BoardItem";
-import TextArea from "./TextArea";
-import { useDispatch } from "react-redux";
-import { addSampleTask } from "../../store/weekPlan-slice";
-const BoardPatterns = ({ id, tempTitle, column, cardInEdit, sendFirebase }) => {
-  const dispatch = useDispatch();
+import React, { useEffect, useState } from 'react'
+import { Droppable } from 'react-beautiful-dnd'
+import { useDispatch } from 'react-redux'
+import BoardItem from './BoardItem'
+import classes from './BoardPatterns.module.css'
+import TextArea from './TextArea'
+import { addSampleTask } from '../../store/weekPlan-slice'
 
-  const [taskContent, setTaskContent] = useState("");
-  const [contentValid, setContentValid] = useState(false);
+function BoardPatterns({ id, column }) {
+    const dispatch = useDispatch()
 
-  const taskContentChange = (e) => {
-    setTaskContent(e.target.value);
-  };
+    const [taskContent, setTaskContent] = useState('')
+    const [contentValid, setContentValid] = useState(false)
 
-  const addSample = () => {
-    dispatch(addSampleTask(taskContent));
-    setTaskContent("");
-  };
-
-  useEffect(() => {
-    if (taskContent.trim().length === 0) {
-      setContentValid(false);
-    } else {
-      setContentValid(true);
+    const taskContentChange = (e) => {
+        setTaskContent(e.target.value)
     }
-  }, [taskContent]);
 
-  const validClasses = contentValid ? classes.valid : "";
+    const addSample = () => {
+        dispatch(addSampleTask(taskContent))
+        setTaskContent('')
+    }
 
-  return (
-    <>
-      <div className={classes.boardPattern}>
-        <h1 className={classes.title}>{column.name}</h1>
-        <div className={classes.columnPattern}>
-          <Droppable droppableId={id} key={id}>
-            {(provided, snapshot) => (
-              <div {...provided.droppableProps} ref={provided.innerRef}>
-                {column.items?.map((item, index) => {
-                  return <BoardItem item={item} index={index} columnId={id} />;
-                })}
-                {provided.placeholder}
-              </div>
-            )}
-          </Droppable>
+    useEffect(() => {
+        if (taskContent.trim().length === 0) {
+            setContentValid(false)
+        } else {
+            setContentValid(true)
+        }
+    }, [taskContent])
+
+    return (
+        <div className={classes.boardPattern}>
+            <h1 className={classes.title}>{column.name}</h1>
+            <div className={classes.columnPattern}>
+                <Droppable droppableId={id} key={id}>
+                    {(provided) => (
+                        <div
+                            {...provided.droppableProps}
+                            ref={provided.innerRef}
+                        >
+                            {column.items?.map((item, index) => (
+                                <BoardItem
+                                    item={item}
+                                    index={index}
+                                    columnId={id}
+                                />
+                            ))}
+                            {provided.placeholder}
+                        </div>
+                    )}
+                </Droppable>
+            </div>
+
+            <div className={classes.buttons}>
+                <button
+                    type="button"
+                    onClick={addSample}
+                    className={classes.buttonAdd}
+                    disabled={!contentValid}
+                >
+                    Add Task
+                </button>
+            </div>
+            <TextArea
+                value={taskContent}
+                onChange={taskContentChange}
+                onAction={addSampleTask}
+            />
         </div>
+    )
+}
 
-        <div className={classes.buttons}>
-          <button
-            onClick={addSample}
-            className={classes.buttonAdd}
-            disabled={contentValid ? false : true}
-          >
-            Add Task
-          </button>
-        </div>
-        <TextArea
-          value={taskContent}
-          onChange={taskContentChange}
-          onAction={addSampleTask}
-        />
-      </div>
-    </>
-  );
-};
-
-export default BoardPatterns;
+export default BoardPatterns

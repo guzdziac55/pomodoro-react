@@ -1,45 +1,45 @@
 .buttonStart {
-  cursor: pointer;
-  border: none;
-  margin: 20px 0px 0px;
-  padding: 20px 10px;
-  border-radius: 4px;
-  box-shadow: rgb(230 200 200) 0px 6px 0px;
-  font-size: 22px;
-  color: var(--main-color);
-  font-weight: bold;
-  width: 200px;
-  background-color: white;
+    cursor: pointer;
+    border: none;
+    margin: 20px 0px 0px;
+    padding: 20px 10px;
+    border-radius: 4px;
+    box-shadow: rgb(230 200 200) 0px 6px 0px;
+    font-size: 22px;
+    color: var(--main-color);
+    font-weight: bold;
+    width: 200px;
+    background-color: white;
 }
 
 .active {
-  box-shadow: none;
-  transform: translateY(6px);
+    box-shadow: none;
+    transform: translateY(6px);
 }
 
 .button {
-  position: absolute;
-  cursor: pointer;
-  border: none;
-  margin: 35px 15px;
-  padding: 5px;
-  border-radius: 4px;
-  font-size: 22px;
-  font-weight: bold;
-  color: var(--main-color);
-  background-color: var(--color-grey-light-1);
+    position: absolute;
+    cursor: pointer;
+    border: none;
+    margin: 35px 15px;
+    padding: 5px;
+    border-radius: 4px;
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--main-color);
+    background-color: var(--color-grey-light-1);
 }
 
 .button:hover {
-  background-color: var(--color-grey-light-2);
+    background-color: var(--color-grey-light-2);
 }
 
 .icon {
-  width: 2rem;
-  height: 2rem;
-  text-align: center;
+    width: 2rem;
+    height: 2rem;
+    text-align: center;
 }
 
 .show {
-  visibility: visible;
+    visibility: visible;
 }

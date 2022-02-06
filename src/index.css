@@ -1,21 +1,21 @@
 /*  MORE DEFAULT  */
 html {
-  font-size: 62.5%;
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  position: relative;
-  scroll-behavior: smooth;
+    font-size: 62.5%;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    scroll-behavior: smooth;
 }
 
 *,
 *:before,
 *:after {
-  box-sizing: inherit;
+    box-sizing: inherit;
 }
 
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 /* 
@@ -23,99 +23,99 @@ a {
 /*  */
 
 h1 {
-  font-size: 3.2rem;
+    font-size: 3.2rem;
 }
 h2 {
-  font-size: 2.7rem;
+    font-size: 2.7rem;
 }
 h3 {
-  font-size: 2.5rem;
+    font-size: 2.5rem;
 }
 p {
-  font-size: 1.7rem;
+    font-size: 1.7rem;
 }
 li {
-  font-size: 1.6rem;
-  letter-spacing: 1.2px;
-  word-spacing: 4px;
-  margin: 0;
+    font-size: 1.6rem;
+    letter-spacing: 1.2px;
+    word-spacing: 4px;
+    margin: 0;
 }
 
 /* ///// LAPTOP / DESKTOP */
 @media (max-width: 1500px) {
-  h1 {
-    font-size: 2.7rem;
-  }
-  h2 {
-    font-size: 2.4rem;
-  }
-  h3 {
-    font-size: 2rem;
-  }
-  p {
-    font-size: 1.6rem;
-  }
-  li {
-    font-size: 1.4rem;
-    letter-spacing: 1.2px;
-    word-spacing: 4px;
-  }
+    h1 {
+        font-size: 2.7rem;
+    }
+    h2 {
+        font-size: 2.4rem;
+    }
+    h3 {
+        font-size: 2rem;
+    }
+    p {
+        font-size: 1.6rem;
+    }
+    li {
+        font-size: 1.4rem;
+        letter-spacing: 1.2px;
+        word-spacing: 4px;
+    }
 }
 
 /* ///// TABLET */
 @media (max-width: 1100px) {
-  h1 {
-    font-size: 2.2rem;
-  }
-  h2 {
-    font-size: 1.7rem;
-  }
-  h3 {
-    font-size: 1.5rem;
-  }
-  p {
-    font-size: 1.6rem;
-  }
-  li {
-    font-size: 1.4rem;
-    letter-spacing: 1.2px;
-    word-spacing: 4px;
-  }
+    h1 {
+        font-size: 2.2rem;
+    }
+    h2 {
+        font-size: 1.7rem;
+    }
+    h3 {
+        font-size: 1.5rem;
+    }
+    p {
+        font-size: 1.6rem;
+    }
+    li {
+        font-size: 1.4rem;
+        letter-spacing: 1.2px;
+        word-spacing: 4px;
+    }
 }
 
 /* ///// MOBILE */
 @media (max-width: 550px) {
-  h1 {
-    font-size: 2rem;
-  }
-  h2 {
-    font-size: 1.6rem;
-    margin: 0;
-  }
-  h3 {
-    font-size: 1.4rem;
-  }
-  p {
-    font-size: 1.4rem;
-  }
-  li {
-    font-size: 1.2rem;
-    letter-spacing: 1.2px;
-    word-spacing: 4px;
-  }
+    h1 {
+        font-size: 2rem;
+    }
+    h2 {
+        font-size: 1.6rem;
+        margin: 0;
+    }
+    h3 {
+        font-size: 1.4rem;
+    }
+    p {
+        font-size: 1.4rem;
+    }
+    li {
+        font-size: 1.2rem;
+        letter-spacing: 1.2px;
+        word-spacing: 4px;
+    }
 }
 
 body {
-  box-sizing: border-box;
-  margin: 0;
-  overflow: auto;
-  padding: 0;
-  font-family: "Nunito Sans", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    box-sizing: border-box;
+    margin: 0;
+    overflow: auto;
+    padding: 0;
+    font-family: 'Nunito Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
 }

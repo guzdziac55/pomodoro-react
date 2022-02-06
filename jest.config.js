@@ -1,1 +1,1 @@
-setupFilesAfterEnv: ["<rootDir>/jest-setup.js"];
+// ;['<rootDir>/jest-setup.js']

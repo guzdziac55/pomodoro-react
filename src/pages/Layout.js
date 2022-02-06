@@ -1,63 +1,56 @@
-import React, { useRef, useEffect } from "react";
-import { Fragment } from "react";
-import { Outlet } from "react-router-dom";
-import { Routes, Route } from "react-router-dom";
-import classes from "./Layout.module.css";
-import "react-toastify/dist/ReactToastify.css";
-import { selectActiveStage } from "../store/timer-slice";
-import { createRef } from "react";
-import { useSelector } from "react-redux";
-import { ToastContainer } from "react-toastify";
-import Header from "../components/Layout/Header";
-import Footer from "../components/Footer/Footer";
-import InfoSection from "../components/InfoSection/InfoSection";
-import usePersistControl from "../hooks/fetchHooks/use-persistControl";
-import useFetchUserData from "../hooks/fetchHooks/use-fetchUserData";
-import useSendTaskList from "../hooks/postHooks/use-sendTaskList";
-import useSendSettings from "../hooks/postHooks/use-sendSettings";
-import useSendUserProfile from "../hooks/postHooks/use-sendUserProfile";
-import useSendTemplates from "../hooks/postHooks/use-sendTemplates";
+/* eslint-disable import/no-absolute-path */
+/* eslint-disable import/no-unresolved */
+import React from 'react'
+import { Outlet } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import { useSelector } from 'react-redux'
 
-const Layout = () => {
-  const activeStage = useSelector(selectActiveStage);
-  const themeClasses = ["pomodoroTheme", "shortBreakTheme", "longBreakTheme"];
-  const currentTheme = themeClasses[activeStage];
+import Header from '../components/Layout/Header'
+import useFetchUserData from '../hooks/fetchHooks/use-fetchUserData'
+import usePersistControl from '../hooks/fetchHooks/use-persistControl'
+import useSendSettings from '../hooks/postHooks/use-sendSettings'
+import useSendTaskList from '../hooks/postHooks/use-sendTaskList'
+import useSendTemplates from '../hooks/postHooks/use-sendTemplates'
+import useSendUserProfile from '../hooks/postHooks/use-sendUserProfile'
+import { selectActiveStage } from '../store/timer-slice'
+import classes from '/Layout.module.css'
 
-  const refInfo = createRef();
-  console.log(refInfo);
+function Layout() {
+    const activeStage = useSelector(selectActiveStage)
+    const themeClasses = ['pomodoroTheme', 'shortBreakTheme', 'longBreakTheme']
+    const currentTheme = themeClasses[activeStage]
 
-  useEffect(() => {
-    console.log(refInfo);
-  }, []);
+    usePersistControl()
+    useFetchUserData()
+    useSendTaskList()
+    useSendSettings()
+    useSendUserProfile()
+    useSendTemplates()
 
-  usePersistControl();
-  useFetchUserData();
-  useSendTaskList();
-  useSendSettings();
-  useSendUserProfile();
-  useSendTemplates();
+    return (
+        <>
+            <main
+                className={`${classes.mainApp} ${classes[`${currentTheme}`]}`}
+            >
+                <Header />
+                <Outlet />
 
-  return (
-    <Fragment>
-      <main className={`${classes.mainApp} ${classes[`${currentTheme}`]}`}>
-        <Header></Header>
-        <Outlet />
+                {/* ROUTES HERE  */}
 
-        {/* ROUTES HERE  */}
+                {/* wyciągnąć z main 100vh i dać do kazdego elementu w Outlecie ! */}
+            </main>
 
-        {/* wyciągnąć z main 100vh i dać do kazdego elementu w Outlecie ! */}
-      </main>
+            <ToastContainer
+                autoClose={2000}
+                position="bottom-center"
+                hideProgressBar
+            />
+        </>
+    )
+}
 
-      <ToastContainer
-        autoClose={2000}
-        position="bottom-center"
-        hideProgressBar
-      />
-    </Fragment>
-  );
-};
-
-export default Layout;
+export default Layout
 
 // <Routes>
 // <Route

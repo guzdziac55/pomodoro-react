@@ -1,41 +1,41 @@
 .activeTask {
-  margin-top: 20px;
-  width: 100%;
-  text-align: center;
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
 }
 
 .activeTask span {
-  display: block;
+    display: block;
 }
 
 .pomodoroCount {
-  margin-bottom: 5px;
+    margin-bottom: 5px;
 }
 
 .activeTask > span {
-  width: 100%;
-  font-size: 2rem;
-  font-weight: 400;
-  color: var(--font-main);
-  overflow-wrap: break-word;
+    width: 100%;
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--font-main);
+    overflow-wrap: break-word;
 }
 
 @media (max-width: 1500px) {
-  .activeTask > span {
-    font-size: 1.8rem;
-  }
+    .activeTask > span {
+        font-size: 1.8rem;
+    }
 }
 
 /* ///// TABLET */
 @media (max-width: 1100px) {
-  .activeTask > span {
-    font-size: 1.6rem;
-  }
+    .activeTask > span {
+        font-size: 1.6rem;
+    }
 }
 
 /* ///// MOBILE */
 @media (max-width: 550px) {
-  .activeTask > span {
-    font-size: 1.4rem;
-  }
+    .activeTask > span {
+        font-size: 1.4rem;
+    }
 }
