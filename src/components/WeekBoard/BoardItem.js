@@ -8,7 +8,7 @@ import { MdEditNote, MdOutlineDelete } from 'react-icons/md'
 import { useDispatch } from 'react-redux'
 import classes from './BoardItem.module.css'
 import TextArea from './TextArea'
-import useEstPomodoro from '../../hooks/use-estPomodoro'
+import useEstPomodoro from '../../hooks/useEstPomodoro'
 
 import {
     changeEstPomodoro,

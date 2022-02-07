@@ -6,7 +6,7 @@ import { FcGoogle } from 'react-icons/fc'
 import { MdDone } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 import classes from './login.module.css'
-import { useAuthLogin } from '../../hooks/use-auth'
+import { useAuthLogin } from '../../hooks/useAuth'
 import Card from '../UI/Card'
 import Input from '../UI/Input'
 

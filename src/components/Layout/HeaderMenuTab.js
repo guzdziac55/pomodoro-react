@@ -12,10 +12,10 @@ import {
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { useAuthLogout, useAuthLogin } from '../../hooks/use-auth'
+import { useAuthLogout, useAuthLogin } from '../../hooks/useAuth'
 import classes from './HeaderMenuTab.module.css'
 
-import { useClickOutside } from '../../hooks/use-clickOutside'
+import { useClickOutside } from '../../hooks/useClickOutside'
 import { selectCurrentUser } from '../../store/auth-slice'
 import UserAvatarHeader from '../Avatars/UserAvatarHeader'
 import ProfileForm from '../ProfileApp/ProfileForm'

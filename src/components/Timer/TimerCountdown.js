@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import React from 'react'
 import classes from './TimerCountdown.module.css'
 
-import { useTimer } from '../../hooks/use-timer'
+import { useTimer } from '../../hooks/useTimer'
 
 const variants = {
     hidden: {

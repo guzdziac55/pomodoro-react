@@ -2,8 +2,8 @@ import { motion, useAnimation } from 'framer-motion'
 import React, { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 import classes from './InfoOne.module.css'
+import useYoffSet from '../../../hooks/useYoffSet'
 import { photos } from '../../../assets/images/images'
-import useYoffSet from '../../../hooks/use-YoffSet'
 
 const variantImage = {
     hidden: {

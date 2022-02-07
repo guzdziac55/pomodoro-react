@@ -13,6 +13,10 @@
     border-radius: 5px;
 }
 
+.avatarButton {
+    background: none;
+}
+
 .button:hover {
     cursor: pointer;
     background-color: var(--main-light);

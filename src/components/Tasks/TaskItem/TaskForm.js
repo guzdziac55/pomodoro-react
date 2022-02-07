@@ -9,7 +9,7 @@ import {
 } from 'react-icons/md'
 import { useDispatch } from 'react-redux'
 import classes from './TaskForm.module.css'
-import useEstPomodoro from '../../../hooks/use-estPomodoro'
+import useEstPomodoro from '../../../hooks/useEstPomodoro'
 
 import {
     addTask,

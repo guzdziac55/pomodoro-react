@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { createSelector } from '@reduxjs/toolkit'
 // import { createSelector } from 'reselect'
 import classes from './FinishCalculate.module.css'
-import { useFinishTime } from '../../hooks/use-finishTime'
+import { useFinishTime } from '../../hooks/useFinishTime'
 import { selectPomodoroOptionTime } from '../../store/config-slice'
 import {
     selectNumberDonePomodoro,

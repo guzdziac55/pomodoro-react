@@ -1,4 +1,4 @@
-import { useEventListener } from './use-eventListener'
+import { useEventListener } from './useEventListener'
 
 export const useClickOutside = (ref, cb) => {
     useEventListener(

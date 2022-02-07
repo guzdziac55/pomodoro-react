@@ -5,7 +5,7 @@ import React, { useRef } from 'react'
 import { MdDone } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 import classes from './login.module.css'
-import { useAuthResetPassword } from '../../hooks/use-auth'
+import { useAuthResetPassword } from '../../hooks/useAuth'
 import Card from '../UI/Card'
 import Input from '../UI/Input'
 

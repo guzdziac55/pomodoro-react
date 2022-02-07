@@ -4,7 +4,7 @@ import TaskForm from './TaskItem/TaskForm'
 import TasksButtonAdd from './TasksButtonAdd'
 import TasksList from './TasksList'
 import TasksMenu from './TasksMenu'
-import { useClickOutside } from '../../hooks/use-clickOutside'
+import { useClickOutside } from '../../hooks/useClickOutside'
 import { selectTaskList } from '../../store/taskList-slice'
 
 function Tasks() {
@@ -23,7 +23,7 @@ function Tasks() {
     return (
         <>
             <TasksMenu tasks={tasks} />
-            <TasksList />
+            <TasksList tasks={tasks} />
             {!openNewTask && (
                 <TasksButtonAdd onToggleForm={toogleNewTaskForm}>
                     Add Task

@@ -4,7 +4,7 @@ import React, { useRef, useState } from 'react'
 import { MdDoneOutline, MdEditNote } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux'
 import TaskForm from './TaskForm'
-import { useClickOutside } from '../../../hooks/use-clickOutside'
+import { useClickOutside } from '../../../hooks/useClickOutside'
 import {
     selectActiveTask,
     setActiveTask,

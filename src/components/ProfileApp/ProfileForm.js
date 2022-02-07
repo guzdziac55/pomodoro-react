@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { MdRefresh } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux'
 import classes from './ProfileForm.module.css'
-import { useCheckImage } from '../../hooks/use-checkImage'
+import { useCheckImage } from '../../hooks/useCheckImage'
 import {
     selectUserAvatar,
     selectUserName,

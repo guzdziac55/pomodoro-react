@@ -11,7 +11,7 @@ import { useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
 import GetCalendarButton from './TaskItem/GetCalendarButton'
 import classes from './TasksMenu.module.css'
-import { useClickOutside } from '../../hooks/use-clickOutside'
+import { useClickOutside } from '../../hooks/useClickOutside'
 import {
     deleteAllTasks,
     deleteDoneTasks,

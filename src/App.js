@@ -1,13 +1,13 @@
 /* eslint-disable import/no-cycle */
 import React from 'react'
-import useFetchUserData from './hooks/fetchHooks/use-fetchUserData'
-import usePersistControl from './hooks/fetchHooks/use-persistControl'
-import useSendSettings from './hooks/postHooks/use-sendSettings'
-import useSendTaskList from './hooks/postHooks/use-sendTaskList'
-import useSendTemplates from './hooks/postHooks/use-sendTemplates'
-import useSendUserProfile from './hooks/postHooks/use-sendUserProfile'
+import useFetchUserData from './hooks/fetchHooks/useFetchUserData'
+import usePersistControl from './hooks/fetchHooks/usePersistControl'
+import useSendSettings from './hooks/postHooks/useSendSettings'
+import useSendTaskList from './hooks/postHooks/useSendTaskList'
+import useSendTemplates from './hooks/postHooks/useSendTemplates'
+import useSendUserProfile from './hooks/postHooks/useSendUserProfile'
 
-import useSendWeekPlan from './hooks/postHooks/use-sendWeekPlan'
+import useSendWeekPlan from './hooks/postHooks/useSendWeekPlan'
 import RouterConfig from './pages/routers/RouterConfig'
 
 function App() {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import classes from './WorkingOn.module.css'
-import useActiveTask from '../../hooks/use-activeTask'
+import useActiveTask from '../../hooks/useActiveTask'
 import { selectPomodoroCount } from '../../store/timer-slice'
 
 function WorkingOn() {
