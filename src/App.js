@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import React from 'react'
 import useFetchUserData from './hooks/fetchHooks/useFetchUserData'
 import usePersistControl from './hooks/fetchHooks/usePersistControl'
