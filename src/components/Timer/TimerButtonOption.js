@@ -1,29 +1,27 @@
-import React from "react";
-import classes from "./TimerButtonOption.module.css";
-import { useMemo } from "react";
-import { useSelector } from "react-redux";
-import { getIsActiveOption } from "../../store/timer-slice";
+import React, { useMemo } from 'react'
 
-const TimerButtonOption = ({
-  timeOption,
-  theme,
-  onChangeTabOption,
-  children,
-}) => {
-  const isActiveOption = useMemo(getIsActiveOption, []);
-  const activeOption = useSelector((state) =>
-    isActiveOption(state, timeOption)
-  );
+import { useSelector } from 'react-redux'
+import classes from './TimerButtonOption.module.css'
+import { getIsActiveOption } from '../../store/timer-slice'
 
-  return (
-    <button
-      className={`${classes.button} ${activeOption ? classes.active : ""}`}
-      onClick={() => onChangeTabOption(timeOption, theme)}
-    >
-      <span>{children}</span>
-    </button>
-  );
-};
+function TimerButtonOption({ timeOption, theme, onChangeTabOption, children }) {
+    const isActiveOption = useMemo(getIsActiveOption, [])
+    const activeOption = useSelector((state) =>
+        isActiveOption(state, timeOption)
+    )
+
+    return (
+        <button
+            type="button"
+            className={`${classes.button} ${
+                activeOption ? classes.active : ''
+            }`}
+            onClick={() => onChangeTabOption(timeOption, theme)}
+        >
+            <span>{children}</span>
+        </button>
+    )
+}
 
 // no need memo ?
-export default React.memo(TimerButtonOption);
+export default React.memo(TimerButtonOption)

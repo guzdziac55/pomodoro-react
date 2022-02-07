@@ -1,18 +1,18 @@
-import React from "react";
-import classes from "./AvatarItem.module.css";
+// import React from 'react'
+// import classes from './AvatarItem.module.css'
 
-const AvatarItem = ({ url, onPickAvatar }) => {
-  return (
-    <div>
-      <img
-        className={classes.avatarItem}
-        onClick={() => {
-          onPickAvatar(url);
-        }}
-        src={url}
-      ></img>
-    </div>
-  );
-};
+// function AvatarItem({ url, onPickAvatar }) {
+//     return (
+//         <div>
+//             <img
+//                 className={classes.avatarItem}
+//                 onClick={() => onPickAvatar(url)}
+//                 onKeyDown={() => onPickAvatar(url)}
+//                 src={url}
+//                 alt="avatar-item"
+//             />
+//         </div>
+//     )
+// }
 
-export default AvatarItem;
+// export default AvatarItem

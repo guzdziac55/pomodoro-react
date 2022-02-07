@@ -1,18 +1,19 @@
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux'
 
 const useActiveTask = () => {
-  const tasksList = useSelector((state) => state.tasksList.tasksList);
-  const activeTaskId = useSelector((state) => state.tasksList.activeTask);
+    const tasksList = useSelector((state) => state.tasksList.tasksList)
+    const activeTaskId = useSelector((state) => state.tasksList.activeTask)
 
-  const getActiveTask = () => {
-    if (!activeTaskId) return;
-    const task = tasksList.find((task) => task.id === activeTaskId);
-    return task;
-  };
+    const getActiveTask = () => {
+        if (!activeTaskId) {
+            return null
+        }
+        // sprawdzić czy działa
+        return tasksList.find((taskItem) => taskItem.id === activeTaskId)
+    }
 
-  const activeTask = getActiveTask();
+    const activeTask = getActiveTask()
+    return { activeTask }
+}
 
-  return { activeTask };
-};
-
-export default useActiveTask;
+export default useActiveTask

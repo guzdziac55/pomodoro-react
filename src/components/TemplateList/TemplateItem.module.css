@@ -1,56 +1,56 @@
 .templateItem {
-  width: 100%;
-  display: flex;
-  margin-top: 5px;
-  flex-direction: row;
-  align-items: center;
-  padding: 10px;
-  border: none;
-  flex-wrap: wrap;
-  border-radius: 4px;
-  border-left: 5px solid rgba(0, 0, 0, 0);
-  overflow-wrap: break-word;
-  color: #ffffff;
-  background-color: #ffffff27;
-  transition: 0.5s;
+    width: 100%;
+    display: flex;
+    margin-top: 5px;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+    border: none;
+    flex-wrap: wrap;
+    border-radius: 4px;
+    border-left: 5px solid rgba(0, 0, 0, 0);
+    overflow-wrap: break-word;
+    color: #ffffff;
+    background-color: #ffffff27;
+    transition: 0.5s;
 }
 
 .icon {
-  display: block;
-  cursor: pointer;
-  width: 35px;
-  height: 35px;
-  color: #ffffff;
-  margin-right: 0.5rem;
+    display: block;
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+    color: #ffffff;
+    margin-right: 0.5rem;
 }
 
 .icon:hover {
-  display: block;
-  cursor: pointer;
-  margin-right: 0.5rem;
-  color: #ffffff80;
+    display: block;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    color: #ffffff80;
 }
 
 .name {
-  overflow: hidden;
-  color: #ffffff70;
-  padding-left: 5px;
-  padding-right: 5px;
-  flex: 1;
+    overflow: hidden;
+    color: #ffffff70;
+    padding-left: 5px;
+    padding-right: 5px;
+    flex: 1;
 }
 
 /* ///// TABLET */
 @media (max-width: 1100px) {
-  .templateItem {
-    padding: 5px;
-    margin-top: 4px;
-  }
+    .templateItem {
+        padding: 5px;
+        margin-top: 4px;
+    }
 }
 
 /* ///// MOBILE */
 @media (max-width: 550px) {
-  .templateItem {
-    padding: 5px;
-    margin-top: 2px;
-  }
+    .templateItem {
+        padding: 5px;
+        margin-top: 2px;
+    }
 }

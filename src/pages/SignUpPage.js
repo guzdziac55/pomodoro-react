@@ -1,16 +1,17 @@
-import React from "react";
-import SignUp from "../components/auth/signUp";
-import classes from "./SignUpPage.module.css";
-import LayoutComponent from "./LayoutComponent";
+/* eslint-disable import/no-cycle */
+import React from 'react'
+import LayoutComponent from './LayoutComponent'
+import classes from './SignUpPage.module.css'
+import SignUp from '../components/auth/signUp'
 
-const SignUpPage = () => {
-  return (
-    <LayoutComponent>
-      <div className={classes.containerFull}>
-        <SignUp></SignUp>
-      </div>
-    </LayoutComponent>
-  );
-};
+function SignUpPage() {
+    return (
+        <LayoutComponent>
+            <div className={classes.containerFull}>
+                <SignUp />
+            </div>
+        </LayoutComponent>
+    )
+}
 
-export default SignUpPage;
+export default SignUpPage

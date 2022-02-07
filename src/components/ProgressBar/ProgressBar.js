@@ -1,30 +1,32 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import classes from "./ProgressBar.module.css";
-import { selectConsumedTime } from "../../store/timer-slice";
-import { selectCurrentSeconds } from "../../store/timer-slice";
-import { useEffect } from "react";
+import React, { useState, useEffect } from 'react'
 
-const ProgressBar = () => {
-  const currentSeconds = useSelector(selectCurrentSeconds);
-  const consumedSeconds = useSelector(selectConsumedTime);
+import { useSelector } from 'react-redux'
+import classes from './ProgressBar.module.css'
+import {
+    selectConsumedTime,
+    selectCurrentSeconds,
+} from '../../store/timer-slice'
 
-  const [currentProgress, setCurrentProgress] = useState(consumedSeconds);
+function ProgressBar() {
+    const currentSeconds = useSelector(selectCurrentSeconds)
+    const consumedSeconds = useSelector(selectConsumedTime)
 
-  useEffect(() => {
-    const calculatedWidth = (consumedSeconds / currentSeconds) * 100;
-    setCurrentProgress(calculatedWidth);
-  }, [currentSeconds, consumedSeconds]);
+    const [currentProgress, setCurrentProgress] = useState(consumedSeconds)
 
-  const progressStyle = {
-    width: `${currentProgress}%`,
-  };
+    useEffect(() => {
+        const calculatedWidth = (consumedSeconds / currentSeconds) * 100
+        setCurrentProgress(calculatedWidth)
+    }, [currentSeconds, consumedSeconds])
 
-  return (
-    <div className={classes.progressContainer}>
-      <div style={progressStyle} className={classes.progressBar}></div>
-    </div>
-  );
-};
+    const progressStyle = {
+        width: `${currentProgress}%`,
+    }
 
-export default ProgressBar;
+    return (
+        <div className={classes.progressContainer}>
+            <div style={progressStyle} className={classes.progressBar} />
+        </div>
+    )
+}
+
+export default ProgressBar

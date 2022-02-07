@@ -1,18 +1,18 @@
-import React from "react";
-import Card from "../UI/Card";
-import classes from "./Timer.module.css";
-import TimerTab from "./TimerTab";
-import TimerCountdown from "./TimerCountdown";
-import TimerButtonStart from "./TimerButtonStart";
+import React from 'react'
+import classes from './Timer.module.css'
+import TimerButtonStart from './TimerButtonStart'
+import TimerCountdown from './TimerCountdown'
+import TimerTab from './TimerTab'
+import Card from '../UI/Card'
 
-const Timer = () => {
-  return (
-    <Card className={classes.timer}>
-      <TimerTab></TimerTab>
-      <TimerCountdown />
-      <TimerButtonStart />
-    </Card>
-  );
-};
+function Timer() {
+    return (
+        <Card className={classes.timer}>
+            <TimerTab />
+            <TimerCountdown />
+            <TimerButtonStart />
+        </Card>
+    )
+}
 
-export default Timer;
+export default Timer

@@ -1,16 +1,17 @@
-import React from "react";
-import ResetPassword from "../components/auth/resetPassword";
-import classes from "./ResetPasswordPage.module.css";
-import LayoutComponent from "./LayoutComponent";
+/* eslint-disable import/no-cycle */
+import React from 'react'
+import LayoutComponent from './LayoutComponent'
+import classes from './ResetPasswordPage.module.css'
+import ResetPassword from '../components/auth/resetPassword'
 
-const ResetPasswordPage = () => {
-  return (
-    <LayoutComponent>
-      <div className={classes.containerFull}>
-        <ResetPassword />
-      </div>
-    </LayoutComponent>
-  );
-};
+function ResetPasswordPage() {
+    return (
+        <LayoutComponent>
+            <div className={classes.containerFull}>
+                <ResetPassword />
+            </div>
+        </LayoutComponent>
+    )
+}
 
-export default ResetPasswordPage;
+export default ResetPasswordPage

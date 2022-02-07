@@ -1,75 +1,75 @@
 .title {
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  color: #ffffff;
-  font-size: 2.5rem;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: #ffffff;
+    font-size: 2.5rem;
 }
 
 .boardPattern {
-  height: fit-content;
-  margin-left: 40px;
-  border-radius: 4px;
-  margin-right: 50px;
-  transition: all 0.3s ease-out;
-  display: flex;
-  flex-direction: column;
-  background-color: #d313133b;
-  padding: 25px 10px;
-  align-items: center;
-  justify-items: center;
+    height: fit-content;
+    margin-left: 40px;
+    border-radius: 4px;
+    margin-right: 50px;
+    transition: all 0.3s ease-out;
+    display: flex;
+    flex-direction: column;
+    background-color: #d313133b;
+    padding: 25px 10px;
+    align-items: center;
+    justify-items: center;
 }
 
 .columnPattern {
-  /* flex: 0 0 auto; */
-  /* min-width: 500px; */
-  /* min-height: 60px; */
-  /* margin-right: 20px; */
+    /* flex: 0 0 auto; */
+    /* min-width: 500px; */
+    /* min-height: 60px; */
+    /* margin-right: 20px; */
 
-  display: flex;
-  padding: 10px 10px;
-  border-radius: 10px;
+    display: flex;
+    padding: 10px 10px;
+    border-radius: 10px;
 }
 
 .buttons {
-  display: flex;
-  margin-top: 20px;
-  margin-bottom: 5px;
-  justify-content: center;
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    justify-content: center;
 }
 
 .buttonAdd {
-  padding: 10px;
-  color: #000000;
-  border-radius: 5px;
-  border-style: none;
-  background-color: #ffffff;
-  color: var(--btn-color-confirm);
-  font-size: 1.5rem;
-  font-weight: 600;
-  cursor: pointer;
+    padding: 10px;
+    color: #000000;
+    border-radius: 5px;
+    border-style: none;
+    background-color: #ffffff;
+    color: var(--btn-color-confirm);
+    font-size: 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
 }
 
 .buttonAdd:hover {
-  background-color: #cfcfcf;
+    background-color: #cfcfcf;
 }
 
 .buttonAdd:disabled {
-  background-color: #ffffff52;
-  color: #ffffff7c;
+    background-color: #ffffff52;
+    color: #ffffff7c;
 }
 
 .buttonSave {
-  padding: 10px;
-  color: #ffffff;
-  border-radius: 5px;
-  border-style: none;
-  background-color: #173f0d;
-  font-size: 1.5rem;
-  font-weight: 600;
-  cursor: pointer;
+    padding: 10px;
+    color: #ffffff;
+    border-radius: 5px;
+    border-style: none;
+    background-color: #173f0d;
+    font-size: 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
 }
 
 .buttonSave:hover {
-  background-color: #49b82d;
+    background-color: #49b82d;
 }

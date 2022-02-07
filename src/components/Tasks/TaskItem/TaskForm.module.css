@@ -1,191 +1,191 @@
 .form {
-  text-align: center;
-  background-color: #ffffff;
-  border-radius: 8px;
-  margin-top: 1rem;
-  width: 100%;
-  height: 100%;
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 8px;
+    margin-top: 1rem;
+    width: 100%;
+    height: 100%;
 }
 
 .form button {
-  cursor: pointer;
-  border-radius: 5px;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
 .inputWrapper button {
-  padding: 1rem;
-  border: 1px solid rgb(223, 223, 223);
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px;
+    padding: 1rem;
+    border: 1px solid rgb(223, 223, 223);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px;
 }
 
 .inputWrapper button:active {
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 0px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 0px;
 }
 
 .inputWrapper .icon {
-  height: 1.5rem;
-  width: 1.5rem;
+    height: 1.5rem;
+    width: 1.5rem;
 }
 
 .noteArea {
-  margin-top: 10px;
-  resize: none;
-  outline: none;
+    margin-top: 10px;
+    resize: none;
+    outline: none;
 }
 
 .formNote {
-  margin-top: 20px;
-  display: flex;
-  justify-content: flex-start;
-  gap: 10px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
 }
 
 .formNote button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 5px 10px;
-  border: 1px solid rgb(223, 223, 223);
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    border: 1px solid rgb(223, 223, 223);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px;
 }
 .formNote :active {
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 0px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 0px;
 }
 .formNote span {
-  outline: hidden;
+    outline: hidden;
 }
 
 .formNote .icon {
-  margin-right: 4px;
-  height: 1rem;
-  width: 1rem;
+    margin-right: 4px;
+    height: 1rem;
+    width: 1rem;
 }
 
 .formNote .note {
-  resize: none;
+    resize: none;
 }
 
 .formMenu button {
-  border-style: none;
-  padding: 0.5rem 1rem;
-  font-size: 14px;
-  margin-right: 10px;
+    border-style: none;
+    padding: 0.5rem 1rem;
+    font-size: 14px;
+    margin-right: 10px;
 }
 
 .formMain {
-  padding: 20px 20px 20px 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+    padding: 20px 20px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .inputWrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  gap: 10px;
-  margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-top: 10px;
 }
 
 input.large {
-  border-radius: 4px;
-  font-size: 22px;
-  padding: 8px 0px;
-  box-shadow: none;
-  border: 0;
-  color: rgb(85, 85, 85);
-  width: 100%;
-  box-sizing: border-box;
-  font-weight: bold;
-  overflow: hidden;
+    border-radius: 4px;
+    font-size: 22px;
+    padding: 8px 0px;
+    box-shadow: none;
+    border: 0;
+    color: rgb(85, 85, 85);
+    width: 100%;
+    box-sizing: border-box;
+    font-weight: bold;
+    overflow: hidden;
 }
 
 input.large:focus {
-  outline: none;
+    outline: none;
 }
 
 input.number {
-  border-radius: 4px;
-  font-size: 22px;
-  box-shadow: none;
-  padding: 10px;
-  border: none;
-  overflow: hidden;
-  background-color: var(--color-grey-light-1);
-  color: rgb(85, 85, 85);
-  width: 90px;
-  /* height: 90px; */
-  box-sizing: border-box;
-  font-weight: bold;
+    border-radius: 4px;
+    font-size: 22px;
+    box-shadow: none;
+    padding: 10px;
+    border: none;
+    overflow: hidden;
+    background-color: var(--color-grey-light-1);
+    color: rgb(85, 85, 85);
+    width: 90px;
+    /* height: 90px; */
+    box-sizing: border-box;
+    font-weight: bold;
 }
 
 label.number {
-  display: flex;
-  font-size: 16px;
-  margin-top: 20px;
-  font-weight: 700;
-  color: var(--font-black);
+    display: flex;
+    font-size: 16px;
+    margin-top: 20px;
+    font-weight: 700;
+    color: var(--font-black);
 }
 
 .invalid {
-  background-color: red;
+    background-color: red;
 }
 
 /* ////////////////// FORM MENU BOTTOM GRAY  */
 
 .formMenu {
-  padding: 14px 20px;
-  display: flex;
-  background-color: var(--color-grey-light-2);
-  justify-content: space-between;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
+    padding: 14px 20px;
+    display: flex;
+    background-color: var(--color-grey-light-2);
+    justify-content: space-between;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 
 .menuLeft {
-  justify-content: flex-start;
+    justify-content: flex-start;
 }
 
 .menuRight {
-  justify-content: flex-end;
+    justify-content: flex-end;
 }
 
 /* ////////////////// FORM MENU BUTTONS */
 
 .btnDelete {
-  color: var(--font-gray);
-  font-weight: 600;
+    color: var(--font-gray);
+    font-weight: 600;
 }
 .btnDelete:hover {
-  color: var(--font-black);
-  font-weight: 600;
+    color: var(--font-black);
+    font-weight: 600;
 }
 
 .btnCancel {
-  color: var(--font-gray);
-  font-weight: 600;
+    color: var(--font-gray);
+    font-weight: 600;
 }
 .btnCancel:hover {
-  color: var(--font-black);
-  font-weight: 600;
+    color: var(--font-black);
+    font-weight: 600;
 }
 
-.form button[type="submit"] {
-  background-color: var(--btn-color-confirm);
-  color: var(--font-main);
+.form button[type='submit'] {
+    background-color: var(--btn-color-confirm);
+    color: var(--font-main);
 }
 
-.form button[type="submit"]:hover {
-  background-color: #000000;
-  color: var(--font-main);
+.form button[type='submit']:hover {
+    background-color: #000000;
+    color: var(--font-main);
 }
 
-.form button[type="submit"]:disabled {
-  background-color: var(--btn-color-disable);
-  color: var(--font-main);
+.form button[type='submit']:disabled {
+    background-color: var(--btn-color-disable);
+    color: var(--font-main);
 }
 
-.form button[type="button"] {
-  background-color: none;
-  background: none;
+.form button[type='button'] {
+    background-color: none;
+    background: none;
 }

@@ -1,36 +1,38 @@
-import React from "react";
-import classes from "./TemplateItem.module.css";
-import { MdDisabledByDefault, MdOutlineArrowForward } from "react-icons/md";
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import React from 'react'
+import { MdDisabledByDefault, MdOutlineArrowForward } from 'react-icons/md'
 
-import { useDispatch } from "react-redux";
+import { useDispatch } from 'react-redux'
+import classes from './TemplateItem.module.css'
 import {
-  removeTaskTemplate,
-  addTemplateToList,
-} from "../../store/taskList-slice";
+    addTemplateToList,
+    removeTaskTemplate,
+} from '../../store/taskList-slice'
 
-const TemplateItem = ({ id, name }) => {
-  const dispatch = useDispatch();
+function TemplateItem({ id, name }) {
+    const dispatch = useDispatch()
 
-  return (
-    <li className={classes.templateItem}>
-      <span
-        onClick={() => {
-          dispatch(removeTaskTemplate(id));
-        }}
-      >
-        <MdDisabledByDefault className={classes.icon}></MdDisabledByDefault>
-      </span>
-      <p className={classes.name}>{name}</p>
+    return (
+        <li className={classes.templateItem}>
+            <span
+                onClick={() => {
+                    dispatch(removeTaskTemplate(id))
+                }}
+            >
+                <MdDisabledByDefault className={classes.icon} />
+            </span>
+            <p className={classes.name}>{name}</p>
 
-      <span
-        onClick={() => {
-          dispatch(addTemplateToList(id));
-        }}
-      >
-        <MdOutlineArrowForward className={classes.icon}></MdOutlineArrowForward>
-      </span>
-    </li>
-  );
-};
+            <span
+                onClick={() => {
+                    dispatch(addTemplateToList(id))
+                }}
+            >
+                <MdOutlineArrowForward className={classes.icon} />
+            </span>
+        </li>
+    )
+}
 
-export default TemplateItem;
+export default TemplateItem

@@ -1,89 +1,89 @@
 .tabMenu {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
 }
 
 .button {
-  display: flex;
-  width: 100%;
-  padding: 10px 15px;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  background-color: var(--main-dark);
-  color: var(--font-main);
-  font-size: 1.4rem;
-  border-radius: 5px;
-  border-style: none;
+    display: flex;
+    width: 100%;
+    padding: 10px 15px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    background-color: var(--main-dark);
+    color: var(--font-main);
+    font-size: 1.4rem;
+    border-radius: 5px;
+    border-style: none;
 }
 
 .buttonAcc {
-  display: flex;
-  width: 100%;
-  padding: 10px 15px;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  background-color: var(--main-light);
-  color: var(--font-main);
-  font-size: 1.4rem;
-  border-radius: 5px;
-  cursor: pointer;
-  border-style: none;
+    display: flex;
+    width: 100%;
+    padding: 10px 15px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    background-color: var(--main-light);
+    color: var(--font-main);
+    font-size: 1.4rem;
+    border-radius: 5px;
+    cursor: pointer;
+    border-style: none;
 }
 
 .button:hover {
-  cursor: pointer;
-  background-color: var(--main-light);
+    cursor: pointer;
+    background-color: var(--main-light);
 }
 
 .icon {
-  width: 25px;
-  height: 25px;
-  margin-right: 0.5rem;
+    width: 25px;
+    height: 25px;
+    margin-right: 0.5rem;
 }
 
 /* ///// TABLET */
 @media (max-width: 1100px) {
-  .button {
-    width: 100%;
-    padding: 10px 15px;
-  }
+    .button {
+        width: 100%;
+        padding: 10px 15px;
+    }
 
-  .buttonAcc {
-    width: 100%;
-    padding: 10px 15px;
-  }
+    .buttonAcc {
+        width: 100%;
+        padding: 10px 15px;
+    }
 
-  .button > span {
-    display: none;
-    visibility: hidden;
-  }
+    .button > span {
+        display: none;
+        visibility: hidden;
+    }
 
-  .icon {
-    margin: 0;
-  }
+    .icon {
+        margin: 0;
+    }
 }
 
 /* ///// MOBILE */
 @media (max-width: 550px) {
-  .button {
-    width: 100%;
-    padding: 5px 10px;
-  }
+    .button {
+        width: 100%;
+        padding: 5px 10px;
+    }
 
-  .buttonAcc {
-    width: 100%;
-    padding: 5px 10px;
-  }
+    .buttonAcc {
+        width: 100%;
+        padding: 5px 10px;
+    }
 
-  .button > span {
-    display: none;
-    visibility: hidden;
-  }
+    .button > span {
+        display: none;
+        visibility: hidden;
+    }
 
-  .icon {
-    margin: 0;
-  }
+    .icon {
+        margin: 0;
+    }
 }

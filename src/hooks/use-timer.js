@@ -1,60 +1,58 @@
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
+import useSound from 'use-sound'
+import { findNotification } from './findNotification'
+import { selectAlarmSound } from '../store/config-slice'
+import { nextStageWithConfig } from '../store/thunks/calculateNextStage-actions'
 import {
-  consumeTime,
-  selectIsTicking,
-  selectConsumedTime,
-} from "../store/timer-slice";
-
-import { nextStageWithConfig } from "../store/thunks/calculateNextStage-actions";
-import { selectCurrentSeconds } from "../store/timer-slice";
-import { selectAlarmSound } from "../store/config-slice";
-import useSound from "use-sound";
-import { findNotification } from "./findNotification";
+    consumeTime,
+    selectConsumedTime,
+    selectIsTicking,
+    selectCurrentSeconds,
+} from '../store/timer-slice'
 
 export const useTimer = () => {
-  const dispatch = useDispatch();
-  const isTicking = useSelector(selectIsTicking);
-  const consumedSeconds = useSelector(selectConsumedTime);
+    const dispatch = useDispatch()
+    const isTicking = useSelector(selectIsTicking)
+    const consumedSeconds = useSelector(selectConsumedTime)
 
-  const currentTimeOption = useSelector(selectCurrentSeconds);
-  const alarmSound = useSelector(selectAlarmSound); // alarm name
+    const currentTimeOption = useSelector(selectCurrentSeconds)
+    const alarmSound = useSelector(selectAlarmSound) // alarm name
 
-  const [play] = useSound(findNotification(alarmSound));
+    const [play] = useSound(findNotification(alarmSound))
 
-  const timeIsEndAction = () => {
-    dispatch(nextStageWithConfig());
-  };
-
-  useEffect(() => {
-    let intervalId;
-    if (isTicking && consumedSeconds <= currentTimeOption) {
-      intervalId = setInterval(() => {
-        dispatch(consumeTime());
-      }, 1000);
-    } else if (consumedSeconds > currentTimeOption) {
-      timeIsEndAction();
-      play();
+    const timeIsEndAction = () => {
+        dispatch(nextStageWithConfig())
     }
-    return () => clearInterval(intervalId);
-  }, [isTicking, consumedSeconds, currentTimeOption]);
 
-  //
-  const calculateCounter = () => {
-    return currentTimeOption - consumedSeconds;
-  };
+    useEffect(() => {
+        let intervalId
+        if (isTicking && consumedSeconds <= currentTimeOption) {
+            intervalId = setInterval(() => {
+                dispatch(consumeTime())
+            }, 1000)
+        } else if (consumedSeconds > currentTimeOption) {
+            timeIsEndAction()
+            play()
+        }
+        return () => clearInterval(intervalId)
+    }, [isTicking, currentTimeOption, dispatch, timeIsEndAction, play])
 
-  const counter = calculateCounter();
+    //
+    const calculateCounter = () => currentTimeOption - consumedSeconds
 
-  const convertTime = (time) => {
-    let minutes = parseInt(time / 60, 10);
-    let seconds = parseInt(time % 60, 10);
-    minutes = minutes < 10 ? "0" + minutes : minutes;
-    seconds = seconds < 10 ? "0" + seconds : seconds;
-    const outputTime = `${minutes}:${seconds}`;
-    return outputTime;
-  };
+    const counter = calculateCounter()
 
-  return convertTime(counter);
-};
+    const convertTime = (time) => {
+        let minutes = parseInt(time / 60, 10)
+        let seconds = parseInt(time % 60, 10)
+        minutes = minutes < 10 ? `0${minutes}` : minutes
+        seconds = seconds < 10 ? `0${seconds}` : seconds
+        const outputTime = `${minutes}:${seconds}`
+        return outputTime
+    }
+
+    return convertTime(counter)
+}

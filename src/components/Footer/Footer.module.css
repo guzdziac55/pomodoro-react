@@ -1,87 +1,87 @@
 .footer {
-  border-top: 2px rgb(0 0 0 / 10%) solid;
-  text-align: center;
-  z-index: 10;
-  margin-top: 300px;
+    border-top: 2px rgb(0 0 0 / 10%) solid;
+    text-align: center;
+    z-index: 10;
+    margin-top: 300px;
 }
 
 @media (max-width: 550px) {
-  .footer {
-    margin-top: 30px;
-  }
+    .footer {
+        margin-top: 30px;
+    }
 }
 
 .footer a {
-  text-decoration: none;
-  outline: none;
-  color: #525252;
+    text-decoration: none;
+    outline: none;
+    color: #525252;
 }
 
 .container {
-  margin-top: 20px;
+    margin-top: 20px;
 }
 
 .siteMap {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
 }
 .siteMap a {
-  text-transform: uppercase;
+    text-transform: uppercase;
 }
 
 .footer a {
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
 }
 
 .footer a:link {
-  color: #525252;
+    color: #525252;
 }
 .footer a:hover {
-  color: #000000;
+    color: #000000;
 }
 
 .iconContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
 .iconContainer a > span {
-  margin-top: 5px;
-  font-size: 1.5rem;
-  display: block;
+    margin-top: 5px;
+    font-size: 1.5rem;
+    display: block;
 }
 
 .icon {
-  width: 45px;
-  height: 45px;
-  color: #000000;
+    width: 45px;
+    height: 45px;
+    color: #000000;
 }
 
 .iconTitle {
-  font-size: 1.5rem;
-  font-weight: 600;
+    font-size: 1.5rem;
+    font-weight: 600;
 }
 
 .authorTitle {
-  font-weight: 600;
-  font-size: 1.6rem;
+    font-weight: 600;
+    font-size: 1.6rem;
 }
 
 @media (max-width: 550px) {
-  .icon {
-    width: 25px;
-    height: 25px;
-    color: #000000;
-  }
+    .icon {
+        width: 25px;
+        height: 25px;
+        color: #000000;
+    }
 
-  .footer a {
-    font-size: 1.2rem;
-  }
+    .footer a {
+        font-size: 1.2rem;
+    }
 }

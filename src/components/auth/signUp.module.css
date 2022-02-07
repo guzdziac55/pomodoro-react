@@ -1,194 +1,194 @@
 .container {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  max-width: 550px;
-  transform: translate(-50%, -50%);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    max-width: 550px;
+    transform: translate(-50%, -50%);
 }
 
 .header {
-  text-align: center;
-  margin-top: 40px;
-  font-size: 2.4rem;
-  text-decoration: none;
-  color: #ffffff;
+    text-align: center;
+    margin-top: 40px;
+    font-size: 2.4rem;
+    text-decoration: none;
+    color: #ffffff;
 }
 
 .error {
-  color: #ffffff;
-  font-size: 14px;
-  max-width: fit-content;
-  font-style: italic;
-  font-weight: 400;
-  text-align: center;
-  word-wrap: break-word;
+    color: #ffffff;
+    font-size: 14px;
+    max-width: fit-content;
+    font-style: italic;
+    font-weight: 400;
+    text-align: center;
+    word-wrap: break-word;
 }
 
 .headerButton {
-  display: flex;
-  text-align: center;
-  font-size: 3.2rem;
-  font-weight: 800;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  color: #ffffff;
+    display: flex;
+    text-align: center;
+    font-size: 3.2rem;
+    font-weight: 800;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #ffffff;
 }
 
 /* ///// MOBILE */
 @media (max-width: 550px) {
-  .container {
-    width: 100%;
-    padding: 0 10px;
-  }
+    .container {
+        width: 100%;
+        padding: 0 10px;
+    }
 
-  .header {
-    margin-top: 20px;
-    font-size: 2rem;
-  }
+    .header {
+        margin-top: 20px;
+        font-size: 2rem;
+    }
 
-  .headerButton {
-    display: none;
-  }
+    .headerButton {
+        display: none;
+    }
 }
 
 .headerIcon {
-  width: 5rem;
-  margin-right: 1rem;
-  height: 5rem;
-  color: #ffffff;
+    width: 5rem;
+    margin-right: 1rem;
+    height: 5rem;
+    color: #ffffff;
 }
 
 .auth {
-  text-align: center;
-  margin: auto;
-  margin-top: 1rem;
-  min-width: 550px;
-  width: 100%;
-  padding: 10px 10px;
-  background-color: var(--main-light);
-  height: 100%;
+    text-align: center;
+    margin: auto;
+    margin-top: 1rem;
+    min-width: 550px;
+    width: 100%;
+    padding: 10px 10px;
+    background-color: var(--main-light);
+    height: 100%;
 }
 
 /* ///// MOBILE */
 @media (max-width: 550px) {
-  .auth {
-    min-width: 0px;
-    padding: 5px 5px;
-  }
+    .auth {
+        min-width: 0px;
+        padding: 5px 5px;
+    }
 }
 
 .btnGoogleLogin {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
 }
 
 .break {
-  display: block;
-  color: #ffffff;
+    display: block;
+    color: #ffffff;
 }
 
 .break::before,
 .break::after {
-  display: inline-block;
-  content: "";
-  border-top: 1px solid #ffffff;
-  width: 5rem;
-  margin: 5px 10px;
+    display: inline-block;
+    content: '';
+    border-top: 1px solid #ffffff;
+    width: 5rem;
+    margin: 5px 10px;
 }
 
 /* ///// MOBILE */
 @media (max-width: 550px) {
-  .btnGoogleLogin {
-    gap: 5px;
-  }
+    .btnGoogleLogin {
+        gap: 5px;
+    }
 
-  .break {
-    font-size: 1.5rem;
-  }
+    .break {
+        font-size: 1.5rem;
+    }
 }
 
 .inputWrapper button {
-  padding: 1rem;
-  border: 1px solid rgb(223, 223, 223);
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px;
+    padding: 1rem;
+    border: 1px solid rgb(223, 223, 223);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px;
 }
 
 .form {
-  width: 100%;
-  height: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-radius: 10px;
-  padding: 10px 10px;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 10px;
+    padding: 10px 10px;
 }
 
 .form button {
-  border-style: none;
-  cursor: pointer;
-  width: 100%;
-  padding: 15px 10px;
-  color: #ffffff;
-  background-color: var(--btn-color-confirm);
-  box-shadow: rgb(0 0 0 / 20%) 0px 2px 2px;
-  font-size: 2rem;
-  font-weight: 500;
-  border-radius: 5px;
-  margin: 1rem 0 0.5rem;
+    border-style: none;
+    cursor: pointer;
+    width: 100%;
+    padding: 15px 10px;
+    color: #ffffff;
+    background-color: var(--btn-color-confirm);
+    box-shadow: rgb(0 0 0 / 20%) 0px 2px 2px;
+    font-size: 2rem;
+    font-weight: 500;
+    border-radius: 5px;
+    margin: 1rem 0 0.5rem;
 }
 
 .form button > span {
-  font-size: 1.5rem;
+    font-size: 1.5rem;
 }
 
 .form button:hover {
-  background-color: var(--font-black);
+    background-color: var(--font-black);
 }
 
-.form label[type="text"] {
-  width: 100%;
-  height: 3rem;
-  border-radius: 5px;
-  padding-left: 0.5rem;
-  border: 1px solid #ccc;
-  font: inherit;
-  text-align: center;
+.form label[type='text'] {
+    width: 100%;
+    height: 3rem;
+    border-radius: 5px;
+    padding-left: 0.5rem;
+    border: 1px solid #ccc;
+    font: inherit;
+    text-align: center;
 }
 
-.form button[type="submit"]:disabled {
-  background-color: rgb(131, 131, 131);
+.form button[type='submit']:disabled {
+    background-color: rgb(131, 131, 131);
 }
 
 .form-main {
-  padding: 10px 20px 0px;
+    padding: 10px 20px 0px;
 }
 .form-menu {
-  padding: 14px 20px;
-  display: flex;
-  background-color: #a54844;
-  justify-content: flex-end;
+    padding: 14px 20px;
+    display: flex;
+    background-color: #a54844;
+    justify-content: flex-end;
 }
 
 .createWrapper {
-  display: flex;
-  margin-top: 20px;
-  text-align: center;
-  gap: 10px;
-  flex-direction: column;
+    display: flex;
+    margin-top: 20px;
+    text-align: center;
+    gap: 10px;
+    flex-direction: column;
 }
 
 .createLabel {
-  font-size: 16px;
-  font-weight: 300;
-  color: var(--color-grey-light-3);
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--color-grey-light-3);
 }
 
 .createAccount {
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: underline;
-  cursor: pointer;
-  color: var(--font-main);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+    color: var(--font-main);
 }

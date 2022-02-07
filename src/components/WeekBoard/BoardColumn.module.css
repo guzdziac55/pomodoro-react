@@ -1,22 +1,22 @@
 .columnContainer {
-  margin-right: 20px;
+    margin-right: 20px;
 }
 
 .boardColumn {
-  margin-top: 20px;
-  flex: 0 0 auto;
-  padding: 10px 10px;
-  border-radius: 10px;
-  min-width: 150px;
-  min-height: 60px;
+    margin-top: 20px;
+    flex: 0 0 auto;
+    padding: 10px 10px;
+    border-radius: 10px;
+    min-width: 150px;
+    min-height: 60px;
 
-  background-color: var(--main-light);
+    background-color: var(--main-light);
 }
 
 .title {
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  color: #ffffff;
-  font-size: 1.5rem;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: #ffffff;
+    font-size: 1.5rem;
 }

@@ -1,24 +1,24 @@
 .button {
-  padding: 5px 12px;
-  border-style: none;
-  border-radius: 5px;
-  font-size: 16px;
-  line-height: 1.1;
-  font-weight: 500;
-  background: none;
-  outline: hidden;
-  color: #ffffff;
+    padding: 5px 12px;
+    border-style: none;
+    border-radius: 5px;
+    font-size: 16px;
+    line-height: 1.1;
+    font-weight: 500;
+    background: none;
+    outline: hidden;
+    color: #ffffff;
 }
 
 .button:active {
-  transform: translateY(0.3rem);
+    transform: translateY(0.3rem);
 }
 
 .active {
-  font-weight: 600;
-  background: var(--main-dark);
+    font-weight: 600;
+    background: var(--main-dark);
 }
 
 .button:hover {
-  cursor: pointer;
+    cursor: pointer;
 }

@@ -1,98 +1,98 @@
 .boardItem {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 10px 5px;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  border: 3px #00000036 solid;
-  width: 200px;
-  color: var(--font-black);
-  overflow-wrap: break-word;
-  background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 5px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border: 3px #00000036 solid;
+    width: 200px;
+    color: var(--font-black);
+    overflow-wrap: break-word;
+    background-color: #ffffff;
 }
 .title {
-  overflow: hidden;
-  font-size: 1.2rem;
-  color: var(--font-black);
-  font-weight: 700;
-  margin-left: 0.5rem;
-  flex: 1;
-  margin-right: 10px;
+    overflow: hidden;
+    font-size: 1.2rem;
+    color: var(--font-black);
+    font-weight: 700;
+    margin-left: 0.5rem;
+    flex: 1;
+    margin-right: 10px;
 }
 
 .boardItem:hover {
-  border: 3px #0000008f solid;
+    border: 3px #0000008f solid;
 }
 
 .pomodoroEst {
-  color: rgb(187, 187, 187);
-  font-weight: bold;
-  font-size: 18px;
+    color: rgb(187, 187, 187);
+    font-weight: bold;
+    font-size: 18px;
 }
 
 .editTask {
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    flex-direction: row;
 }
 
 .textEditor {
-  width: 100%;
+    width: 100%;
 }
 
 .pomodoroButton {
-  text-align: center;
+    text-align: center;
 
-  width: 15px;
-  height: 15px;
+    width: 15px;
+    height: 15px;
 }
 
 /* left edit number  */
 
 .editNumber {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-items: center;
-  gap: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    gap: 5px;
 }
 
 .editNumber button {
-  margin: 0;
-  display: flex;
-  justify-items: center;
-  align-items: center;
-  cursor: pointer;
-  width: 20px;
-  height: 20px;
-  border: none;
-  color: #0000002c;
+    margin: 0;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    border: none;
+    color: #0000002c;
 }
 
 .editNumber .icon {
-  display: block;
-  cursor: pointer;
-  width: 10px;
-  height: 10px;
-  color: #000000f6;
+    display: block;
+    cursor: pointer;
+    width: 10px;
+    height: 10px;
+    color: #000000f6;
 }
 
 .estPomodoro {
-  color: var(--font-black);
-  font-weight: 700;
-  font-size: 1.2rem;
+    color: var(--font-black);
+    font-weight: 700;
+    font-size: 1.2rem;
 }
 
 .icon {
-  display: block;
-  cursor: pointer;
-  width: 25px;
-  height: 25px;
-  color: #0000002c;
+    display: block;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    color: #0000002c;
 }
 
 .icon:hover {
-  display: block;
-  cursor: pointer;
-  color: var(--main-color);
+    display: block;
+    cursor: pointer;
+    color: var(--main-color);
 }
