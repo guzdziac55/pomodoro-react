@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import React from 'react'
 import useFetchUserData from './hooks/fetchHooks/useFetchUserData'
 import usePersistControl from './hooks/fetchHooks/usePersistControl'
@@ -10,6 +11,8 @@ import useSendWeekPlan from './hooks/postHooks/useSendWeekPlan'
 import RouterConfig from './pages/routers/RouterConfig'
 
 function App() {
+    // husky test
+    console.log('test')
     useFetchUserData()
     usePersistControl()
     useSendTaskList()
