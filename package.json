@@ -55,7 +55,9 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "lint-staged"
+            "pre-commit": "lint-staged",
+            "format": "prettier --write .",
+            "test": "jest"
         }
     },
     "eslintConfig": {

@@ -21,7 +21,7 @@ const variants = {
 
 function TimerCountdown() {
     const convertedTimeout = useTimer()
-
+    console.log('test2')
     return (
         <AnimatePresence exitBeforeEnter>
             <div>

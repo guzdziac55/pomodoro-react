@@ -62,6 +62,8 @@ function TasksMenu({ tasks }) {
         setOpenTaskEdit(false)
     }
 
+    console.log('dadadad')
+
     return (
         <>
             {openTemplateModal && (
@@ -111,7 +113,7 @@ function TasksMenu({ tasks }) {
                                 <MdDoneAll className={classes.iconSmall} />
                                 delete done
                             </li>
-
+                            <p>dadad</p>
                             <li
                                 role="menuitem"
                                 className={classes.listItem}
