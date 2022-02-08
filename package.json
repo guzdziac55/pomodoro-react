@@ -47,10 +47,8 @@
     },
     "lint-staged": {
         "src/**/*.{js,jsx}": [
-            "eslint . --ext .js,.jsx --fix . "
-        ],
-        "./src/**": [
-            "prettier . --write"
+            "eslint . --ext .js,.jsx --fix . ",
+            "prettier --write"
         ]
     },
     "husky": {
