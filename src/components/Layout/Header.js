@@ -50,8 +50,9 @@ function Header() {
             animate="visable"
             className={classes.header}
         >
+            <p>test test test</p>
             <Link to="/app">
-                <h1>Pomodoro</h1>
+                <h1>Pomodoro test</h1>
             </Link>
 
             <HeaderMenuTab />

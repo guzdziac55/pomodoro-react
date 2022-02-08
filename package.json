@@ -42,7 +42,8 @@
         "lint": "eslint . --ext .js,.jsx .",
         "lint:fix": "eslint . --ext .js,.jsx --fix . ",
         "prettier:check": "prettier . --check",
-        "prettier:write": "prettier . --write"
+        "prettier:write": "prettier . --write",
+        "prepare": "husky install"
     },
     "lint-staged": {
         "src/**/*.{js,jsx}": [
@@ -88,7 +89,7 @@
         "eslint-plugin-jsx-a11y": "^6.5.1",
         "eslint-plugin-react": "^7.28.0",
         "eslint-plugin-react-hooks": "^4.3.0",
-        "husky": "^7.0.4",
+        "husky": "^7.0.0",
         "lint-staged": "^12.3.3",
         "prettier": "2.5.1",
         "style-loader": "^0.23.1"
