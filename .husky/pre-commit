@@ -1,7 +1,8 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npx lint-staged
+npm run pre-commit
+# npx lint-staged
 # npm test                                              
 # npm lint-staged
 # npm lint staged ? 

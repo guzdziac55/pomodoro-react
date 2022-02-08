@@ -43,6 +43,7 @@
         "lint:fix": "eslint . --ext .js,.jsx --fix . ",
         "prettier:check": "prettier . --check",
         "prettier:write": "prettier . --write",
+        "pre-commit": "lint-staged",
         "prepare": "husky install"
     },
     "lint-staged": {
