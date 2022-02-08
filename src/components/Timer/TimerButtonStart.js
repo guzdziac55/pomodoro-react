@@ -84,9 +84,6 @@ function TimerButtonStart() {
     const isTicking = useSelector((state) => state.timer.isTicking)
     const [initial, setInitial] = useState(true)
 
-    console.log('test')
-    console.log('test2')
-
     useEffect(() => {
         setInitial(false)
     }, [])

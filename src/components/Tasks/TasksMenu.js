@@ -62,10 +62,6 @@ function TasksMenu({ tasks }) {
         setOpenTaskEdit(false)
     }
 
-    console.log('dadadad')
-    console.log('dadadad')
-    console.log('dadadad')
-
     return (
         <>
             {openTemplateModal && (
