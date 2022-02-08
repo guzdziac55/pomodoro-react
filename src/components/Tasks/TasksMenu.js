@@ -63,6 +63,8 @@ function TasksMenu({ tasks }) {
     }
 
     console.log('dadadad')
+    console.log('dadadad')
+    console.log('dadadad')
 
     return (
         <>
