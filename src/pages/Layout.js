@@ -34,6 +34,7 @@ function Layout() {
             <main
                 className={`${classes.mainApp} ${classes[`${currentTheme}`]}`}
             >
+                <p>adsadas</p>
                 <Header />
                 <Outlet />
 
