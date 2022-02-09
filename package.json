@@ -37,13 +37,13 @@
     "scripts": {
         "start": "react-scripts --openssl-legacy-provider start",
         "build": "react-scripts build",
-        "test": "react-scripts test --watchAll",
+        "test": "react-scripts test",
+        "test:nowatch": "react-scripts test --watchAll=false",
         "eject": "react-scripts eject",
-        "lint": "eslint . --ext .js,.jsx .",
-        "lint:fix": "eslint . --ext .js,.jsx --fix . ",
+        "lint": "eslint . --ext .js,.jsx",
+        "lint:fix": "eslint . --ext .js,.jsx --fix",
         "prettier:check": "prettier . --check",
         "prettier:write": "prettier . --write",
-        "pre-commit": "lint-staged",
         "prepare": "husky install"
     },
     "husky": {

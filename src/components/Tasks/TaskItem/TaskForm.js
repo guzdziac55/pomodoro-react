@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import { AnimatePresence, motion } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
 import {
@@ -31,7 +32,7 @@ const variants = {
     exit: {
         opacity: 0,
         x: -450,
-        delay: 0.2,
+        delay: 0.4,
     },
 }
 
