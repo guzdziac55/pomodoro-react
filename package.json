@@ -46,15 +46,9 @@
         "pre-commit": "lint-staged",
         "prepare": "husky install"
     },
-    "lint-staged": {
-        "src/**/*.{js,jsx}": [
-            "prettier --check",
-            "eslint"
-        ]
-    },
     "husky": {
         "hooks": {
-            "pre-commit": "npm test"
+            "pre-commit": "npm dupsko"
         }
     },
     "eslintConfig": {
