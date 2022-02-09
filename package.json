@@ -37,7 +37,7 @@
     "scripts": {
         "start": "react-scripts --openssl-legacy-provider start",
         "build": "react-scripts build",
-        "test": "react-scripts test",
+        "test": "react-scripts test --watchAll",
         "eject": "react-scripts eject",
         "lint": "eslint . --ext .js,.jsx .",
         "lint:fix": "eslint . --ext .js,.jsx --fix . ",
@@ -54,7 +54,7 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "lint-staged"
+            "pre-commit": "npm test"
         }
     },
     "eslintConfig": {
@@ -85,6 +85,7 @@
         "eslint-plugin-jsx-a11y": "^6.5.1",
         "eslint-plugin-react": "^7.28.0",
         "eslint-plugin-react-hooks": "^4.3.0",
+        "husky": "^7.0.4",
         "lint-staged": "^12.3.3",
         "prettier": "2.5.1",
         "style-loader": "^0.23.1"
