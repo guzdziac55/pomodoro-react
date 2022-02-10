@@ -14,11 +14,14 @@ export const handleOnFocus = (e) => {
     e.target.value = val
 }
 
-export function ObjTask(title = 'sample title', note = '', estPomodoro = 1) {
-    this.id = nanoid()
-    this.title = title
-    this.note = note
-    this.actPomodoro = 0
-    this.estPomodoro = estPomodoro
-    this.done = false
+export const ObjTask = (title = 'sample title', note = '', estPomodoro = 1) => {
+    const taskObject = {
+        id: nanoid(),
+        title,
+        note,
+        actPomodoro: 0,
+        estPomodoro,
+        done: false,
+    }
+    return taskObject
 }
