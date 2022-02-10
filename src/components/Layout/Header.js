@@ -15,33 +15,6 @@ const headerVariants = {
     },
 }
 
-// // framer motion not support path animations now
-// const svgVariants = {
-//   hidden: {
-//     rotate: -180,
-//   },
-//   visable: {
-//     rotate: 0,
-
-//     transition: { duration: 2 },
-//   },
-// };
-
-// const pathVariants = {
-//   hidden: {
-//     pathLength: 0,
-//     opacity: 0,
-//   },
-//   visable: {
-//     pathLength: 1,
-//     opacity: 1,
-//     transition: {
-//       duration: 2,
-//       ease: "easeInOut",
-//     },
-//   },
-// };
-
 function Header() {
     return (
         <header
@@ -51,7 +24,7 @@ function Header() {
             className={classes.header}
         >
             <Link to="/app">
-                <h1>Pomodoro test</h1>
+                <h1>Pomodoro</h1>
             </Link>
 
             <HeaderMenuTab />
