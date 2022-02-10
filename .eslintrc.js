@@ -3,7 +3,7 @@ module.exports = {
     plugins: ['prettier'],
     rules: {
         'react/prop-types': 'off', // Not using proptypes
-        'no-param-reassign': 'off', // Lots of param reassigning in redux slices
+        'no-param-reassign': 'off', // Lots of param reassigning in redux slice
         'no-use-before-define': 'warn',
         'react/jsx-props-no-spreading': 'off',
         'import/prefer-default-export': 'off',
